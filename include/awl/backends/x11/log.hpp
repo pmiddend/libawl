@@ -1,0 +1,19 @@
+#ifndef AWL_BACKENDS_X11_LOG_HPP_INCLUDED
+#define AWL_BACKENDS_X11_LOG_HPP_INCLUDED
+
+#include <fcppt/log/headers.hpp>
+#include <fcppt/log/parameters/inherited.hpp>
+
+namespace awl
+{
+namespace backends
+{
+namespace x11
+{
+fcppt::log::object &
+log();
+}
+}
+}
+
+#endif
