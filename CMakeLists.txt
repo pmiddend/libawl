@@ -8,12 +8,26 @@ IF(${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
 	message(FATAL_ERROR "In-source builds are not permitted. Make a separate folder for building:\nmkdir build; cd build; cmake ..\nBefore that, remove the files that cmake just created:\nrm -rf CMakeCache.txt CMakeFiles")
 ENDIF()
 
-ADD_DEFINITIONS(-D BOOST_FILESYSTEM_NO_DEPRECATED)
+INCLUDE (CheckCXXSourceRuns)
 
-IF (CMAKE_COMPILER_IS_GNUCXX)
+CHECK_CXX_SOURCE_RUNS(
+	"#include <cstdlib>
+	int main()
+	{
+	#ifdef __clang__
+		return EXIT_SUCCESS;
+	#else
+		return EXIT_FAILURE;
+	#endif
+	}
+	"
+	COMPILER_IS_CLANGPP
+)
+
+IF (CMAKE_COMPILER_IS_GNUCXX OR COMPILER_IS_CLANGPP)
 	ADD_DEFINITIONS (
 		"-pedantic-errors -Wall -Wextra -Wconversion"
-		"-Wfloat-equal -Wredundant-decls -Wstrict-null-sentinel -Winit-self"
+		"-Wfloat-equal -Wredundant-decls -Winit-self"
 		"-Woverloaded-virtual -Wnon-virtual-dtor"
 		"-Wsign-promo -Wstrict-aliasing=1 -Wold-style-cast"
 	)
@@ -22,9 +36,9 @@ IF (CMAKE_COMPILER_IS_GNUCXX)
 
 	# C++ 98 has no long long but boost insists on using it anyway
 	ADD_DEFINITIONS ("-Wno-long-long")
-
-	INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/include)
 ENDIF()
+
+INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/include)
 
 SET (LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 SET (EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
@@ -33,15 +47,25 @@ SET (EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 SET (Boost_ADDITIONAL_VERSIONS "1.44.0")
 
 FIND_PACKAGE(
-	Boost 1.44.0 REQUIRED COMPONENTS
-	filesystem
-	system
-	thread)
+	Boost 1.44.0 REQUIRED
+)
 
 INCLUDE_DIRECTORIES(SYSTEM ${Boost_INCLUDE_DIR})
+
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
 # Boost end
+
+# Fcppt begin
+FIND_PACKAGE(
+	Fcppt
+	REQUIRED
+)
+
+INCLUDE_DIRECTORIES(${FCPPT_INCLUDE_DIRS})
+
+LINK_DIRECTORIES(${FCPPT_LIBRARY_DIRS})
+# Fcppt end
 
 # Groups begin
 MACRO(ADD_AWL_SOURCE_GROUP GROUPPATH PATTERN)
