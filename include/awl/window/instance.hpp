@@ -9,15 +9,17 @@ namespace window
 {
 class instance
 {
-FCPPT_NONCOPYABLE(instance)
-public:
+	FCPPT_NONCOPYABLE(
+		instance
+	)
+protected:
 	explicit
 	instance();
-
+public:
 	virtual void
 	show() = 0;
 
-	~instance();
+	virtual ~instance();
 };
 }
 }

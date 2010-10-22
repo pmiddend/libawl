@@ -5,14 +5,17 @@
 #include <awl/backends/x11/visual.hpp>
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/log.hpp>
+#include <awl/backends/x11/event.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/make_shared_ptr.hpp>
+#include <fcppt/optional_impl.hpp>
 #include <fcppt/to_std_string.hpp>
 #include <X11/Xlib.h>
 
 awl::backends::x11::window_instance::window_instance(
 	display_ptr const _display,
-	awl::window::parameters const &params)
+	awl::window::parameters const &_params
+)
 :
 	display_(
 		_display),
@@ -21,15 +24,15 @@ awl::backends::x11::window_instance::window_instance(
 		XDefaultScreen(
 			display_->get())),
 	visual_(
-		params.has_opengl()
+		_params.has_opengl()
 		?
 			glx::create_visual(
 				display_,
 				screen_,
 				glx::create_visual_attributes(
-					params.bit_depth(),
-					params.depth_buffer(),
-					params.stencil_buffer()).data())
+					_params.bit_depth(),
+					_params.depth_buffer(),
+					_params.stencil_buffer()).data())
 		:
 			fcppt::make_shared_ptr<visual>(
 				display_->get(),
@@ -43,19 +46,19 @@ awl::backends::x11::window_instance::window_instance(
 			visual_)),
 	wm_hints_(),
 	size_hints_(
-		params.size()->w(),
-		params.size()->h(),
-		params.size()->w(),
-		params.size()->h()),
+		_params.size()->w(),
+		_params.size()->h(),
+		_params.size()->w(),
+		_params.size()->h()),
 	class_hint_(
-		params.title(),
-		params.class_name())
+		_params.title(),
+		_params.class_name())
 {
 	XSetWindowAttributes swa;
 	swa.colormap = colormap_->get();
 	swa.border_pixel = 0;
 	swa.background_pixel = 0;
-	swa.override_redirect = params.fullscreen() ? True : False;
+	swa.override_redirect = _params.fullscreen() ? True : False;
 	swa.event_mask = StructureNotifyMask;
 
 	FCPPT_LOG_DEBUG(
@@ -69,13 +72,13 @@ awl::backends::x11::window_instance::window_instance(
 			display_->get(),
 			screen_),
 		static_cast<int>(
-			params.position()->x()),
+			_params.position()->x()),
 		static_cast<int>(
-			params.position()->y()),
+			_params.position()->y()),
 		static_cast<unsigned>(
-			params.size()->w()),
+			_params.size()->w()),
 		static_cast<unsigned>(
-			params.size()->h()),
+			_params.size()->h()),
 		// border_width
 		0,
 		visual_->info()->depth,
@@ -89,46 +92,109 @@ awl::backends::x11::window_instance::window_instance(
 		fcppt::log::_ << FCPPT_TEXT("Window created"));
 
 	// always returns 1
-	XSetWMHints(
+	::XSetWMHints(
 		display_->get(),
 		window_,
 		wm_hints_.get());
 
 	// always returns 1
-	XSetWMNormalHints(
+	::XSetWMNormalHints(
 		display_->get(),
 		window_,
-		size_hints_.get());
+		size_hints_.get()
+	);
 
 	// always returns 1
-	XSetClassHint(
+	::XSetClassHint(
 		display_->get(),
 		window_,
 		class_hint_.get()
 	);
 
-	XStoreName(
+	// TODO: what can this return?
+	::XStoreName(
 		display_->get(),
 		window_,
 		fcppt::to_std_string(
-			params.title()).c_str());
+			_params.title()
+		).c_str()
+	);
 }
 
 void
 awl::backends::x11::window_instance::show()
 {
 	// always returns 1
-	XMapWindow(
+	::XMapWindow(
 		display_->get(),
-		window_);
-	XSync(
+		window_
+	);
+
+	// TODO: what can this return?
+	::XSync(
 		display_->get(),
-		False);
+		False
+	);
 }
 
 awl::backends::x11::window_instance::~window_instance()
 {
-	XDestroyWindow(
+	::XDestroyWindow(
 		display_->get(),
-		window_);
+		window_
+	);
+}
+
+awl::backends::x11::display_ptr const
+awl::backends::x11::window_instance::display() const
+{
+	return display_;
+}
+
+Window
+awl::backends::x11::window_instance::get() const
+{
+	return window_;
+}
+
+awl::backends::x11::optional_event const
+awl::backends::x11::window_instance::next_event()
+{
+	XEvent ret;
+
+	return
+		::XNextEvent(
+			display_->get(),
+			&ret
+		)
+		!= 0
+		?
+			optional_event(
+				x11::event(
+					ret
+				)
+			)
+		:
+			optional_event();
+}
+
+awl::backends::x11::optional_event const
+awl::backends::x11::window_instance::peek_event()
+{
+	XEvent ret;
+
+	return
+		::XPeekEvent(
+			display_->get(),
+			&ret
+		)
+		!= 0
+		?
+			optional_event(
+				x11::event(
+					ret
+				)
+			)
+		:
+			optional_event();
 }
