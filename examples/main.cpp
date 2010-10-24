@@ -9,4 +9,6 @@ int main()
 	awl::window::instance_ptr wind = 
 		ws.create(
 			awl::window::parameters());
+	
+	wind->show();
 }

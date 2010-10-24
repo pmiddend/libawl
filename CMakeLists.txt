@@ -32,6 +32,8 @@ IF (CMAKE_COMPILER_IS_GNUCXX OR COMPILER_IS_CLANGPP)
 		"-Wsign-promo -Wstrict-aliasing=1 -Wold-style-cast"
 	)
 
+	ADD_DEFINITIONS(-fvisibility=hidden)
+
 	SET (CMAKE_CXX_FLAGS_RELEASE "-O3 -fomit-frame-pointer -DNDEBUG")
 
 	# C++ 98 has no long long but boost insists on using it anyway

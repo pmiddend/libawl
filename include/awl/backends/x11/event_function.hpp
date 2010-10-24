@@ -1,7 +1,7 @@
 #ifndef AWL_BACKENDS_X11_EVENT_FUNCTION_HPP_INCLUDED
 #define AWL_BACKENDS_X11_EVENT_FUNCTION_HPP_INCLUDED
 
-#include <X11/Xlib.h>
+#include <awl/backends/x11/event_fwd.hpp>
 
 namespace awl
 {
@@ -13,7 +13,7 @@ namespace x11
 typedef
 void
 event_function(
-	XEvent const &
+	x11::event const &
 );
 
 }

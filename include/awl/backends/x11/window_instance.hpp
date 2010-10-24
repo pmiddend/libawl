@@ -3,6 +3,7 @@
 
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
+#include <awl/backends/x11/window_instance_fwd.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/backends/x11/colormap_ptr.hpp>
