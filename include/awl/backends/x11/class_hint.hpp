@@ -3,6 +3,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <awl/symbol.hpp>
 #include <fcppt/string.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/scoped_ptr.hpp>
@@ -16,16 +17,19 @@ namespace x11
 {
 class class_hint
 {
-FCPPT_NONCOPYABLE(class_hint)
+	FCPPT_NONCOPYABLE(class_hint)
 public:
+	AWL_SYMBOL
 	explicit
 	class_hint(
 		fcppt::string const &app_name,
 		fcppt::string const &class_name
 	);
 
+	AWL_SYMBOL
 	~class_hint();
 
+	AWL_SYMBOL
 	XClassHint *
 	get() const;
 private:

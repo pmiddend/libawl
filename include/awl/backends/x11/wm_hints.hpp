@@ -3,6 +3,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -13,11 +14,17 @@ namespace x11
 {
 class wm_hints 
 {
-FCPPT_NONCOPYABLE(wm_hints)
+	FCPPT_NONCOPYABLE(wm_hints)
 public:
+	AWL_SYMBOL
 	wm_hints();
+
+	AWL_SYMBOL
 	~wm_hints();
-	XWMHints *get() const;
+
+	AWL_SYMBOL
+	XWMHints *
+	get() const;
 private:
 	XWMHints *const hints;
 };

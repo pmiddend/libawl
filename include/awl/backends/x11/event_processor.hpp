@@ -6,6 +6,7 @@
 #include <awl/backends/x11/event_function.hpp>
 #include <awl/backends/x11/window_instance_ptr.hpp>
 #include <awl/event/processor.hpp>
+#include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -26,15 +27,19 @@ class event_processor
 		event_processor
 	)
 public:
+	AWL_SYMBOL
 	explicit event_processor(
 		x11::window_instance_ptr
 	);
 
+	AWL_SYMBOL
 	~event_processor();
 
+	AWL_SYMBOL
 	void
 	dispatch();
 
+	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_callback(
 		int event_type,

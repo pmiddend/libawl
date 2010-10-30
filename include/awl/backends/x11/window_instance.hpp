@@ -11,6 +11,7 @@
 #include <awl/backends/x11/size_hints.hpp>
 #include <awl/backends/x11/wm_hints.hpp>
 #include <awl/backends/x11/optional_event.hpp>
+#include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -28,35 +29,45 @@ class window_instance
 		window_instance
 	)
 public:
+	AWL_SYMBOL
 	explicit
 	window_instance(
 		display_ptr,
 		awl::window::parameters const &
 	);
 
+	AWL_SYMBOL
 	~window_instance();
 
+	AWL_SYMBOL
 	void
 	show();
 
+	AWL_SYMBOL
 	window::dim const
 	size() const;
 
+	AWL_SYMBOL
 	display_ptr const
 	display() const;
 
+	AWL_SYMBOL
 	int
 	screen() const;
 
+	AWL_SYMBOL
 	visual_ptr const
 	visual() const;
 
+	AWL_SYMBOL
 	Window
 	get() const;
 
+	AWL_SYMBOL
 	optional_event const
 	next_event();
 
+	AWL_SYMBOL
 	optional_event const
 	peek_event();
 private:

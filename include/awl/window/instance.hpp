@@ -2,6 +2,7 @@
 #define AWL_WINDOW_INSTANCE_HPP_INCLUDED
 
 #include <awl/window/dim.hpp>
+#include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
@@ -10,7 +11,7 @@ namespace awl
 namespace window
 {
 
-class instance
+class AWL_CLASS_SYMBOL instance
 {
 	FCPPT_NONCOPYABLE(
 		instance

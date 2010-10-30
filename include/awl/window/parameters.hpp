@@ -24,47 +24,47 @@ public:
 	parameters();
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	position(
 		vector const &);
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	size(
 		dim const &);
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	title(
 		fcppt::string const &);
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	class_name(
 		fcppt::string const &);
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	fullscreen(
 		bool);
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	has_opengl(
 		bool);
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	bit_depth(
 		awl::window::bit_depth::type);
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	stencil_buffer(
 		awl::window::stencil_buffer::type);
 
 	AWL_SYMBOL
-	void
+	parameters &	
 	depth_buffer(
 		awl::window::depth_buffer::type);
 

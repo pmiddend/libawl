@@ -4,6 +4,7 @@
 #include <X11/Xlib.h>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
+#include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -16,6 +17,7 @@ class colormap
 {
 FCPPT_NONCOPYABLE(colormap)
 public:
+	AWL_SYMBOL
 	explicit
 	colormap(
 		display_ptr,
@@ -23,8 +25,10 @@ public:
 		visual_ptr
 	);
 
+	AWL_SYMBOL
 	~colormap();
 
+	AWL_SYMBOL
 	Colormap &
 	get();
 private:

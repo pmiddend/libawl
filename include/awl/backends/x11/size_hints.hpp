@@ -3,6 +3,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -13,15 +14,22 @@ namespace x11
 {
 class size_hints 
 {
-FCPPT_NONCOPYABLE(size_hints)
+	FCPPT_NONCOPYABLE(size_hints)
 public:
+	AWL_SYMBOL
 	size_hints(
 		int min_w,
 		int min_h,
 		int desired_w,
-		int desired_h);
+		int desired_h
+	);
+
+	AWL_SYMBOL
 	~size_hints();
-	XSizeHints *get() const;
+
+	AWL_SYMBOL
+	XSizeHints *
+	get() const;
 private:
 	XSizeHints *const hints;
 };
