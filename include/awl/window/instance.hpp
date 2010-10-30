@@ -7,6 +7,7 @@ namespace awl
 {
 namespace window
 {
+
 class instance
 {
 	FCPPT_NONCOPYABLE(
@@ -21,6 +22,7 @@ public:
 
 	virtual ~instance();
 };
+
 }
 }
 

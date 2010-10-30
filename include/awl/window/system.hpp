@@ -9,20 +9,25 @@ namespace awl
 {
 namespace window
 {
+
 class system
 {
-FCPPT_NONCOPYABLE(system)
+	FCPPT_NONCOPYABLE(
+		system
+	)
 protected:
 	explicit
 	system();
 public:
-	virtual instance_ptr const
+	virtual window::instance_ptr const
 	create(
-		parameters const &) = 0;
+		window::parameters const &
+	) = 0;
 
 	virtual 
 	~system();
 };
+
 }
 }
 

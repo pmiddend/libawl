@@ -1,15 +1,20 @@
-#ifndef AWL_CREATE_WINDOW_SYSTEM_HPP_INCLUDED
-#define AWL_CREATE_WINDOW_SYSTEM_HPP_INCLUDED
+#ifndef AWL_WINDOW_CREATE_SYSTEM_HPP_INCLUDED
+#define AWL_WINDOW_CREATE_SYSTEM_HPP_INCLUDED
 
 #include <awl/window/system_ptr.hpp>
 
 namespace awl
 {
+namespace window
+{
+
 // This function creates a window system that fits the current
 // operating system/environment (will create the x11 system in Linux
 // and the WinAPI system on windows)
 window::system_ptr const
-create_window_system();
+create_system();
+
+}
 }
 
 #endif

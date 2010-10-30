@@ -113,6 +113,7 @@ CONFIGURE_FILE(
 )
 
 ADD_AWL_CPP_GROUP(src)
+ADD_AWL_CPP_GROUP(src/event)
 ADD_AWL_CPP_GROUP(src/window)
 ADD_AWL_CPP_GROUP(src/backends)
 ADD_AWL_CPP_GROUP(src/backends/x11)

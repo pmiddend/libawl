@@ -34,13 +34,17 @@ awl::backends::x11::window_instance::window_instance(
 					_params.depth_buffer(),
 					_params.stencil_buffer()).data())
 		:
-			fcppt::make_shared_ptr<visual>(
+			fcppt::make_shared_ptr<
+				x11::visual
+			>(
 				display_->get(),
 				XDefaultVisual(
 					display_->get(),
 					screen_))),
 	colormap_(
-		fcppt::make_shared_ptr<colormap>(
+		fcppt::make_shared_ptr<
+			x11::colormap
+		>(
 			display_,
 			screen_,
 			visual_)),
@@ -149,6 +153,12 @@ awl::backends::x11::display_ptr const
 awl::backends::x11::window_instance::display() const
 {
 	return display_;
+}
+
+awl::backends::x11::visual_ptr const
+awl::backends::x11::window_instance::visual() const
+{
+	return visual_;
 }
 
 Window

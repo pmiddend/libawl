@@ -42,6 +42,9 @@ public:
 	display_ptr const
 	display() const;
 
+	visual_ptr const
+	visual() const;
+
 	Window
 	get() const;
 
