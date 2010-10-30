@@ -1,0 +1,6 @@
+#ifndef AWL_CONFIG_HPP_INCLUDED
+#define AWL_CONFIG_HPP_INCLUDED
+
+#cmakedefine AWL_HAVE_OPENGL
+
+#endif

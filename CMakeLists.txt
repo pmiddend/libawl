@@ -82,6 +82,8 @@ IF(ENABLE_OPENGL)
 	)
 
 	INCLUDE_DIRECTORIES(${OPENGL_INCLUDE_DIR})
+
+	SET(AWL_HAVE_OPENGL TRUE)
 ENDIF()
 
 # Groups begin
@@ -104,6 +106,11 @@ MACRO(ADD_AWL_CPP_GROUP GROUPPATH)
 ENDMACRO()
 
 # Source groups end
+
+CONFIGURE_FILE(
+	${CMAKE_SOURCE_DIR}/config.hpp.in
+	${CMAKE_SOURCE_DIR}/include/awl/config.hpp
+)
 
 ADD_AWL_CPP_GROUP(src)
 ADD_AWL_CPP_GROUP(src/window)
