@@ -3,6 +3,8 @@
 
 #include <awl/window/instance_ptr.hpp>
 #include <awl/window/parameters_fwd.hpp>
+#include <awl/class_symbol.hpp>
+#include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -10,12 +12,13 @@ namespace awl
 namespace window
 {
 
-class system
+class AWL_CLASS_SYMBOL system
 {
 	FCPPT_NONCOPYABLE(
 		system
 	)
 protected:
+	AWL_SYMBOL
 	explicit
 	system();
 public:
@@ -24,6 +27,7 @@ public:
 		window::parameters const &
 	) = 0;
 
+	AWL_SYMBOL
 	virtual 
 	~system();
 };

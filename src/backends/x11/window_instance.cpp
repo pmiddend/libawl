@@ -7,6 +7,8 @@
 #include <awl/backends/x11/log.hpp>
 #include <awl/backends/x11/event.hpp>
 #include <awl/window/parameters.hpp>
+#include <awl/exception.hpp>
+#include <fcppt/math/dim/basic_impl.hpp>
 #include <fcppt/make_shared_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/to_std_string.hpp>
@@ -125,6 +127,14 @@ awl::backends::x11::window_instance::window_instance(
 	);
 }
 
+awl::backends::x11::window_instance::~window_instance()
+{
+	::XDestroyWindow(
+		display_->get(),
+		window_
+	);
+}
+
 void
 awl::backends::x11::window_instance::show()
 {
@@ -141,18 +151,63 @@ awl::backends::x11::window_instance::show()
 	);
 }
 
-awl::backends::x11::window_instance::~window_instance()
+awl::window::dim const
+awl::backends::x11::window_instance::size() const
 {
-	::XDestroyWindow(
-		display_->get(),
-		window_
-	);
+	Window root_return;
+
+	int
+		x_return,
+		y_return;
+
+	unsigned
+		width_return,
+		height_return,
+		border_width_return,
+		depth_return;
+
+	if(
+		::XGetGeometry(
+			display_->get(),
+			get(),
+			&root_return,
+			&x_return,
+			&y_return,
+			&width_return,
+			&height_return,
+			&border_width_return,
+			&depth_return
+		) == 0
+	)
+                throw awl::exception(
+                        FCPPT_TEXT("XGetGeometry() failed!")
+                );
+
+	return
+		window::dim(
+			static_cast<
+				window::dim::value_type
+			>(
+				width_return
+			),
+			static_cast<
+				window::dim::value_type
+			>(
+				height_return
+			)
+		);
 }
 
 awl::backends::x11::display_ptr const
 awl::backends::x11::window_instance::display() const
 {
 	return display_;
+}
+
+int
+awl::backends::x11::window_instance::screen() const
+{
+	return screen_;
 }
 
 awl::backends::x11::visual_ptr const

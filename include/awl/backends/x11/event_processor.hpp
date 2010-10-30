@@ -1,10 +1,11 @@
 #ifndef AWL_BACKENDS_X11_EVENT_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_X11_EVENT_PROCESSOR_HPP_INCLUDED
 
-#include <awl/event/processor.hpp>
+#include <awl/backends/x11/event_processor_fwd.hpp>
 #include <awl/backends/x11/event_callback.hpp>
 #include <awl/backends/x11/event_function.hpp>
 #include <awl/backends/x11/window_instance_ptr.hpp>
+#include <awl/event/processor.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object.hpp>
 #include <fcppt/noncopyable.hpp>

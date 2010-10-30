@@ -10,6 +10,10 @@ awl::backends::x11::window_system::window_system()
 {
 }
 
+awl::backends::x11::window_system::~window_system()
+{
+}
+
 awl::window::instance_ptr const
 awl::backends::x11::window_system::create(
 	awl::window::parameters const &p)

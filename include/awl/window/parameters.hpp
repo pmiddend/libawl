@@ -6,6 +6,7 @@
 #include <awl/window/bit_depth.hpp>
 #include <awl/window/stencil_buffer.hpp>
 #include <awl/window/depth_buffer.hpp>
+#include <awl/symbol.hpp>
 #include <fcppt/math/vector/basic_impl.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
 #include <fcppt/optional.hpp>
@@ -18,69 +19,88 @@ namespace window
 class parameters
 {
 public:
+	AWL_SYMBOL
 	explicit 
 	parameters();
 
+	AWL_SYMBOL
 	void
 	position(
 		vector const &);
 
+	AWL_SYMBOL
 	void
 	size(
 		dim const &);
 
+	AWL_SYMBOL
 	void
 	title(
 		fcppt::string const &);
 
+	AWL_SYMBOL
 	void
 	class_name(
 		fcppt::string const &);
 
+	AWL_SYMBOL
 	void
 	fullscreen(
 		bool);
 
+	AWL_SYMBOL
 	void
 	has_opengl(
 		bool);
 
+	AWL_SYMBOL
 	void
 	bit_depth(
 		awl::window::bit_depth::type);
 
+	AWL_SYMBOL
 	void
 	stencil_buffer(
 		awl::window::stencil_buffer::type);
 
+	AWL_SYMBOL
 	void
 	depth_buffer(
 		awl::window::depth_buffer::type);
 
+	AWL_SYMBOL
 	fcppt::optional<vector> const
 	position() const;
 
+	AWL_SYMBOL
 	fcppt::optional<dim> const
 	size() const;
 
+	AWL_SYMBOL
 	fcppt::string const
 	title() const;
 
+	AWL_SYMBOL
 	fcppt::string const
 	class_name() const;
 
+	AWL_SYMBOL
 	bool
 	fullscreen() const;
 
+	AWL_SYMBOL
 	bool
 	has_opengl() const;
 
+	AWL_SYMBOL
 	fcppt::optional<awl::window::bit_depth::type> const
 	bit_depth() const;
 
+	AWL_SYMBOL
 	fcppt::optional<awl::window::stencil_buffer::type> const
 	stencil_buffer() const;
 
+	AWL_SYMBOL
 	fcppt::optional<awl::window::depth_buffer::type> const
 	depth_buffer() const;
 private:

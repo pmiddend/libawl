@@ -10,9 +10,12 @@ namespace backends
 {
 namespace x11
 {
+
 class display
 {
-FCPPT_NONCOPYABLE(display)
+	FCPPT_NONCOPYABLE(
+		display
+	)
 public:
 	explicit
 	display();
@@ -21,9 +24,13 @@ public:
 	get() const;
 
 	~display();
+
+	void
+	sync();
 private:
 	Display * const ptr_;
 };
+
 }
 }
 }

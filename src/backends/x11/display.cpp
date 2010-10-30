@@ -6,12 +6,17 @@
 awl::backends::x11::display::display()
 :
 	ptr_(
-		XOpenDisplay(
-			0))
+		::XOpenDisplay(
+			0
+		)
+	)
 {
-	if(!ptr_)
-		throw exception(
-			FCPPT_TEXT("XOpenDisplay failed or dsp is 0!"));
+	if(
+		!ptr_
+	)
+		throw awl::exception(
+			FCPPT_TEXT("XOpenDisplay failed or dsp is 0!")
+		);
 }
 
 Display *
@@ -22,6 +27,16 @@ awl::backends::x11::display::get() const
 
 awl::backends::x11::display::~display()
 {
-	XCloseDisplay(
-		ptr_);
+	::XCloseDisplay(
+		ptr_
+	);
+}
+
+void
+awl::backends::x11::display::sync()
+{
+	::XSync(
+		ptr_,
+		False
+	);
 }

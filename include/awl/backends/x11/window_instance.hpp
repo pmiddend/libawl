@@ -34,13 +34,19 @@ public:
 		awl::window::parameters const &
 	);
 
+	~window_instance();
+
 	void
 	show();
 
-	~window_instance();
+	window::dim const
+	size() const;
 
 	display_ptr const
 	display() const;
+
+	int
+	screen() const;
 
 	visual_ptr const
 	visual() const;
