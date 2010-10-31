@@ -6,6 +6,7 @@
 #include <awl/backends/x11/event_function.hpp>
 #include <awl/backends/x11/window_instance_ptr.hpp>
 #include <awl/event/processor.hpp>
+#include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object.hpp>
@@ -19,7 +20,7 @@ namespace backends
 namespace x11
 {
 
-class event_processor
+class AWL_CLASS_SYMBOL event_processor
 :
 	public awl::event::processor
 {

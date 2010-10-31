@@ -11,6 +11,7 @@
 #include <awl/backends/x11/size_hints.hpp>
 #include <awl/backends/x11/wm_hints.hpp>
 #include <awl/backends/x11/optional_event.hpp>
+#include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
@@ -21,7 +22,7 @@ namespace backends
 namespace x11
 {
 
-class window_instance
+class AWL_CLASS_SYMBOL window_instance
 :
 	public awl::window::instance
 {
