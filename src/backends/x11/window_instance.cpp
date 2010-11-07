@@ -15,15 +15,14 @@
 #include <X11/Xlib.h>
 
 awl::backends::x11::window_instance::window_instance(
-	display_ptr const _display,
+	x11::display_ptr const _display,
 	awl::window::parameters const &_params
 )
 :
 	display_(
 		_display),
 	screen_(
-		// In sge, this is wrapped in a function, I don't quite know why
-		XDefaultScreen(
+		::XDefaultScreen(
 			display_->get())),
 	visual_(
 		_params.has_opengl()
@@ -40,7 +39,7 @@ awl::backends::x11::window_instance::window_instance(
 				x11::visual
 			>(
 				display_->get(),
-				XDefaultVisual(
+				::XDefaultVisual(
 					display_->get(),
 					screen_))),
 	colormap_(
@@ -77,10 +76,20 @@ awl::backends::x11::window_instance::window_instance(
 		XRootWindow(
 			display_->get(),
 			screen_),
-		static_cast<int>(
-			_params.position()->x()),
-		static_cast<int>(
-			_params.position()->y()),
+		_params.position()
+		?
+			static_cast<int>(
+				_params.position()->x()
+			)
+		:
+			0,
+		_params.position()
+		?
+			static_cast<int>(
+				_params.position()->y()
+			)
+		:
+			0,
 		static_cast<unsigned>(
 			_params.size()->w()),
 		static_cast<unsigned>(

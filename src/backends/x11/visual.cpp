@@ -6,9 +6,10 @@
 #include <X11/Xutil.h>
 
 awl::backends::x11::visual::visual(
-	Display *display,
+	Display *const display,
 	Visual * const _ptr,
-	XVisualInfo *_info)
+	XVisualInfo *const _info
+)
 :
 	ptr_(
 		_ptr),
@@ -64,7 +65,7 @@ awl::backends::x11::visual::visual(
 				&tpl,
 				&number_of_items);
 
-		if (info_)
+		if (!info_)
 			throw exception(FCPPT_TEXT("Couldn't get XVisualInfo structure for Visual"));
 
 		FCPPT_LOG_DEBUG(
@@ -74,6 +75,10 @@ awl::backends::x11::visual::visual(
 				<< number_of_items 
 				<< FCPPT_TEXT(" matching visual infos"));
 	}
+
+	FCPPT_ASSERT(
+		info_
+	);
 }
 
 Visual *
@@ -93,12 +98,7 @@ awl::backends::x11::visual::~visual()
 	FCPPT_LOG_DEBUG(
 		log(),
 		fcppt::log::_ << FCPPT_TEXT("Destroying a visual"));
-	if (info_)
-	{
-		FCPPT_LOG_DEBUG(
-			log(),
-			fcppt::log::_ << FCPPT_TEXT("Freeing the visual's info structure"));
-		XFree(
-			info_);
-	}
+
+	::XFree(
+		info_);
 }

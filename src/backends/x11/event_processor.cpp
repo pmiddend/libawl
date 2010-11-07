@@ -1,6 +1,7 @@
 #include <awl/backends/x11/event_processor.hpp>
 #include <awl/backends/x11/window_instance.hpp>
 #include <awl/backends/x11/event.hpp>
+#include <awl/backends/x11/signal/connection.hpp>
 #include <fcppt/optional_impl.hpp>
 
 awl::backends::x11::event_processor::event_processor(
@@ -29,7 +30,7 @@ awl::backends::x11::event_processor::dispatch()
 		);
 }
 
-fcppt::signal::auto_connection
+awl::backends::x11::signal::unique_connection
 awl::backends::x11::event_processor::register_callback(
 	int const _event_type,
 	x11::event_callback const &_callback
@@ -39,6 +40,18 @@ awl::backends::x11::event_processor::register_callback(
 		signals_[
 			_event_type
 		].connect(
-			_callback
+			_callback,
+			std::tr1::bind(
+				&event_processor::unregister,
+				this,
+				_event_type
+			)
 		);
+}
+
+void
+awl::backends::x11::event_processor::unregister(
+	int const _event_type
+)
+{
 }
