@@ -12,6 +12,7 @@
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
+#include <map>
 
 namespace awl
 {
@@ -59,7 +60,18 @@ private:
 		signal::object
 	> event_signal_map;
 
+	typedef unsigned mask_count;
+
+	typedef std::map<
+		long,
+		mask_count
+	> mask_count_map;
+
 	event_signal_map signals_;
+
+	mask_count_map mask_counts_;
+
+	long event_mask_;
 };
 
 }
