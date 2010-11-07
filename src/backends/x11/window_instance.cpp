@@ -231,25 +231,20 @@ awl::backends::x11::window_instance::get() const
 	return window_;
 }
 
-awl::backends::x11::optional_event const
+awl::backends::x11::event const
 awl::backends::x11::window_instance::next_event()
 {
 	XEvent ret;
 
+	::XNextEvent(
+		display_->get(),
+		&ret
+	);
+
 	return
-		::XNextEvent(
-			display_->get(),
-			&ret
-		)
-		!= 0
-		?
-			optional_event(
-				x11::event(
-					ret
-				)
-			)
-		:
-			optional_event();
+		x11::event(
+			ret
+		);
 }
 
 awl::backends::x11::optional_event const

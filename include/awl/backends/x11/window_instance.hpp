@@ -11,6 +11,7 @@
 #include <awl/backends/x11/size_hints.hpp>
 #include <awl/backends/x11/wm_hints.hpp>
 #include <awl/backends/x11/optional_event.hpp>
+#include <awl/backends/x11/event_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -65,11 +66,11 @@ public:
 	get() const;
 
 	AWL_SYMBOL
-	optional_event const
+	x11::event const
 	next_event();
 
 	AWL_SYMBOL
-	optional_event const
+	x11::optional_event const
 	peek_event();
 private:
 	display_ptr display_;

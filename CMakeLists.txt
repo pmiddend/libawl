@@ -127,6 +127,10 @@ ADD_AWL_HEADER_GROUP(include/awl/backends/x11)
 ADD_AWL_HEADER_GROUP(include/awl/backends/x11/glx)
 ADD_AWL_HEADER_GROUP(include/awl/backends/x11/signal)
 
+IF(UNIX)
+	SET(CMAKE_SHARED_LINKER_FLAGS -Wl,--no-undefined)
+ENDIF()
+
 FIND_PACKAGE(X11 REQUIRED)
 
 ADD_LIBRARY(awl SHARED ${LIBAWLFILES})
