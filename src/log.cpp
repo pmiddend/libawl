@@ -15,7 +15,7 @@ awl::log()
 		.enabled(
 			true)
 		.level(
-			fcppt::log::level::debug)
+			fcppt::log::level::warning)
 		.context(
 			log_context())
 		.create());
