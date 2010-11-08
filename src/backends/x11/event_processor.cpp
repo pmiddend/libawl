@@ -4,7 +4,14 @@
 #include <awl/backends/x11/window_instance.hpp>
 #include <awl/backends/x11/event.hpp>
 #include <awl/backends/x11/signal/connection.hpp>
+#include <awl/backends/x11/signal/shared_connection.hpp>
+#include <awl/event/resize.hpp>
+#include <awl/window/dim.hpp>
+#include <fcppt/assign/make_container.hpp>
+#include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/tr1/functional.hpp>
 #include <fcppt/optional_impl.hpp>
+#include <X11/Xlib.h>
 
 awl::backends::x11::event_processor::event_processor(
 	x11::window_instance_ptr const _window
@@ -13,7 +20,35 @@ awl::backends::x11::event_processor::event_processor(
 	window_(_window),
 	signals_(),
 	mask_counts_(),
-	event_mask_(0l)
+	event_mask_(0l),
+	connection_manager_(
+		fcppt::assign::make_container<
+			x11::signal::connection_manager::container
+		>(
+			x11::signal::shared_connection(
+				register_callback(
+					ConfigureNotify,
+					std::tr1::bind(
+						&event_processor::on_configure,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
+		)
+		(
+			x11::signal::shared_connection(
+				register_callback(
+					ResizeRequest,
+					std::tr1::bind(
+						&event_processor::on_resize,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
+		)
+	)
 {}
 
 awl::backends::x11::event_processor::~event_processor()
@@ -33,6 +68,17 @@ awl::backends::x11::event_processor::dispatch()
 			new_event->get().xany.type
 		](
 			*new_event
+		);
+}
+
+fcppt::signal::auto_connection
+awl::backends::x11::event_processor::resize_callback(
+	awl::event::resize_callback const &_callback
+)
+{
+	return
+		resize_signal_.connect(
+			_callback
 		);
 }
 
@@ -99,4 +145,44 @@ awl::backends::x11::event_processor::unregister(
 			window_,
 			event_mask_ &= ~(old_mask)
 		);
+}
+
+void
+awl::backends::x11::event_processor::on_configure(
+	x11::event const &_event
+)
+{
+	XConfigureEvent const request(
+		_event.get().xconfigure
+	);
+
+	resize_signal_(
+		awl::event::resize(
+			window_,
+			awl::window::dim(
+				request.width,
+				request.height
+			)
+		)
+	);
+}
+
+void
+awl::backends::x11::event_processor::on_resize(
+	x11::event const &_event
+)
+{
+	XResizeRequestEvent const &request(
+		_event.get().xresizerequest
+	);
+
+	resize_signal_(
+		awl::event::resize(
+			window_,
+			awl::window::dim(
+				request.width,
+				request.height
+			)
+		)
+	);
 }
