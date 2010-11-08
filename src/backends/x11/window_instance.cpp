@@ -248,16 +248,20 @@ awl::backends::x11::window_instance::next_event()
 }
 
 awl::backends::x11::optional_event const
-awl::backends::x11::window_instance::peek_event()
+awl::backends::x11::window_instance::poll_event(
+	long const _event_mask
+)
 {
 	XEvent ret;
 
 	return
-		::XPeekEvent(
+		::XCheckWindowEvent(
 			display_->get(),
+			window_,
+			_event_mask,
 			&ret
 		)
-		!= 0
+		== True
 		?
 			optional_event(
 				x11::event(

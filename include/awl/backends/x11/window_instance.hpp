@@ -71,7 +71,9 @@ public:
 
 	AWL_SYMBOL
 	x11::optional_event const
-	peek_event();
+	poll_event(
+		long event_mask
+	);
 private:
 	display_ptr display_;
 

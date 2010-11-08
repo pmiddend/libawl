@@ -24,19 +24,16 @@ void
 awl::backends::x11::event_processor::dispatch()
 {
 	while(
-		window_->peek_event()
+		x11::optional_event new_event =
+			window_->poll_event(
+				event_mask_
+			)
 	)
-	{
-		x11::event const new_event(
-			window_->next_event()
-		);
-
 		signals_[
-			new_event.get().xany.type
+			new_event->get().xany.type
 		](
-			new_event
+			*new_event
 		);
-	}
 }
 
 awl::backends::x11::signal::unique_connection
