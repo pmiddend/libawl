@@ -19,7 +19,7 @@ awl::backends::x11::glx::create_visual_attributes(
 		ret,
 		bit_depth);
 
-	if(depth_buffer)
+	if(depth_buffer && *depth_buffer != awl::window::depth_buffer::off)
 	{
 		ret.push_back(
 			GLX_DEPTH_SIZE);
@@ -28,7 +28,7 @@ awl::backends::x11::glx::create_visual_attributes(
 				*depth_buffer)); // TODO
 	}
 
-	if(stencil_buffer)
+	if(stencil_buffer && *stencil_buffer != awl::window::stencil_buffer::off)
 	{
 		ret.push_back(
 			GLX_STENCIL_SIZE);

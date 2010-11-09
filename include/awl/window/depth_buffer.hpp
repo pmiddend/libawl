@@ -9,6 +9,7 @@ namespace depth_buffer
 {
 enum type
 {
+	off,
 	depth16 = 16,
 	depth24 = 24
 };
