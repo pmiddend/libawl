@@ -64,11 +64,22 @@ awl::backends::x11::event_processor::dispatch()
 				event_mask_
 			)
 	)
+	{
+		if(
+			::XFilterEvent(
+				&new_event->get(),
+				window_->get()
+			)
+			== True
+		)
+			continue;
+
 		signals_[
 			new_event->get().xany.type
 		](
 			*new_event
 		);
+	}
 }
 
 fcppt::signal::auto_connection
