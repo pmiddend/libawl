@@ -56,6 +56,8 @@ SET (Boost_ADDITIONAL_VERSIONS "1.44.0 1.44")
 
 FIND_PACKAGE(
 	Boost 1.44.0 REQUIRED
+	system
+	thread
 )
 
 INCLUDE_DIRECTORIES(SYSTEM ${Boost_INCLUDE_DIR})
@@ -112,8 +114,12 @@ CONFIGURE_FILE(
 	${CMAKE_SOURCE_DIR}/include/awl/config.hpp
 )
 
+ADD_DEFINITIONS(-D BOOST_ASIO_SEPARATE_COMPILATION)
+
 ADD_AWL_CPP_GROUP(src)
 ADD_AWL_CPP_GROUP(src/event)
+ADD_AWL_CPP_GROUP(src/mainloop)
+ADD_AWL_CPP_GROUP(src/mainloop/asio)
 ADD_AWL_CPP_GROUP(src/window)
 ADD_AWL_CPP_GROUP(src/backends)
 ADD_AWL_CPP_GROUP(src/backends/x11)
@@ -121,6 +127,9 @@ ADD_AWL_CPP_GROUP(src/backends/x11/glx)
 ADD_AWL_CPP_GROUP(src/backends/x11/signal)
 ADD_AWL_HEADER_GROUP(include/)
 ADD_AWL_HEADER_GROUP(include/awl)
+ADD_AWL_HEADER_GROUP(include/awl/event)
+ADD_AWL_HEADER_GROUP(include/awl/mainloop)
+ADD_AWL_HEADER_GROUP(include/awl/mainloop/asio)
 ADD_AWL_HEADER_GROUP(include/awl/window)
 ADD_AWL_HEADER_GROUP(include/awl/backends)
 ADD_AWL_HEADER_GROUP(include/awl/backends/x11)
@@ -138,8 +147,17 @@ ADD_LIBRARY(awl SHARED ${LIBAWLFILES})
 TARGET_LINK_LIBRARIES(
 	awl
 	${X11_X11_LIB}
+	${Boost_SYSTEM_LIBRARY}
+	${Boost_THREAD_LIBRARY}
 	${FCPPT_LIBRARIES}
 )
+
+IF(UNIX)
+	TARGET_LINK_LIBRARIES(
+		awl
+		pthread
+	)
+ENDIF()
 
 IF(ENABLE_OPENGL)
 	TARGET_LINK_LIBRARIES(

@@ -90,6 +90,16 @@ awl::window::parameters::depth_buffer(
 	return *this;
 }
 
+awl::window::parameters &
+awl::window::parameters::io_service(
+	awl::mainloop::io_service_ptr const _io_service
+)
+{
+	io_service_ = _io_service;
+
+	return *this;
+}
+
 fcppt::optional<awl::window::vector> const
 awl::window::parameters::position() const
 {
@@ -142,4 +152,10 @@ fcppt::optional<awl::window::depth_buffer::type> const
 awl::window::parameters::depth_buffer() const
 {
 	return depth_buffer_;
+}
+
+awl::mainloop::io_service_ptr const
+awl::window::parameters::io_service() const
+{
+	return io_service_;
 }
