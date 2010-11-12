@@ -18,26 +18,54 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#ifndef AWL_MAINLOOP_NATIVE_HANDLE_HPP_INCLUDED
-#define AWL_MAINLOOP_NATIVE_HANDLE_HPP_INCLUDED
+#include <awl/backends/x11/asio_dispatcher.hpp>
+#include <fcppt/tr1/functional.hpp>
+#include <boost/asio/buffer.hpp>
 
-#include <fcppt/config.hpp>
-#if !defined(FCPPT_POSIX_PLATFORM)
-#include <boost/mpl/void.hpp> // TODO: use something else here
-#endif
-
-namespace awl
+awl::backends::x11::asio_dispatcher::asio_dispatcher(	
+	boost::asio::io_service &_io_service,
+	int const _fd,
+	awl::mainloop::dispatcher_callback const &_callback
+)
+:
+	stream_wrapper_(
+		_io_service,
+		_fd
+	),
+	callback_(
+		_callback
+	)
 {
-namespace mainloop
+	register_handler();
+}
+
+awl::backends::x11::asio_dispatcher::~asio_dispatcher()
+{}
+
+void
+awl::backends::x11::asio_dispatcher::register_handler()
 {
-
-#if defined(FCPPT_POSIX_PLATFORM)
-typedef int native_handle;
-#else
-typedef boost::mpl::void_ native_handle;
-#endif
-
+	stream_wrapper_.async_read_some(
+		boost::asio::null_buffers(),
+		std::tr1::bind(
+			&asio_dispatcher::callback,
+			this,
+			std::tr1::placeholders::_1
+		)
+	);
 }
-}
 
-#endif
+void
+awl::backends::x11::asio_dispatcher::callback(
+	boost::system::error_code const &_error
+)
+{
+	if(
+		_error
+	)
+		return;
+
+	callback_();
+
+	register_handler();
+}

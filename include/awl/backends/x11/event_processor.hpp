@@ -11,6 +11,7 @@
 #include <awl/event/processor.hpp>
 #include <awl/event/resize_callback.hpp>
 #include <awl/event/resize_function.hpp>
+#include <awl/window/instance_ptr.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
@@ -50,6 +51,9 @@ public:
 	resize_callback(
 		awl::event::resize_callback const &
 	);
+
+	awl::window::instance_ptr const
+	window() const;
 
 	AWL_SYMBOL
 	x11::signal::unique_connection

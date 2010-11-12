@@ -18,14 +18,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#ifndef AWL_MAINLOOP_ASIO_DISPATCHER_HPP_INCLUDED
-#define AWL_MAINLOOP_ASIO_DISPATCHER_HPP_INCLUDED
+#ifndef AWL_BACKENDS_X11_ASIO_DISPATCHER_HPP_INCLUDED
+#define AWL_BACKENDS_X11_ASIO_DISPATCHER_HPP_INCLUDED
 
-#include <fcppt/config.hpp>
-#ifdef FCPPT_POSIX_PLATFORM
 #include <awl/mainloop/dispatcher.hpp>
 #include <awl/mainloop/dispatcher_callback.hpp>
-#include <awl/mainloop/native_handle.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/function/object.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -35,26 +32,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 namespace awl
 {
-namespace mainloop
+namespace backends
 {
-namespace asio
+namespace x11
 {
 
-class dispatcher
+class asio_dispatcher
 :
 	public mainloop::dispatcher
 {
-	FCPPT_NONCOPYABLE(dispatcher)
+	FCPPT_NONCOPYABLE(
+		asio_dispatcher
+	)
 public:
 	AWL_SYMBOL
-	explicit dispatcher(	
+	explicit asio_dispatcher(	
 		boost::asio::io_service &,
-		mainloop::native_handle,
-		mainloop::dispatcher_callback const &
+		int fd,
+		awl::mainloop::dispatcher_callback const &
 	);
 
 	AWL_SYMBOL
-	~dispatcher();
+	~asio_dispatcher();
 private:
 	void
 	register_handler();
@@ -66,12 +65,11 @@ private:
 
 	boost::asio::posix::stream_descriptor stream_wrapper_;
 
-	dispatcher_callback const callback_;
+	awl::mainloop::dispatcher_callback const callback_;
 };
 
 }
 }
 }
-#endif
 
 #endif

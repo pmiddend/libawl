@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define AWL_MAINLOOP_IO_SERVICE_HPP_INCLUDED
 
 #include <awl/mainloop/io_service_fwd.hpp>
-#include <awl/mainloop/native_handle.hpp>
 #include <awl/mainloop/dispatcher_ptr.hpp>
 #include <awl/mainloop/dispatcher_callback.hpp>
+#include <awl/event/processor_ptr.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -66,7 +66,7 @@ public:
 
 	virtual dispatcher_ptr const
 	create_dispatcher(
-		native_handle,
+		event::processor_ptr,
 		dispatcher_callback const &
 	) = 0;
 };

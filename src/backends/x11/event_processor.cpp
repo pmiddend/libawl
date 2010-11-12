@@ -81,6 +81,12 @@ awl::backends::x11::event_processor::resize_callback(
 		);
 }
 
+awl::window::instance_ptr const
+awl::backends::x11::event_processor::window() const
+{
+	return window_;
+}
+
 awl::backends::x11::signal::unique_connection
 awl::backends::x11::event_processor::register_callback(
 	int const _event_type,

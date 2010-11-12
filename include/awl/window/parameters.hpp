@@ -6,7 +6,6 @@
 #include <awl/window/bit_depth.hpp>
 #include <awl/window/stencil_buffer.hpp>
 #include <awl/window/depth_buffer.hpp>
-#include <awl/mainloop/io_service_ptr.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/math/vector/basic_impl.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
@@ -70,12 +69,6 @@ public:
 		awl::window::depth_buffer::type);
 
 	AWL_SYMBOL
-	parameters &
-	io_service(
-		awl::mainloop::io_service_ptr
-	);
-
-	AWL_SYMBOL
 	fcppt::optional<vector> const
 	position() const;
 
@@ -110,10 +103,6 @@ public:
 	AWL_SYMBOL
 	fcppt::optional<awl::window::depth_buffer::type> const
 	depth_buffer() const;
-
-	AWL_SYMBOL
-	awl::mainloop::io_service_ptr const
-	io_service() const;
 private:
 	fcppt::optional<vector> position_;
 	fcppt::optional<dim> size_;
@@ -123,7 +112,6 @@ private:
 	fcppt::optional<awl::window::bit_depth::type> bit_depth_;
 	fcppt::optional<awl::window::stencil_buffer::type> stencil_buffer_;
 	fcppt::optional<awl::window::depth_buffer::type> depth_buffer_;
-	awl::mainloop::io_service_ptr io_service_;
 };
 }
 }

@@ -19,13 +19,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 #include <awl/mainloop/asio/io_service.hpp>
+#include <awl/event/processor.hpp>
 #include <fcppt/function/object.hpp>
-#include <fcppt/config.hpp>
-#ifdef FCPPT_POSIX_PLATFORM
-#include <awl/mainloop/asio/dispatcher.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_shared_ptr.hpp>
-#endif
+
+// TODO:
+#include <awl/backends/x11/window_instance.hpp>
+#include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/asio_dispatcher.hpp>
+#include <fcppt/dynamic_pointer_cast.hpp>
+#include <X11/Xlib.h>
+#include <X11/Xlibint.h>
 
 awl::mainloop::asio::io_service::io_service()
 :
@@ -84,22 +89,23 @@ awl::mainloop::asio::io_service::post(
 
 awl::mainloop::dispatcher_ptr const
 awl::mainloop::asio::io_service::create_dispatcher(
-	native_handle const _handle,
+	awl::event::processor_ptr const _processor,
 	dispatcher_callback const &_callback
 )
 {
-#ifdef FCPPT_POSIX_PLATFORM
 	return
 		fcppt::make_shared_ptr<
-			asio::dispatcher
+			awl::backends::x11::asio_dispatcher
 		>(
 			std::tr1::ref(
 				io_service_
 			),
-			_handle,
+			//TODO:
+			fcppt::dynamic_pointer_cast<
+				awl::backends::x11::window_instance
+			>(
+				_processor->window()
+			)->display()->get()->fd,
 			_callback
 		);
-#else
-	return dispatcher_ptr();
-#endif
 }
