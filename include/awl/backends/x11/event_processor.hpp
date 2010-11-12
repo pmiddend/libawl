@@ -68,11 +68,6 @@ private:
 		x11::event const &
 	);
 
-	void
-	on_resize(
-		x11::event const &
-	);
-
 	x11::window_instance_ptr const window_;
 
 	typedef boost::ptr_map<

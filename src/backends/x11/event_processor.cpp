@@ -36,18 +36,6 @@ awl::backends::x11::event_processor::event_processor(
 				)
 			)
 		)
-		(
-			x11::signal::shared_connection(
-				register_callback(
-					ResizeRequest,
-					std::tr1::bind(
-						&event_processor::on_resize,
-						this,
-						std::tr1::placeholders::_1
-					)
-				)
-			)
-		)
 	)
 {}
 
@@ -165,26 +153,6 @@ awl::backends::x11::event_processor::on_configure(
 {
 	XConfigureEvent const request(
 		_event.get().xconfigure
-	);
-
-	resize_signal_(
-		awl::event::resize(
-			window_,
-			awl::window::dim(
-				request.width,
-				request.height
-			)
-		)
-	);
-}
-
-void
-awl::backends::x11::event_processor::on_resize(
-	x11::event const &_event
-)
-{
-	XResizeRequestEvent const &request(
-		_event.get().xresizerequest
 	);
 
 	resize_signal_(

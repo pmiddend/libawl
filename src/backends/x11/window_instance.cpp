@@ -54,7 +54,8 @@ awl::backends::x11::window_instance::window_instance(
 		_params.size()->w(),
 		_params.size()->h(),
 		_params.size()->w(),
-		_params.size()->h()),
+		_params.size()->h()
+	),
 	class_hint_(
 		_params.title(),
 		_params.class_name())
@@ -91,9 +92,11 @@ awl::backends::x11::window_instance::window_instance(
 		:
 			0,
 		static_cast<unsigned>(
-			_params.size()->w()),
+			_params.size()->w()
+		),
 		static_cast<unsigned>(
-			_params.size()->h()),
+			_params.size()->h()
+		),
 		// border_width
 		0,
 		visual_->info()->depth,
@@ -151,12 +154,6 @@ awl::backends::x11::window_instance::show()
 	::XMapWindow(
 		display_->get(),
 		window_
-	);
-
-	// TODO: what can this return?
-	::XSync(
-		display_->get(),
-		False
 	);
 }
 
