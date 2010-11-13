@@ -18,10 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#ifndef AWL_BACKENDS_WINDOWS_WINDOW_HPP_INCLUDED
-#define AWL_BACKENDS_WINDOWS_WINDOW_HPP_INCLUDED
+#ifndef AWL_BACKENDS_WINDOWS_WINDOW_INSTANCE_HPP_INCLUDED
+#define AWL_BACKENDS_WINDOWS_WINDOW_INSTANCE_HPP_INCLUDED
 
-#include <sge/windows/window_fwd.hpp>
+#include <awl/backends/windows/window_instance_fwd.hpp>
 #include <sge/windows/callback_return_type.hpp>
 #include <sge/windows/event_type.hpp>
 #include <sge/windows/windows.hpp>
@@ -45,30 +45,14 @@ namespace backends
 namespace windows
 {
 
-class window
+class window_instance
 :
-	public sge::window::instance
+	public awl::window::instance
 {
 	FCPPT_NONCOPYABLE(
-		window
+		window_instance
 	)
 public:
-	typedef callback_return_type
-	callback_signature_type(
-		window &,
-		event_type,
-		WPARAM,
-		LPARAM
-	);
-
-	typedef fcppt::function::object<
-		callback_signature_type
-	> callback_type;
-
-	typedef fcppt::signal::object<
-		callback_signature_type
-	> signal_type;
-
 	SGE_SYMBOL window(
 		dim_type const &,
 		fcppt::string const &title,
@@ -77,51 +61,25 @@ public:
 
 	SGE_SYMBOL ~window();
 
-	SGE_SYMBOL window::dim_type const
+	SGE_SYMBOL void
+	show();
+
+	SGE_SYMBOL awl::window::dim const
 	size() const;
 
 	SGE_SYMBOL HWND
 	hwnd() const;
-
-	SGE_SYMBOL fcppt::signal::auto_connection
-	register_callback(
-		event_type,
-		callback_type
-	);
-
-	SGE_SYMBOL callback_return_type
-	execute_callback(
-		event_type msg,
-		WPARAM wparam,
-		LPARAM lparam
-	);
-
-	SGE_SYMBOL void
-	show();
-
-	SGE_SYMBOL void
-	dispatch();
-
-	SGE_SYMBOL
-	sge::mainloop::io_service_ptr const
-	io_service() const;
 private:
-	wndclass_ptr const wndclass_;
+	windows::wndclass_ptr const wndclass_;
 
 	typedef fcppt::math::box::rect<
 		LONG
 	>::type decoration_rect;
 
-	decoration_rect decoration_size;
+	decoration_rect decoration_size_;
 
-	HWND        handle;
+	HWND handle_;
 
-	typedef boost::ptr_map<
-		event_type,
-		signal_type
-	> signal_map;
-
-	signal_map signals;
 };
 
 }

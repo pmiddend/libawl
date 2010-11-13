@@ -118,17 +118,6 @@ awl::backends::windows::window::size() const
 	);
 }
 
-#if 0
-sge::window::pos_type const
-awl::backends::windows::window::viewport_offset() const
-{
-	return window::pos_type(
-		0,
-		-2*decoration_size.bottom()
-	);
-}
-#endif
-
 HWND
 awl::backends::windows::window::hwnd() const
 {
