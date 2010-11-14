@@ -1,16 +1,18 @@
-#ifndef AWL_BACKENDS_X11_WINDOW_SYSTEM_HPP_INCLUDED
-#define AWL_BACKENDS_X11_WINDOW_SYSTEM_HPP_INCLUDED
+#ifndef AWL_BACKENDS_WINDOWS_WINDOW_SYSTEM_HPP_INCLUDED
+#define AWL_BACKENDS_WINDOWS_WINDOW_SYSTEM_HPP_INCLUDED
 
+#include <awl/backends/windows/counted_wndclass_fwd.hpp>
 #include <awl/window/system.hpp>
-#include <awl/backends/x11/display_ptr.hpp>
 #include <awl/symbol.hpp>
+#include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/string.hpp>
 
 namespace awl
 {
 namespace backends
 {
-namespace x11
+namespace windows
 {
 
 class window_system
@@ -21,8 +23,6 @@ class window_system
 		window_system
 	)
 public:
-	// NOTE: We could add a string specifying which display to connect
-	// to here
 	AWL_SYMBOL
 	window_system();
 
@@ -35,7 +35,12 @@ public:
 		awl::window::parameters const &
 	);
 private:
-	x11::display_ptr const display_;
+	typedef boost::ptr_map<
+		fcppt::string,
+		windows::counted_wndclass
+	> wndclass_map;
+
+	wndclass_map wndclasses_;
 };
 
 }

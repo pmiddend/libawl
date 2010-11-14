@@ -18,17 +18,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#include <sge/windows/module_handle.hpp>
-#include <sge/exception.hpp>
+#include <awl/backends/windows/module_handle.hpp>
+#include <awl/exception.hpp>
 #include <fcppt/text.hpp>
 
 HINSTANCE
 awl::backends::windows::module_handle()
 {
-	HINSTANCE const instance = GetModuleHandle(0);
+	HINSTANCE const instance(
+		::GetModuleHandle(0)
+	);
+
 	if(!instance)
-		throw exception(
-			FCPPT_TEXT("GetModuleHandle() failed!"));
+		throw awl::exception(
+			FCPPT_TEXT("GetModuleHandle() failed!")
+		);
+
 	return instance;
 }
-

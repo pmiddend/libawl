@@ -21,15 +21,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef AWL_BACKENDS_WINDOWS_MODULE_HANDLE_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_MODULE_HANDLE_HPP_INCLUDED
 
-#include <sge/windows/windows.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/symbol.hpp>
 
-namespace sge
+namespace awl
+{
+namespace backends
 {
 namespace windows
 {
 
-HINSTANCE module_handle();
+AWL_SYMBOL
+HINSTANCE
+module_handle();
 
+}
 }
 }
 

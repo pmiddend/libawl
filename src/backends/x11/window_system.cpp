@@ -9,7 +9,8 @@
 awl::backends::x11::window_system::window_system()
 :
 	display_(
-		fcppt::make_shared_ptr<display>())
+		fcppt::make_shared_ptr<display>()
+	)
 {
 }
 
@@ -19,7 +20,8 @@ awl::backends::x11::window_system::~window_system()
 
 awl::window::instance_ptr const
 awl::backends::x11::window_system::create(
-	awl::window::parameters const &_param)
+	awl::window::parameters const &_param
+)
 {
 	FCPPT_ASSERT(
 		_param.size()

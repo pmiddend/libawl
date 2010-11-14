@@ -49,6 +49,8 @@ SET (EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
 OPTION(ENABLE_OPENGL "Enable opengl support" TRUE)
 
+OPTION(ENABLE_WINE "Use winelib if available" FALSE)
+
 # General options end
 
 # Boost begin
@@ -109,11 +111,6 @@ ENDMACRO()
 
 # Source groups end
 
-CONFIGURE_FILE(
-	${CMAKE_SOURCE_DIR}/config.hpp.in
-	${CMAKE_SOURCE_DIR}/include/awl/config.hpp
-)
-
 ADD_DEFINITIONS(-D BOOST_ASIO_SEPARATE_COMPILATION)
 
 ADD_AWL_CPP_GROUP(src)
@@ -122,9 +119,6 @@ ADD_AWL_CPP_GROUP(src/mainloop)
 ADD_AWL_CPP_GROUP(src/mainloop/asio)
 ADD_AWL_CPP_GROUP(src/window)
 ADD_AWL_CPP_GROUP(src/backends)
-ADD_AWL_CPP_GROUP(src/backends/x11)
-ADD_AWL_CPP_GROUP(src/backends/x11/glx)
-ADD_AWL_CPP_GROUP(src/backends/x11/signal)
 ADD_AWL_HEADER_GROUP(include/)
 ADD_AWL_HEADER_GROUP(include/awl)
 ADD_AWL_HEADER_GROUP(include/awl/event)
@@ -132,25 +126,86 @@ ADD_AWL_HEADER_GROUP(include/awl/mainloop)
 ADD_AWL_HEADER_GROUP(include/awl/mainloop/asio)
 ADD_AWL_HEADER_GROUP(include/awl/window)
 ADD_AWL_HEADER_GROUP(include/awl/backends)
-ADD_AWL_HEADER_GROUP(include/awl/backends/x11)
-ADD_AWL_HEADER_GROUP(include/awl/backends/x11/glx)
-ADD_AWL_HEADER_GROUP(include/awl/backends/x11/signal)
 
 IF(UNIX)
 	SET(CMAKE_SHARED_LINKER_FLAGS -Wl,--no-undefined)
 ENDIF()
 
-FIND_PACKAGE(X11 REQUIRED)
+# We can use either X11, winelib or plain windows
+IF(UNIX)
+	IF(ENABLE_WINELIB)
+		FIND_PACKAGE(Wine REQUIRED)
+
+		SET(AWL_WINDOWS_BACKEND TRUE)
+	ELSE()
+		FIND_PACKAGE(X11 REQUIRED)
+
+		SET(AWL_X11_BACKEND TRUE)
+	ENDIF()
+ELSEIF(WIN32)
+	SET(AWL_WINDOWS_BACKEND TRUE)
+	# TODO: Find windows.h, etc.
+ELSE()
+	MESSAGE(
+		FATAL_ERROR
+		"This configuration is not supported!"
+	)
+ENDIF()
+
+CONFIGURE_FILE(
+	${CMAKE_SOURCE_DIR}/config.hpp.in
+	${CMAKE_SOURCE_DIR}/include/awl/config.hpp
+)
+
+IF(AWL_X11_BACKEND)
+	ADD_AWL_CPP_GROUP(src/backends/x11)
+	ADD_AWL_CPP_GROUP(src/backends/x11/glx)
+	ADD_AWL_CPP_GROUP(src/backends/x11/signal)
+
+	ADD_AWL_HEADER_GROUP(include/awl/backends/x11)
+	ADD_AWL_HEADER_GROUP(include/awl/backends/x11/glx)
+	ADD_AWL_HEADER_GROUP(include/awl/backends/x11/signal)
+ENDIF()
+
+IF(ENABLE_WINELIB OR WIN32)
+	ADD_AWL_CPP_GROUP(src/backends/windows)
+
+	ADD_AWL_HEADER_GROUP(include/awl/backends/windows)
+ENDIF()
 
 ADD_LIBRARY(awl SHARED ${LIBAWLFILES})
 
 TARGET_LINK_LIBRARIES(
 	awl
-	${X11_X11_LIB}
 	${Boost_SYSTEM_LIBRARY}
 	${Boost_THREAD_LIBRARY}
 	${FCPPT_LIBRARIES}
 )
+
+IF(AWL_X11_BACKEND)
+	INCLUDE_DIRECTORIES(
+		${X11_INCLUDE_PATH}
+	)
+
+	TARGET_LINK_LIBRARIES(
+		awl
+		${X11_X11_LIB}
+	)
+ENDIF()
+
+IF(ENABLE_WINELIB)
+	INCLUDE_DIRECTORIES(
+		SYSTEM
+		${WINE_INCLUDE_DIR}
+	)
+
+	TARGET_LINK_LIBRARIES(
+		awl
+		${WINE_LIBRARY}
+	)
+ENDIF()
+
+# TODO: Link to certain windows libs
 
 IF(UNIX)
 	TARGET_LINK_LIBRARIES(

@@ -21,13 +21,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef AWL_BACKENDS_WINDOWS_GDI_DEVICE_FWD_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_GDI_DEVICE_FWD_HPP_INCLUDED
 
-namespace sge
+namespace awl
+{
+namespace backends
 {
 namespace windows
 {
 
 class gdi_device;
 
+}
 }
 }
 

@@ -21,23 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef AWL_BACKENDS_WINDOWS_WINDOW_INSTANCE_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_WINDOW_INSTANCE_HPP_INCLUDED
 
-#include <awl/backends/windows/window_instance_fwd.hpp>
-#include <sge/windows/callback_return_type.hpp>
-#include <sge/windows/event_type.hpp>
-#include <sge/windows/windows.hpp>
-#include <sge/windows/wndclass_ptr.hpp>
-#include <sge/window/instance.hpp>
-#include <sge/symbol.hpp>
-#include <fcppt/signal/auto_connection.hpp>
-#include <fcppt/signal/object.hpp>
-#include <fcppt/math/box/rect.hpp>
-#include <fcppt/math/box/basic_decl.hpp>
-#include <fcppt/function/object.hpp>
-#include <fcppt/string.hpp>
-#include <fcppt/optional_fwd.hpp>
-#include <fcppt/noncopyable.hpp>
-#include <boost/ptr_container/ptr_map.hpp>
-
 namespace awl
 {
 namespace backends
@@ -54,9 +37,9 @@ class window_instance
 	)
 public:
 	SGE_SYMBOL window(
-		dim_type const &,
-		fcppt::string const &title,
-		fcppt::string const &class_name
+		awl::window::parameters const &,
+		windows::wndclass &,
+		windows::wndclass_remove_callback const &
 	);
 
 	SGE_SYMBOL ~window();
@@ -70,8 +53,6 @@ public:
 	SGE_SYMBOL HWND
 	hwnd() const;
 private:
-	windows::wndclass_ptr const wndclass_;
-
 	typedef fcppt::math::box::rect<
 		LONG
 	>::type decoration_rect;
@@ -80,6 +61,7 @@ private:
 
 	HWND handle_;
 
+	windows::wndclass_remove_callback const remove_wndclass_;
 };
 
 }

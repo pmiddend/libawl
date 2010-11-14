@@ -21,15 +21,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <sge/windows/wndclass.hpp>
 #include <sge/windows/windows.hpp>
 #include <sge/windows/module_handle.hpp>
-#include <sge/exception.hpp>
+#include <awl/exception.hpp>
 #include <fcppt/text.hpp>
 
 awl::backends::windows::wndclass::wndclass(
-	fcppt::string const &class_name,
-	WNDPROC const proc)
+	fcppt::string const &_class_name,
+	WNDPROC const _proc
+)
 :
-	class_name(
-		class_name)
+	class_name_(
+		_class_name
+	)
 {
 	WNDCLASSEX wndclass;
 	wndclass.cbClsExtra = 0;
@@ -38,27 +40,33 @@ awl::backends::windows::wndclass::wndclass(
 	wndclass.hCursor = 0;
 	wndclass.hIcon = 0;
 	wndclass.hIconSm = 0;
-	wndclass.hInstance = module_handle();
-	wndclass.lpfnWndProc = proc;
-	wndclass.lpszClassName = class_name.c_str();
+	wndclass.hInstance = windows::module_handle();
+	wndclass.lpfnWndProc = _proc;
+	wndclass.lpszClassName = class_name_.c_str();
 	wndclass.lpszMenuName = 0;
 	wndclass.cbSize = sizeof(WNDCLASSEX);
 	wndclass.style = 0;
 
-	if(!RegisterClassEx(&wndclass))
-		throw exception(
-			FCPPT_TEXT("RegisterClassEx() failed!"));
+	if(
+		!::RegisterClassEx(
+			&wndclass
+		)
+	)
+		throw awl::exception(
+			FCPPT_TEXT("RegisterClassEx() failed!")
+		);
 }
 
 awl::backends::windows::wndclass::~wndclass()
 {
-	UnregisterClass(
-		class_name.c_str(),
-		module_handle());
+	::UnregisterClass(
+		class_name_.c_str(),
+		windows::module_handle()
+	);
 }
 
 fcppt::string const &
 awl::backends::windows::wndclass::name() const
 {
-	return class_name;
+	return class_name_;
 }

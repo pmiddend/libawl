@@ -18,28 +18,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#include <sge/windows/gdi_device.hpp>
-#include <sge/exception.hpp>
+#include <awl/backends/windows/gdi_device.hpp>
+#include <awl/exception.hpp>
 #include <fcppt/text.hpp>
 
 awl::backends::windows::gdi_device::gdi_device(
-	HWND hwnd,
-	get_tag)
+	HWND const _hwnd,
+	get_tag
+)
 :
-	hwnd(hwnd),
-	dc(GetDC(hwnd))
+	hwnd_(_hwnd),
+	dc_(::GetDC(_hwnd))
 {
-	if(!dc)
-		throw exception(
-			FCPPT_TEXT("GetDC() failed!"));
+	if(!dc_)
+		throw awl::exception(
+			FCPPT_TEXT("GetDC() failed!")
+		);
 }
 
 awl::backends::windows::gdi_device::~gdi_device()
 {
-	ReleaseDC(hwnd, dc);
+	::ReleaseDC(
+		hwnd_,
+		dc_
+	);
 }
 
-HDC awl::backends::windows::gdi_device::hdc() const
+HDC
+awl::backends::windows::gdi_device::hdc() const
 {
-	return dc;
+	return dc_;
 }
