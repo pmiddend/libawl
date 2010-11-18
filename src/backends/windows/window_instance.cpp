@@ -69,7 +69,7 @@ awl::backends::windows::window_instance::window_instance(
 
 	handle_ =
 		::CreateWindow(
-			NULL, // defer the wndclass
+			_wndclass.name().c_str(),
 			title.c_str(),
 			flags,
 			0,
