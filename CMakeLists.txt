@@ -54,10 +54,10 @@ OPTION(ENABLE_WINE "Use winelib if available" FALSE)
 # General options end
 
 # Boost begin
-SET (Boost_ADDITIONAL_VERSIONS "1.44.0 1.44")
+SET (Boost_ADDITIONAL_VERSIONS "1.45.0 1.45")
 
 FIND_PACKAGE(
-	Boost 1.44.0 REQUIRED
+	Boost 1.45.0 REQUIRED
 	system
 	thread
 )
