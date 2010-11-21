@@ -26,10 +26,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <awl/backends/windows/event_return_type.hpp>
 #include <awl/backends/windows/window_instance_ptr.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <fcppt/signal/auto_connection.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/object.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <boost/ptr_container/ptr_map.hpp>
 
 namespace awl
 {
@@ -39,8 +41,8 @@ namespace windows
 {
 
 class AWL_CLASS_SYMBOL original_event_processor
-;
-	public awl::backends::window::event_processor
+:
+	public awl::backends::windows::event_processor
 {
 	FCPPT_NONCOPYABLE(
 		original_event_processor
@@ -48,7 +50,7 @@ class AWL_CLASS_SYMBOL original_event_processor
 public:
 	AWL_SYMBOL
 	explicit original_event_processor(
-		windows;:window_instance_ptr
+		windows::window_instance_ptr
 	);
 
 	AWL_SYMBOL

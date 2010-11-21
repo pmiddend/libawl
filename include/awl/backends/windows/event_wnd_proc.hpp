@@ -11,7 +11,7 @@ namespace windows
 {
 
 LRESULT CALLBACK
-awl::backends::windows::event_wnd_proc(
+event_wnd_proc(
 	HWND,
 	UINT,
 	WPARAM,

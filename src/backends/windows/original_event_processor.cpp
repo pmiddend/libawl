@@ -1,9 +1,14 @@
 #include <awl/backends/windows/original_event_processor.hpp>
 #include <awl/backends/windows/default_wnd_proc.hpp>
 #include <awl/backends/windows/event_wnd_proc.hpp>
+#include <awl/backends/windows/window_instance.hpp>
+#include <awl/backends/windows/combine_result.hpp>
+#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
+#include <fcppt/make_unique_ptr.hpp>
+#include <fcppt/optional_impl.hpp>
 
 awl::backends::windows::original_event_processor::original_event_processor(
-	windows;:window_instance_ptr const _window
+	windows::window_instance_ptr const _window
 )
 :
 	window_(_window),
@@ -12,13 +17,21 @@ awl::backends::windows::original_event_processor::original_event_processor(
 	::SetWindowLongPtr(
 		window_->hwnd(),
 		GWLP_USERDATA,
-		this
+		reinterpret_cast<
+			LONG_PTR
+		>(
+			this
+		)
 	);
 
 	::SetWindowLongPtr(
 		window_->hwnd(),
 		GWLP_WNDPROC,
-		windows::event_wnd_proc()
+		reinterpret_cast<
+			LONG_PTR
+		>(
+			windows::event_wnd_proc
+		)
 	);
 }
 
@@ -27,7 +40,11 @@ awl::backends::windows::original_event_processor::~original_event_processor()
 	::SetWindowLongPtr(
 		window_->hwnd(),
 		GWLP_WNDPROC,
-		windows::default_wnd_proc()
+		reinterpret_cast<
+			LONG_PTR
+		>(
+			windows::default_wnd_proc
+		)
 	);
 }
 
@@ -57,8 +74,8 @@ awl::backends::windows::original_event_processor::dispatch()
 }
 fcppt::signal::auto_connection
 awl::backends::windows::original_event_processor::register_callback(
-	event_type const _msg,
-	callback_type const _func
+	UINT const _msg,
+	windows::event_callback const &_func
 )
 {
 	signal_map::iterator it(
@@ -68,50 +85,46 @@ awl::backends::windows::original_event_processor::register_callback(
 	);
 
 	if(
-		it_ == signals.end()
+		it == signals_.end()
 	)
-		it_
-			=
+		it =
 			fcppt::container::ptr::insert_unique_ptr_map(
 				signals_,
 				_msg,
 				fcppt::make_unique_ptr<
 					signal_type
 				>(
-					windows::combine_result()
+					windows::combine_result
 				)
-			).second;
+			).first;
 
 	return
-		it_->second.connect(
+		it->second->connect(
 			_func
-		)
+		);
 }
 
-awl::backends::windows::callback_return_type
-awl::backends::windows::window::execute_callback(
-	event_type const _msg,
+awl::backends::windows::event_return_type const
+awl::backends::windows::original_event_processor::execute_callback(
+	UINT const _msg,
 	WPARAM const _wparam,
 	LPARAM const _lparam
 )
 {
 	signal_map::iterator const it(
 		signals_.find(
-			msg
+			_msg
 		)
 	);
 
 	return
-		it != signals.end()
+		it != signals_.end()
 		?
 			(*(it->second))(
-				window_,
 				_msg,
 				_wparam,
 				_lparam
 		)
 		:
-			callback_return_type();
+			windows::event_return_type();
 }
-
-

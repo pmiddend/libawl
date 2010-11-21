@@ -18,9 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#include <sge/windows/wndclass.hpp>
-#include <sge/windows/windows.hpp>
-#include <sge/windows/module_handle.hpp>
+#include <awl/backends/windows/wndclass.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/module_handle.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
 

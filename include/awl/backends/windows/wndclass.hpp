@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_WINDOWS_WNDCLASS_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_WNDCLASS_HPP_INCLUDED
 
+#include <awl/backends/windows/wndclass_fwd.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -19,14 +20,14 @@ class wndclass
 		wndclass
 	)
 public:
-	SGE_SYMBOL wndclass(
+	AWL_SYMBOL wndclass(
 		fcppt::string const &class_name,
 		WNDPROC
 	);
 
-	SGE_SYMBOL ~wndclass();
+	AWL_SYMBOL ~wndclass();
 
-	SGE_SYMBOL fcppt::string const &
+	AWL_SYMBOL fcppt::string const &
 	name() const;
 private:
 	fcppt::string const class_name_;

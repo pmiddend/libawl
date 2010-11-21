@@ -21,10 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <awl/backends/windows/combine_result.hpp>
 #include <fcppt/optional_impl.hpp>
 
-awl::backends::windows::callback_return_type const
+awl::backends::windows::event_return_type const
 awl::backends::windows::combine_result(
-	callback_return_type const &_a,
-	callback_return_type const &_b
+	event_return_type const &_a,
+	event_return_type const &_b
 )
 {
 	return

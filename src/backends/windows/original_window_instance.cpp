@@ -19,20 +19,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 #include <awl/backends/windows/original_window_instance.hpp>
+#include <awl/backends/windows/choose_and_set_pixel_format.hpp>
 #include <awl/backends/windows/wndclass.hpp>
+#include <awl/backends/windows/module_handle.hpp>
+#include <awl/backends/windows/gdi_device.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/window/parameters.hpp>
+#include <awl/exception.hpp>
+#include <fcppt/math/box/basic_impl.hpp>
+#include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/text.hpp>
 
 awl::backends::windows::original_window_instance::original_window_instance(
 	awl::window::parameters const &_param,
 	windows::wndclass &_wndclass,
-	windows::wndclass_remove_callback const &_remove_callback
+	windows::wndclass_remove_callback const &_remove_wndclass
 )
 :
-	decoration_size(
+	decoration_size_(
 		decoration_rect::null()
 	),
-	remove_callback_(
-		_remove_callback
+	handle_(
+		0
+	),
+	remove_wndclass_(
+		_remove_wndclass
 	)
 {
 
@@ -41,7 +52,7 @@ awl::backends::windows::original_window_instance::original_window_instance(
 	);
 
 	{
-		RECT rect = {};
+		RECT rect;
 
 		if(
 			!::AdjustWindowRect(
@@ -68,14 +79,24 @@ awl::backends::windows::original_window_instance::original_window_instance(
 	}
 
 	handle_ =
-		::CreateWindow(
+		CreateWindow(
 			_wndclass.name().c_str(),
-			title.c_str(),
+			_param.title().c_str(),
 			flags,
 			0,
 			0,
-			decoration_size_.w() + sz.w(),
-			decoration_size_.h() + sz.h(),
+			_param.size()
+			?
+				decoration_size_.w()
+				+ _param.size()->w()
+			:
+				CW_USEDEFAULT,
+			_param.size()
+			?
+				decoration_size_.h()
+				+ _param.size()->h()
+			:
+				CW_USEDEFAULT,
 			0,
 			0,
 			windows::module_handle(),
@@ -94,32 +115,57 @@ awl::backends::windows::original_window_instance::original_window_instance(
 	)
 		windows::choose_and_set_pixel_format(
 			windows::gdi_device(
-				wnd->hwnd(),
+				handle_,
 				windows::gdi_device::get_tag()
 			),
 			PFD_DRAW_TO_WINDOW
 			| PFD_SUPPORT_OPENGL
 			| PFD_DOUBLEBUFFER,
 			PFD_TYPE_RGBA,
-			static_cast<
-				BYTE
-			>(
-				_param.bit_depth()
-			),
-			static_cast<
-				BYTE
-			>(
-				_param.depth_buffer()
-			)
-			static_cast<
-				BYTE
-			>(
-				_param.stencil_buffer()
-			)
+			_param.bit_depth()
+			?
+				static_cast<
+					BYTE
+				>(
+					*_param.bit_depth()
+				)
+			:
+				static_cast<
+					BYTE
+				>(
+					32
+				),
+			_param.depth_buffer()
+			?
+
+				static_cast<
+					BYTE
+				>(
+					*_param.depth_buffer()
+				)
+			:
+				static_cast<
+					BYTE
+				>(
+					0
+				),
+			_param.stencil_buffer()
+			?
+				static_cast<
+					BYTE
+				>(
+					*_param.stencil_buffer()
+				)
+			:
+				static_cast<
+					BYTE
+				>(
+					0
+				)
 		);
 }
 
-awl::backends::windows::window::~window()
+awl::backends::windows::original_window_instance::~original_window_instance()
 {
 	::DestroyWindow(
 		handle_
@@ -128,8 +174,8 @@ awl::backends::windows::window::~window()
 	remove_wndclass_();
 }
 
-awl::backends::windows::window::dim_type const
-awl::backends::windows::window::size() const
+awl::window::dim const
+awl::backends::windows::original_window_instance::size() const
 {
 	RECT rect;
 
@@ -145,20 +191,20 @@ awl::backends::windows::window::size() const
 		);
 
 	return
-		window::dim(
+		awl::window::dim(
 			rect.right - rect.left - decoration_size_.w(),
 			rect.bottom - rect.top - decoration_size_.h()
 		);
 }
 
 HWND
-awl::backends::windows::window::hwnd() const
+awl::backends::windows::original_window_instance::hwnd() const
 {
 	return handle_;
 }
 
 void
-awl::backends::windows::window::show()
+awl::backends::windows::original_window_instance::show()
 {
 	::ShowWindow(
 		hwnd(),

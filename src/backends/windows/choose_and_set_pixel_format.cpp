@@ -55,7 +55,7 @@ awl::backends::windows::choose_and_set_pixel_format(
 
 	int const format(
 		::ChoosePixelFormat(
-			dc.hdc(),
+			_dc.hdc(),
 			&pfd
 		)
 	);

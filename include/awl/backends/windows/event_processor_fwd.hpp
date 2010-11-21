@@ -18,10 +18,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#ifndef AWL_BACKENDS_WINDOWS_COMBINE_RESULT_HPP_INCLUDED
-#define AWL_BACKENDS_WINDOWS_COMBINE_RESULT_HPP_INCLUDED
-
-#include <awl/backends/windows/event_return_type.hpp>
+#ifndef AWL_BACKENDS_WINDOWS_EVENT_PROCESSOR_FWD_HPP_INCLUDED
+#define AWL_BACKENDS_WINDOWS_EVENT_PROCESSOR_FWD_HPP_INCLUDED
 
 namespace awl
 {
@@ -30,11 +28,7 @@ namespace backends
 namespace windows
 {
 
-event_return_type const
-combine_result(
-	event_return_type const &,
-	event_return_type const &
-);
+class event_processor;
 
 }
 }

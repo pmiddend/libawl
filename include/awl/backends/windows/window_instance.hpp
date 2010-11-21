@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_WINDOWS_WINDOW_INSTANCE_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_WINDOW_INSTANCE_HPP_INCLUDED
 
+#include <awl/backends/windows/window_instance_fwd.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/window/instance.hpp>
 #include <awl/class_symbol.hpp>

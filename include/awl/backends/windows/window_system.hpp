@@ -35,6 +35,11 @@ public:
 		awl::window::parameters const &
 	);
 private:
+	void
+	unregister_wndclass(
+		fcppt::string const &
+	);
+
 	typedef boost::ptr_map<
 		fcppt::string,
 		windows::counted_wndclass

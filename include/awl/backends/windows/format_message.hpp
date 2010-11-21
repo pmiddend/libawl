@@ -21,20 +21,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef AWL_BACKENDS_WINDOWS_FORMAT_MESSAGE_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_FORMAT_MESSAGE_HPP_INCLUDED
 
-#include <sge/windows/windows.hpp>
-#include <sge/symbol.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/symbol.hpp>
 #include <fcppt/string.hpp>
 
-namespace sge
+namespace awl
+{
+namespace backends
 {
 namespace windows
 {
 
-SGE_SYMBOL fcppt::string const
+AWL_SYMBOL
+fcppt::string const
 format_message(
 	DWORD
 );
 
+}
 }
 }
 

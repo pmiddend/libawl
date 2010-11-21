@@ -1,6 +1,8 @@
 #include <awl/backends/windows/event_wnd_proc.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/original_event_processor.hpp>
+#include <awl/backends/windows/event_return_type.hpp>
+#include <fcppt/optional_impl.hpp>
 
 LRESULT CALLBACK
 awl::backends::windows::event_wnd_proc(
@@ -22,7 +24,7 @@ awl::backends::windows::event_wnd_proc(
 	);
 
 	{
-		awl::backends::windows::callback_return_type const ret(
+		awl::backends::windows::event_return_type const ret(
 			processor->execute_callback(
 				_msg,
 				_wparam,

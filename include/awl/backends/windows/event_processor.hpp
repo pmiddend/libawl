@@ -21,9 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef AWL_BACKENDS_WINDOWS_EVENT_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_EVENT_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/windows/event_processor_fwd.hpp>
 #include <awl/backends/windows/event_callback.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/event/processor.hp>
+#include <awl/event/processor.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
@@ -36,14 +37,20 @@ namespace backends
 namespace windows
 {
 
-class AWL_CLASS_SYMBOL original_event_processor
-;
+class AWL_CLASS_SYMBOL event_processor
+:
 	public awl::event::processor
 {
 	FCPPT_NONCOPYABLE(
-		original_event_processor
+		event_processor
 	)
+protected:
+	AWL_SYMBOL
+	event_processor();
 public:
+	AWL_SYMBOL virtual
+	~event_processor();
+
 	virtual fcppt::signal::auto_connection
 	register_callback(
 		UINT,

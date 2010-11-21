@@ -3,9 +3,13 @@
 
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window_instance.hpp>
+#include <awl/backends/windows/wndclass_fwd.hpp>
+#include <awl/backends/windows/wndclass_remove_callback.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <fcppt/math/box/rect.hpp>
+#include <fcppt/math/box/basic_decl.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -20,7 +24,7 @@ class AWL_CLASS_SYMBOL original_window_instance
 	public awl::backends::windows::window_instance
 {
 	FCPPT_NONCOPYABLE(
-		window_instance
+		original_window_instance
 	)
 public:
 	AWL_SYMBOL original_window_instance(
