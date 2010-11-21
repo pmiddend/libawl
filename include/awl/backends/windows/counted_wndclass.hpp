@@ -3,6 +3,7 @@
 
 #include <awl/backends/windows/counted_wndclass_fwd.hpp>
 #include <awl/backends/windows/wndlcass.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
 
@@ -21,8 +22,9 @@ class counted_wndclass
 public:
 	typedef unsigned counter_type;
 
-	explicit counted_wndclass(
-		fcppt::string const &
+	counted_wndclass(
+		fcppt::string const &,
+		WNDPROC
 	);
 
 	~counted_wndclass();

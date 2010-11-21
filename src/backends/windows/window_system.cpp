@@ -1,4 +1,5 @@
 #include <awl/backends/windows/window_system.hpp>
+#include <awl/backends/windows/default_wnd_proc.hpp>
 #include <awl/backends/windows/counted_wndclass.hpp>
 #include <awl/backends/windows/window_instance.hpp>
 #include <awl/window/parameters.hpp>
@@ -36,9 +37,10 @@ awl::backends::windows::window_system::create(
 				fcppt::make_unqiue_ptr<
 					windows::counted_wndclass
 				>(
-					_param.class_name()
+					_param.class_name(),
+					windows::default_wnd_proc()
 				)
-		).first;
+			).first;
 	else
 		wndclass_it->second->addref();
 	

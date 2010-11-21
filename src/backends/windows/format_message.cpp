@@ -18,34 +18,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#include <sge/windows/format_message.hpp>
-#include <sge/windows/windows.hpp>
-#include <sge/exception.hpp>
+#include <awl/backends/windows/format_message.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/exception.hpp>
 #include <fcppt/tr1/array.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/char_type.hpp>
 
 fcppt::string const
 awl::backends::windows::format_message(
-	DWORD const error)
+	DWORD const _error
+)
 {
+	// TODO: allow arbitrary sizes here!
 	std::tr1::array<
 		fcppt::char_type,
 		1024
 	> errmsg;
 
-	if(FormatMessage(
-		FORMAT_MESSAGE_FROM_SYSTEM,
-		0, // ignored
-		error, // message id
-		0, // language id
-		errmsg.data(),
-		errmsg.size()-1,
-		0
-	) == 0)
-		throw exception(
-			FCPPT_TEXT("FormatMessage() failed!"));
-	return fcppt::string(
-		errmsg.data()
-	);
+	if(
+		::FormatMessage(
+			FORMAT_MESSAGE_FROM_SYSTEM,
+			0, // ignored
+			_error, // message id
+			0, // language id
+			errmsg.data(),
+			errmsg.size()-1,
+			0
+		) == 0
+	)
+		throw awl::exception(
+			FCPPT_TEXT("FormatMessage() failed!")
+		);
+
+	return
+		fcppt::string(
+			errmsg.data()
+		);
 }

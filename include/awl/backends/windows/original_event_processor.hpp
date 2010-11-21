@@ -18,15 +18,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#ifndef AWL_BACKENDS_WINDOWS_EVENT_PROCESSOR_HPP_INCLUDED
-#define AWL_BACKENDS_WINDOWS_EVENT_PROCESSOR_HPP_INCLUDED
+#ifndef AWL_BACKENDS_WINDOWS_ORIGINAL_EVENT_PROCESSOR_HPP_INCLUDED
+#define AWL_BACKENDS_WINDOWS_ORIGINAL_EVENT_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/windows/event_processor.hpp>
 #include <awl/backends/windows/event_callback.hpp>
+#include <awl/backends/windows/event_return_type.hpp>
+#include <awl/backends/windows/window_instance_ptr.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/event/processor.hp>
+#include <fcppt/signal/auto_connection.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -38,17 +40,61 @@ namespace windows
 
 class AWL_CLASS_SYMBOL original_event_processor
 ;
-	public awl::event::processor
+	public awl::backends::window::event_processor
 {
 	FCPPT_NONCOPYABLE(
 		original_event_processor
 	)
 public:
-	virtual fcppt::signal::auto_connection
+	AWL_SYMBOL
+	explicit original_event_processor(
+		windows;:window_instance_ptr
+	);
+
+	AWL_SYMBOL
+	~original_event_processor();
+
+	AWL_SYMBOL
+	void
+	dispatch();
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
+	resize_callback(
+		awl::event::resize_callback const &
+	);
+
+	AWL_SYMBOL
+	awl::window::instance_ptr const
+	window() const;
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
 	register_callback(
 		UINT,
 		windows::event_callback const &
-	) = 0;
+	);
+
+	AWL_SYMBOL
+	windows::event_return_type const
+	execute_callback(
+		UINT msg,
+		WPARAM wparam,
+		LPARAM lparam
+	);
+private:
+	windows::window_instance_ptr const window_;
+
+	typedef fcppt::signal::object<
+		windows::event_function
+	> signal_type;
+
+	typedef boost::ptr_map<
+		UINT,
+		signal_type
+	> signal_map;
+
+	signal_map signals_;
 };
 
 }

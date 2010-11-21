@@ -18,17 +18,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#ifndef AWL_BACKENDS_WINDOWS_EVENT_TYPE_HPP_INCLUDED
-#define AWL_BACKENDS_WINDOWS_EVENT_TYPE_HPP_INCLUDED
+#include <awl/backends/windows/combine_result.hpp>
+#include <fcppt/optional_impl.hpp>
 
-namespace sge
+awl::backends::windows::callback_return_type const
+awl::backends::windows::combine_result(
+	callback_return_type const &_a,
+	callback_return_type const &_b
+)
 {
-namespace windows
-{
-
-typedef unsigned event_type;
-
+	return
+		_a
+		?
+			_a
+		:
+			_b;
 }
-}
-
-#endif

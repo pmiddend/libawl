@@ -21,19 +21,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef AWL_BACKENDS_WINDOWS_CHOOSE_AND_SET_PIXEL_FORMAT_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_CHOOSE_AND_SET_PIXEL_FORMAT_HPP_INCLUDED
 
-#include <sge/windows/windows.hpp>
-#include <sge/windows/gdi_device_fwd.hpp>
-#include <sge/symbol.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/gdi_device_fwd.hpp>
+#include <awl/symbol.hpp>
 
-namespace sge
+namespace awl
+{
+namespace backends
 {
 namespace windows
 {
 
-// TODO: maybe add the remaining parameters as well?
-SGE_SYMBOL void
+AWL_SYMBOL
+void
 choose_and_set_pixel_format(
-	gdi_device const &,
+	windows::gdi_device const &,
 	DWORD flags,
 	BYTE pixel_type,
 	BYTE depth,
@@ -41,6 +43,7 @@ choose_and_set_pixel_format(
 	BYTE stencil_buffer
 );
 
+}
 }
 }
 

@@ -18,16 +18,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#ifndef AWL_BACKENDS_WINDOWS_DETAIL_COMBINE_RESULT_HPP_INCLUDED
-#define AWL_BACKENDS_WINDOWS_DETAIL_COMBINE_RESULT_HPP_INCLUDED
+#ifndef AWL_BACKENDS_WINDOWS_COMBINE_RESULT_HPP_INCLUDED
+#define AWL_BACKENDS_WINDOWS_COMBINE_RESULT_HPP_INCLUDED
 
 #include <sge/windows/callback_return_type.hpp>
 
-namespace sge
+namespace awl
+{
+namespace backends
 {
 namespace windows
-{
-namespace detail
 {
 
 callback_return_type const

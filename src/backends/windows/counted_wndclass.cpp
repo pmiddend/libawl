@@ -1,11 +1,13 @@
 #include <awl/backends/windows/counted_wndclass.hpp>
 
 awl::backends::windows::counted_wndclass::counted_wndclass(
-	fcppt::string const &_name
+	fcppt::string const &_name,
+	WNDPROC const _proc
 )
 :
 	wndclass_(
-		_name
+		_name,
+		_proc
 	),
 	counter_(0u)
 {
