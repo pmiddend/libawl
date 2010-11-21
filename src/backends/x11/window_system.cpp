@@ -1,5 +1,5 @@
 #include <awl/backends/x11/window_system.hpp>
-#include <awl/backends/x11/window_instance.hpp>
+#include <awl/backends/x11/original_window_instance.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/assert.hpp>
@@ -29,7 +29,7 @@ awl::backends::x11::window_system::create(
 
 	return 
 		fcppt::make_shared_ptr<
-			x11::window_instance
+			x11::original_window_instance
 		>(
 			display_,
 			_param
