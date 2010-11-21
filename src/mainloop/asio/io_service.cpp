@@ -20,17 +20,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <awl/mainloop/asio/io_service.hpp>
 #include <awl/event/processor.hpp>
+#include <awl/config.hpp>
 #include <fcppt/function/object.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_shared_ptr.hpp>
 
-// TODO:
+#if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/window_instance.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/asio_dispatcher.hpp>
 #include <fcppt/dynamic_pointer_cast.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xlibint.h>
+#elif defined(AWL_WINDOWS_BACKEND)
+#endif
 
 awl::mainloop::asio::io_service::io_service()
 :
@@ -94,13 +97,13 @@ awl::mainloop::asio::io_service::create_dispatcher(
 )
 {
 	return
+#if defined(AWL_X11_BACKEND)
 		fcppt::make_shared_ptr<
 			awl::backends::x11::asio_dispatcher
 		>(
 			std::tr1::ref(
 				io_service_
 			),
-			//TODO:
 			fcppt::dynamic_pointer_cast<
 				awl::backends::x11::window_instance
 			>(
@@ -108,4 +111,7 @@ awl::mainloop::asio::io_service::create_dispatcher(
 			)->display()->get()->fd,
 			_callback
 		);
+#elif defined(AWL_WINDOWS_BACKEND)
+		mainloop::dispatcher_ptr(); // TODO!
+#endif
 }
