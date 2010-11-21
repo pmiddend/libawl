@@ -3,7 +3,7 @@
 
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
-#include <awl/backends/x11/window_instance_fwd.hpp>
+#include <awl/backends/x11/window_instance.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/backends/x11/colormap_ptr.hpp>
@@ -26,7 +26,7 @@ namespace x11
 
 class AWL_CLASS_SYMBOL original_window_instance
 :
-	public awl::window::instance
+	public awl::backends::x11::window_instance
 {
 	FCPPT_NONCOPYABLE(
 		original_window_instance

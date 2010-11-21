@@ -1,5 +1,5 @@
 #include <awl/event/create_processor.hpp>
-#include <awl/backends/x11/event_processor.hpp>
+#include <awl/backends/x11/original_event_processor.hpp>
 #include <awl/backends/x11/window_instance.hpp>
 #include <fcppt/make_shared_ptr.hpp>
 #include <fcppt/polymorphic_pointer_cast.hpp>
@@ -11,7 +11,7 @@ awl::event::create_processor(
 {
 	return
 		fcppt::make_shared_ptr<
-			backends::x11::event_processor
+			backends::x11::original_event_processor
 		>(
 			fcppt::polymorphic_pointer_cast<
 				backends::x11::window_instance

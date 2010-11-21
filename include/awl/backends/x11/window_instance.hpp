@@ -6,6 +6,7 @@
 #include <awl/backends/x11/optional_event.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/window/instance.hpp>
+#include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <X11/Xlib.h>
