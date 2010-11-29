@@ -1,6 +1,10 @@
+#cmake_policy(SET CMP0003 NEW)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
+#cmake_policy(SET CMP0003 NEW)
 PROJECT (libawl)
+#cmake_policy(SET CMP0003 NEW)
+
 
 SET (CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMakeModules)
 
@@ -28,7 +32,7 @@ IF (CMAKE_COMPILER_IS_GNUCXX OR COMPILER_IS_CLANGPP)
 	ADD_DEFINITIONS (
 		"-pedantic-errors -Wall -Wextra -Wconversion"
 		"-Wfloat-equal -Wredundant-decls -Winit-self"
-		"-Woverloaded-virtual -Wnon-virtual-dtor"
+		"-Woverloaded-virtual -Wnon-virtual-dtor -Wshadow"
 		"-Wsign-promo -Wstrict-aliasing=1 -Wold-style-cast"
 	)
 
@@ -134,7 +138,13 @@ ENDIF()
 # We can use either X11, winelib or plain windows
 IF(UNIX)
 	IF(ENABLE_WINELIB)
-		FIND_PACKAGE(Wine REQUIRED)
+		FIND_PACKAGE(
+			Wine
+			REQUIRED
+			COMPONENTS
+			user32
+			gdi32
+		)
 
 		SET(AWL_WINDOWS_BACKEND TRUE)
 	ELSE()
@@ -154,7 +164,11 @@ ENDIF()
 
 CONFIGURE_FILE(
 	${CMAKE_SOURCE_DIR}/config.hpp.in
-	${CMAKE_SOURCE_DIR}/include/awl/config.hpp
+	${CMAKE_BINARY_DIR}/include/awl/config.hpp
+)
+
+INCLUDE_DIRECTORIES(
+	${CMAKE_BINARY_DIR}/include
 )
 
 IF(AWL_X11_BACKEND)
@@ -172,6 +186,11 @@ IF(ENABLE_WINELIB OR WIN32)
 
 	ADD_AWL_HEADER_GROUP(include/awl/backends/windows)
 ENDIF()
+
+	SET(
+		CMAKE_SHARED_LINKER_FLAGS
+		"${WINE_user32_LIBRARY}"
+	)
 
 ADD_LIBRARY(awl SHARED ${LIBAWLFILES})
 
@@ -199,9 +218,13 @@ IF(ENABLE_WINELIB)
 		${WINE_INCLUDE_DIR}
 	)
 
+	#LINK_DIRECTORIES(
+	#	${WINE_DLL_PATH}
+	#)
+
 	TARGET_LINK_LIBRARIES(
 		awl
-		${WINE_LIBRARY}
+		"${WINE_user32_LIBRARY}"
 	)
 ENDIF()
 
@@ -231,4 +254,9 @@ INSTALL(
 INSTALL(
 	DIRECTORY include/
 	DESTINATION include
+)
+
+INSTALL(
+	FILES ${CMAKE_BINARY_DIR}/include/awl/config.hpp
+	DESTINATION include/awl
 )
