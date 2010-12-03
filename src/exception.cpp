@@ -1,10 +1,12 @@
 #include <awl/exception.hpp>
 
 awl::exception::exception(
-	fcppt::string const &string_)
+	fcppt::string const &_string
+)
 :
 	fcppt::exception(
-		string_)
+		_string
+	)
 {}
 
 awl::exception::~exception() throw()
