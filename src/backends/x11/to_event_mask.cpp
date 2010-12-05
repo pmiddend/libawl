@@ -40,6 +40,8 @@ awl::backends::x11::to_event_mask(
 		return SubstructureRedirectMask;
 	case ConfigureNotify:
 		return StructureNotifyMask;
+	case GenericEvent:
+		return 0;	
 	default:
 		throw awl::exception(
 			FCPPT_TEXT("Unknown x11 event type in to_event_mask!")

@@ -63,7 +63,7 @@ awl::backends::x11::original_event_processor::dispatch()
 			continue;
 
 		signals_[
-			new_event->get().xany.type
+			new_event->get().type
 		](
 			*new_event
 		);
