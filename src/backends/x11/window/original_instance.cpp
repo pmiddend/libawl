@@ -239,22 +239,6 @@ awl::backends::x11::window::original_instance::get() const
 	return window_;
 }
 
-awl::backends::x11::window::event::object const
-awl::backends::x11::window::original_instance::next_event()
-{
-	XEvent ret;
-
-	::XNextEvent(
-		display_->get(),
-		&ret
-	);
-
-	return
-		x11::window::event::object(
-			ret
-		);
-}
-
 awl::backends::x11::window::event::optional const
 awl::backends::x11::window::original_instance::poll_event(
 	long const _event_mask

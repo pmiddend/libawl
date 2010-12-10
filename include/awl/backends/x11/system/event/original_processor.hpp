@@ -43,7 +43,7 @@ public:
 	~original_processor();
 
 	AWL_SYMBOL
-	void
+	bool
 	dispatch();
 
 	fcppt::signal::auto_connection

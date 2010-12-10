@@ -25,7 +25,7 @@ protected:
 	AWL_SYMBOL
 	processor();
 public:
-	virtual void
+	virtual bool
 	dispatch() = 0;
 
 	virtual fcppt::signal::auto_connection

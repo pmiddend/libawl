@@ -5,7 +5,6 @@
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/backends/x11/window/instance.hpp>
 #include <awl/backends/x11/window/event/optional.hpp>
-#include <awl/backends/x11/window/event/object_fwd.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/backends/x11/colormap_ptr.hpp>
@@ -67,10 +66,6 @@ public:
 	AWL_SYMBOL
 	Window
 	get() const;
-
-	AWL_SYMBOL
-	x11::window::event::object const
-	next_event();
 
 	AWL_SYMBOL
 	x11::window::event::optional const

@@ -43,9 +43,11 @@ awl::backends::x11::window::event::original_processor::~original_processor()
 {
 }
 
-void
+bool
 awl::backends::x11::window::event::original_processor::dispatch()
 {
+	bool events_processed = false;
+
 	while(
 		x11::window::event::optional new_event =
 			window_->poll_event(
@@ -67,7 +69,11 @@ awl::backends::x11::window::event::original_processor::dispatch()
 		](
 			*new_event
 		);
+	
+		events_processed = true;
 	}
+
+	return events_processed;
 }
 
 fcppt::signal::auto_connection

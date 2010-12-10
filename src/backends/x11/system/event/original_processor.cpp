@@ -16,9 +16,11 @@ awl::backends::x11::system::event::original_processor::~original_processor()
 {
 }
 
-void
+bool
 awl::backends::x11::system::event::original_processor::dispatch()
 {
+	bool events_processed = false;
+
 	XEvent xev;
 
 	while(
@@ -30,11 +32,6 @@ awl::backends::x11::system::event::original_processor::dispatch()
 		== True
 	)
 	{
-		::XNextEvent(
-			system_->display()->get(),
-			&xev
-		);
-
 		XGenericEventCookie const &generic_event(
 			xev.xcookie
 		);
@@ -53,7 +50,11 @@ awl::backends::x11::system::event::original_processor::dispatch()
 				generic_event	
 			)
 		);
+
+		events_processed = true;
 	}
+
+	return events_processed;
 }
 
 fcppt::signal::auto_connection
