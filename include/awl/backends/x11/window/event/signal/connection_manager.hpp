@@ -1,7 +1,7 @@
-#ifndef AWL_BACKENDS_X11_SIGNAL_CONNECTION_MANAGER_HPP_INCLUDED
-#define AWL_BACKENDS_X11_SIGNAL_CONNECTION_MANAGER_HPP_INCLUDED
+#ifndef AWL_BACKENDS_X11_WINDOW_EVENT_SIGNAL_CONNECTION_MANAGER_HPP_INCLUDED
+#define AWL_BACKENDS_X11_WINDOW_EVENT_SIGNAL_CONNECTION_MANAGER_HPP_INCLUDED
 
-#include <awl/backends/x11/signal/shared_connection.hpp>
+#include <awl/backends/x11/window/event/signal/shared_connection.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <vector>
@@ -11,6 +11,10 @@ namespace awl
 namespace backends
 {
 namespace x11
+{
+namespace window
+{
+namespace event
 {
 namespace signal
 {
@@ -36,6 +40,8 @@ private:
 	container const connections_;
 };
 
+}
+}
 }
 }
 }

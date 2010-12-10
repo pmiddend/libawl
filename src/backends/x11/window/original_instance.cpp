@@ -1,5 +1,5 @@
-#include "glx/create_visual_attributes.hpp"
-#include "glx/create_visual.hpp"
+#include "../glx/create_visual_attributes.hpp"
+#include "../glx/create_visual.hpp"
 #include <awl/backends/x11/window/original_instance.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
 #include <awl/backends/x11/display.hpp>
@@ -20,10 +20,13 @@ awl::backends::x11::window::original_instance::original_instance(
 )
 :
 	display_(
-		_display),
+		_display
+	),
 	screen_(
 		::XDefaultScreen(
-			display_->get())),
+			display_->get()
+		)
+	),
 	visual_(
 		_params.has_opengl()
 		?
@@ -33,7 +36,9 @@ awl::backends::x11::window::original_instance::original_instance(
 				glx::create_visual_attributes(
 					_params.bit_depth(),
 					_params.depth_buffer(),
-					_params.stencil_buffer()).data())
+					_params.stencil_buffer()
+				).data()
+			)
 		:
 			fcppt::make_shared_ptr<
 				x11::visual
@@ -41,14 +46,19 @@ awl::backends::x11::window::original_instance::original_instance(
 				display_->get(),
 				::XDefaultVisual(
 					display_->get(),
-					screen_))),
+					screen_
+				)
+			)
+	),
 	colormap_(
 		fcppt::make_shared_ptr<
 			x11::colormap
 		>(
 			display_,
 			screen_,
-			visual_)),
+			visual_
+		)
+	),
 	wm_hints_(),
 	size_hints_(
 		_params.size()->w(),
@@ -58,7 +68,8 @@ awl::backends::x11::window::original_instance::original_instance(
 	),
 	class_hint_(
 		_params.title(),
-		_params.class_name())
+		_params.class_name()
+	)
 {
 	XSetWindowAttributes swa;
 	swa.colormap = colormap_->get();
@@ -190,14 +201,14 @@ awl::backends::x11::window::original_instance::size() const
                 );
 
 	return
-		window::dim(
+		awl::window::dim(
 			static_cast<
-				window::dim::value_type
+				awl::window::dim::value_type
 			>(
 				width_return
 			),
 			static_cast<
-				window::dim::value_type
+				awl::window::dim::value_type
 			>(
 				height_return
 			)
@@ -229,7 +240,7 @@ awl::backends::x11::window::original_instance::get() const
 }
 
 awl::backends::x11::window::event::object const
-awl::backends::x11::original_window_instance::next_event()
+awl::backends::x11::window::original_instance::next_event()
 {
 	XEvent ret;
 
@@ -239,13 +250,13 @@ awl::backends::x11::original_window_instance::next_event()
 	);
 
 	return
-		x11::event(
+		x11::window::event::object(
 			ret
 		);
 }
 
-awl::backends::x11::optional_event const
-awl::backends::x11::original_window_instance::poll_event(
+awl::backends::x11::window::event::optional const
+awl::backends::x11::window::original_instance::poll_event(
 	long const _event_mask
 )
 {
@@ -260,11 +271,11 @@ awl::backends::x11::original_window_instance::poll_event(
 		)
 		== True
 		?
-			optional_event(
-				x11::event(
+			x11::window::event::optional(
+				x11::window::event::object(
 					ret
 				)
 			)
 		:
-			optional_event();
+			x11::window::event::optional();
 }

@@ -1,9 +1,9 @@
-#include <awl/backends/x11/event_processor.hpp>
+#include <awl/backends/x11/window/event/processor.hpp>
 
-awl::backends::x11::event_processor::event_processor()
+awl::backends::x11::window::event::processor::processor()
 {
 }
 
-awl::backends::x11::event_processor::~event_processor()
+awl::backends::x11::window::event::processor::~processor()
 {
 }

@@ -1,11 +1,11 @@
-#include <awl/backends/x11/original_event_processor.hpp>
-#include <awl/backends/x11/change_event_mask.hpp>
-#include <awl/backends/x11/to_event_mask.hpp>
-#include <awl/backends/x11/window_instance.hpp>
-#include <awl/backends/x11/event.hpp>
-#include <awl/backends/x11/signal/connection.hpp>
-#include <awl/backends/x11/signal/shared_connection.hpp>
-#include <awl/event/resize.hpp>
+#include <awl/backends/x11/window/event/original_processor.hpp>
+#include <awl/backends/x11/window/event/change_mask.hpp>
+#include <awl/backends/x11/window/event/to_mask.hpp>
+#include <awl/backends/x11/window/event/object.hpp>
+#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/event/signal/connection.hpp>
+#include <awl/backends/x11/window/event/signal/shared_connection.hpp>
+#include <awl/window/event/resize.hpp>
 #include <awl/window/dim.hpp>
 #include <fcppt/assign/make_container.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
@@ -13,8 +13,8 @@
 #include <fcppt/optional_impl.hpp>
 #include <X11/Xlib.h>
 
-awl::backends::x11::original_event_processor::original_event_processor(
-	x11::window_instance_ptr const _window
+awl::backends::x11::window::event::original_processor::original_processor(
+	x11::window::instance_ptr const _window
 )
 :
 	window_(_window),
@@ -23,13 +23,13 @@ awl::backends::x11::original_event_processor::original_event_processor(
 	event_mask_(0l),
 	connection_manager_(
 		fcppt::assign::make_container<
-			x11::signal::connection_manager::container
+			x11::window::event::signal::connection_manager::container
 		>(
-			x11::signal::shared_connection(
+			x11::window::event::signal::shared_connection(
 				register_callback(
 					ConfigureNotify,
 					std::tr1::bind(
-						&original_event_processor::on_configure,
+						&window::event::original_processor::on_configure,
 						this,
 						std::tr1::placeholders::_1
 					)
@@ -39,15 +39,15 @@ awl::backends::x11::original_event_processor::original_event_processor(
 	)
 {}
 
-awl::backends::x11::original_event_processor::~original_event_processor()
+awl::backends::x11::window::event::original_processor::~original_processor()
 {
 }
 
 void
-awl::backends::x11::original_event_processor::dispatch()
+awl::backends::x11::window::event::original_processor::dispatch()
 {
 	while(
-		x11::optional_event new_event =
+		x11::window::event::optional new_event =
 			window_->poll_event(
 				event_mask_
 			)
@@ -71,8 +71,8 @@ awl::backends::x11::original_event_processor::dispatch()
 }
 
 fcppt::signal::auto_connection
-awl::backends::x11::original_event_processor::resize_callback(
-	awl::event::resize_callback const &_callback
+awl::backends::x11::window::event::original_processor::resize_callback(
+	awl::window::event::resize_callback const &_callback
 )
 {
 	return
@@ -82,19 +82,19 @@ awl::backends::x11::original_event_processor::resize_callback(
 }
 
 awl::window::instance_ptr const
-awl::backends::x11::original_event_processor::window() const
+awl::backends::x11::window::event::original_processor::window() const
 {
 	return window_;
 }
 
-awl::backends::x11::signal::unique_connection
-awl::backends::x11::original_event_processor::register_callback(
+awl::backends::x11::window::event::signal::unique_connection
+awl::backends::x11::window::event::original_processor::register_callback(
 	int const _event_type,
-	x11::event_callback const &_callback
+	x11::window::event::callback const &_callback
 )
 {
 	long const new_mask(
-		x11::to_event_mask(
+		x11::window::event::to_mask(
 			_event_type
 		)
 	);
@@ -108,7 +108,7 @@ awl::backends::x11::original_event_processor::register_callback(
 	if(
 		count == 1u
 	)
-		x11::change_event_mask(
+		x11::window::event::change_mask(
 			window_,
 			event_mask_ |= new_mask
 		);
@@ -119,7 +119,7 @@ awl::backends::x11::original_event_processor::register_callback(
 		].connect(
 			_callback,
 			std::tr1::bind(
-				&original_event_processor::unregister,
+				&window::event::original_processor::unregister,
 				this,
 				_event_type
 			)
@@ -127,12 +127,12 @@ awl::backends::x11::original_event_processor::register_callback(
 }
 
 void
-awl::backends::x11::original_event_processor::unregister(
+awl::backends::x11::window::event::original_processor::unregister(
 	int const _event_type
 )
 {
 	long const old_mask(
-		x11::to_event_mask(
+		x11::window::event::to_mask(
 			_event_type
 		)
 	);
@@ -146,15 +146,15 @@ awl::backends::x11::original_event_processor::unregister(
 	if(
 		count == 0u
 	)
-		x11::change_event_mask(
+		x11::window::event::change_mask(
 			window_,
 			event_mask_ &= ~(old_mask)
 		);
 }
 
 void
-awl::backends::x11::original_event_processor::on_configure(
-	x11::event const &_event
+awl::backends::x11::window::event::original_processor::on_configure(
+	x11::window::event::object const &_event
 )
 {
 	XConfigureEvent const request(
@@ -162,7 +162,7 @@ awl::backends::x11::original_event_processor::on_configure(
 	);
 
 	resize_signal_(
-		awl::event::resize(
+		awl::window::event::resize(
 			window_,
 			awl::window::dim(
 				request.width,

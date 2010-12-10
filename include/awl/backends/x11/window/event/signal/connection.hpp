@@ -1,8 +1,8 @@
-#ifndef AWL_BACKENDS_X11_SIGNAL_CONNECTION_HPP_INCLUDED
-#define AWL_BACKENDS_X11_SIGNAL_CONNECTION_HPP_INCLUDED
+#ifndef AWL_BACKENDS_X11_WINDOW_EVENT_SIGNAL_CONNECTION_HPP_INCLUDED
+#define AWL_BACKENDS_X11_WINDOW_EVENT_SIGNAL_CONNECTION_HPP_INCLUDED
 
-#include <awl/backends/x11/signal/connection_fwd.hpp>
-#include <awl/backends/x11/signal/unregister_callback.hpp>
+#include <awl/backends/x11/window/event/signal/connection_fwd.hpp>
+#include <awl/backends/x11/window/event/signal/unregister_callback.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/scoped_connection.hpp>
@@ -13,6 +13,10 @@ namespace awl
 namespace backends
 {
 namespace x11
+{
+namespace window
+{
+namespace event
 {
 namespace signal
 {
@@ -37,6 +41,8 @@ private:
 	signal::unregister_callback const callback_;	
 };
 
+}
+}
 }
 }
 }

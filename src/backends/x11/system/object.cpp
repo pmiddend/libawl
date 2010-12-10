@@ -9,7 +9,9 @@
 awl::backends::x11::system::object::object()
 :
 	display_(
-		fcppt::make_shared_ptr<display>()
+		fcppt::make_shared_ptr<
+			x11::display
+		>()
 	)
 {
 }
@@ -34,4 +36,10 @@ awl::backends::x11::system::object::create(
 			display_,
 			_param
 		);
+}
+
+awl::backends::x11::display_ptr const
+awl::backends::x11::system::object::display() const
+{
+	return display_;
 }

@@ -1,9 +1,9 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_INSTANCE_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_INSTANCE_HPP_INCLUDED
 
+#include <awl/backends/x11/window/event/object_fwd.hpp>
+#include <awl/backends/x11/window/event/optional.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
-#include <awl/backends/x11/event_fwd.hpp>
-#include <awl/backends/x11/optional_event.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/window/instance.hpp>
 #include <awl/class_symbol.hpp>
@@ -17,20 +17,22 @@ namespace backends
 {
 namespace x11
 {
+namespace window
+{
 
-class AWL_CLASS_SYMBOL window_instance
+class AWL_CLASS_SYMBOL instance
 :
 	public awl::window::instance
 {
 	FCPPT_NONCOPYABLE(
-		window_instance
+		instance
 	)
 protected:
 	AWL_SYMBOL
-	window_instance();
+	instance();
 public:
 	AWL_SYMBOL
-	virtual ~window_instance();
+	virtual ~instance();
 
 	AWL_SYMBOL
 	virtual display_ptr const
@@ -49,16 +51,17 @@ public:
 	get() const = 0;
 
 	AWL_SYMBOL
-	virtual x11::event const
+	virtual x11::window::event::object const
 	next_event() = 0;
 
 	AWL_SYMBOL
-	virtual x11::optional_event const
+	virtual x11::window::event::optional const
 	poll_event(
 		long event_mask
 	) = 0;
 };
 
+}
 }
 }
 }

@@ -4,10 +4,10 @@
 #include <awl/backends/x11/window/event/processor.hpp>
 #include <awl/backends/x11/window/event/callback.hpp>
 #include <awl/backends/x11/window/event/function.hpp>
+#include <awl/backends/x11/window/event/signal/unique_connection.hpp>
+#include <awl/backends/x11/window/event/signal/connection_manager.hpp>
+#include <awl/backends/x11/window/event/signal/object.hpp>
 #include <awl/backends/x11/window/instance_ptr.hpp>
-#include <awl/backends/x11/signal/unique_connection.hpp>
-#include <awl/backends/x11/signal/connection_manager.hpp>
-#include <awl/backends/x11/signal/object.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/resize_callback.hpp>
 #include <awl/window/event/resize_function.hpp>
@@ -33,7 +33,7 @@ namespace event
 
 class AWL_CLASS_SYMBOL original_processor
 :
-	public awl::backends::x11::event::processor
+	public awl::backends::x11::window::event::processor
 {
 	FCPPT_NONCOPYABLE(
 		original_processor
@@ -60,10 +60,10 @@ public:
 	window() const;
 
 	AWL_SYMBOL
-	x11::signal::unique_connection
+	x11::window::event::signal::unique_connection
 	register_callback(
 		int event_type,
-		x11::event::callback const &
+		x11::window::event::callback const &
 	);
 private:
 	void
@@ -73,14 +73,14 @@ private:
 
 	void
 	on_configure(
-		x11::event::object const &
+		x11::window::event::object const &
 	);
 
 	x11::window::instance_ptr const window_;
 
 	typedef boost::ptr_map<
 		int,
-		signal::object
+		window::event::signal::object
 	> event_signal_map;
 
 	typedef unsigned mask_count;
@@ -96,10 +96,10 @@ private:
 
 	long event_mask_;
 
-	x11::signal::connection_manager const connection_manager_;
+	x11::window::event::signal::connection_manager const connection_manager_;
 
 	fcppt::signal::object<
-		awl::event::window::resize_function
+		awl::window::event::resize_function
 	> resize_signal_;
 };
 

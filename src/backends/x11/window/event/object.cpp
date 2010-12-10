@@ -1,6 +1,6 @@
-#include <awl/backends/x11/event.hpp>
+#include <awl/backends/x11/window/event/object.hpp>
 
-awl::backends::x11::event::event(
+awl::backends::x11::window::event::object::object(
 	XEvent const &_event
 )
 :
@@ -8,13 +8,13 @@ awl::backends::x11::event::event(
 {}
 
 XEvent const &
-awl::backends::x11::event::get() const
+awl::backends::x11::window::event::object::get() const
 {
 	return event_;
 }
 
 XEvent &
-awl::backends::x11::event::get()
+awl::backends::x11::window::event::object::get()
 {
 	return event_;
 }

@@ -1,10 +1,10 @@
-#include <awl/backends/x11/to_event_mask.hpp>
+#include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
 #include <X11/Xlib.h>
 
 long
-awl::backends::x11::to_event_mask(
+awl::backends::x11::window::event::to_mask(
 	int const _event_type
 )
 {

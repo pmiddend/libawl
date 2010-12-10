@@ -1,5 +1,5 @@
-#include <awl/window/create_system.hpp>
-#include <awl/window/system.hpp>
+#include <awl/system/create.hpp>
+#include <awl/system/object.hpp>
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/time/sleep_any.hpp>
@@ -7,8 +7,8 @@
 
 int main()
 {
-	awl::window::system_ptr const window_system(
-		awl::window::create_system()
+	awl::system::object_ptr const window_system(
+		awl::system::create()
 	);
 
 	awl::window::instance_ptr const wind(

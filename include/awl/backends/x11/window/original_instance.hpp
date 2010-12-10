@@ -3,15 +3,15 @@
 
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
-#include <awl/backends/x11/window_instance.hpp>
+#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/event/optional.hpp>
+#include <awl/backends/x11/window/event/object_fwd.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/backends/x11/colormap_ptr.hpp>
 #include <awl/backends/x11/class_hint.hpp>
 #include <awl/backends/x11/size_hints.hpp>
 #include <awl/backends/x11/wm_hints.hpp>
-#include <awl/backends/x11/optional_event.hpp>
-#include <awl/backends/x11/event_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -23,31 +23,33 @@ namespace backends
 {
 namespace x11
 {
+namespace window
+{
 
-class AWL_CLASS_SYMBOL original_window_instance
+class AWL_CLASS_SYMBOL original_instance
 :
-	public awl::backends::x11::window_instance
+	public awl::backends::x11::window::instance
 {
 	FCPPT_NONCOPYABLE(
-		original_window_instance
+		original_instance
 	)
 public:
 	AWL_SYMBOL
 	explicit
-	original_window_instance(
+	original_instance(
 		display_ptr,
 		awl::window::parameters const &
 	);
 
 	AWL_SYMBOL
-	~original_window_instance();
+	~original_instance();
 
 	AWL_SYMBOL
 	void
 	show();
 
 	AWL_SYMBOL
-	window::dim const
+	awl::window::dim const
 	size() const;
 
 	AWL_SYMBOL
@@ -67,11 +69,11 @@ public:
 	get() const;
 
 	AWL_SYMBOL
-	x11::event const
+	x11::window::event::object const
 	next_event();
 
 	AWL_SYMBOL
-	x11::optional_event const
+	x11::window::event::optional const
 	poll_event(
 		long event_mask
 	);
@@ -93,6 +95,7 @@ private:
 	class_hint class_hint_;
 };
 
+}
 }
 }
 }
