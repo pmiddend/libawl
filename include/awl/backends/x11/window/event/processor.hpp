@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/x11/window/event/processor_fwd.hpp>
 #include <awl/backends/x11/window/event/signal/unique_connection.hpp>
 #include <awl/backends/x11/window/event/callback.hpp>
 #include <awl/window/event/processor.hpp>
