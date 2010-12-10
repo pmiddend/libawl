@@ -1,8 +1,8 @@
 #ifndef AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
 #define AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
 
-#include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/system/object_fwd.hpp>
+#include <awl/backends/x11/display_ptr.hpp>
 #include <awl/system/object.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -23,26 +23,15 @@ class object
 	FCPPT_NONCOPYABLE(
 		object
 	)
-public:
-	// NOTE: We could add a string specifying which display to connect
-	// to here
+protected:
 	AWL_SYMBOL
 	object();
-
+public:
 	AWL_SYMBOL
 	~object();
 	
-	AWL_SYMBOL
-	awl::window::instance_ptr const
-	create(
-		awl::window::parameters const &
-	);
-
-	AWL_SYMBOL
-	x11::display_ptr const
-	display() const;
-private:
-	x11::display_ptr const display_;
+	virtual x11::display_ptr const
+	display() const = 0;
 };
 
 }
