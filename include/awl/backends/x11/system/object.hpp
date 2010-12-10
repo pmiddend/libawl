@@ -1,8 +1,9 @@
-#ifndef AWL_BACKENDS_X11_WINDOW_SYSTEM_HPP_INCLUDED
-#define AWL_BACKENDS_X11_WINDOW_SYSTEM_HPP_INCLUDED
+#ifndef AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
+#define AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
 
-#include <awl/system/object.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/system/object_fwd.hpp>
+#include <awl/system/object.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
