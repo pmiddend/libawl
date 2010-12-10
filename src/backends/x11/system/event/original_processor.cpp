@@ -19,5 +19,14 @@ awl::backends::x11::system::event::original_processor::register_callback(
 	x11::system::event::callback const &_callback
 )
 {
-	
+	return
+		signals_[
+			event::map_key(
+				_opcode,
+				_type
+			)
+		].connect(
+			_callback
+		);
+
 }
