@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <awl/mainloop/io_service_fwd.hpp>
 #include <awl/mainloop/dispatcher_ptr.hpp>
 #include <awl/mainloop/dispatcher_callback.hpp>
-#include <awl/event/processor_ptr.hpp>
+#include <awl/system/object_ptr.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -66,7 +66,7 @@ public:
 
 	virtual dispatcher_ptr const
 	create_dispatcher(
-		event::processor_ptr,
+		awl::system::object_ptr,
 		dispatcher_callback const &
 	) = 0;
 };

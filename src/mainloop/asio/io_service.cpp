@@ -19,14 +19,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 #include <awl/mainloop/asio/io_service.hpp>
-#include <awl/event/processor.hpp>
+#include <awl/system/object.hpp>
 #include <awl/config.hpp>
 #include <fcppt/function/object.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_shared_ptr.hpp>
 
 #if defined(AWL_X11_BACKEND)
-#include <awl/backends/x11/window_instance.hpp>
+#include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/asio_dispatcher.hpp>
 #include <fcppt/dynamic_pointer_cast.hpp>
@@ -92,7 +92,7 @@ awl::mainloop::asio::io_service::post(
 
 awl::mainloop::dispatcher_ptr const
 awl::mainloop::asio::io_service::create_dispatcher(
-	awl::event::processor_ptr const _processor,
+	awl::system::object_ptr const _system,
 	dispatcher_callback const &_callback
 )
 {
@@ -105,9 +105,9 @@ awl::mainloop::asio::io_service::create_dispatcher(
 				io_service_
 			),
 			fcppt::dynamic_pointer_cast<
-				awl::backends::x11::window_instance
+				awl::backends::x11::system::object
 			>(
-				_processor->window()
+				_system
 			)->display()->get()->fd,
 			_callback
 		);
