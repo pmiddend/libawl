@@ -1,4 +1,8 @@
 #include <awl/backends/x11/system/event/original_processor.hpp>
+#include <awl/backends/x11/system/event/object.hpp>
+#include <awl/backends/x11/system/object.hpp>
+#include <awl/backends/x11/display.hpp>
+#include <X11/Xlib.h>
 
 awl::backends::x11::system::event::original_processor::original_processor(
 	x11::system::object_ptr const _system
@@ -10,6 +14,46 @@ awl::backends::x11::system::event::original_processor::original_processor(
 
 awl::backends::x11::system::event::original_processor::~original_processor()
 {
+}
+
+void
+awl::backends::x11::system::event::original_processor::dispatch()
+{
+	XEvent xev;
+
+	while(
+		::XCheckTypedEvent(
+			system_->display()->get(),
+			GenericEvent,
+			&xev
+		)
+		== True
+	)
+	{
+		::XNextEvent(
+			system_->display()->get(),
+			&xev
+		);
+
+		XGenericEventCookie const &generic_event(
+			xev.xcookie
+		);
+
+		signals_[
+			event::map_key(
+				event::opcode(
+					generic_event.extension
+				),
+				event::type(
+					generic_event.evtype
+				)
+			)
+		](
+			system::event::object(
+				generic_event	
+			)
+		);
+	}
 }
 
 fcppt::signal::auto_connection

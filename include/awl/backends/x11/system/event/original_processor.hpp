@@ -42,6 +42,10 @@ public:
 	AWL_SYMBOL
 	~original_processor();
 
+	AWL_SYMBOL
+	void
+	dispatch();
+
 	fcppt::signal::auto_connection
 	register_callback(
 		x11::system::event::opcode const &,
