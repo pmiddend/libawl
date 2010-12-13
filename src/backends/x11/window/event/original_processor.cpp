@@ -5,6 +5,7 @@
 #include <awl/backends/x11/window/instance.hpp>
 #include <awl/backends/x11/window/event/signal/connection.hpp>
 #include <awl/backends/x11/window/event/signal/shared_connection.hpp>
+#include <awl/backends/x11/window/event/poll.hpp>
 #include <awl/window/event/resize.hpp>
 #include <awl/window/dim.hpp>
 #include <fcppt/assign/make_container.hpp>
@@ -50,7 +51,8 @@ awl::backends::x11::window::event::original_processor::dispatch()
 
 	while(
 		x11::window::event::optional new_event =
-			window_->poll_event(
+			event::poll(
+				window_,
 				event_mask_
 			)
 	)

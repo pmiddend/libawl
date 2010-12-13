@@ -6,35 +6,44 @@
 #include <fcppt/text.hpp>
 
 awl::backends::x11::colormap::colormap(
-	display_ptr const _display,
-	int const screen,
-	visual_ptr const visual)
+	x11::display_ptr const _display,
+	x11::screen const _screen,
+	x11::visual_ptr const _visual
+)
 :
 	display_(
-		_display),
-	c_(
-		XCreateColormap(
+		_display
+	),
+	colormap_(
+		::XCreateColormap(
 			display_->get(),
-			XRootWindow(
+			::XRootWindow(
 				display_->get(),
-				screen),
-			visual->get(),
-			AllocNone))
+				_screen.get()
+			),
+			_visual->get(),
+			AllocNone
+		)
+	)
 {
-	if(get() == 0)
-		throw exception(
-			FCPPT_TEXT("XCreateColormap() failed!"));
+	if(
+		colormap_ == 0
+	)
+		throw awl::exception(
+			FCPPT_TEXT("XCreateColormap() failed!")
+		);
 }
 
 awl::backends::x11::colormap::~colormap()
 {
-	XFreeColormap(
+	::XFreeColormap(
 		display_->get(),
-		get());
+		get()
+	);
 }
 
 Colormap &
 awl::backends::x11::colormap::get()
 {
-	return c_;
+	return colormap_;
 }

@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_X11_VISUAL_HPP_INCLUDED
 #define AWL_BACKENDS_X11_VISUAL_HPP_INCLUDED
 
+#include <awl/backends/x11/visual_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <X11/Xlib.h>
@@ -12,6 +13,7 @@ namespace backends
 {
 namespace x11
 {
+
 class visual
 {
 	FCPPT_NONCOPYABLE(visual)
@@ -26,7 +28,8 @@ public:
 		// We need the display for the info guessing
 		Display *,
 		Visual *,
-		XVisualInfo * = 0);
+		XVisualInfo * = 0
+	);
 
 	AWL_SYMBOL
 	Visual *
@@ -40,8 +43,10 @@ public:
 	~visual();
 private:
 	Visual *ptr_;
+
 	XVisualInfo *info_;
 };
+
 }
 }
 }

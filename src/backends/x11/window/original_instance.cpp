@@ -46,7 +46,7 @@ awl::backends::x11::window::original_instance::original_instance(
 				display_->get(),
 				::XDefaultVisual(
 					display_->get(),
-					screen_
+					screen_.get()
 				)
 			)
 	),
@@ -83,11 +83,12 @@ awl::backends::x11::window::original_instance::original_instance(
 		fcppt::log::_ << FCPPT_TEXT("Creating the x11 window now"))
 
 	// always returns a handle
-	window_ = XCreateWindow(
+	window_ = ::XCreateWindow(
 		display_->get(),
-		XRootWindow(
+		::XRootWindow(
 			display_->get(),
-			screen_),
+			screen_.get()
+		),
 		_params.position()
 		?
 			static_cast<int>(
@@ -114,7 +115,8 @@ awl::backends::x11::window::original_instance::original_instance(
 		InputOutput,
 		visual_->get(),
 		CWColormap | CWOverrideRedirect | CWBorderPixel | CWEventMask,
-		const_cast<XSetWindowAttributes *>(&swa));
+		const_cast<XSetWindowAttributes *>(&swa)
+	);
 
 	FCPPT_LOG_DEBUG(
 		log(),
@@ -221,7 +223,7 @@ awl::backends::x11::window::original_instance::display() const
 	return display_;
 }
 
-int
+awl::backends::x11::screen const
 awl::backends::x11::window::original_instance::screen() const
 {
 	return screen_;
@@ -237,29 +239,4 @@ Window
 awl::backends::x11::window::original_instance::get() const
 {
 	return window_;
-}
-
-awl::backends::x11::window::event::optional const
-awl::backends::x11::window::original_instance::poll_event(
-	long const _event_mask
-)
-{
-	XEvent ret;
-
-	return
-		::XCheckWindowEvent(
-			display_->get(),
-			window_,
-			_event_mask,
-			&ret
-		)
-		== True
-		?
-			x11::window::event::optional(
-				x11::window::event::object(
-					ret
-				)
-			)
-		:
-			x11::window::event::optional();
 }

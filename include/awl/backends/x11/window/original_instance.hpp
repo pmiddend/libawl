@@ -4,12 +4,12 @@
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/backends/x11/window/instance.hpp>
-#include <awl/backends/x11/window/event/optional.hpp>
-#include <awl/backends/x11/display_ptr.hpp>
-#include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/backends/x11/colormap_ptr.hpp>
 #include <awl/backends/x11/class_hint.hpp>
+#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/size_hints.hpp>
+#include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/backends/x11/wm_hints.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -36,7 +36,7 @@ public:
 	AWL_SYMBOL
 	explicit
 	original_instance(
-		display_ptr,
+		x11::display_ptr,
 		awl::window::parameters const &
 	);
 
@@ -52,42 +52,36 @@ public:
 	size() const;
 
 	AWL_SYMBOL
-	display_ptr const
+	x11::display_ptr const
 	display() const;
 
 	AWL_SYMBOL
-	int
+	x11::screen const	
 	screen() const;
 
 	AWL_SYMBOL
-	visual_ptr const
+	x11::visual_ptr const
 	visual() const;
 
 	AWL_SYMBOL
 	Window
 	get() const;
-
-	AWL_SYMBOL
-	x11::window::event::optional const
-	poll_event(
-		long event_mask
-	);
 private:
 	display_ptr display_;
 
-	int screen_;
+	x11::screen screen_;
 
-	visual_ptr visual_;
+	x11::visual_ptr visual_;
 
-	colormap_ptr colormap_;
+	x11::colormap_ptr colormap_;
 
 	Window window_;
 
-	wm_hints wm_hints_;
+	x11::wm_hints wm_hints_;
 
-	size_hints size_hints_;
+	x11::size_hints size_hints_;
 
-	class_hint class_hint_;
+	x11::class_hint class_hint_;
 };
 
 }
