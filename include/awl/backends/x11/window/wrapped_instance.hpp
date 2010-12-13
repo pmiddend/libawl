@@ -6,6 +6,7 @@
 #include <awl/backends/x11/window/instance.hpp>
 #include <awl/backends/x11/window/event/optional.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -32,9 +33,9 @@ public:
 	AWL_SYMBOL
 	explicit
 	wrapped_instance(
-		display_ptr,
-		int screen,
-		Window window
+		x11::display_ptr,
+		x11::screen,
+		Window
 	);
 
 	AWL_SYMBOL
@@ -53,7 +54,7 @@ public:
 	display() const;
 
 	AWL_SYMBOL
-	int
+	x11::screen const
 	screen() const;
 
 	AWL_SYMBOL
@@ -66,7 +67,7 @@ public:
 private:
 	x11::display_ptr const display_;
 
-	int const screen_;
+	x11::screen const screen_;
 
 	Window const window_;
 };
