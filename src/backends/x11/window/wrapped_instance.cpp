@@ -1,4 +1,6 @@
 #include <awl/backends/x11/window/wrapped_instance.hpp>
+#include <awl/backends/x11/window/visual.hpp>
+#include <awl/backends/x11/display.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
 
 awl::backends::x11::window::wrapped_instance::wrapped_instance(
@@ -9,7 +11,13 @@ awl::backends::x11::window::wrapped_instance::wrapped_instance(
 :
 	display_(_display),
 	screen_(_screen),
-	window_(_window)
+	window_(_window),
+	visual_(
+		window::visual(
+			display_->get(),
+			window_
+		)
+	)
 {
 }
 
@@ -42,7 +50,7 @@ awl::backends::x11::window::wrapped_instance::screen() const
 awl::backends::x11::visual_ptr const
 awl::backends::x11::window::wrapped_instance::visual() const
 {
-	return visual_ptr();
+	return visual_;
 }
 
 Window
@@ -50,4 +58,3 @@ awl::backends::x11::window::wrapped_instance::get() const
 {
 	return window_;
 }
-

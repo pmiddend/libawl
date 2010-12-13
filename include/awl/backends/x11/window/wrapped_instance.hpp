@@ -70,6 +70,8 @@ private:
 	x11::screen const screen_;
 
 	Window const window_;
+
+	x11::visual_ptr const visual_;
 };
 
 }
