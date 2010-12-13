@@ -1,7 +1,6 @@
 #include <awl/backends/x11/window/wrapped_instance.hpp>
 #include <awl/backends/x11/window/visual.hpp>
 #include <awl/backends/x11/display.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
 
 awl::backends::x11::window::wrapped_instance::wrapped_instance(
 	x11::display_ptr const _display,
@@ -22,16 +21,6 @@ awl::backends::x11::window::wrapped_instance::wrapped_instance(
 }
 
 awl::backends::x11::window::wrapped_instance::~wrapped_instance()
-{
-}
-
-void
-awl::backends::x11::window::wrapped_instance::show()
-{
-}
-
-awl::window::dim const
-awl::backends::x11::window::wrapped_instance::size() const
 {
 }
 

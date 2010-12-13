@@ -7,8 +7,6 @@
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/log.hpp>
 #include <awl/window/parameters.hpp>
-#include <awl/exception.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
 #include <fcppt/make_shared_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/to_std_string.hpp>
@@ -158,63 +156,6 @@ awl::backends::x11::window::original_instance::~original_instance()
 		display_->get(),
 		window_
 	);
-}
-
-void
-awl::backends::x11::window::original_instance::show()
-{
-	// always returns 1
-	::XMapWindow(
-		display_->get(),
-		window_
-	);
-}
-
-awl::window::dim const
-awl::backends::x11::window::original_instance::size() const
-{
-	Window root_return;
-
-	int
-		x_return,
-		y_return;
-
-	unsigned
-		width_return,
-		height_return,
-		border_width_return,
-		depth_return;
-
-	if(
-		::XGetGeometry(
-			display_->get(),
-			get(),
-			&root_return,
-			&x_return,
-			&y_return,
-			&width_return,
-			&height_return,
-			&border_width_return,
-			&depth_return
-		) == 0
-	)
-                throw awl::exception(
-                        FCPPT_TEXT("XGetGeometry() failed!")
-                );
-
-	return
-		awl::window::dim(
-			static_cast<
-				awl::window::dim::value_type
-			>(
-				width_return
-			),
-			static_cast<
-				awl::window::dim::value_type
-			>(
-				height_return
-			)
-		);
 }
 
 awl::backends::x11::display_ptr const

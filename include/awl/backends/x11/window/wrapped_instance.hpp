@@ -3,7 +3,7 @@
 
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/common_instance.hpp>
 #include <awl/backends/x11/window/event/optional.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/screen.hpp>
@@ -24,7 +24,7 @@ namespace window
 
 class AWL_CLASS_SYMBOL wrapped_instance
 :
-	public awl::backends::x11::window::instance
+	public awl::backends::x11::window::common_instance
 {
 	FCPPT_NONCOPYABLE(
 		wrapped_instance
@@ -40,14 +40,6 @@ public:
 
 	AWL_SYMBOL
 	~wrapped_instance();
-
-	AWL_SYMBOL
-	void
-	show();
-
-	AWL_SYMBOL
-	awl::window::dim const
-	size() const;
 
 	AWL_SYMBOL
 	display_ptr const
