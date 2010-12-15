@@ -4,9 +4,6 @@
 #include <awl/backends/x11/window/event/processor.hpp>
 #include <awl/backends/x11/window/event/callback.hpp>
 #include <awl/backends/x11/window/event/function.hpp>
-#include <awl/backends/x11/window/event/signal/unique_connection.hpp>
-#include <awl/backends/x11/window/event/signal/connection_manager.hpp>
-#include <awl/backends/x11/window/event/signal/object.hpp>
 #include <awl/backends/x11/window/instance_ptr.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/resize_callback.hpp>
@@ -15,7 +12,9 @@
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
-#include <fcppt/signal/object.hpp>
+#include <fcppt/signal/connection_manager.hpp>
+#include <fcppt/signal/object_decl.hpp>
+#include <fcppt/signal/unregister/base_decl.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <map>
@@ -60,7 +59,7 @@ public:
 	window() const;
 
 	AWL_SYMBOL
-	x11::window::event::signal::unique_connection
+	fcppt::signal::auto_connection
 	register_callback(
 		int event_type,
 		x11::window::event::callback const &
@@ -78,9 +77,14 @@ private:
 
 	x11::window::instance_ptr const window_;
 
+	typedef fcppt::signal::object<
+		x11::window::event::function,
+		fcppt::signal::unregister::base
+	> signal;
+
 	typedef boost::ptr_map<
 		int,
-		window::event::signal::object
+		signal
 	> event_signal_map;
 
 	typedef unsigned mask_count;
@@ -96,7 +100,7 @@ private:
 
 	long event_mask_;
 
-	x11::window::event::signal::connection_manager const connection_manager_;
+	fcppt::signal::connection_manager const connection_manager_;
 
 	fcppt::signal::object<
 		awl::window::event::resize_function

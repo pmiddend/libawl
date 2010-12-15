@@ -3,13 +3,14 @@
 #include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
 #include <awl/backends/x11/window/instance.hpp>
-#include <awl/backends/x11/window/event/signal/connection.hpp>
-#include <awl/backends/x11/window/event/signal/shared_connection.hpp>
 #include <awl/backends/x11/window/event/poll.hpp>
 #include <awl/window/event/resize.hpp>
 #include <awl/window/dim.hpp>
 #include <fcppt/assign/make_container.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/signal/object_impl.hpp>
+#include <fcppt/signal/shared_connection.hpp>
+#include <fcppt/signal/unregister/base_impl.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <X11/Xlib.h>
@@ -24,9 +25,9 @@ awl::backends::x11::window::event::original_processor::original_processor(
 	event_mask_(0l),
 	connection_manager_(
 		fcppt::assign::make_container<
-			x11::window::event::signal::connection_manager::container
+			fcppt::signal::connection_manager::container
 		>(
-			x11::window::event::signal::shared_connection(
+			fcppt::signal::shared_connection(
 				register_callback(
 					ConfigureNotify,
 					std::tr1::bind(
@@ -95,7 +96,7 @@ awl::backends::x11::window::event::original_processor::window() const
 	return window_;
 }
 
-awl::backends::x11::window::event::signal::unique_connection
+fcppt::signal::auto_connection
 awl::backends::x11::window::event::original_processor::register_callback(
 	int const _event_type,
 	x11::window::event::callback const &_callback

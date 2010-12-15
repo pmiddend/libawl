@@ -2,11 +2,11 @@
 #define AWL_BACKENDS_X11_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 
 #include <awl/backends/x11/window/event/processor_fwd.hpp>
-#include <awl/backends/x11/window/event/signal/unique_connection.hpp>
 #include <awl/backends/x11/window/event/callback.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -34,7 +34,7 @@ public:
 	AWL_SYMBOL
 	~processor();
 
-	virtual x11::window::event::signal::unique_connection
+	virtual fcppt::signal::auto_connection
 	register_callback(
 		int event_type,
 		x11::window::event::callback const &
