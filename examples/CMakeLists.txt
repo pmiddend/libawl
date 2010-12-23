@@ -1,5 +1,7 @@
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include)
 
 ADD_EXECUTABLE(main main.cpp)
-
 TARGET_LINK_LIBRARIES(main awl)
+
+ADD_EXECUTABLE(asio asio.cpp)
+TARGET_LINK_LIBRARIES(asio awl)
