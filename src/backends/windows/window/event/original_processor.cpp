@@ -1,14 +1,14 @@
-#include <awl/backends/windows/original_event_processor.hpp>
+#include <awl/backends/windows/window/event/original_processor.hpp>
+#include <awl/backends/windows/window/event/wnd_proc.hpp>
+#include <awl/backends/windows/window/event/combine_result.hpp>
+#include <awl/backends/windows/window/instance.hpp>
 #include <awl/backends/windows/default_wnd_proc.hpp>
-#include <awl/backends/windows/event_wnd_proc.hpp>
-#include <awl/backends/windows/window_instance.hpp>
-#include <awl/backends/windows/combine_result.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 
-awl::backends::windows::original_event_processor::original_event_processor(
-	windows::window_instance_ptr const _window
+awl::backends::windows::window::event::original_processor::original_processor(
+	windows::window::instance_ptr const _window
 )
 :
 	window_(_window),
@@ -30,12 +30,12 @@ awl::backends::windows::original_event_processor::original_event_processor(
 		reinterpret_cast<
 			LONG_PTR
 		>(
-			windows::event_wnd_proc
+			windows::window::event::wnd_proc
 		)
 	);
 }
 
-awl::backends::windows::original_event_processor::~original_event_processor()
+awl::backends::windows::window::event::original_processor::~original_processor()
 {
 	::SetWindowLongPtr(
 		window_->hwnd(),
@@ -48,10 +48,12 @@ awl::backends::windows::original_event_processor::~original_event_processor()
 	);
 }
 
-void
-awl::backends::windows::original_event_processor::dispatch()
+bool
+awl::backends::windows::window::event::original_processor::dispatch()
 {
 	MSG msg;
+
+	bool events_processed = false;
 
 	while(
 		::PeekMessage(
@@ -70,12 +72,17 @@ awl::backends::windows::original_event_processor::dispatch()
 		::DispatchMessage(
 			&msg
 		);
+
+		events_processed = true;
 	}
+
+	return events_processed;
 }
+
 fcppt::signal::auto_connection
-awl::backends::windows::original_event_processor::register_callback(
+awl::backends::windows::window::event::original_processor::register_callback(
 	UINT const _msg,
-	windows::event_callback const &_func
+	windows::window::event::callback const &_func
 )
 {
 	signal_map::iterator it(
@@ -94,7 +101,8 @@ awl::backends::windows::original_event_processor::register_callback(
 				fcppt::make_unique_ptr<
 					signal_type
 				>(
-					windows::combine_result
+					windows::window::event::combine_result,
+					windows::window::event::return_type()
 				)
 			).first;
 
@@ -104,8 +112,8 @@ awl::backends::windows::original_event_processor::register_callback(
 		);
 }
 
-awl::backends::windows::event_return_type const
-awl::backends::windows::original_event_processor::execute_callback(
+awl::backends::windows::window::event::return_type const
+awl::backends::windows::window::event::original_processor::execute_callback(
 	UINT const _msg,
 	WPARAM const _wparam,
 	LPARAM const _lparam
@@ -126,5 +134,5 @@ awl::backends::windows::original_event_processor::execute_callback(
 				_lparam
 		)
 		:
-			windows::event_return_type();
+			windows::window::event::return_type();
 }

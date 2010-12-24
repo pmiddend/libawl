@@ -1,23 +1,23 @@
-#include <awl/backends/windows/window_system.hpp>
+#include <awl/backends/windows/system/original_object.hpp>
+#include <awl/backends/windows/window/original_instance.hpp>
 #include <awl/backends/windows/default_wnd_proc.hpp>
 #include <awl/backends/windows/counted_wndclass.hpp>
-#include <awl/backends/windows/original_window_instance.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_shared_ptr.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 
-awl::backends::windows::window_system::window_system()
+awl::backends::windows::system::original_object::original_object()
 {
 }
 
-awl::backends::windows::window_system::~window_system()
+awl::backends::windows::system::original_object::~original_object()
 {
 }
 
 awl::window::instance_ptr const
-awl::backends::windows::window_system::create(
+awl::backends::windows::system::original_object::create(
 	awl::window::parameters const &_param
 )
 {
@@ -46,14 +46,14 @@ awl::backends::windows::window_system::create(
 	
 	return
 		fcppt::make_shared_ptr<
-			awl::backends::windows::original_window_instance
+			awl::backends::windows::window::original_instance
 		>(
 			_param,
 			std::tr1::ref(
 				wndclass_it->second->wndclass()
 			),
 			std::tr1::bind(
-				&window_system::unregister_wndclass,
+				&system::original_object::unregister_wndclass,
 				this,
 				_param.class_name()
 			)
@@ -61,7 +61,7 @@ awl::backends::windows::window_system::create(
 }
 
 void
-awl::backends::windows::window_system::unregister_wndclass(
+awl::backends::windows::system::original_object::unregister_wndclass(
 	fcppt::string const &_class_name
 )
 {

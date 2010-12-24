@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <awl/backends/windows/format_message.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/exception.hpp>
-#include <fcppt/tr1/array.hpp>
+#include <fcppt/container/array.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/char_type.hpp>
 
@@ -30,8 +30,7 @@ awl::backends::windows::format_message(
 	DWORD const _error
 )
 {
-	// TODO: allow arbitrary sizes here!
-	std::tr1::array<
+	fcppt::container::array<
 		fcppt::char_type,
 		1024
 	> errmsg;

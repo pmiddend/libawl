@@ -40,6 +40,9 @@ protected:
 public:
 	AWL_SYMBOL
 	virtual ~dispatcher();
+
+	virtual void
+	stop() = 0;
 };
 
 }

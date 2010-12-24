@@ -33,23 +33,23 @@ awl::backends::windows::wndclass::wndclass(
 		_class_name
 	)
 {
-	WNDCLASSEX wndclass;
-	wndclass.cbClsExtra = 0;
-	wndclass.cbWndExtra = 0;
-	wndclass.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_WINDOW+1);
-	wndclass.hCursor = 0;
-	wndclass.hIcon = 0;
-	wndclass.hIconSm = 0;
-	wndclass.hInstance = windows::module_handle();
-	wndclass.lpfnWndProc = _proc;
-	wndclass.lpszClassName = class_name_.c_str();
-	wndclass.lpszMenuName = 0;
-	wndclass.cbSize = sizeof(WNDCLASSEX);
-	wndclass.style = 0;
+	WNDCLASSEX wndclassex;
+	wndclassex.cbClsExtra = 0;
+	wndclassex.cbWndExtra = 0;
+	wndclassex.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_WINDOW+1);
+	wndclassex.hCursor = 0;
+	wndclassex.hIcon = 0;
+	wndclassex.hIconSm = 0;
+	wndclassex.hInstance = windows::module_handle();
+	wndclassex.lpfnWndProc = _proc;
+	wndclassex.lpszClassName = class_name_.c_str();
+	wndclassex.lpszMenuName = 0;
+	wndclassex.cbSize = sizeof(WNDCLASSEX);
+	wndclassex.style = 0;
 
 	if(
 		!::RegisterClassEx(
-			&wndclass
+			&wndclassex
 		)
 	)
 		throw awl::exception(

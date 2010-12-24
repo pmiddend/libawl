@@ -1,8 +1,8 @@
-#ifndef AWL_BACKENDS_WINDOWS_WINDOW_SYSTEM_HPP_INCLUDED
-#define AWL_BACKENDS_WINDOWS_WINDOW_SYSTEM_HPP_INCLUDED
+#ifndef AWL_BACKENDS_WINDOWS_SYSTEM_ORIGINAL_OBJECT_HPP_INCLUDED
+#define AWL_BACKENDS_WINDOWS_SYSTEM_ORIGINAL_OBJECT_HPP_INCLUDED
 
+#include <awl/backends/windows/system/object.hpp>
 #include <awl/backends/windows/counted_wndclass_fwd.hpp>
-#include <awl/window/system.hpp>
 #include <awl/symbol.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -14,20 +14,22 @@ namespace backends
 {
 namespace windows
 {
+namespace system
+{
 
-class window_system
+class original_object
 :
-	public awl::window::system
+	public windows::system::object
 {
 	FCPPT_NONCOPYABLE(
-		window_system
+		original_object
 	)
 public:
 	AWL_SYMBOL
-	window_system();
+	original_object();
 
 	AWL_SYMBOL
-	~window_system();
+	~original_object();
 	
 	AWL_SYMBOL
 	awl::window::instance_ptr const
@@ -48,6 +50,7 @@ private:
 	wndclass_map wndclasses_;
 };
 
+}
 }
 }
 }

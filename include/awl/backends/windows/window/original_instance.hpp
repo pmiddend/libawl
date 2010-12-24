@@ -1,8 +1,8 @@
-#ifndef AWL_BACKENDS_WINDOWS_ORIGINAL_WINDOW_INSTANCE_HPP_INCLUDED
-#define AWL_BACKENDS_WINDOWS_ORIGINAL_WINDOW_INSTANCE_HPP_INCLUDED
+#ifndef AWL_BACKENDS_WINDOWS_WINDOW_ORIGINAL_INSTANCE_HPP_INCLUDED
+#define AWL_BACKENDS_WINDOWS_WINDOW_ORIGINAL_INSTANCE_HPP_INCLUDED
 
+#include <awl/backends/windows/window/instance.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/backends/windows/window_instance.hpp>
 #include <awl/backends/windows/wndclass_fwd.hpp>
 #include <awl/backends/windows/wndclass_remove_callback.hpp>
 #include <awl/window/parameters_fwd.hpp>
@@ -18,22 +18,24 @@ namespace backends
 {
 namespace windows
 {
+namespace window
+{
 
-class AWL_CLASS_SYMBOL original_window_instance
+class AWL_CLASS_SYMBOL original_instance
 :
-	public awl::backends::windows::window_instance
+	public awl::backends::windows::window::instance
 {
 	FCPPT_NONCOPYABLE(
-		original_window_instance
+		original_instance
 	)
 public:
-	AWL_SYMBOL original_window_instance(
+	AWL_SYMBOL original_instance(
 		awl::window::parameters const &,
 		windows::wndclass &,
 		windows::wndclass_remove_callback const &
 	);
 
-	AWL_SYMBOL ~original_window_instance();
+	AWL_SYMBOL ~original_instance();
 
 	AWL_SYMBOL void
 	show();
@@ -55,6 +57,7 @@ private:
 	windows::wndclass_remove_callback const remove_wndclass_;
 };
 
+}
 }
 }
 }

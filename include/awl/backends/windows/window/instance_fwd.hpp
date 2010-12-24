@@ -7,9 +7,12 @@ namespace backends
 {
 namespace windows
 {
+namespace window
+{
 
-class window_instance;
+class instance;
 
+}
 }
 }
 }

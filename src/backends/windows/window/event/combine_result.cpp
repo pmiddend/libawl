@@ -18,26 +18,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-#ifndef AWL_BACKENDS_WINDOWS_COMBINE_RESULT_HPP_INCLUDED
-#define AWL_BACKENDS_WINDOWS_COMBINE_RESULT_HPP_INCLUDED
+#include <awl/backends/windows/window/event/combine_result.hpp>
+#include <fcppt/optional_impl.hpp>
 
-#include <awl/backends/windows/event_return_type.hpp>
-
-namespace awl
+awl::backends::windows::window::event::return_type const
+awl::backends::windows::window::event::combine_result(
+	event::return_type const &_a,
+	event::return_type const &_b
+)
 {
-namespace backends
-{
-namespace windows
-{
-
-event_return_type const
-combine_result(
-	event_return_type const &,
-	event_return_type const &
-);
-
+	return
+		_a
+		?
+			_a
+		:
+			_b;
 }
-}
-}
-
-#endif

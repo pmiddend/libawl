@@ -1,20 +1,20 @@
-#include <awl/backends/windows/event_wnd_proc.hpp>
+#include <awl/backends/windows/window/event/wnd_proc.hpp>
+#include <awl/backends/windows/window/event/original_processor.hpp>
+#include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/backends/windows/original_event_processor.hpp>
-#include <awl/backends/windows/event_return_type.hpp>
 #include <fcppt/optional_impl.hpp>
 
 LRESULT CALLBACK
-awl::backends::windows::event_wnd_proc(
+awl::backends::windows::window::event::wnd_proc(
 	HWND const _hwnd,
 	UINT const _msg,
 	WPARAM const _wparam,
 	LPARAM const _lparam
 )
 {
-	awl::backends::windows::original_event_processor *const processor(
+	awl::backends::windows::window::event::original_processor *const processor(
 		reinterpret_cast<
-			awl::backends::windows::original_event_processor *
+			awl::backends::windows::window::event::original_processor *
 		>(
 			::GetWindowLongPtr(
 				_hwnd,
@@ -24,7 +24,7 @@ awl::backends::windows::event_wnd_proc(
 	);
 
 	{
-		awl::backends::windows::event_return_type const ret(
+		awl::backends::windows::window::event::return_type const ret(
 			processor->execute_callback(
 				_msg,
 				_wparam,

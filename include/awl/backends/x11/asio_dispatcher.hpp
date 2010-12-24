@@ -56,6 +56,9 @@ public:
 	~asio_dispatcher();
 private:
 	void
+	stop();
+
+	void
 	register_handler();
 
 	void
@@ -66,6 +69,8 @@ private:
 	boost::asio::posix::stream_descriptor stream_wrapper_;
 
 	awl::mainloop::dispatcher_callback const callback_;
+
+	bool running_;
 };
 
 }
