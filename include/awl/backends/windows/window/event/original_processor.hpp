@@ -7,6 +7,7 @@
 #include <awl/backends/windows/window/instance_ptr.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/window/event/resize_callback.hpp>
+#include <awl/window/event/resize_function.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
@@ -83,6 +84,12 @@ private:
 	> signal_map;
 
 	signal_map signals_;
+
+	typedef fcppt::signal::object<
+		awl::window::event::resize_function
+	> resize_signal;
+
+	resize_signal resize_signal_;
 };
 
 }

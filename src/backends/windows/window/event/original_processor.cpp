@@ -3,7 +3,10 @@
 #include <awl/backends/windows/window/event/combine_result.hpp>
 #include <awl/backends/windows/window/instance.hpp>
 #include <awl/backends/windows/default_wnd_proc.hpp>
+#include <awl/window/event/resize.hpp>
+#include <awl/window/dim.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
+#include <fcppt/math/dim/basic_impl.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 
@@ -80,6 +83,23 @@ awl::backends::windows::window::event::original_processor::dispatch()
 }
 
 fcppt::signal::auto_connection
+awl::backends::windows::window::event::original_processor::resize_callback(
+	awl::window::event::resize_callback const &_callback
+)
+{
+	return
+		resize_signal_.connect(
+			_callback
+		);
+}
+
+awl::window::instance_ptr const
+awl::backends::windows::window::event::original_processor::window() const
+{
+	return window_;
+}
+
+fcppt::signal::auto_connection
 awl::backends::windows::window::event::original_processor::register_callback(
 	UINT const _msg,
 	windows::window::event::callback const &_func
@@ -119,6 +139,35 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 	LPARAM const _lparam
 )
 {
+	switch(
+		_msg
+	)
+	{
+	case WM_SIZE:
+		resize_signal_(
+			awl::window::event::resize(
+				window(),
+				awl::window::dim(
+					static_cast<
+						awl::window::dim::value_type
+					>(
+						LOWORD(
+							_lparam
+						)
+					),
+					static_cast<
+						awl::window::dim::value_type
+					>(
+						HIWORD(
+							_lparam
+						)
+					)
+				)
+			)
+		);
+		break;
+	}
+
 	signal_map::iterator const it(
 		signals_.find(
 			_msg

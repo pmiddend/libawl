@@ -42,7 +42,10 @@ IF (CMAKE_COMPILER_IS_GNUCXX OR COMPILER_IS_CLANGPP)
 
 	# C++ 98 has no long long but boost insists on using it anyway
 	ADD_DEFINITIONS ("-Wno-long-long")
-ENDIF()
+ELSEIF (MSVC)
+	ADD_DEFINITIONS ("/W4 /wd4996 /EHa /D_BIND_TO_CURRENT_VCLIBS_VERSION=1")
+	#4996 - unsafe standard C++ functions
+ENDIF ()
 
 INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/include)
 
@@ -158,6 +161,9 @@ IF(UNIX)
 	ENDIF()
 ELSEIF(WIN32)
 	SET(AWL_WINDOWS_BACKEND TRUE)
+
+	# TODO: actually check what we need here
+	ADD_DEFINITIONS(-D UNICODE -D _UNICODE)
 	# TODO: Find windows.h, etc.
 ELSE()
 	MESSAGE(
@@ -206,11 +212,6 @@ IF(ENABLE_WINELIB OR AWL_WINDOWS_BACKEND)
 	ADD_AWL_HEADER_GROUP(include/awl/backends/windows/window)
 	ADD_AWL_HEADER_GROUP(include/awl/backends/windows/window/event)
 ENDIF()
-
-	SET(
-		CMAKE_SHARED_LINKER_FLAGS
-		"${WINE_user32_LIBRARY}"
-	)
 
 ADD_LIBRARY(awl SHARED ${LIBAWLFILES})
 
