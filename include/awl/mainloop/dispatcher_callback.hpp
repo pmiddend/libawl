@@ -9,7 +9,7 @@ namespace mainloop
 {
 
 typedef fcppt::function::object<
-	void ()
+	bool ()
 > dispatcher_callback;
 
 }
