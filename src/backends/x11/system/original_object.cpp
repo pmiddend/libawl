@@ -1,6 +1,6 @@
 #include <awl/backends/x11/system/original_object.hpp>
 #include <awl/backends/x11/window/original_instance.hpp>
-#include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/original_display.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/assert.hpp>
 #include <fcppt/make_shared_ptr.hpp>
@@ -10,7 +10,7 @@ awl::backends::x11::system::original_object::original_object()
 :
 	display_(
 		fcppt::make_shared_ptr<
-			x11::display
+			x11::original_display
 		>()
 	)
 {

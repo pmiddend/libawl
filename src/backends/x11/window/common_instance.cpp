@@ -22,10 +22,8 @@ awl::backends::x11::window::common_instance::show()
 		get()
 	);
 
-	// always returns 1
-	::XSync(
-		display()->get(),
-		False
+	display()->sync(
+		false
 	);
 }
 
