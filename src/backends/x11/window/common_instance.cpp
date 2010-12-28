@@ -21,6 +21,12 @@ awl::backends::x11::window::common_instance::show()
 		display()->get(),
 		get()
 	);
+
+	// always returns 1
+	::XSync(
+		display()->get(),
+		False
+	);
 }
 
 awl::window::dim const

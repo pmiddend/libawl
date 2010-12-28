@@ -4,6 +4,7 @@
 #include <awl/mainloop/io_service_fwd.hpp>
 #include <awl/mainloop/dispatcher_ptr.hpp>
 #include <awl/mainloop/dispatcher_callback.hpp>
+#include <awl/mainloop/nullary_callback.hpp>
 #include <awl/system/object_ptr.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -41,7 +42,7 @@ public:
 
 	virtual void
 	post(
-		dispatcher_callback const &
+		nullary_callback const &
 	) = 0;
 
 	virtual dispatcher_ptr const

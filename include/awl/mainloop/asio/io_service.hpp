@@ -1,8 +1,9 @@
 #ifndef AWL_MAINLOOP_ASIO_IO_SERVICE_HPP_INCLUDED
 #define AWL_MAINLOOP_ASIO_IO_SERVICE_HPP_INCLUDED
 
-#include <awl/mainloop/io_service.hpp>
 #include <awl/mainloop/dispatcher_callback.hpp>
+#include <awl/mainloop/io_service.hpp>
+#include <awl/mainloop/nullary_callback.hpp>
 #include <awl/system/object_ptr.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -49,7 +50,7 @@ private:
 
 	void
 	post(
-		dispatcher_callback const &
+		nullary_callback const &
 	);
 
 	dispatcher_ptr const

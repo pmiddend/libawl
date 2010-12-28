@@ -7,11 +7,8 @@
 
 #if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/system/object.hpp>
-#include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/asio_dispatcher.hpp>
 #include <fcppt/dynamic_pointer_cast.hpp>
-#include <X11/Xlib.h>
-#include <X11/Xlibint.h>
 #elif defined(AWL_WINDOWS_BACKEND)
 #endif
 
@@ -62,7 +59,7 @@ awl::mainloop::asio::io_service::reset()
 
 void
 awl::mainloop::asio::io_service::post(
-	dispatcher_callback const &_callback
+	nullary_callback const &_callback
 )
 {
 	io_service_.post(
@@ -88,7 +85,7 @@ awl::mainloop::asio::io_service::create_dispatcher(
 				awl::backends::x11::system::object
 			>(
 				_system
-			)->display()->get()->fd,
+			)->display(),
 			_callback
 		);
 #elif defined(AWL_WINDOWS_BACKEND)
