@@ -1,6 +1,6 @@
-#include <awl/mainloop/io_service.hpp>
-#include <awl/mainloop/io_service_ptr.hpp>
 #include <awl/mainloop/dispatcher_ptr.hpp>
+#include <awl/mainloop/asio/io_service.hpp>
+#include <awl/mainloop/asio/io_service_ptr.hpp>
 #include <awl/mainloop/asio/create_io_service.hpp>
 #include <awl/system/create.hpp>
 #include <awl/system/object.hpp>
@@ -40,7 +40,7 @@ int main()
 		)
 	);
 
-	awl::mainloop::io_service_ptr const io_service(
+	awl::mainloop::asio::io_service_ptr const io_service(
 		awl::mainloop::asio::create_io_service()
 	);
 

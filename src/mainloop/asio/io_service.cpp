@@ -13,48 +13,41 @@
 #endif
 
 awl::mainloop::asio::io_service::io_service()
-:
-	io_service_()
-{}
+{
+}
 
 awl::mainloop::asio::io_service::~io_service()
 {
 }
 
-boost::asio::io_service &
-awl::mainloop::asio::io_service::get()
-{
-	return io_service_;
-}
-
 void
 awl::mainloop::asio::io_service::run_one()
 {
-	io_service_.run_one();
+	get().run_one();
 }
 
 void
 awl::mainloop::asio::io_service::run()
 {
-	io_service_.run();
+	get().run();
 }
 
 void
 awl::mainloop::asio::io_service::poll()
 {
-	io_service_.poll();
+	get().poll();
 }
 
 void
 awl::mainloop::asio::io_service::stop()
 {
-	io_service_.stop();
+	get().stop();
 }
 
 void
 awl::mainloop::asio::io_service::reset()
 {
-	io_service_.reset();
+	get().reset();
 }
 
 void
@@ -62,7 +55,7 @@ awl::mainloop::asio::io_service::post(
 	nullary_callback const &_callback
 )
 {
-	io_service_.post(
+	get().post(
 		_callback
 	);
 }
@@ -79,7 +72,7 @@ awl::mainloop::asio::io_service::create_dispatcher(
 			awl::backends::x11::asio_dispatcher
 		>(
 			std::tr1::ref(
-				io_service_
+				get()
 			),
 			fcppt::dynamic_pointer_cast<
 				awl::backends::x11::system::object
