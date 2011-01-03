@@ -7,7 +7,7 @@
 
 #if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/system/object.hpp>
-#include <awl/backends/x11/asio_dispatcher.hpp>
+#include <awl/backends/x11/asio/dispatcher.hpp>
 #include <fcppt/dynamic_pointer_cast.hpp>
 #elif defined(AWL_WINDOWS_BACKEND)
 #endif
@@ -69,7 +69,7 @@ awl::mainloop::asio::io_service::create_dispatcher(
 	return
 #if defined(AWL_X11_BACKEND)
 		fcppt::make_shared_ptr<
-			awl::backends::x11::asio_dispatcher
+			awl::backends::x11::asio::dispatcher
 		>(
 			std::tr1::ref(
 				get()

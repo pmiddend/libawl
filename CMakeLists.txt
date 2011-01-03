@@ -183,6 +183,7 @@ INCLUDE_DIRECTORIES(
 
 IF(AWL_X11_BACKEND)
 	ADD_AWL_CPP_GROUP(src/backends/x11)
+	ADD_AWL_CPP_GROUP(src/backends/x11/asio)
 	ADD_AWL_CPP_GROUP(src/backends/x11/glx)
 	ADD_AWL_CPP_GROUP(src/backends/x11/system)
 	ADD_AWL_CPP_GROUP(src/backends/x11/system/event)
@@ -191,6 +192,7 @@ IF(AWL_X11_BACKEND)
 	ADD_AWL_CPP_GROUP(src/backends/x11/window/event/signal)
 
 	ADD_AWL_HEADER_GROUP(include/awl/backends/x11)
+	ADD_AWL_HEADER_GROUP(include/awl/backends/x11/asio)
 	ADD_AWL_HEADER_GROUP(include/awl/backends/x11/glx)
 	ADD_AWL_HEADER_GROUP(include/awl/backends/x11/system)
 	ADD_AWL_HEADER_GROUP(include/awl/backends/x11/system/event)
