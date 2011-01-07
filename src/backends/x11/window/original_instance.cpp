@@ -73,7 +73,6 @@ awl::backends::x11::window::original_instance::original_instance(
 	swa.colormap = colormap_->get();
 	swa.border_pixel = 0;
 	swa.background_pixel = 0;
-	swa.override_redirect = _params.fullscreen() ? True : False;
 	swa.event_mask = StructureNotifyMask;
 
 	FCPPT_LOG_DEBUG(
@@ -112,7 +111,7 @@ awl::backends::x11::window::original_instance::original_instance(
 		visual_->info()->depth,
 		InputOutput,
 		visual_->get(),
-		CWColormap | CWOverrideRedirect | CWBorderPixel | CWEventMask,
+		CWColormap | CWBorderPixel | CWEventMask,
 		const_cast<XSetWindowAttributes *>(&swa)
 	);
 

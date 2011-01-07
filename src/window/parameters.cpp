@@ -2,8 +2,6 @@
 
 awl::window::parameters::parameters()
 :
-	fullscreen_(
-		false),
 	has_opengl_(
 		false)
 {
@@ -41,15 +39,6 @@ awl::window::parameters::class_name(
 	fcppt::string const &v)
 {
 	class_name_ = v;
-
-	return *this;
-}
-
-awl::window::parameters &
-awl::window::parameters::fullscreen(
-	bool const _fullscreen)
-{
-	fullscreen_ = _fullscreen;
 
 	return *this;
 }
@@ -112,12 +101,6 @@ fcppt::string const
 awl::window::parameters::class_name() const
 {
 	return class_name_;
-}
-
-bool
-awl::window::parameters::fullscreen() const
-{
-	return fullscreen_;
 }
 
 bool

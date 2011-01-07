@@ -45,11 +45,6 @@ public:
 
 	AWL_SYMBOL
 	parameters &	
-	fullscreen(
-		bool);
-
-	AWL_SYMBOL
-	parameters &	
 	has_opengl(
 		bool);
 
@@ -86,10 +81,6 @@ public:
 
 	AWL_SYMBOL
 	bool
-	fullscreen() const;
-
-	AWL_SYMBOL
-	bool
 	has_opengl() const;
 
 	AWL_SYMBOL
@@ -107,7 +98,6 @@ private:
 	fcppt::optional<vector> position_;
 	fcppt::optional<dim> size_;
 	fcppt::string title_,class_name_;
-	bool fullscreen_;
 	bool has_opengl_;
 	fcppt::optional<awl::window::bit_depth::type> bit_depth_;
 	fcppt::optional<awl::window::stencil_buffer::type> stencil_buffer_;
