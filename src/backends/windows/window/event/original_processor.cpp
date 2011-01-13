@@ -1,6 +1,7 @@
 #include <awl/backends/windows/window/event/original_processor.hpp>
-#include <awl/backends/windows/window/event/wnd_proc.hpp>
 #include <awl/backends/windows/window/event/combine_result.hpp>
+#include <awl/backends/windows/window/event/object.hpp>
+#include <awl/backends/windows/window/event/wnd_proc.hpp>
 #include <awl/backends/windows/window/instance.hpp>
 #include <awl/backends/windows/default_wnd_proc.hpp>
 #include <awl/window/event/resize.hpp>
@@ -178,9 +179,10 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 		it != signals_.end()
 		?
 			(*(it->second))(
-				_msg,
-				_wparam,
-				_lparam
+				windows::window::event::object(
+					_wparam,
+					_lparam
+				)
 		)
 		:
 			windows::window::event::return_type();

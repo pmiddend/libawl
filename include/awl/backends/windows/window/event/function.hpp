@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_WINDOWS_WINDOW_EVENT_FUNCTION_HPP_INCLUDED
 
 #include <awl/backends/windows/window/event/return_type.hpp>
-#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/window/event/object_fwd.hpp>
 
 namespace awl
 {
@@ -17,9 +17,7 @@ namespace event
 
 typedef windows::window::event::return_type
 function(
-	UINT,
-	WPARAM,
-	LPARAM
+	windows::window::event::object const &
 );
 
 }
