@@ -2,9 +2,12 @@
 #define AWL_BACKENDS_WINDOWS_SYSTEM_EVENT_PROCESSOR_HPP_INCLUDED
 
 #include <awl/backends/windows/system/event/processor_fwd.hpp>
+#include <awl/backends/windows/system/event/callback.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/system/event/processor.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -31,6 +34,12 @@ protected:
 public:
 	AWL_SYMBOL
 	~processor();
+
+	virtual fcppt::signal::auto_connection
+	register_callback(
+		UINT,
+		windows::system::event::callback const &
+	) = 0;
 };
 
 }
