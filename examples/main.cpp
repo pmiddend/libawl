@@ -2,10 +2,15 @@
 #include <awl/system/object.hpp>
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters.hpp>
-#include <fcppt/time/sleep_any.hpp>
 #include <fcppt/chrono/seconds.hpp>
+#include <fcppt/io/cerr.hpp>
+#include <fcppt/time/sleep_any.hpp>
+#include <fcppt/exception.hpp>
+#include <fcppt/text.hpp>
+#include <cstdlib>
 
 int main()
+try
 {
 	awl::system::object_ptr const window_system(
 		awl::system::create()
@@ -14,6 +19,9 @@ int main()
 	awl::window::instance_ptr const wind(
 		window_system->create(
 			awl::window::parameters()
+			.class_name(
+				FCPPT_TEXT("awltest")
+			)
 			.size(
 				awl::window::dim(
 					1024,
@@ -30,4 +38,14 @@ int main()
 			1
 		)
 	);
+}
+catch(
+	fcppt::exception const &_exception
+)
+{
+	fcppt::io::cerr
+		<< _exception.string()
+		<< FCPPT_TEXT('\n');
+
+	return EXIT_FAILURE;
 }

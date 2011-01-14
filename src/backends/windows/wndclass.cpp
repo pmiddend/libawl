@@ -3,6 +3,7 @@
 #include <awl/backends/windows/module_handle.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+#include <cstring>
 
 awl::backends::windows::wndclass::wndclass(
 	fcppt::string const &_class_name,
@@ -14,6 +15,13 @@ awl::backends::windows::wndclass::wndclass(
 	)
 {
 	WNDCLASSEX wndclassex;
+
+	std::memset(
+		&wndclassex,
+		0,
+		sizeof(WNDCLASSEX)
+	);
+
 	wndclassex.cbClsExtra = 0;
 	wndclassex.cbWndExtra = 0;
 	wndclassex.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_WINDOW+1);
