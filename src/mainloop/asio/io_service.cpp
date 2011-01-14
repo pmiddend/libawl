@@ -10,6 +10,7 @@
 #include <awl/backends/x11/asio/dispatcher.hpp>
 #include <fcppt/dynamic_pointer_cast.hpp>
 #elif defined(AWL_WINDOWS_BACKEND)
+#include <awl/backends/windows/asio/dispatcher.hpp>
 #endif
 
 awl::mainloop::asio::io_service::io_service()
@@ -82,6 +83,13 @@ awl::mainloop::asio::io_service::create_dispatcher(
 			_callback
 		);
 #elif defined(AWL_WINDOWS_BACKEND)
-		mainloop::dispatcher_ptr(); // TODO!
+		fcppt::make_shared_ptr<
+			awl::backends::windows::asio::dispatcher
+		>(
+			std::tr1::ref(
+				get()
+			),
+			_callback
+		);
 #endif
 }
