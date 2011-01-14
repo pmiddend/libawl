@@ -1,4 +1,5 @@
 #include <awl/backends/windows/window/original_instance.hpp>
+#include <awl/backends/windows/window/adjusted_size.hpp>
 #include <awl/backends/windows/choose_and_set_pixel_format.hpp>
 #include <awl/backends/windows/wndclass.hpp>
 #include <awl/backends/windows/module_handle.hpp>
@@ -6,9 +7,16 @@
 #include <awl/backends/windows/windows.hpp>
 #include <awl/window/parameters.hpp>
 #include <awl/exception.hpp>
-#include <fcppt/math/box/basic_impl.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
 #include <fcppt/text.hpp>
+
+namespace
+{
+
+DWORD const window_flags(
+	WS_OVERLAPPEDWINDOW
+);
+
+}
 
 awl::backends::windows::window::original_instance::original_instance(
 	awl::window::parameters const &_param,
@@ -16,73 +24,31 @@ awl::backends::windows::window::original_instance::original_instance(
 	windows::wndclass_remove_callback const &_remove_wndclass
 )
 :
-	decoration_size_(
-		decoration_rect::null()
-	),
 	handle_(
-		0
+		CreateWindow(
+			_wndclass.name().c_str(),
+			_param.title().c_str(),
+			window_flags,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			windows::window::adjusted_size(
+				_param.size(),
+				window_flags
+			).w(),
+			windows::window::adjusted_size(
+				_param.size(),
+				window_flags
+			).h(),
+			NULL,
+			NULL,
+			windows::module_handle(),
+			NULL
+		)
 	),
 	remove_wndclass_(
 		_remove_wndclass
 	)
 {
-
-	DWORD const flags(
-		WS_OVERLAPPEDWINDOW
-	);
-
-	{
-		RECT rect;
-
-		if(
-			!::AdjustWindowRect(
-				&rect,
-				flags,
-				FALSE
-			)
-		)
-			throw awl::exception(
-				FCPPT_TEXT("AdjustWindowRect() failed!")
-			);
-
-		decoration_size_ =
-			decoration_rect(
-				decoration_rect::vector(
-					rect.left,
-					rect.top
-				),
-				decoration_rect::dim(
-					rect.right,
-					rect.bottom
-				)
-			);
-	}
-
-	handle_ =
-		CreateWindow(
-			_wndclass.name().c_str(),
-			_param.title().c_str(),
-			flags,
-			0,
-			0,
-			_param.size()
-			?
-				decoration_size_.w()
-				+ _param.size()->w()
-			:
-				CW_USEDEFAULT,
-			_param.size()
-			?
-				decoration_size_.h()
-				+ _param.size()->h()
-			:
-				CW_USEDEFAULT,
-			0,
-			0,
-			windows::module_handle(),
-			0
-		);
-
 	if(
 		!handle_
 	)
@@ -117,7 +83,6 @@ awl::backends::windows::window::original_instance::original_instance(
 				),
 			_param.depth_buffer()
 			?
-
 				static_cast<
 					BYTE
 				>(
@@ -160,7 +125,7 @@ awl::backends::windows::window::original_instance::size() const
 	RECT rect;
 
 	if(
-		::GetWindowRect(
+		::GetClientRect(
 			handle_,
 			&rect
 		)
@@ -172,8 +137,8 @@ awl::backends::windows::window::original_instance::size() const
 
 	return
 		awl::window::dim(
-			rect.right - rect.left - decoration_size_.w(),
-			rect.bottom - rect.top - decoration_size_.h()
+			rect.right - rect.left,
+			rect.bottom - rect.top
 		);
 }
 

@@ -1,11 +1,13 @@
 #ifndef AWL_WINDOW_PARAMETERS_HPP_INCLUDED
 #define AWL_WINDOW_PARAMETERS_HPP_INCLUDED
 
-#include <awl/window/vector.hpp>
-#include <awl/window/dim.hpp>
+#include <awl/window/parameters_fwd.hpp>
 #include <awl/window/bit_depth.hpp>
-#include <awl/window/stencil_buffer.hpp>
 #include <awl/window/depth_buffer.hpp>
+#include <awl/window/dim.hpp>
+#include <awl/window/optional_dim.hpp>
+#include <awl/window/stencil_buffer.hpp>
+#include <awl/window/vector.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/math/vector/basic_impl.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
@@ -16,6 +18,7 @@ namespace awl
 {
 namespace window
 {
+
 class parameters
 {
 public:
@@ -26,49 +29,57 @@ public:
 	AWL_SYMBOL
 	parameters &	
 	position(
-		vector const &);
+		vector const &
+	);
 
 	AWL_SYMBOL
-	parameters &	
+	parameters &
 	size(
-		dim const &);
+		dim const &
+	);
 
 	AWL_SYMBOL
 	parameters &	
 	title(
-		fcppt::string const &);
+		fcppt::string const &
+	);
 
 	AWL_SYMBOL
 	parameters &	
 	class_name(
-		fcppt::string const &);
+		fcppt::string const &
+	);
 
 	AWL_SYMBOL
 	parameters &	
 	has_opengl(
-		bool);
+		bool
+	);
 
 	AWL_SYMBOL
 	parameters &	
 	bit_depth(
-		awl::window::bit_depth::type);
+		awl::window::bit_depth::type
+	);
 
 	AWL_SYMBOL
 	parameters &	
 	stencil_buffer(
-		awl::window::stencil_buffer::type);
+		awl::window::stencil_buffer::type
+	);
 
 	AWL_SYMBOL
 	parameters &	
 	depth_buffer(
-		awl::window::depth_buffer::type);
+		awl::window::depth_buffer::type
+	);
 
 	AWL_SYMBOL
 	fcppt::optional<vector> const
 	position() const;
 
 	AWL_SYMBOL
-	fcppt::optional<dim> const
+	window::optional_dim const
 	size() const;
 
 	AWL_SYMBOL
@@ -96,13 +107,20 @@ public:
 	depth_buffer() const;
 private:
 	fcppt::optional<vector> position_;
-	fcppt::optional<dim> size_;
+
+	window::optional_dim size_;
+
 	fcppt::string title_,class_name_;
+
 	bool has_opengl_;
+
 	fcppt::optional<awl::window::bit_depth::type> bit_depth_;
+
 	fcppt::optional<awl::window::stencil_buffer::type> stencil_buffer_;
+
 	fcppt::optional<awl::window::depth_buffer::type> depth_buffer_;
 };
+
 }
 }
 

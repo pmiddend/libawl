@@ -8,8 +8,6 @@
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/math/box/rect.hpp>
-#include <fcppt/math/box/basic_decl.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl
@@ -46,13 +44,7 @@ public:
 	AWL_SYMBOL HWND
 	hwnd() const;
 private:
-	typedef fcppt::math::box::rect<
-		LONG
-	>::type decoration_rect;
-
-	decoration_rect decoration_size_;
-
-	HWND handle_;
+	HWND const handle_;
 
 	windows::wndclass_remove_callback const remove_wndclass_;
 };
