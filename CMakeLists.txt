@@ -2,11 +2,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 PROJECT (libawl)
 
-SET (CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMakeModules)
-
 IF(${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
 	message(FATAL_ERROR "In-source builds are not permitted. Make a separate folder for building:\nmkdir build; cd build; cmake ..\nBefore that, remove the files that cmake just created:\nrm -rf CMakeCache.txt CMakeFiles")
 ENDIF()
+
+OPTION(EXTRA_CMAKE_MODULE_PATH "Extra paths to search for cmake modules" "")
+
+SET (CMAKE_MODULE_PATH "${EXTRA_CMAKE_MODULE_PATH};${CMAKE_SOURCE_DIR}/CMakeModules")
 
 INCLUDE (CheckCXXSourceRuns)
 
@@ -298,8 +300,13 @@ MACRO(MAKE_AWL_LIBRARY TARGETNAME VARIANT)
 	)
 ENDMACRO()
 
-MAKE_AWL_LIBRARY(awl_static STATIC)
-MAKE_AWL_LIBRARY(awl SHARED)
+IF(ENABLE_STATIC)
+	MAKE_AWL_LIBRARY(awl_static STATIC)
+ENDIF()
+
+IF(ENABLE_SHARED)
+	MAKE_AWL_LIBRARY(awl SHARED)
+ENDIF()
 
 IF(AWL_X11_BACKEND)
 	INCLUDE_DIRECTORIES(
@@ -336,4 +343,10 @@ INSTALL(
 INSTALL(
 	FILES ${CMAKE_BINARY_DIR}/include/awl/config.hpp
 	DESTINATION include/awl
+)
+
+INSTALL(
+	FILES
+	${CMAKE_SOURCE_DIR}/FindAWL.cmake
+	DESTINATION share/cmake/Modules
 )
