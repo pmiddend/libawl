@@ -24,17 +24,26 @@ awl::backends::windows::system::event::original_processor::dispatch()
 	while(
 		::PeekMessage(
 			&msg,
-			reinterpret_cast<
-				HWND
-			>(
-				-1
-			), // dispatch non hwnd messages only
 			0,
 			0,
-			PM_REMOVE
+			0,
+			PM_NOREMOVE
 		)
 	)
 	{
+		if(
+			msg.hwnd != 0
+		)
+			return events_processed;
+
+		::PeekMessage(
+			&msg,
+			0,
+			0,
+			0,
+			PM_REMOVE
+		);
+
 		signals_[
 			msg.message
 		](

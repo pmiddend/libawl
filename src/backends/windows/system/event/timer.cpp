@@ -3,6 +3,22 @@
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
 
+namespace
+{
+
+VOID
+CALLBACK
+dummy_proc(
+	HWND,
+	UINT,
+	UINT_PTR,
+	DWORD
+)
+{
+}
+
+}
+
 awl::backends::windows::system::event::timer::timer(
 	UINT const _elapse
 )
@@ -12,7 +28,7 @@ awl::backends::windows::system::event::timer::timer(
 			NULL,
 			0,
 			_elapse,
-			NULL
+			&dummy_proc
 		)
 	)
 {
