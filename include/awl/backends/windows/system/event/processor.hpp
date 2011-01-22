@@ -3,6 +3,8 @@
 
 #include <awl/backends/windows/system/event/processor_fwd.hpp>
 #include <awl/backends/windows/system/event/callback.hpp>
+#include <awl/backends/windows/system/event/handle_callback.hpp>
+#include <awl/backends/windows/system/event/handle_ptr.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/system/event/processor.hpp>
 #include <awl/class_symbol.hpp>
@@ -35,11 +37,22 @@ public:
 	AWL_SYMBOL
 	~processor();
 
-	virtual fcppt::signal::auto_connection
+	virtual
+	fcppt::signal::auto_connection
 	register_callback(
 		UINT,
 		windows::system::event::callback const &
 	) = 0;
+
+	virtual
+	fcppt::signal::auto_connection
+	register_handle_callback(
+		windows::system::event::handle_callback const &
+	) = 0;
+
+	virtual
+	system::event::handle_ptr const
+	create_event_handle() = 0;
 };
 
 }

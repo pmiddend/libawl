@@ -9,6 +9,8 @@
 #include <fcppt/make_unique_ptr.hpp>
 
 awl::backends::windows::system::original_object::original_object()
+:
+	wndclasses_()
 {
 }
 

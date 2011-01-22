@@ -27,6 +27,7 @@ protected:
 	object();
 public:
 	AWL_SYMBOL
+	virtual
 	~object();
 };
 

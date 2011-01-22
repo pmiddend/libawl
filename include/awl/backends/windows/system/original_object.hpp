@@ -4,9 +4,9 @@
 #include <awl/backends/windows/system/object.hpp>
 #include <awl/backends/windows/counted_wndclass_fwd.hpp>
 #include <awl/symbol.hpp>
-#include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
+#include <boost/ptr_container/ptr_map.hpp>
 
 namespace awl
 {
