@@ -87,7 +87,6 @@ awl::backends::windows::system::event::original_processor::dispatch()
 	return events_processed;
 }
 
-AWL_SYMBOL
 fcppt::signal::auto_connection
 awl::backends::windows::system::event::original_processor::register_callback(
 	UINT const _msg,
@@ -114,6 +113,17 @@ awl::backends::windows::system::event::original_processor::register_callback(
 
 	return
 		it->second->connect(
+			_func
+		);
+}
+
+fcppt::signal::auto_connection
+awl::backends::windows::system::event::original_processor::register_handle_callback(
+	windows::system::event::handle_callback const &_func
+)
+{
+	return
+		handle_signal_.connect(
 			_func
 		);
 }
