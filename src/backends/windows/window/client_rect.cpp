@@ -19,7 +19,7 @@ awl::backends::windows::window::client_rect(
 		== FALSE
 	)
 		throw awl::exception(
-			FCPPT_TEXT("GetWindowRect() failed!")
+			FCPPT_TEXT("GetClientRect() failed!")
 		);
 
 	return rect;
