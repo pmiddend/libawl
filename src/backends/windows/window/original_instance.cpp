@@ -1,5 +1,6 @@
 #include <awl/backends/windows/window/original_instance.hpp>
 #include <awl/backends/windows/window/adjusted_size.hpp>
+#include <awl/backends/windows/window/client_rect.hpp>
 #include <awl/backends/windows/choose_and_set_pixel_format.hpp>
 #include <awl/backends/windows/wndclass.hpp>
 #include <awl/backends/windows/module_handle.hpp>
@@ -122,18 +123,11 @@ awl::backends::windows::window::original_instance::~original_instance()
 awl::window::dim const
 awl::backends::windows::window::original_instance::size() const
 {
-	RECT rect;
-
-	if(
-		::GetClientRect(
-			handle_,
-			&rect
+	RECT const rect(
+		window::client_rect(
+			*this
 		)
-		== FALSE
-	)
-		throw awl::exception(
-			FCPPT_TEXT("GetWindowRect() failed!")
-		);
+	);
 
 	return
 		awl::window::dim(
