@@ -1,7 +1,7 @@
 #ifndef AWL_BACKENDS_X11_DELETER_HPP_INCLUDED
 #define AWL_BACKENDS_X11_DELETER_HPP_INCLUDED
 
-#include <X11/Xlib.h>
+#include <awl/backends/x11/free.hpp>
 
 namespace awl
 {
@@ -20,7 +20,7 @@ struct deleter
 		T *const _param
 	) const
 	{
-		::XFree(
+		x11::free(
 			_param
 		);
 	}
