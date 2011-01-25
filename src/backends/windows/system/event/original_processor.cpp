@@ -57,6 +57,9 @@ awl::backends::windows::system::event::original_processor::dispatch()
 		events_processed = true;
 	}
 
+	if(
+		!handles_.empty()
+	)
 	{
 		DWORD const result(
 			::WaitForMultipleObjects(
