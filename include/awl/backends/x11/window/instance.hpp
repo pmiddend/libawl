@@ -2,6 +2,7 @@
 #define AWL_BACKENDS_X11_WINDOW_INSTANCE_HPP_INCLUDED
 
 #include <awl/backends/x11/window/event/optional.hpp>
+#include <awl/backends/x11/window/class_hint_ptr.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
@@ -34,21 +35,20 @@ public:
 	AWL_SYMBOL
 	virtual ~instance();
 
-	AWL_SYMBOL
 	virtual x11::display_ptr const
 	display() const = 0;
 
-	AWL_SYMBOL
 	virtual x11::screen const
 	screen() const = 0;
 
-	AWL_SYMBOL
 	virtual x11::visual_ptr const
 	visual() const = 0;
 
-	AWL_SYMBOL
 	virtual Window
 	get() const = 0;
+
+	virtual x11::window::class_hint_ptr const
+	class_hint() const = 0;
 };
 
 }

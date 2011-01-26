@@ -4,8 +4,8 @@
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/backends/x11/window/common_instance.hpp>
+#include <awl/backends/x11/window/original_class_hint.hpp>
 #include <awl/backends/x11/colormap_ptr.hpp>
-#include <awl/backends/x11/class_hint.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/size_hints.hpp>
@@ -73,7 +73,7 @@ private:
 
 	x11::size_hints size_hints_;
 
-	x11::class_hint class_hint_;
+	x11::window::original_class_hint class_hint_;
 };
 
 }
