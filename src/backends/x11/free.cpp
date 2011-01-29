@@ -6,7 +6,10 @@ awl::backends::x11::free(
 	void *const _ptr
 )
 {
-	::XFree(
-		_ptr
-	);
+	if(
+		_ptr != NULL
+	)
+		::XFree(
+			_ptr
+		);
 }
