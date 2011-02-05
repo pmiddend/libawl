@@ -22,7 +22,7 @@ class original_object
 {
 	FCPPT_NONCOPYABLE(
 		original_object
-	)
+	);
 public:
 	// NOTE: We could add a string specifying which display to connect
 	// to here

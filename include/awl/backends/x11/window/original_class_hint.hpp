@@ -24,7 +24,7 @@ class original_class_hint
 {
 	FCPPT_NONCOPYABLE(
 		original_class_hint
-	)
+	);
 public:
 	AWL_SYMBOL
 	explicit

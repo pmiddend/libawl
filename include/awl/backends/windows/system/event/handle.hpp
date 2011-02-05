@@ -21,7 +21,7 @@ class handle
 {
 	FCPPT_NONCOPYABLE(
 		handle
-	)
+	);
 protected:
 	AWL_SYMBOL
 	handle();

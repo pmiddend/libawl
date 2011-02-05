@@ -23,7 +23,7 @@ class AWL_CLASS_SYMBOL common_instance
 {
 	FCPPT_NONCOPYABLE(
 		common_instance
-	)
+	);
 protected:
 	AWL_SYMBOL
 	common_instance();

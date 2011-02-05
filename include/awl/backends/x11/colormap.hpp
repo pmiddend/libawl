@@ -19,7 +19,7 @@ class colormap
 {
 	FCPPT_NONCOPYABLE(
 		colormap
-	)
+	);
 public:
 	AWL_SYMBOL
 	explicit

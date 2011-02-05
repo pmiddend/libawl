@@ -10,7 +10,7 @@ class awl::backends::x11::window::original_class_hint::impl
 public:
 	FCPPT_NONCOPYABLE(
 		impl
-	)
+	);
 public:
 	impl();
 

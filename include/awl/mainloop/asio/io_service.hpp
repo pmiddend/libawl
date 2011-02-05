@@ -24,7 +24,7 @@ class AWL_CLASS_SYMBOL io_service
 {
 	FCPPT_NONCOPYABLE(
 		io_service
-	)
+	);
 protected:
 	AWL_SYMBOL
 	io_service();

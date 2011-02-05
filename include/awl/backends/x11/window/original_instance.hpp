@@ -31,7 +31,7 @@ class AWL_CLASS_SYMBOL original_instance
 {
 	FCPPT_NONCOPYABLE(
 		original_instance
-	)
+	);
 public:
 	AWL_SYMBOL
 	explicit

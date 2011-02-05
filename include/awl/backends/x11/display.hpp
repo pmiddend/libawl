@@ -17,7 +17,7 @@ class AWL_CLASS_SYMBOL display
 {
 	FCPPT_NONCOPYABLE(
 		display
-	)
+	);
 protected:
 	AWL_SYMBOL
 	display();

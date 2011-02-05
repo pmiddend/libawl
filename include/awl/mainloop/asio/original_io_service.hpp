@@ -20,7 +20,7 @@ class AWL_CLASS_SYMBOL original_io_service
 {
 	FCPPT_NONCOPYABLE(
 		original_io_service
-	)
+	);
 public:
 	AWL_SYMBOL
 	original_io_service();

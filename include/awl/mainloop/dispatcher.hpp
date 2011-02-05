@@ -13,7 +13,9 @@ namespace mainloop
 
 class AWL_CLASS_SYMBOL dispatcher
 {
-	FCPPT_NONCOPYABLE(dispatcher)
+	FCPPT_NONCOPYABLE(
+		dispatcher
+	);
 protected:
 	AWL_SYMBOL
 	dispatcher();

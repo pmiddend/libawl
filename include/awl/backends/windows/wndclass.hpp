@@ -18,7 +18,7 @@ class wndclass
 {
 	FCPPT_NONCOPYABLE(
 		wndclass
-	)
+	);
 public:
 	AWL_SYMBOL wndclass(
 		fcppt::string const &class_name,

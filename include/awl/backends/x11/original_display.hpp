@@ -19,7 +19,7 @@ class original_display
 {
 	FCPPT_NONCOPYABLE(
 		original_display
-	)
+	);
 public:
 	AWL_SYMBOL
 	original_display();

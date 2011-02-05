@@ -19,7 +19,7 @@ class class_hint
 {
 	FCPPT_NONCOPYABLE(
 		class_hint
-	)
+	);
 protected:
 	AWL_SYMBOL
 	class_hint();

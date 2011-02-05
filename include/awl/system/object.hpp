@@ -17,7 +17,7 @@ class AWL_CLASS_SYMBOL object
 {
 	FCPPT_NONCOPYABLE(
 		object
-	)
+	);
 protected:
 	AWL_SYMBOL
 	explicit

@@ -22,7 +22,7 @@ class fd_wrapper
 {
 	FCPPT_NONCOPYABLE(
 		fd_wrapper
-	)
+	);
 public:
 	fd_wrapper(
 		boost::asio::io_service &,

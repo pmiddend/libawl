@@ -22,13 +22,13 @@ class object
 {
 	FCPPT_NONCOPYABLE(
 		object
-	)
+	);
 protected:
 	AWL_SYMBOL
 	object();
 public:
 	AWL_SYMBOL
-	~object();
+	virtual ~object();
 	
 	virtual x11::display_ptr const
 	display() const = 0;

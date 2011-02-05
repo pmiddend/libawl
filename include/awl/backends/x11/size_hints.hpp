@@ -14,7 +14,9 @@ namespace x11
 {
 class size_hints 
 {
-	FCPPT_NONCOPYABLE(size_hints)
+	FCPPT_NONCOPYABLE(
+		size_hints
+	);
 public:
 	AWL_SYMBOL
 	size_hints(

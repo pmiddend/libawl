@@ -24,7 +24,7 @@ class wrapped_class_hint
 {
 	FCPPT_NONCOPYABLE(
 		wrapped_class_hint
-	)
+	);
 public:
 	AWL_SYMBOL
 	wrapped_class_hint(

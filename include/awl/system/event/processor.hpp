@@ -17,7 +17,7 @@ class AWL_CLASS_SYMBOL processor
 {
 	FCPPT_NONCOPYABLE(
 		processor
-	)
+	);
 protected:
 	AWL_SYMBOL
 	processor();

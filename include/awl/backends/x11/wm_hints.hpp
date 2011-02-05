@@ -14,7 +14,9 @@ namespace x11
 {
 class wm_hints 
 {
-	FCPPT_NONCOPYABLE(wm_hints)
+	FCPPT_NONCOPYABLE(
+		wm_hints
+	);
 public:
 	AWL_SYMBOL
 	wm_hints();

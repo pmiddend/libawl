@@ -25,7 +25,7 @@ class original_handle
 {
 	FCPPT_NONCOPYABLE(
 		original_handle
-	)
+	);
 public:
 	AWL_SYMBOL
 	explicit original_handle(

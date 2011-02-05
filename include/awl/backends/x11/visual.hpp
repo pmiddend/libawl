@@ -16,7 +16,9 @@ namespace x11
 
 class visual
 {
-	FCPPT_NONCOPYABLE(visual)
+	FCPPT_NONCOPYABLE(
+		visual
+	);
 public:
 	// We take an optional XVisualInfo here because sometimes we get a
 	// visual _and_ the corresponing info struct, which we must XFree

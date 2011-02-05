@@ -28,7 +28,7 @@ class AWL_CLASS_SYMBOL wrapped_instance
 {
 	FCPPT_NONCOPYABLE(
 		wrapped_instance
-	)
+	);
 public:
 	AWL_SYMBOL
 	explicit

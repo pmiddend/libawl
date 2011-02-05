@@ -23,7 +23,7 @@ class original_object
 {
 	FCPPT_NONCOPYABLE(
 		original_object
-	)
+	);
 public:
 	AWL_SYMBOL
 	original_object();

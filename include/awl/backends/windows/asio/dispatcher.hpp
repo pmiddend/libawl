@@ -23,7 +23,7 @@ class dispatcher
 {
 	FCPPT_NONCOPYABLE(
 		dispatcher
-	)
+	);
 public:
 	AWL_SYMBOL
 	explicit dispatcher(

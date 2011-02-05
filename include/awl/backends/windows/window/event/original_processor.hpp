@@ -33,7 +33,7 @@ class AWL_CLASS_SYMBOL original_processor
 {
 	FCPPT_NONCOPYABLE(
 		original_processor
-	)
+	);
 public:
 	AWL_SYMBOL
 	explicit original_processor(

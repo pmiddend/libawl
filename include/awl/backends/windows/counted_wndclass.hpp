@@ -18,7 +18,7 @@ class counted_wndclass
 {
 	FCPPT_NONCOPYABLE(
 		counted_wndclass
-	)
+	);
 public:
 	typedef unsigned counter_type;
 

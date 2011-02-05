@@ -17,7 +17,7 @@ class gdi_device
 {
 	FCPPT_NONCOPYABLE(
 		gdi_device
-	)
+	);
 public:
 	struct get_tag
 	{

@@ -17,7 +17,7 @@ class fd_flags_resetter
 {
 	FCPPT_NONCOPYABLE(
 		fd_flags_resetter
-	)
+	);
 public:
 	explicit fd_flags_resetter(
 		x11::display_ptr

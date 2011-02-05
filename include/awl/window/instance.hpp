@@ -15,7 +15,7 @@ class AWL_CLASS_SYMBOL instance
 {
 	FCPPT_NONCOPYABLE(
 		instance
-	)
+	);
 protected:
 	AWL_SYMBOL
 	explicit
