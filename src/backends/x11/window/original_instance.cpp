@@ -57,7 +57,7 @@ awl::backends::x11::window::original_instance::original_instance(
 			visual_
 		)
 	),
-	wm_hints_(),
+	hints_(),
 	size_hints_(
 		_params.size()->w(),
 		_params.size()->h(),
@@ -73,7 +73,7 @@ awl::backends::x11::window::original_instance::original_instance(
 	swa.colormap = colormap_->get();
 	swa.border_pixel = 0;
 	swa.background_pixel = 0;
-	swa.event_mask = StructureNotifyMask;
+	swa.event_mask = StructureNotifyMask | FocusChangeMask;
 
 	FCPPT_LOG_DEBUG(
 		log(),
@@ -123,7 +123,8 @@ awl::backends::x11::window::original_instance::original_instance(
 	::XSetWMHints(
 		display_->get(),
 		window_,
-		wm_hints_.get());
+		hints_.get()
+	);
 
 	// always returns 1
 	::XSetWMNormalHints(

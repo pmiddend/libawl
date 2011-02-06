@@ -5,12 +5,12 @@
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/backends/x11/window/common_instance.hpp>
 #include <awl/backends/x11/window/original_class_hint.hpp>
+#include <awl/backends/x11/window/hints.hpp>
 #include <awl/backends/x11/colormap_ptr.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/size_hints.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
-#include <awl/backends/x11/wm_hints.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -69,7 +69,7 @@ private:
 
 	Window window_;
 
-	x11::wm_hints wm_hints_;
+	x11::window::hints hints_;
 
 	x11::size_hints size_hints_;
 

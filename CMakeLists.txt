@@ -255,6 +255,7 @@ SET(
 	src/backends/x11/window/event/poll.cpp
 	src/backends/x11/window/event/processor.cpp
 	src/backends/x11/window/event/to_mask.cpp
+	src/backends/x11/window/hints.cpp
 	src/backends/x11/window/instance.cpp
 	src/backends/x11/window/original_class_hint.cpp
 	src/backends/x11/window/original_instance.cpp
@@ -262,7 +263,6 @@ SET(
 	src/backends/x11/window/visual.cpp
 	src/backends/x11/window/wrapped_class_hint.cpp
 	src/backends/x11/window/wrapped_instance.cpp
-	src/backends/x11/wm_hints.cpp
 )
 
 SET(
@@ -326,6 +326,7 @@ SET(
 	include/awl/backends/x11/window/event/processor_fwd.hpp
 	include/awl/backends/x11/window/event/processor_ptr.hpp
 	include/awl/backends/x11/window/event/to_mask.hpp
+	include/awl/backends/x11/window/hints.hpp
 	include/awl/backends/x11/window/instance.hpp
 	include/awl/backends/x11/window/instance_fwd.hpp
 	include/awl/backends/x11/window/instance_ptr.hpp
@@ -335,7 +336,6 @@ SET(
 	include/awl/backends/x11/window/visual.hpp
 	include/awl/backends/x11/window/wrapped_class_hint.hpp
 	include/awl/backends/x11/window/wrapped_instance.hpp
-	include/awl/backends/x11/wm_hints.hpp
 )
 
 SET(
