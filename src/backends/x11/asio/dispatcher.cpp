@@ -43,7 +43,7 @@ awl::backends::x11::asio::dispatcher::stop()
 bool
 awl::backends::x11::asio::dispatcher::is_stopped() const
 {
-	return fd_wrapper_;
+	return !fd_wrapper_;
 }
 
 void
