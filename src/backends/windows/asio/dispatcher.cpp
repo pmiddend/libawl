@@ -25,6 +25,12 @@ awl::backends::windows::asio::dispatcher::stop()
 	running_ = false;
 }
 
+bool
+awl::backends::windows::asio::dispatcher::is_stopped() const
+{
+	return !running_;
+}
+
 void
 awl::backends::windows::asio::dispatcher::register_handler()
 {

@@ -37,6 +37,9 @@ private:
 	void
 	stop();
 
+	bool
+	is_stopped() const;
+
 	void
 	register_handler();
 

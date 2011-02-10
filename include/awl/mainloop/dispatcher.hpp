@@ -25,6 +25,9 @@ public:
 
 	virtual void
 	stop() = 0;
+
+	virtual bool
+	is_stopped() const = 0;
 };
 
 }

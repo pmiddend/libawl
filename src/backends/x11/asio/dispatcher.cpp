@@ -40,6 +40,12 @@ awl::backends::x11::asio::dispatcher::stop()
 	fd_wrapper_.reset();
 }
 
+bool
+awl::backends::x11::asio::dispatcher::is_stopped() const
+{
+	return fd_wrapper_;
+}
+
 void
 awl::backends::x11::asio::dispatcher::register_handler()
 {
