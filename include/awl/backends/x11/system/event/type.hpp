@@ -17,7 +17,7 @@ namespace event
 FCPPT_MAKE_STRONG_TYPEDEF(
 	int,
 	type
-)
+);
 
 }
 }
