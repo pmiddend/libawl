@@ -24,6 +24,7 @@ FIND_PACKAGE(
 )
 
 INCLUDE_DIRECTORIES(SYSTEM ${Boost_INCLUDE_DIR})
+MESSAGE(${Boost_INCLUDE_DIR})
 
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
@@ -142,7 +143,14 @@ SET(
 )
 
 # We can use either X11, winelib or plain windows
-IF(UNIX)
+IF(APPLE)
+	# We have to test for APPLE first, as UNIX catches it as well
+	SET(AWL_QUARTZ_BACKEND TRUE)
+
+	# TODO We should probably find/check for the frameworks first and
+	# specify them in a cleaner way... but this should work for now ;p
+	SET(CMAKE_SHARED_LINKER_FLAGS "-framework Cocoa")
+ELSEIF(UNIX)
 	IF(ENABLE_WINELIB)
 		FIND_PACKAGE(
 			Wine
@@ -402,6 +410,40 @@ SET(
 )
 
 SET(
+	AWL_QUARTZ_SRC_FILES
+	src/backends/quartz/asio/dispatcher.cpp
+	src/backends/quartz/system/event/original_processor.cpp
+	src/backends/quartz/system/event/processor.cpp
+	src/backends/quartz/system/object.cpp
+	src/backends/quartz/system/original_object.mm
+	src/backends/quartz/window/event/original_processor.cpp
+	src/backends/quartz/window/event/processor.cpp
+	src/backends/quartz/window/instance.cpp
+	src/backends/quartz/window/original_instance.cpp
+)
+
+SET(
+	AWL_QUARTZ_INCLUDE_FILES
+	include/awl/backends/quartz/asio/dispatcher.hpp
+	include/awl/backends/quartz/system/event/original_processor.hpp
+	include/awl/backends/quartz/system/event/processor.hpp
+	include/awl/backends/quartz/system/event/processor_fwd.hpp
+	include/awl/backends/quartz/system/event/processor_ptr.hpp
+	include/awl/backends/quartz/system/object.hpp
+	include/awl/backends/quartz/system/object_fwd.hpp
+	include/awl/backends/quartz/system/object_ptr.hpp
+	include/awl/backends/quartz/system/original_object.hpp
+	include/awl/backends/quartz/window/event/original_processor.hpp
+	include/awl/backends/quartz/window/event/processor.hpp
+	include/awl/backends/quartz/window/event/processor_fwd.hpp
+	include/awl/backends/quartz/window/event/processor_ptr.hpp
+	include/awl/backends/quartz/window/instance.hpp
+	include/awl/backends/quartz/window/instance_fwd.hpp
+	include/awl/backends/quartz/window/instance_ptr.hpp
+	include/awl/backends/quartz/window/original_instance.hpp
+)
+
+SET(
 	AWL_INCLUDE_FILES
 	"${AWL_BASE_INCLUDE_FILES}"
 )
@@ -432,6 +474,18 @@ IF(ENABLE_WINELIB OR AWL_WINDOWS_BACKEND)
 	SET(
 		AWL_SRC_FILES
 		"${AWL_SRC_FILES};${AWL_WINDOWS_SRC_FILES}"
+	)
+ENDIF()
+
+IF(AWL_QUARTZ_BACKEND)
+	SET(
+		AWL_INCLUDE_FILES
+		"${AWL_INCLUDE_FILES};${AWL_QUARTZ_INCLUDE_FILES}"
+	)
+
+	SET(
+		AWL_SRC_FILES
+		"${AWL_SRC_FILES};${AWL_QUARTZ_SRC_FILES}"
 	)
 ENDIF()
 

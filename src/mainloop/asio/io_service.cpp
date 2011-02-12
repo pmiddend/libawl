@@ -10,6 +10,8 @@
 #include <awl/backends/x11/asio/dispatcher.hpp>
 #elif defined(AWL_WINDOWS_BACKEND)
 #include <awl/backends/windows/asio/dispatcher.hpp>
+#elif defined(AWL_QUARTZ_BACKEND)
+#include <awl/backends/quartz/asio/dispatcher.hpp>
 #endif
 
 awl::mainloop::asio::io_service::io_service()
@@ -83,13 +85,22 @@ awl::mainloop::asio::io_service::create_dispatcher(
 					).display()
 				),
 				_callback
-			)	
+			)
 #elif defined(AWL_WINDOWS_BACKEND)
 			fcppt::make_unique_ptr<
 				awl::backends::windows::asio::dispatcher
 			>(
 				fcppt::ref(
 					this->get()
+				),
+				_callback
+			)
+#elif defined(AWL_QUARTZ_BACKEND)
+			fcppt::make_shared_ptr<
+				awl::backends::quartz::asio::dispatcher
+			>(
+				std::tr1::ref(
+					get()
 				),
 				_callback
 			)

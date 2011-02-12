@@ -6,6 +6,9 @@
 #elif defined(AWL_WINDOWS_BACKEND)
 #include <awl/backends/windows/window/event/original_processor.hpp>
 #include <awl/backends/windows/window/instance.hpp>
+#elif defined(AWL_QUARTZ_BACKEND)
+#include <awl/backends/quartz/window/event/original_processor.hpp>
+#include <awl/backends/quartz/window/instance.hpp>
 #endif
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
@@ -39,6 +42,16 @@ awl::window::event::create_processor(
 					>(
 						_instance
 					)
+				)
+			)
+#elif defined(AWL_QUARTZ_BACKEND)
+			fcppt::make_shared_ptr<
+				backends::quartz::window::event::original_processor
+			>(
+				fcppt::polymorphic_pointer_cast<
+					backends::quartz::window::instance
+				>(
+					_instance
 				)
 			)
 #endif
