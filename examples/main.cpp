@@ -30,6 +30,9 @@ try
 					768
 				)
 			)
+			.title(
+				"Test"
+			)
 		)
 	);
 	
@@ -37,7 +40,7 @@ try
 
 	fcppt::time::sleep_any(
 		fcppt::chrono::seconds(
-			1
+			10
 		)
 	);
 }

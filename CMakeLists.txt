@@ -24,7 +24,6 @@ FIND_PACKAGE(
 )
 
 INCLUDE_DIRECTORIES(SYSTEM ${Boost_INCLUDE_DIR})
-MESSAGE(${Boost_INCLUDE_DIR})
 
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
@@ -419,7 +418,7 @@ SET(
 	src/backends/quartz/window/event/original_processor.cpp
 	src/backends/quartz/window/event/processor.cpp
 	src/backends/quartz/window/instance.cpp
-	src/backends/quartz/window/original_instance.cpp
+	src/backends/quartz/window/original_instance.mm
 )
 
 SET(

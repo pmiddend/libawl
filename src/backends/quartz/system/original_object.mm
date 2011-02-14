@@ -7,14 +7,21 @@
 #import <Cocoa/Cocoa.h>
 
 awl::backends::quartz::system::original_object::original_object()
+:
+	autorelease_pool_(
+		[[NSAutoreleasePool alloc] init]
+	)
 {
 	// Initializes display server for this application
 	// and creates the global NSAppplication object NSApp
 	[NSApplication sharedApplication];
+	[NSApp finishLaunching];
 }
 
 awl::backends::quartz::system::original_object::~original_object()
 {
+	// Release dangling pointers, basically
+	[autorelease_pool_ drain];
 }
 
 awl::window::instance_ptr const

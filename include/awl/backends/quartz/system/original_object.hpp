@@ -35,6 +35,7 @@ public:
 		awl::window::parameters const &
 	);
 private:
+	void * autorelease_pool_;
 };
 
 }
