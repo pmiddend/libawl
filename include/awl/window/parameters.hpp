@@ -6,6 +6,7 @@
 #include <awl/window/depth_buffer.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/optional_dim.hpp>
+#include <awl/window/optional_position.hpp>
 #include <awl/window/stencil_buffer.hpp>
 #include <awl/window/vector.hpp>
 #include <awl/symbol.hpp>
@@ -23,7 +24,6 @@ class parameters
 {
 public:
 	AWL_SYMBOL
-	explicit 
 	parameters();
 
 	AWL_SYMBOL
@@ -35,6 +35,24 @@ public:
 	AWL_SYMBOL
 	parameters &
 	size(
+		dim const &
+	);
+
+	AWL_SYMBOL
+	parameters &
+	exact_size_hint(
+		dim const &
+	);
+
+	AWL_SYMBOL
+	parameters &
+	minimum_size_hint(
+		dim const &
+	);
+
+	AWL_SYMBOL
+	parameters &
+	maximum_size_hint(
 		dim const &
 	);
 
@@ -75,12 +93,24 @@ public:
 	);
 
 	AWL_SYMBOL
-	fcppt::optional<vector> const
+	window::optional_position const
 	position() const;
 
 	AWL_SYMBOL
 	window::optional_dim const
 	size() const;
+
+	AWL_SYMBOL
+	window::optional_dim const
+	exact_size_hint() const;
+
+	AWL_SYMBOL
+	window::optional_dim const
+	minimum_size_hint() const;
+
+	AWL_SYMBOL
+	window::optional_dim const
+	maximum_size_hint() const;
 
 	AWL_SYMBOL
 	fcppt::string const
@@ -106,11 +136,19 @@ public:
 	fcppt::optional<awl::window::depth_buffer::type> const
 	depth_buffer() const;
 private:
-	fcppt::optional<vector> position_;
+	window::optional_position position_;
 
 	window::optional_dim size_;
 
-	fcppt::string title_,class_name_;
+	window::optional_dim exact_size_hint_;
+
+	window::optional_dim minimum_size_hint_;
+
+	window::optional_dim maximum_size_hint_;
+
+	fcppt::string title_;
+	
+	fcppt::string class_name_;
 
 	bool has_opengl_;
 

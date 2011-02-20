@@ -2,50 +2,96 @@
 
 awl::window::parameters::parameters()
 :
+	position_(),
+	size_(),
+	exact_size_hint_(),
+	minimum_size_hint_(),
+	maximum_size_hint_(),
+	title_(),
+	class_name_(),
 	has_opengl_(
-		false)
+		false
+	),
+	bit_depth_(),
+	stencil_buffer_(),
+	depth_buffer_()
 {
 }
 
 awl::window::parameters &
 awl::window::parameters::position(
-	vector const &v)
+	window::vector const &_position
+)
 {
-	position_ = v;
+	position_ = _position;
 
 	return *this;
 }
 
 awl::window::parameters &
 awl::window::parameters::size(
-	dim const &v)
+	dim const &_size
+)
 {
-	size_ = v;
+	size_ = _size;
+
+	return *this;
+}
+
+awl::window::parameters &
+awl::window::parameters::exact_size_hint(
+	dim const &_exact_size_hint
+)
+{
+	exact_size_hint_ = _exact_size_hint;	
+
+	return *this;
+}
+
+awl::window::parameters &
+awl::window::parameters::minimum_size_hint(
+	dim const &_minimum_size_hint
+)
+{
+	minimum_size_hint_ = _minimum_size_hint;	
+
+	return *this;
+}
+
+awl::window::parameters &
+awl::window::parameters::maximum_size_hint(
+	dim const &_maximum_size_hint
+)
+{
+	maximum_size_hint_ = _maximum_size_hint;	
 
 	return *this;
 }
 
 awl::window::parameters &
 awl::window::parameters::title(
-	fcppt::string const &v)
+	fcppt::string const &_title
+)
 {
-	title_ = v;
+	title_ = _title;
 
 	return *this;
 }
 
 awl::window::parameters &
 awl::window::parameters::class_name(
-	fcppt::string const &v)
+	fcppt::string const &_class_name
+)
 {
-	class_name_ = v;
+	class_name_ = _class_name;
 
 	return *this;
 }
 
 awl::window::parameters &
 awl::window::parameters::has_opengl(
-	bool const _has_opengl)
+	bool const _has_opengl
+)
 {
 	has_opengl_ = _has_opengl;
 
@@ -54,41 +100,62 @@ awl::window::parameters::has_opengl(
 
 awl::window::parameters &
 awl::window::parameters::bit_depth(
-	awl::window::bit_depth::type const t)
+	awl::window::bit_depth::type const _bit_depth
+)
 {
-	bit_depth_ = t;
+	bit_depth_ = _bit_depth;
 
 	return *this;
 }
 
 awl::window::parameters &
 awl::window::parameters::stencil_buffer(
-	awl::window::stencil_buffer::type const t)
+	awl::window::stencil_buffer::type const _stencil_buffer
+)
 {
-	stencil_buffer_ = t;
+	stencil_buffer_ = _stencil_buffer;
 
 	return *this;
 }
 
 awl::window::parameters &
 awl::window::parameters::depth_buffer(
-	awl::window::depth_buffer::type const t)
+	awl::window::depth_buffer::type const _depth_buffer
+)
 {
-	depth_buffer_ = t;
+	depth_buffer_ = _depth_buffer;
 
 	return *this;
 }
 
-fcppt::optional<awl::window::vector> const
+awl::window::optional_position const
 awl::window::parameters::position() const
 {
 	return position_;
 }
 
-fcppt::optional<awl::window::dim> const
+awl::window::optional_dim const
 awl::window::parameters::size() const
 {
 	return size_;
+}
+
+awl::window::optional_dim const
+awl::window::parameters::exact_size_hint() const
+{
+	return exact_size_hint_;
+}
+
+awl::window::optional_dim const
+awl::window::parameters::minimum_size_hint() const
+{
+	return minimum_size_hint_;
+}
+
+awl::window::optional_dim const
+awl::window::parameters::maximum_size_hint() const
+{
+	return maximum_size_hint_;
 }
 
 fcppt::string const

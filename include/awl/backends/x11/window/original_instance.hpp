@@ -4,17 +4,17 @@
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/backends/x11/window/common_instance.hpp>
-#include <awl/backends/x11/window/original_class_hint.hpp>
 #include <awl/backends/x11/window/hints.hpp>
+#include <awl/backends/x11/window/holder.hpp>
+#include <awl/backends/x11/window/original_class_hint.hpp>
+#include <awl/backends/x11/window/size_hints.hpp>
 #include <awl/backends/x11/colormap_ptr.hpp>
 #include <awl/backends/x11/display_ptr.hpp>
 #include <awl/backends/x11/screen.hpp>
-#include <awl/backends/x11/size_hints.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <X11/Xlib.h>
 
 namespace awl
 {
@@ -59,21 +59,21 @@ public:
 	Window
 	get() const;
 private:
-	x11::display_ptr display_;
+	x11::display_ptr const display_;
 
-	x11::screen screen_;
+	x11::screen const screen_;
 
-	x11::visual_ptr visual_;
+	x11::visual_ptr const visual_;
 
-	x11::colormap_ptr colormap_;
+	x11::colormap_ptr const colormap_;
 
-	Window window_;
+	x11::window::hints const hints_;
 
-	x11::window::hints hints_;
+	x11::window::size_hints const size_hints_;
 
-	x11::size_hints size_hints_;
+	x11::window::original_class_hint const class_hint_;
 
-	x11::window::original_class_hint class_hint_;
+	x11::window::holder const window_;
 };
 
 }

@@ -165,6 +165,7 @@ SET(
 	include/awl/window/instance_fwd.hpp
 	include/awl/window/instance_ptr.hpp
 	include/awl/window/optional_dim.hpp
+	include/awl/window/optional_position.hpp
 	include/awl/window/parameters.hpp
 	include/awl/window/parameters_fwd.hpp
 	include/awl/window/scalar.hpp
@@ -237,7 +238,6 @@ SET(
 	src/backends/x11/glx/visual_attribute_array.hpp
 	src/backends/x11/log.cpp
 	src/backends/x11/original_display.cpp
-	src/backends/x11/size_hints.cpp
 	src/backends/x11/system/event/map_key.cpp
 	src/backends/x11/system/event/object.cpp
 	src/backends/x11/system/event/original_processor.cpp
@@ -249,6 +249,7 @@ SET(
 	src/backends/x11/window/attributes.cpp
 	src/backends/x11/window/class_hint.cpp
 	src/backends/x11/window/common_instance.cpp
+	src/backends/x11/window/create.cpp
 	src/backends/x11/window/event/change_mask.cpp
 	src/backends/x11/window/event/object.cpp
 	src/backends/x11/window/event/original_processor.cpp
@@ -256,10 +257,12 @@ SET(
 	src/backends/x11/window/event/processor.cpp
 	src/backends/x11/window/event/to_mask.cpp
 	src/backends/x11/window/hints.cpp
+	src/backends/x11/window/holder.cpp
 	src/backends/x11/window/instance.cpp
 	src/backends/x11/window/original_class_hint.cpp
 	src/backends/x11/window/original_instance.cpp
 	src/backends/x11/window/root.cpp
+	src/backends/x11/window/size_hints.cpp
 	src/backends/x11/window/visual.cpp
 	src/backends/x11/window/wrapped_class_hint.cpp
 	src/backends/x11/window/wrapped_instance.cpp
@@ -289,7 +292,6 @@ SET(
 	include/awl/backends/x11/log.hpp
 	include/awl/backends/x11/original_display.hpp
 	include/awl/backends/x11/screen.hpp
-	include/awl/backends/x11/size_hints.hpp
 	include/awl/backends/x11/system/event/callback.hpp
 	include/awl/backends/x11/system/event/function.hpp
 	include/awl/backends/x11/system/event/map_key.hpp
@@ -314,6 +316,7 @@ SET(
 	include/awl/backends/x11/window/class_hint_fwd.hpp
 	include/awl/backends/x11/window/class_hint_ptr.hpp
 	include/awl/backends/x11/window/common_instance.hpp
+	include/awl/backends/x11/window/create.hpp
 	include/awl/backends/x11/window/event/callback.hpp
 	include/awl/backends/x11/window/event/change_mask.hpp
 	include/awl/backends/x11/window/event/function.hpp
@@ -327,12 +330,14 @@ SET(
 	include/awl/backends/x11/window/event/processor_ptr.hpp
 	include/awl/backends/x11/window/event/to_mask.hpp
 	include/awl/backends/x11/window/hints.hpp
+	include/awl/backends/x11/window/holder.hpp
 	include/awl/backends/x11/window/instance.hpp
 	include/awl/backends/x11/window/instance_fwd.hpp
 	include/awl/backends/x11/window/instance_ptr.hpp
 	include/awl/backends/x11/window/original_class_hint.hpp
 	include/awl/backends/x11/window/original_instance.hpp
 	include/awl/backends/x11/window/root.hpp
+	include/awl/backends/x11/window/size_hints.hpp
 	include/awl/backends/x11/window/visual.hpp
 	include/awl/backends/x11/window/wrapped_class_hint.hpp
 	include/awl/backends/x11/window/wrapped_instance.hpp
