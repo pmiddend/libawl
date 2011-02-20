@@ -2,6 +2,8 @@
 #include "../glx/create_visual.hpp"
 #include <awl/backends/x11/window/create.hpp>
 #include <awl/backends/x11/window/original_instance.hpp>
+#include <awl/backends/x11/window/root.hpp>
+#include <awl/backends/x11/window/transient_for_hint.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/visual.hpp>
@@ -108,6 +110,17 @@ awl::backends::x11::window::original_instance::original_instance(
 			_params.title()
 		).c_str()
 	);
+
+	if(
+		_params.exact_size_hint()
+	)
+		x11::window::transient_for_hint(
+			*this,
+			*x11::window::root(
+				display_,
+				screen_
+			)
+		);
 }
 
 awl::backends::x11::window::original_instance::~original_instance()

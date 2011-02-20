@@ -263,6 +263,7 @@ SET(
 	src/backends/x11/window/original_instance.cpp
 	src/backends/x11/window/root.cpp
 	src/backends/x11/window/size_hints.cpp
+	src/backends/x11/window/transient_for_hint.cpp
 	src/backends/x11/window/visual.cpp
 	src/backends/x11/window/wrapped_class_hint.cpp
 	src/backends/x11/window/wrapped_instance.cpp
@@ -338,6 +339,7 @@ SET(
 	include/awl/backends/x11/window/original_instance.hpp
 	include/awl/backends/x11/window/root.hpp
 	include/awl/backends/x11/window/size_hints.hpp
+	include/awl/backends/x11/window/transient_for_hint.hpp
 	include/awl/backends/x11/window/visual.hpp
 	include/awl/backends/x11/window/wrapped_class_hint.hpp
 	include/awl/backends/x11/window/wrapped_instance.hpp
