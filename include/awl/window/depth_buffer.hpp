@@ -11,7 +11,8 @@ enum type
 {
 	off,
 	depth16 = 16,
-	depth24 = 24
+	depth24 = 24,
+	depth32 = 32 
 };
 }
 }
