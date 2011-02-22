@@ -10,6 +10,7 @@ namespace stencil_buffer
 enum type
 {
 	off,
+	depth8 = 8,
 	depth16 = 16,
 	depth24 = 24
 };
