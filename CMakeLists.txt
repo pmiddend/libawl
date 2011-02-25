@@ -415,7 +415,7 @@ SET(
 	src/backends/quartz/system/event/processor.cpp
 	src/backends/quartz/system/object.cpp
 	src/backends/quartz/system/original_object.mm
-	src/backends/quartz/window/event/original_processor.cpp
+	src/backends/quartz/window/event/original_processor.mm
 	src/backends/quartz/window/event/processor.cpp
 	src/backends/quartz/window/instance.cpp
 	src/backends/quartz/window/original_instance.mm

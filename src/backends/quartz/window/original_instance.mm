@@ -36,6 +36,14 @@ awl::backends::quartz::window::original_instance::original_instance(
 	{
 		
 	}
+
+	// This seemingly does some additional initialization stuff I'm not
+	// too sure about...
+	[NSApp nextEventMatchingMask:NSAnyEventMask
+	                   untilDate:[NSDate distantPast]
+	                      inMode:NSDefaultRunLoopMode
+	                     dequeue:YES];
+	// TODO Buffer event
 }
 
 awl::backends::quartz::window::original_instance::~original_instance()
@@ -62,4 +70,10 @@ void
 awl::backends::quartz::window::original_instance::show()
 {
 	[window_ makeKeyAndOrderFront:NSApp];
+}
+
+void *
+awl::backends::quartz::window::original_instance::get() const
+{
+	return window_;
 }

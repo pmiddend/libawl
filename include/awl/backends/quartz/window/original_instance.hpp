@@ -35,6 +35,9 @@ public:
 
 	AWL_SYMBOL awl::window::dim const
 	size() const;
+
+	AWL_SYMBOL void *
+	get() const;
 private:
 	void * window_;
 };

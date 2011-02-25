@@ -16,6 +16,14 @@ awl::backends::quartz::system::original_object::original_object()
 	// and creates the global NSAppplication object NSApp
 	[NSApplication sharedApplication];
 	[NSApp finishLaunching];
+	//[NSApp activateIgnoringOtherApps:NO]; // Not necessary AFAIK
+
+	// This stops the dock icon from jumping
+	[NSApp nextEventMatchingMask:NSAnyEventMask
+	                   untilDate:[NSDate distantPast]
+	                      inMode:NSDefaultRunLoopMode
+	                     dequeue:YES];
+	// TODO Buffer event and make this combination a utility function
 }
 
 awl::backends::quartz::system::original_object::~original_object()

@@ -28,6 +28,10 @@ protected:
 public:
 	AWL_SYMBOL
 	virtual ~instance();
+
+	AWL_SYMBOL
+	virtual void *
+	get() const = 0;
 };
 
 }

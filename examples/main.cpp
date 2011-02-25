@@ -40,7 +40,7 @@ try
 
 	fcppt::time::sleep_any(
 		fcppt::chrono::seconds(
-			10
+			1
 		)
 	);
 }
