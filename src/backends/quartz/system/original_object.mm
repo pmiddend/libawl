@@ -29,7 +29,7 @@ awl::backends::quartz::system::original_object::original_object()
 awl::backends::quartz::system::original_object::~original_object()
 {
 	// Release dangling pointers, basically
-	[autorelease_pool_ drain];
+	[(NSAutoreleasePool *) autorelease_pool_ drain];
 }
 
 awl::window::instance_ptr const

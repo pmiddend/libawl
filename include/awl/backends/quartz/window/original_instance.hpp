@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_QUARTZ_WINDOW_ORIGINAL_INSTANCE_HPP_INCLUDED
 #define AWL_BACKENDS_QUARTZ_WINDOW_ORIGINAL_INSTANCE_HPP_INCLUDED
 
+#include <awl/backends/quartz/window_ref.hpp>
 #include <awl/backends/quartz/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/class_symbol.hpp>
@@ -24,7 +25,7 @@ class AWL_CLASS_SYMBOL original_instance
 		original_instance
 	);
 public:
-	AWL_SYMBOL original_instance(
+	AWL_SYMBOL explicit original_instance(
 		awl::window::parameters const &
 	);
 
@@ -36,10 +37,10 @@ public:
 	AWL_SYMBOL awl::window::dim const
 	size() const;
 
-	AWL_SYMBOL void *
+	AWL_SYMBOL window_ref
 	get() const;
 private:
-	void * window_;
+	window_ref const window_;
 };
 
 }
