@@ -1,10 +1,10 @@
+#include <awl/backends/quartz/event_manager.hpp>
 #include <awl/backends/quartz/system/original_object.hpp>
 #include <awl/backends/quartz/window/original_instance.hpp>
 #include <awl/window/parameters.hpp>
+#import <Cocoa/Cocoa.h>
 #include <fcppt/assert.hpp>
 #include <fcppt/make_shared_ptr.hpp>
-
-#import <Cocoa/Cocoa.h>
 
 awl::backends::quartz::system::original_object::original_object()
 :
@@ -19,7 +19,7 @@ awl::backends::quartz::system::original_object::original_object()
 	//[NSApp activateIgnoringOtherApps:NO]; // Not necessary AFAIK
 
 	// This stops the dock icon from jumping
-	fetch_and_buffer_events();
+	event_manager::fetch_and_buffer_events();
 }
 
 awl::backends::quartz::system::original_object::~original_object()
@@ -47,61 +47,7 @@ awl::backends::quartz::system::original_object::create(
 
 	// This seemingly does some additional initialization stuff I'm not
 	// too sure about...
-	fetch_and_buffer_events();
+	event_manager::fetch_and_buffer_events();
 
 	return result;
-}
-
-void
-awl::backends::quartz::system::original_object::fetch_and_buffer_events()
-{
-	NSEvent * event;
-	while ((
-		event
-		=
-		[NSApp nextEventMatchingMask: NSAnyEventMask
-			untilDate:
-				[NSDate distantPast]
-			inMode: NSDefaultRunLoopMode
-			dequeue: YES
-		]
-   ))
-   {
-		// [event window] is undefined for periodic events. We store them with the
-		// system events
-		if (
-				[event type]
-				==
-				NSPeriodic
-			||
-				[event window]
-				==
-				nil
-		)
-		{
-			event_buffer_[NULL].push(event);
-		}
-		else
-		{
-			event_buffer_[[event window]].push(event);
-		}
-   }
-}
-
-bool
-awl::backends::quartz::system::original_object::dispatch_events_for_window(window_ref const window_or_null)
-{
-	bool events_dispatched = false;
-
-	event_queue queue = event_buffer_[window_or_null];
-	while (
-		!queue.empty()
-	)
-	{
-		events_dispatched = true;
-		[NSApp sendEvent:(NSEvent *)queue.front()];
-		queue.pop();
-	}
-
-	return events_dispatched;
 }

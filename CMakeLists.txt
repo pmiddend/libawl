@@ -411,6 +411,7 @@ SET(
 SET(
 	AWL_QUARTZ_SRC_FILES
 	src/backends/quartz/asio/dispatcher.cpp
+	src/backends/quartz/event_manager.mm
 	src/backends/quartz/system/event/original_processor.cpp
 	src/backends/quartz/system/event/processor.cpp
 	src/backends/quartz/system/object.cpp
@@ -424,6 +425,8 @@ SET(
 SET(
 	AWL_QUARTZ_INCLUDE_FILES
 	include/awl/backends/quartz/asio/dispatcher.hpp
+	include/awl/backends/quartz/event_manager.hpp
+	include/awl/backends/quartz/event_manager_fwd.hpp
 	include/awl/backends/quartz/system/event/original_processor.hpp
 	include/awl/backends/quartz/system/event/processor.hpp
 	include/awl/backends/quartz/system/event/processor_fwd.hpp
@@ -440,6 +443,7 @@ SET(
 	include/awl/backends/quartz/window/instance_fwd.hpp
 	include/awl/backends/quartz/window/instance_ptr.hpp
 	include/awl/backends/quartz/window/original_instance.hpp
+	include/awl/backends/quartz/window_ref.hpp
 )
 
 SET(

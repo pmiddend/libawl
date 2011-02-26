@@ -1,6 +1,6 @@
 #include <awl/backends/quartz/window/event/original_processor.hpp>
 #include <awl/backends/quartz/window/instance.hpp>
-#import <Cocoa/Cocoa.h>
+#include <awl/backends/quartz/event_manager.hpp>
 
 awl::backends::quartz::window::event::original_processor::original_processor(
 	quartz::window::instance_ptr const _window
@@ -17,18 +17,9 @@ awl::backends::quartz::window::event::original_processor::~original_processor()
 bool
 awl::backends::quartz::window::event::original_processor::dispatch()
 {
-	NSEvent * event =
-		[NSApp nextEventMatchingMask:NSAnyEventMask
-		                   untilDate:[NSDate distantPast]
-		                      inMode:NSDefaultRunLoopMode
-		                     dequeue:YES];
-	if(
-		[event window] == window_->get()
-	)
-	{
-		[NSApp sendEvent:event];
-	}
-	return true;
+	awl::backends::quartz::event_manager::dispatch_events_for_window(
+		window_->get()
+	);
 }
 
 fcppt::signal::auto_connection

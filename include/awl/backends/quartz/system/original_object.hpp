@@ -37,29 +37,9 @@ public:
 	create(
 		awl::window::parameters const &
 	);
-
-	AWL_SYMBOL
-	void
-	fetch_and_buffer_events();
-
-	AWL_SYMBOL
-	bool
-	dispatch_events_for_window(
-		window_ref const
-	);
 private:
 	typedef void * autorelease_pool_ref;
 	autorelease_pool_ref const autorelease_pool_;
-
-	typedef void * event_ref;
-	typedef std::queue<
-		event_ref
-	> event_queue;
-
-	std::map<
-		window_ref const,
-		event_queue
-	> event_buffer_;
 };
 
 }
