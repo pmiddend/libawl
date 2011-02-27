@@ -44,9 +44,10 @@ awl::backends::quartz::event_manager::fetch_and_buffer_events()
 bool
 awl::backends::quartz::event_manager::dispatch_events_for_window(window_ref const window_or_null)
 {
+	bool events_dispatched = false;
+
 	fetch_and_buffer_events();
 
-	bool events_dispatched = false;
 	event_queue queue = event_buffer_[window_or_null];
 	while (
 		!queue.empty()

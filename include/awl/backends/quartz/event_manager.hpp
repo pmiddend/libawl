@@ -2,7 +2,9 @@
 #define AWL_BACKENDS_QUARTZ_EVENT_MANAGER_HPP_INCLUDED
 
 #include <awl/backends/quartz/window_ref.hpp>
+#include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <fcppt/noncopyable.hpp>
 #include <map>
 #include <queue>
 
@@ -13,8 +15,11 @@ namespace backends
 namespace quartz
 {
 
-class event_manager
+class AWL_CLASS_SYMBOL event_manager
 {
+	FCPPT_NONCOPYABLE(
+		event_manager
+	);
 public:
 	AWL_SYMBOL
 	static void

@@ -14,5 +14,8 @@ awl::backends::quartz::system::event::original_processor::~original_processor()
 bool
 awl::backends::quartz::system::event::original_processor::dispatch()
 {
-	return awl::backends::quartz::event_manager::dispatch_events_for_window(NULL);
+	return
+		awl::backends::quartz::event_manager::dispatch_events_for_window(
+			NULL
+		);
 }

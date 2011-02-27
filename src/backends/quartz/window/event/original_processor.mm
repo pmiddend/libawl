@@ -17,9 +17,10 @@ awl::backends::quartz::window::event::original_processor::~original_processor()
 bool
 awl::backends::quartz::window::event::original_processor::dispatch()
 {
-	awl::backends::quartz::event_manager::dispatch_events_for_window(
-		window_->get()
-	);
+	return
+		awl::backends::quartz::event_manager::dispatch_events_for_window(
+			window_->get()
+		);
 }
 
 fcppt::signal::auto_connection

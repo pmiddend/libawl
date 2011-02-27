@@ -148,6 +148,7 @@ IF(APPLE)
 
 	# TODO We should probably find/check for the frameworks first and
 	# specify them in a cleaner way... but this should work for now ;p
+	# cleaner meaning only for the files that really need it
 	SET(CMAKE_SHARED_LINKER_FLAGS "-framework Cocoa")
 ELSEIF(UNIX)
 	IF(ENABLE_WINELIB)

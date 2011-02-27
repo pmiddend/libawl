@@ -29,7 +29,7 @@ awl::backends::quartz::window::original_instance::original_instance(
 		]
 	)
 {
-	NSWindow * const window = (NSWindow *) window;
+	NSWindow * const window = (NSWindow *) window_;
 	[window setTitle:
 		[NSString stringWithUTF8String:
 			_param
@@ -42,7 +42,7 @@ awl::backends::quartz::window::original_instance::original_instance(
 		_param.has_opengl()
 	)
 	{
-		
+		// TODO OpenGL stuff...
 	}
 }
 
