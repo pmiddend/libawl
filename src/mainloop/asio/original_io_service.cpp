@@ -2,7 +2,8 @@
 
 awl::mainloop::asio::original_io_service::original_io_service()
 :
-	io_service()
+	mainloop::asio::io_service(),
+	io_service_()
 {
 }
 
