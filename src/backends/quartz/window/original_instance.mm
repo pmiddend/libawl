@@ -33,8 +33,8 @@ awl::backends::quartz::window::original_instance::original_instance(
 	[window setTitle:
 		[NSString stringWithUTF8String:
 			_param
-				.title().
-					c_str()
+				.title()
+					.c_str()
 		]
 	];
 

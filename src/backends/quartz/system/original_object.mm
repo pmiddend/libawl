@@ -1,10 +1,10 @@
-#include <awl/backends/quartz/event_manager.hpp>
 #include <awl/backends/quartz/system/original_object.hpp>
 #include <awl/backends/quartz/window/original_instance.hpp>
 #include <awl/window/parameters.hpp>
 #import <Cocoa/Cocoa.h>
 #include <fcppt/assert.hpp>
 #include <fcppt/make_shared_ptr.hpp>
+#include <queue>
 
 awl::backends::quartz::system::original_object::original_object()
 :
@@ -19,7 +19,7 @@ awl::backends::quartz::system::original_object::original_object()
 	//[NSApp activateIgnoringOtherApps:NO]; // Not necessary AFAIK
 
 	// This stops the dock icon from jumping
-	event_manager::fetch_and_buffer_events();
+	event_loop();
 }
 
 awl::backends::quartz::system::original_object::~original_object()
@@ -47,7 +47,50 @@ awl::backends::quartz::system::original_object::create(
 
 	// This seemingly does some additional initialization stuff I'm not
 	// too sure about...
-	event_manager::fetch_and_buffer_events();
+	event_loop();
 
 	return result;
+}
+
+void
+awl::backends::quartz::system::original_object::event_loop()
+{
+	NSEvent * event;
+	std::queue<
+		NSEvent *
+	> event_queue;
+	NSAutoreleasePool * pool =
+		[[NSAutoreleasePool alloc] init];
+	do
+	{
+		event =
+			[NSApp nextEventMatchingMask: NSAnyEventMask
+				untilDate: [NSDate distantPast]
+				inMode: NSDefaultRunLoopMode
+				dequeue: YES
+			];
+
+		if (event)
+		{
+			event_queue.push(
+				event
+			);
+		}
+	} while (
+		event != nil
+	);
+
+	// Send back unused events
+	while (
+		!event_queue.empty()
+	)
+	{
+		event = event_queue.front();
+		event_queue.pop();
+		[NSApp postEvent: event
+			atStart: NO
+		];
+	}
+
+	[pool drain];
 }

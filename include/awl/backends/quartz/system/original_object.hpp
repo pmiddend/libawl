@@ -38,6 +38,9 @@ public:
 		awl::window::parameters const &
 	);
 private:
+	void
+	event_loop();
+
 	typedef void * autorelease_pool_ref;
 	autorelease_pool_ref const autorelease_pool_;
 };

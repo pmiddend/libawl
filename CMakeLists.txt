@@ -141,7 +141,11 @@ SET(
 	include/awl/window/vector.hpp
 )
 
-# We can use either X11, winelib or plain windows
+IF(UNIX AND NOT(APPLE)) # unknown option --no-undefined
+	SET(CMAKE_SHARED_LINKER_FLAGS -Wl,--no-undefined)
+ENDIF()
+
+# We can use either X11, winelib, plain windows or Cocoa/Quartz
 IF(APPLE)
 	# We have to test for APPLE first, as UNIX catches it as well
 	SET(AWL_QUARTZ_BACKEND TRUE)
@@ -149,7 +153,12 @@ IF(APPLE)
 	# TODO We should probably find/check for the frameworks first and
 	# specify them in a cleaner way... but this should work for now ;p
 	# cleaner meaning only for the files that really need it
-	SET(CMAKE_SHARED_LINKER_FLAGS "-framework Cocoa")
+	# FIXME Also this seems wrong; it overrides the above setting and
+	# it does not seem to be the right flag for this.......
+	SET(
+		CMAKE_SHARED_LINKER_FLAGS
+		"${CMAKE_SHARED_LINKER_FLAGS} -framework Cocoa"
+	)
 ELSEIF(UNIX)
 	IF(ENABLE_WINELIB)
 		FIND_PACKAGE(
@@ -412,8 +421,7 @@ SET(
 SET(
 	AWL_QUARTZ_SRC_FILES
 	src/backends/quartz/asio/dispatcher.cpp
-	src/backends/quartz/event_manager.mm
-	src/backends/quartz/system/event/original_processor.cpp
+	src/backends/quartz/system/event/original_processor.mm
 	src/backends/quartz/system/event/processor.cpp
 	src/backends/quartz/system/object.cpp
 	src/backends/quartz/system/original_object.mm
@@ -426,8 +434,6 @@ SET(
 SET(
 	AWL_QUARTZ_INCLUDE_FILES
 	include/awl/backends/quartz/asio/dispatcher.hpp
-	include/awl/backends/quartz/event_manager.hpp
-	include/awl/backends/quartz/event_manager_fwd.hpp
 	include/awl/backends/quartz/system/event/original_processor.hpp
 	include/awl/backends/quartz/system/event/processor.hpp
 	include/awl/backends/quartz/system/event/processor_fwd.hpp

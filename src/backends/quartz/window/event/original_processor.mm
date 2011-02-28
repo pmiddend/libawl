@@ -1,6 +1,7 @@
 #include <awl/backends/quartz/window/event/original_processor.hpp>
 #include <awl/backends/quartz/window/instance.hpp>
-#include <awl/backends/quartz/event_manager.hpp>
+#include <Cocoa/Cocoa.h>
+#include <queue>
 
 awl::backends::quartz::window::event::original_processor::original_processor(
 	quartz::window::instance_ptr const _window
@@ -17,10 +18,61 @@ awl::backends::quartz::window::event::original_processor::~original_processor()
 bool
 awl::backends::quartz::window::event::original_processor::dispatch()
 {
-	return
-		awl::backends::quartz::event_manager::dispatch_events_for_window(
-			window_->get()
-		);
+	bool events_processed = false;
+
+	NSEvent * event;
+	std::queue<
+		NSEvent *
+	> event_queue;
+	NSAutoreleasePool * pool;
+	do
+	{
+		pool = [[NSAutoreleasePool alloc] init];
+
+		// NOTE The window property of the event is undefined for periodic events
+		event =
+			[NSApp nextEventMatchingMask:
+					NSAnyEventMask & !NSPeriodicMask
+				untilDate: [NSDate distantPast]
+				inMode: NSDefaultRunLoopMode
+				dequeue: YES
+			];
+
+		if (event)
+		{
+			events_processed = true;
+
+			if (event.window == window_->get())
+			{
+				[NSApp sendEvent: event];
+			}
+			else
+			{
+				event_queue.push(
+					[event retain]
+				);
+			}
+		}
+
+		[pool drain];
+	} while (
+		event != nil
+	);
+
+	// Send back unused events
+	while (
+		!event_queue.empty()
+	)
+	{
+		event = event_queue.front();
+		event_queue.pop();
+		[NSApp postEvent: event
+			atStart: NO
+		];
+		[event release];
+	}
+
+	return events_processed;
 }
 
 fcppt::signal::auto_connection
