@@ -64,7 +64,7 @@ int main()
 
 	timer.expires_from_now(
 		boost::posix_time::seconds(
-			1
+			10
 		)
 	);
 

@@ -40,7 +40,8 @@ awl::backends::x11::window::event::original_processor::original_processor(
 			)
 		)
 	)
-{}
+{
+}
 
 awl::backends::x11::window::event::original_processor::~original_processor()
 {
