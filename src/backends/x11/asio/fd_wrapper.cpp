@@ -7,7 +7,7 @@
 
 awl::backends::x11::asio::fd_wrapper::fd_wrapper(
 	boost::asio::io_service &_io_service,
-	awl::backends::x11::display_ptr const _display
+	awl::backends::x11::display &_display
 )
 :
 	fd_flags_resetter_(

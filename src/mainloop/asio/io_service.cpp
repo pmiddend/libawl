@@ -73,13 +73,15 @@ awl::mainloop::asio::io_service::create_dispatcher(
 			awl::backends::x11::asio::dispatcher
 		>(
 			std::tr1::ref(
-				get()
+				this->get()
 			),
-			fcppt::dynamic_pointer_cast<
-				awl::backends::x11::system::object
-			>(
-				_system
-			)->display(),
+			std::tr1::ref(
+				fcppt::dynamic_pointer_cast<
+					awl::backends::x11::system::object
+				>(
+					_system
+				)->display()
+			),
 			_callback
 		);
 #elif defined(AWL_WINDOWS_BACKEND)
@@ -87,7 +89,7 @@ awl::mainloop::asio::io_service::create_dispatcher(
 			awl::backends::windows::asio::dispatcher
 		>(
 			std::tr1::ref(
-				get()
+				this->get()
 			),
 			_callback
 		);

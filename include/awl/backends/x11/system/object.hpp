@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
 
 #include <awl/backends/x11/system/object_fwd.hpp>
-#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/system/object.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -30,8 +30,8 @@ public:
 	AWL_SYMBOL
 	virtual ~object();
 	
-	virtual x11::display_ptr const
-	display() const = 0;
+	virtual x11::display &
+	display() = 0;
 };
 
 }

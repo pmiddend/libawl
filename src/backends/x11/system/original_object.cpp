@@ -8,11 +8,7 @@
 
 awl::backends::x11::system::original_object::original_object()
 :
-	display_(
-		fcppt::make_shared_ptr<
-			x11::original_display
-		>()
-	)
+	display_()
 {
 }
 
@@ -38,8 +34,8 @@ awl::backends::x11::system::original_object::create(
 		);
 }
 
-awl::backends::x11::display_ptr const
-awl::backends::x11::system::original_object::display() const
+awl::backends::x11::display &
+awl::backends::x11::system::original_object::display()
 {
 	return display_;
 }

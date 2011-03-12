@@ -6,9 +6,9 @@
 #include <fcppt/text.hpp>
 
 awl::backends::x11::colormap::colormap(
-	x11::display_ptr const _display,
+	x11::display &_display,
 	x11::screen const _screen,
-	x11::visual_ptr const _visual
+	x11::visual &_visual
 )
 :
 	display_(
@@ -16,12 +16,12 @@ awl::backends::x11::colormap::colormap(
 	),
 	colormap_(
 		::XCreateColormap(
-			display_->get(),
+			display_.get(),
 			::XRootWindow(
-				display_->get(),
+				display_.get(),
 				_screen.get()
 			),
-			_visual->get(),
+			_visual.get(),
 			AllocNone
 		)
 	)
@@ -37,8 +37,8 @@ awl::backends::x11::colormap::colormap(
 awl::backends::x11::colormap::~colormap()
 {
 	::XFreeColormap(
-		display_->get(),
-		get()
+		display_.get(),
+		this->get()
 	);
 }
 

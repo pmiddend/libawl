@@ -5,9 +5,9 @@
 
 int
 awl::backends::x11::display_fd(
-	x11::display_ptr const _display
+	x11::display &_display
 )
 {
 	return
-		_display->get()->fd;
+		_display.get()->fd;
 }

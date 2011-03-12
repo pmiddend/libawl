@@ -4,7 +4,7 @@
 #include <awl/backends/x11/asio/fd_wrapper_fwd.hpp>
 #include <awl/backends/x11/asio/fd_flags_resetter.hpp>
 #include <awl/backends/x11/asio/read_callback.hpp>
-#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <boost/asio/posix/stream_descriptor.hpp>
 #include <boost/asio/io_service.hpp>
@@ -26,7 +26,7 @@ class fd_wrapper
 public:
 	fd_wrapper(
 		boost::asio::io_service &,
-		awl::backends::x11::display_ptr
+		awl::backends::x11::display &
 	);
 
 	~fd_wrapper();

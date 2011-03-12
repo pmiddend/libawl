@@ -4,7 +4,7 @@
 #include <awl/backends/x11/display_fd.hpp>
 
 awl::backends::x11::asio::fd_flags_resetter::fd_flags_resetter(
-	x11::display_ptr const _display
+	x11::display &_display
 )
 :
 	display_(_display),

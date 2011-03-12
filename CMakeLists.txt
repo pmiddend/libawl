@@ -288,7 +288,6 @@ SET(
 	include/awl/backends/x11/display.hpp
 	include/awl/backends/x11/display_fd.hpp
 	include/awl/backends/x11/display_fwd.hpp
-	include/awl/backends/x11/display_ptr.hpp
 	include/awl/backends/x11/free.hpp
 	include/awl/backends/x11/log.hpp
 	include/awl/backends/x11/original_display.hpp

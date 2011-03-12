@@ -2,9 +2,9 @@
 #define AWL_BACKENDS_X11_COLORMAP_HPP_INCLUDED
 
 #include <X11/Xlib.h>
-#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
-#include <awl/backends/x11/visual_ptr.hpp>
+#include <awl/backends/x11/visual_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
@@ -24,9 +24,9 @@ public:
 	AWL_SYMBOL
 	explicit
 	colormap(
-		x11::display_ptr,
+		x11::display &,
 		x11::screen,
-		x11::visual_ptr
+		x11::visual &
 	);
 
 	AWL_SYMBOL
@@ -36,7 +36,7 @@ public:
 	Colormap &
 	get();
 private:
-	x11::display_ptr const display_;
+	x11::display &display_;
 
 	Colormap colormap_;
 };

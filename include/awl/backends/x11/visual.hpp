@@ -2,6 +2,7 @@
 #define AWL_BACKENDS_X11_VISUAL_HPP_INCLUDED
 
 #include <awl/backends/x11/visual_fwd.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <X11/Xlib.h>
@@ -28,7 +29,7 @@ public:
 	explicit
 	visual(
 		// We need the display for the info guessing
-		Display *,
+		x11::display &,
 		Visual *,
 		XVisualInfo * = 0
 	);

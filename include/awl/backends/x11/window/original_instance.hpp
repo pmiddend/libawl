@@ -8,10 +8,10 @@
 #include <awl/backends/x11/window/holder.hpp>
 #include <awl/backends/x11/window/original_class_hint.hpp>
 #include <awl/backends/x11/window/size_hints.hpp>
-#include <awl/backends/x11/colormap_ptr.hpp>
-#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/colormap.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
-#include <awl/backends/x11/visual_ptr.hpp>
+#include <awl/backends/x11/visual.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -36,7 +36,7 @@ public:
 	AWL_SYMBOL
 	explicit
 	original_instance(
-		x11::display_ptr,
+		x11::display &,
 		awl::window::parameters const &
 	);
 
@@ -44,7 +44,7 @@ public:
 	~original_instance();
 
 	AWL_SYMBOL
-	x11::display_ptr const
+	x11::display &
 	display() const;
 
 	AWL_SYMBOL
@@ -52,20 +52,20 @@ public:
 	screen() const;
 
 	AWL_SYMBOL
-	x11::visual_ptr const
+	x11::visual &
 	visual() const;
 
 	AWL_SYMBOL
 	Window
 	get() const;
 private:
-	x11::display_ptr const display_;
+	x11::display &display_;
 
 	x11::screen const screen_;
+	
+	x11::visual const visual_;
 
-	x11::visual_ptr const visual_;
-
-	x11::colormap_ptr const colormap_;
+	x11::colormap const colormap_;
 
 	x11::window::hints const hints_;
 

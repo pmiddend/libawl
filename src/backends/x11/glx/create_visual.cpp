@@ -5,10 +5,10 @@
 #include <awl/exception.hpp>
 #include <X11/Xlib.h>
 #include <GL/glx.h>
-#include <fcppt/make_shared_ptr.hpp>
+#include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/text.hpp>
 
-awl::backends::x11::visual_ptr const
+awl::backends::x11::visual_unique_ptr
 awl::backends::x11::glx::create_visual(
 	x11::display_ptr const _display,
 	x11::screen const _screen,
@@ -47,10 +47,12 @@ awl::backends::x11::glx::create_visual(
 	);
 
 	return 
-		fcppt::make_shared_ptr<
+		fcppt::make_unique_ptr<
 			x11::visual
 		>(
-			_display->get(),
+			std::tr1::ref(
+				_display
+			),
 			info->visual,
 			info
 		);

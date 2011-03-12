@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_X11_SYSTEM_ORIGINAL_OBJECT_HPP_INCLUDED
 
 #include <awl/backends/x11/system/object.hpp>
-#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/original_display.hpp>
 #include <awl/system/object.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -39,10 +39,10 @@ public:
 	);
 
 	AWL_SYMBOL
-	x11::display_ptr const
-	display() const;
+	x11::display &
+	display();
 private:
-	x11::display_ptr const display_;
+	x11::original_display display_;
 };
 
 }

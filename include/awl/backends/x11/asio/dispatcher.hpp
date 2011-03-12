@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_X11_ASIO_DISPATCHER_HPP_INCLUDED
 
 #include <awl/backends/x11/asio/fd_wrapper_fwd.hpp>
-#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/mainloop/dispatcher.hpp>
 #include <awl/mainloop/dispatcher_callback.hpp>
 #include <awl/symbol.hpp>
@@ -32,7 +32,7 @@ public:
 	AWL_SYMBOL
 	explicit dispatcher(
 		boost::asio::io_service &,
-		awl::backends::x11::display_ptr,
+		awl::backends::x11::display &,
 		awl::mainloop::dispatcher_callback const &
 	);
 
@@ -56,7 +56,7 @@ private:
 	void
 	on_post_finished();
 
-	awl::backends::x11::display_ptr const display_;
+	awl::backends::x11::display &display_;
 
 	boost::asio::io_service &io_service_;
 

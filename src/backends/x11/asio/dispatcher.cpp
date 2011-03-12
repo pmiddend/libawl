@@ -7,7 +7,7 @@
 
 awl::backends::x11::asio::dispatcher::dispatcher(	
 	boost::asio::io_service &_io_service,
-	awl::backends::x11::display_ptr const _display,
+	awl::backends::x11::display &_display,
 	awl::mainloop::dispatcher_callback const &_callback
 )
 :
@@ -20,14 +20,16 @@ awl::backends::x11::asio::dispatcher::dispatcher(
 			std::tr1::ref(
 				_io_service
 			),
-			_display
+			std::tr1::ref(
+				_display
+			)
 		)
 	),
 	callback_(
 		_callback
 	)
 {
-	register_handler();
+	this->register_handler();
 }
 
 awl::backends::x11::asio::dispatcher::~dispatcher()
@@ -51,7 +53,7 @@ awl::backends::x11::asio::dispatcher::register_handler()
 {
 	if(
 		::XPending(
-			display_->get()
+			display_.get()
 		)
 		> 0
 	)
@@ -81,7 +83,7 @@ awl::backends::x11::asio::dispatcher::on_select_finished(
 	)
 		return;
 
-	on_post_finished();
+	this->on_post_finished();
 }
 
 void
@@ -92,5 +94,5 @@ awl::backends::x11::asio::dispatcher::on_post_finished()
 	if(
 		fd_wrapper_
 	)
-		register_handler();
+		this->register_handler();
 }

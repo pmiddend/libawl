@@ -3,7 +3,7 @@
 
 #include <awl/backends/x11/window/event/optional.hpp>
 #include <awl/backends/x11/window/class_hint_ptr.hpp>
-#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/visual_ptr.hpp>
 #include <awl/window/instance.hpp>
@@ -35,13 +35,13 @@ public:
 	AWL_SYMBOL
 	virtual ~instance();
 
-	virtual x11::display_ptr const
+	virtual x11::display &
 	display() const = 0;
 
 	virtual x11::screen const
 	screen() const = 0;
 
-	virtual x11::visual_ptr const
+	virtual x11::visual &
 	visual() const = 0;
 
 	virtual Window
