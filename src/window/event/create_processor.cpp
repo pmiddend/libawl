@@ -3,11 +3,12 @@
 #if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/window/event/original_processor.hpp>
 #include <awl/backends/x11/window/instance.hpp>
+#include <fcppt/tr1/functional.hpp>
 #elif defined(AWL_WINDOWS_BACKEND)
 #include <awl/backends/windows/window/event/original_processor.hpp>
 #include <awl/backends/windows/window/instance.hpp>
+#include <boost/ref.hpp>
 #endif
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 
 awl::window::event::processor_unique_ptr
@@ -33,7 +34,7 @@ awl::window::event::create_processor(
 			fcppt::make_unique_ptr<
 				backends::windows::window::event::original_processor
 			>(
-				std::tr1::ref(
+				boost::ref(
 					dynamic_cast<
 						backends::windows::window::instance &
 					>(

@@ -62,7 +62,11 @@ awl::backends::windows::system::event::original_processor::dispatch()
 	{
 		DWORD const result(
 			::WaitForMultipleObjects(
-				handles_.size(),
+				static_cast<
+					DWORD
+				>(
+					handles_.size()
+				),
 				handles_.data(),
 				FALSE,
 				0u

@@ -53,9 +53,7 @@ int main()
 			*window_system,
 			std::tr1::bind(
 				&awl::window::event::processor::dispatch,
-				std::tr1::ref(
-					*processor
-				)
+				processor.get()
 			)
 		)
 	);
@@ -73,9 +71,7 @@ int main()
 	timer.async_wait(
 		std::tr1::bind(
 			&awl::mainloop::dispatcher::stop,
-			std::tr1::ref(
-				*dispatcher
-			)
+			dispatcher.get()
 		)
 	);
 

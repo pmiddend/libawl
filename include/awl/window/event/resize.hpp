@@ -6,6 +6,7 @@
 #include <awl/window/instance_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/nonassignable.hpp>
 
 namespace awl
 {
@@ -16,6 +17,9 @@ namespace event
 
 class resize
 {
+	FCPPT_NONASSIGNABLE(
+		resize
+	);
 public:
 	AWL_SYMBOL
 	resize(
