@@ -16,6 +16,10 @@ awl::backends::x11::window::wrapped_instance::wrapped_instance(
 		window::visual(
 			*this
 		)
+	),
+	class_hint_(
+		this->display().get(),
+		this->get()
 	)
 {
 }
@@ -46,4 +50,15 @@ Window
 awl::backends::x11::window::wrapped_instance::get() const
 {
 	return window_;
+}
+
+awl::backends::x11::window::class_hint const *
+awl::backends::x11::window::wrapped_instance::class_hint() const
+{
+	return
+		class_hint_.has_data()
+		?
+			&class_hint_
+		:
+			0;
 }

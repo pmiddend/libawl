@@ -8,11 +8,7 @@
 
 awl::backends::x11::window::common_instance::common_instance()
 :
-	awl::backends::x11::window::instance(),
-	class_hint_(
-		this->display().get(),
-		this->get()
-	)
+	awl::backends::x11::window::instance()
 {
 }
 
@@ -79,10 +75,4 @@ awl::backends::x11::window::common_instance::size() const
 				height_return
 			)
 		);
-}
-
-awl::backends::x11::window::class_hint const &
-awl::backends::x11::window::common_instance::class_hint() const
-{
-	return class_hint_;
 }

@@ -3,6 +3,7 @@
 
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
+#include <awl/backends/x11/window/class_hint_fwd.hpp>
 #include <awl/backends/x11/window/common_instance.hpp>
 #include <awl/backends/x11/window/hints.hpp>
 #include <awl/backends/x11/window/holder.hpp>
@@ -58,6 +59,10 @@ public:
 	AWL_SYMBOL
 	Window
 	get() const;
+
+	AWL_SYMBOL
+	x11::window::class_hint const *
+	class_hint() const;
 private:
 	x11::display &display_;
 

@@ -36,6 +36,10 @@ public:
 	~wrapped_class_hint();
 
 	AWL_SYMBOL
+	bool
+	has_data() const;
+
+	AWL_SYMBOL
 	std::string const
 	res_name() const;
 

@@ -151,3 +151,9 @@ awl::backends::x11::window::original_instance::get() const
 {
 	return window_.get();
 }
+
+awl::backends::x11::window::class_hint const *
+awl::backends::x11::window::original_instance::class_hint() const
+{
+	return &class_hint_;
+}

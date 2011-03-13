@@ -47,7 +47,8 @@ public:
 	virtual Window
 	get() const = 0;
 
-	virtual x11::window::class_hint const &
+	// might return 0
+	virtual x11::window::class_hint const *
 	class_hint() const = 0;
 };
 

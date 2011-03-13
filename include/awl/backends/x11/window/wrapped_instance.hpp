@@ -3,7 +3,9 @@
 
 #include <awl/window/instance.hpp>
 #include <awl/window/parameters_fwd.hpp>
+#include <awl/backends/x11/window/class_hint_fwd.hpp>
 #include <awl/backends/x11/window/common_instance.hpp>
+#include <awl/backends/x11/window/wrapped_class_hint.hpp>
 #include <awl/backends/x11/window/event/optional.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
@@ -56,6 +58,10 @@ public:
 	AWL_SYMBOL
 	Window
 	get() const;
+
+	AWL_SYMBOL
+	x11::window::class_hint const *
+	class_hint() const;
 private:
 	x11::display &display_;
 
@@ -64,6 +70,8 @@ private:
 	Window const window_;
 
 	x11::visual_scoped_ptr const visual_;
+
+	x11::window::wrapped_class_hint const class_hint_;
 };
 
 }
