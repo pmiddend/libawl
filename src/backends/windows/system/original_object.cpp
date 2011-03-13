@@ -5,7 +5,6 @@
 #include <awl/window/parameters.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/tr1/functional.hpp>
-#include <fcppt/make_shared_ptr.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 
 awl::backends::windows::system::original_object::original_object()
@@ -18,7 +17,7 @@ awl::backends::windows::system::original_object::~original_object()
 {
 }
 
-awl::window::instance_ptr const
+awl::window::instance_unique_ptr
 awl::backends::windows::system::original_object::create(
 	awl::window::parameters const &_param
 )
@@ -47,17 +46,19 @@ awl::backends::windows::system::original_object::create(
 		wndclass_it->second->add_ref();
 	
 	return
-		fcppt::make_shared_ptr<
-			awl::backends::windows::window::original_instance
-		>(
-			_param,
-			std::tr1::ref(
-				wndclass_it->second->wndclass()
-			),
-			std::tr1::bind(
-				&system::original_object::unregister_wndclass,
-				this,
-				_param.class_name()
+		awl::window::instance_unique_ptr(
+			fcppt::make_unique_ptr<
+				awl::backends::windows::window::original_instance
+			>(
+				_param,
+				std::tr1::ref(
+					wndclass_it->second->wndclass()
+				),
+				std::tr1::bind(
+					&system::original_object::unregister_wndclass,
+					this,
+					_param.class_name()
+				)
 			)
 		);
 }

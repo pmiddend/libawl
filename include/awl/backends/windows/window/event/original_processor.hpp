@@ -4,7 +4,7 @@
 #include <awl/backends/windows/window/event/processor.hpp>
 #include <awl/backends/windows/window/event/callback.hpp>
 #include <awl/backends/windows/window/event/return_type.hpp>
-#include <awl/backends/windows/window/instance_ptr.hpp>
+#include <awl/backends/windows/window/instance_fwd.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/window/event/resize_callback.hpp>
 #include <awl/window/event/resize_function.hpp>
@@ -37,7 +37,7 @@ class AWL_CLASS_SYMBOL original_processor
 public:
 	AWL_SYMBOL
 	explicit original_processor(
-		windows::window::instance_ptr
+		windows::window::instance &
 	);
 
 	AWL_SYMBOL
@@ -54,7 +54,7 @@ public:
 	);
 
 	AWL_SYMBOL
-	awl::window::instance_ptr const
+	awl::window::instance &
 	window() const;
 
 	AWL_SYMBOL
@@ -72,7 +72,7 @@ public:
 		LPARAM lparam
 	);
 private:
-	windows::window::instance_ptr const window_;
+	windows::window::instance &window_;
 
 	typedef fcppt::signal::object<
 		windows::window::event::function

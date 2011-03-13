@@ -396,7 +396,7 @@ SET(
 	include/awl/backends/windows/system/event/handle_destroy_callback.hpp
 	include/awl/backends/windows/system/event/handle_function.hpp
 	include/awl/backends/windows/system/event/handle_fwd.hpp
-	include/awl/backends/windows/system/event/handle_ptr.hpp
+	include/awl/backends/windows/system/event/handle_unique_ptr.hpp
 	include/awl/backends/windows/system/event/object.hpp
 	include/awl/backends/windows/system/event/object_fwd.hpp
 	include/awl/backends/windows/system/event/original_handle.hpp
@@ -404,10 +404,8 @@ SET(
 	include/awl/backends/windows/system/event/original_processor_fwd.hpp
 	include/awl/backends/windows/system/event/processor.hpp
 	include/awl/backends/windows/system/event/processor_fwd.hpp
-	include/awl/backends/windows/system/event/processor_ptr.hpp
 	include/awl/backends/windows/system/object.hpp
 	include/awl/backends/windows/system/object_fwd.hpp
-	include/awl/backends/windows/system/object_ptr.hpp
 	include/awl/backends/windows/system/original_object.hpp
 	include/awl/backends/windows/system_metrics.hpp
 	include/awl/backends/windows/window/adjusted_size.hpp
@@ -422,18 +420,15 @@ SET(
 	include/awl/backends/windows/window/event/original_processor.hpp
 	include/awl/backends/windows/window/event/processor.hpp
 	include/awl/backends/windows/window/event/processor_fwd.hpp
-	include/awl/backends/windows/window/event/processor_ptr.hpp
 	include/awl/backends/windows/window/event/return_type.hpp
 	include/awl/backends/windows/window/event/wnd_proc.hpp
 	include/awl/backends/windows/window/instance.hpp
 	include/awl/backends/windows/window/instance_fwd.hpp
-	include/awl/backends/windows/window/instance_ptr.hpp
 	include/awl/backends/windows/window/original_instance.hpp
 	include/awl/backends/windows/window/screen_to_client.hpp
 	include/awl/backends/windows/windows.hpp
 	include/awl/backends/windows/wndclass.hpp
 	include/awl/backends/windows/wndclass_fwd.hpp
-	include/awl/backends/windows/wndclass_ptr.hpp
 	include/awl/backends/windows/wndclass_remove_callback.hpp
 )
 

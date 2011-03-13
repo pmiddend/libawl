@@ -3,6 +3,7 @@
 
 #include <awl/backends/windows/system/object.hpp>
 #include <awl/backends/windows/counted_wndclass_fwd.hpp>
+#include <awl/window/instance_unique_ptr.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
@@ -32,7 +33,7 @@ public:
 	~original_object();
 	
 	AWL_SYMBOL
-	awl::window::instance_ptr const
+	awl::window::instance_unique_ptr
 	create(
 		awl::window::parameters const &
 	);

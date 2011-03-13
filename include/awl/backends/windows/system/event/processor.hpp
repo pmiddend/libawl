@@ -4,7 +4,7 @@
 #include <awl/backends/windows/system/event/processor_fwd.hpp>
 #include <awl/backends/windows/system/event/callback.hpp>
 #include <awl/backends/windows/system/event/handle_callback.hpp>
-#include <awl/backends/windows/system/event/handle_ptr.hpp>
+#include <awl/backends/windows/system/event/handle_unique_ptr.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/system/event/processor.hpp>
 #include <awl/class_symbol.hpp>
@@ -51,7 +51,7 @@ public:
 	) = 0;
 
 	virtual
-	system::event::handle_ptr const
+	system::event::handle_unique_ptr
 	create_event_handle() = 0;
 };
 

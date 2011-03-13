@@ -12,14 +12,14 @@
 #include <fcppt/optional_impl.hpp>
 
 awl::backends::windows::window::event::original_processor::original_processor(
-	windows::window::instance_ptr const _window
+	windows::window::instance &_window
 )
 :
 	window_(_window),
 	signals_()
 {
 	::SetWindowLongPtr(
-		window_->hwnd(),
+		window_.hwnd(),
 		GWLP_USERDATA,
 		reinterpret_cast<
 			LONG_PTR
@@ -29,7 +29,7 @@ awl::backends::windows::window::event::original_processor::original_processor(
 	);
 
 	::SetWindowLongPtr(
-		window_->hwnd(),
+		window_.hwnd(),
 		GWLP_WNDPROC,
 		reinterpret_cast<
 			LONG_PTR
@@ -42,7 +42,7 @@ awl::backends::windows::window::event::original_processor::original_processor(
 awl::backends::windows::window::event::original_processor::~original_processor()
 {
 	::SetWindowLongPtr(
-		window_->hwnd(),
+		window_.hwnd(),
 		GWLP_WNDPROC,
 		reinterpret_cast<
 			LONG_PTR
@@ -62,7 +62,7 @@ awl::backends::windows::window::event::original_processor::dispatch()
 	while(
 		::PeekMessage(
 			&msg,
-			window_->hwnd(),
+			window_.hwnd(),
 			0,
 			0,
 			PM_REMOVE
@@ -94,7 +94,7 @@ awl::backends::windows::window::event::original_processor::resize_callback(
 		);
 }
 
-awl::window::instance_ptr const
+awl::window::instance &
 awl::backends::windows::window::event::original_processor::window() const
 {
 	return window_;

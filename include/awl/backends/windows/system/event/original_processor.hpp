@@ -5,9 +5,9 @@
 #include <awl/backends/windows/system/event/callback.hpp>
 #include <awl/backends/windows/system/event/handle_callback.hpp>
 #include <awl/backends/windows/system/event/handle_function.hpp>
-#include <awl/backends/windows/system/event/handle_ptr.hpp>
+#include <awl/backends/windows/system/event/handle_unique_ptr.hpp>
 #include <awl/backends/windows/system/event/processor.hpp>
-#include <awl/backends/windows/system/object_ptr.hpp>
+#include <awl/backends/windows/system/object_fwd.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -38,7 +38,7 @@ class AWL_CLASS_SYMBOL original_processor
 public:
 	AWL_SYMBOL
 	explicit original_processor(
-		windows::system::object_ptr
+		windows::system::object &
 	);
 
 	AWL_SYMBOL
@@ -62,7 +62,7 @@ public:
 	);
 
 	AWL_SYMBOL
-	system::event::handle_ptr const
+	system::event::handle_unique_ptr
 	create_event_handle();
 private:
 	void

@@ -7,11 +7,10 @@
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/container/raw_vector_impl.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/make_shared_ptr.hpp>
 #include <fcppt/text.hpp>
 
 awl::backends::windows::system::event::original_processor::original_processor(
-	windows::system::object_ptr
+	windows::system::object &
 )
 :
 	signals_(),
@@ -131,11 +130,11 @@ awl::backends::windows::system::event::original_processor::register_handle_callb
 		);
 }
 
-awl::backends::windows::system::event::handle_ptr const
+awl::backends::windows::system::event::handle_unique_ptr
 awl::backends::windows::system::event::original_processor::create_event_handle()
 {
-	awl::backends::windows::system::event::handle_ptr const ret(
-		fcppt::make_shared_ptr<
+	awl::backends::windows::system::event::handle_unique_ptr ret(
+		fcppt::make_unique_ptr<
 			awl::backends::windows::system::event::original_handle
 		>(
 			std::tr1::bind(
@@ -150,7 +149,12 @@ awl::backends::windows::system::event::original_processor::create_event_handle()
 		ret->get()
 	);
 
-	return ret;
+	return
+		awl::backends::windows::system::event::handle_unique_ptr(
+			move(
+				ret
+			)
+		);
 }
 
 
