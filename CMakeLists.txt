@@ -340,6 +340,7 @@ SET(
 	include/awl/backends/x11/window/holder.hpp
 	include/awl/backends/x11/window/instance.hpp
 	include/awl/backends/x11/window/instance_fwd.hpp
+	include/awl/backends/x11/window/instance_shared_ptr.hpp
 	include/awl/backends/x11/window/instance_unique_ptr.hpp
 	include/awl/backends/x11/window/original_class_hint.hpp
 	include/awl/backends/x11/window/original_instance.hpp
