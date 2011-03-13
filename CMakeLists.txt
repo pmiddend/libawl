@@ -141,6 +141,8 @@ SET(
 	include/awl/mainloop/dispatcher_unique_ptr.hpp
 	include/awl/mainloop/io_service.hpp
 	include/awl/mainloop/io_service_fwd.hpp
+	include/awl/mainloop/io_service_scoped_ptr.hpp
+	include/awl/mainloop/io_service_shared_ptr.hpp
 	include/awl/mainloop/io_service_unique_ptr.hpp
 	include/awl/mainloop/nullary_callback.hpp
 	include/awl/symbol.hpp
@@ -149,10 +151,12 @@ SET(
 	include/awl/system/event/processor.hpp
 	include/awl/system/event/processor_fwd.hpp
 	include/awl/system/event/processor_scoped_ptr.hpp
+	include/awl/system/event/processor_shared_ptr.hpp
 	include/awl/system/event/processor_unique_ptr.hpp
 	include/awl/system/object.hpp
 	include/awl/system/object_fwd.hpp
 	include/awl/system/object_scoped_ptr.hpp
+	include/awl/system/object_shared_ptr.hpp
 	include/awl/system/object_unique_ptr.hpp
 	include/awl/window/bit_depth.hpp
 	include/awl/window/depth_buffer.hpp
@@ -161,6 +165,7 @@ SET(
 	include/awl/window/event/processor.hpp
 	include/awl/window/event/processor_fwd.hpp
 	include/awl/window/event/processor_scoped_ptr.hpp
+	include/awl/window/event/processor_shared_ptr.hpp
 	include/awl/window/event/processor_unique_ptr.hpp
 	include/awl/window/event/resize.hpp
 	include/awl/window/event/resize_callback.hpp
@@ -169,6 +174,7 @@ SET(
 	include/awl/window/instance.hpp
 	include/awl/window/instance_fwd.hpp
 	include/awl/window/instance_scoped_ptr.hpp
+	include/awl/window/instance_shared_ptr.hpp
 	include/awl/window/instance_unique_ptr.hpp
 	include/awl/window/optional_dim.hpp
 	include/awl/window/optional_position.hpp
