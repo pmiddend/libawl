@@ -3,7 +3,7 @@
 #include <X11/Xlib.h>
 
 awl::backends::x11::window::holder::holder(
-	x11::display_ptr const _display,
+	x11::display &_display,
 	Window const _window
 )
 :
@@ -15,7 +15,7 @@ awl::backends::x11::window::holder::holder(
 awl::backends::x11::window::holder::~holder()
 {
 	::XDestroyWindow(
-		display_->get(),
+		display_.get(),
 		window_
 	);
 }

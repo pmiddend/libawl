@@ -11,15 +11,15 @@ Window
 awl::backends::x11::window::create(
 	awl::window::optional_position const &_position,
 	awl::window::optional_dim const &_dim,
-	x11::display_ptr const _display,
+	x11::display &_display,
 	x11::screen const _screen,
-	x11::colormap_ptr const _colormap,
-	x11::visual_ptr const _visual
+	x11::colormap const &_colormap,
+	x11::visual const &_visual
 )
 {
 	XSetWindowAttributes swa;
 
-	swa.colormap = _colormap->get();
+	swa.colormap = _colormap.get();
 
 	swa.border_pixel = 0;
 
@@ -28,9 +28,9 @@ awl::backends::x11::window::create(
 	// always returns a handle
 	return 
 		::XCreateWindow(
-			_display->get(),
+			_display.get(),
 			::XRootWindow(
-				_display->get(),
+				_display.get(),
 				_screen.get()
 			),
 			_position
@@ -63,9 +63,9 @@ awl::backends::x11::window::create(
 			),
 			// border_width
 			0,
-			_visual->info()->depth,
+			_visual.info()->depth,
 			InputOutput,
-			_visual->get(),
+			_visual.get(),
 			CWColormap | CWBorderPixel | CWEventMask,
 			&swa
 		);

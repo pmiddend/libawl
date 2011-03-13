@@ -2,10 +2,10 @@
 #define AWL_MAINLOOP_IO_SERVICE_HPP_INCLUDED
 
 #include <awl/mainloop/io_service_fwd.hpp>
-#include <awl/mainloop/dispatcher_ptr.hpp>
+#include <awl/mainloop/dispatcher_unique_ptr.hpp>
 #include <awl/mainloop/dispatcher_callback.hpp>
 #include <awl/mainloop/nullary_callback.hpp>
-#include <awl/system/object_ptr.hpp>
+#include <awl/system/object_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -44,13 +44,13 @@ public:
 
 	virtual void
 	post(
-		nullary_callback const &
+		mainloop::nullary_callback const &
 	) = 0;
 
-	virtual dispatcher_ptr const
+	virtual mainloop::dispatcher_unique_ptr
 	create_dispatcher(
-		awl::system::object_ptr,
-		dispatcher_callback const &
+		awl::system::object &,
+		mainloop::dispatcher_callback const &
 	) = 0;
 };
 

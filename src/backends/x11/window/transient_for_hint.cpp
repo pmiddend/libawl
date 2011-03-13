@@ -11,7 +11,7 @@ awl::backends::x11::window::transient_for_hint(
 {
 	// always returns 1
 	::XSetTransientForHint(
-		_window.display()->get(),
+		_window.display().get(),
 		_window.get(),
 		_prop_window.get()
 	);

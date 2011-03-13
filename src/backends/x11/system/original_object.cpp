@@ -2,8 +2,9 @@
 #include <awl/backends/x11/window/original_instance.hpp>
 #include <awl/backends/x11/original_display.hpp>
 #include <awl/window/parameters.hpp>
+#include <fcppt/tr1/functional.hpp>
 #include <fcppt/assert.hpp>
-#include <fcppt/make_shared_ptr.hpp>
+#include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 
 awl::backends::x11::system::original_object::original_object()
@@ -16,7 +17,7 @@ awl::backends::x11::system::original_object::~original_object()
 {
 }
 
-awl::window::instance_ptr const
+awl::window::instance_unique_ptr
 awl::backends::x11::system::original_object::create(
 	awl::window::parameters const &_param
 )
@@ -26,11 +27,15 @@ awl::backends::x11::system::original_object::create(
 	);
 
 	return 
-		fcppt::make_shared_ptr<
-			x11::window::original_instance
-		>(
-			display_,
-			_param
+		awl::window::instance_unique_ptr(
+			fcppt::make_unique_ptr<
+				x11::window::original_instance
+			>(
+				std::tr1::ref(
+					display_
+				),
+				_param
+			)
 		);
 }
 

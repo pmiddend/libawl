@@ -131,39 +131,45 @@ SET(
 	include/awl/mainloop/asio/create_io_service_base.hpp
 	include/awl/mainloop/asio/io_service.hpp
 	include/awl/mainloop/asio/io_service_fwd.hpp
-	include/awl/mainloop/asio/io_service_ptr.hpp
+	include/awl/mainloop/asio/io_service_scoped_ptr.hpp
+	include/awl/mainloop/asio/io_service_unique_ptr.hpp
 	include/awl/mainloop/asio/original_io_service.hpp
 	include/awl/mainloop/dispatcher.hpp
 	include/awl/mainloop/dispatcher_callback.hpp
 	include/awl/mainloop/dispatcher_fwd.hpp
-	include/awl/mainloop/dispatcher_ptr.hpp
+	include/awl/mainloop/dispatcher_scoped_ptr.hpp
+	include/awl/mainloop/dispatcher_unique_ptr.hpp
 	include/awl/mainloop/io_service.hpp
 	include/awl/mainloop/io_service_fwd.hpp
-	include/awl/mainloop/io_service_ptr.hpp
+	include/awl/mainloop/io_service_unique_ptr.hpp
 	include/awl/mainloop/nullary_callback.hpp
 	include/awl/symbol.hpp
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
 	include/awl/system/event/processor.hpp
 	include/awl/system/event/processor_fwd.hpp
-	include/awl/system/event/processor_ptr.hpp
+	include/awl/system/event/processor_scoped_ptr.hpp
+	include/awl/system/event/processor_unique_ptr.hpp
 	include/awl/system/object.hpp
 	include/awl/system/object_fwd.hpp
-	include/awl/system/object_ptr.hpp
+	include/awl/system/object_scoped_ptr.hpp
+	include/awl/system/object_unique_ptr.hpp
 	include/awl/window/bit_depth.hpp
 	include/awl/window/depth_buffer.hpp
 	include/awl/window/dim.hpp
 	include/awl/window/event/create_processor.hpp
 	include/awl/window/event/processor.hpp
 	include/awl/window/event/processor_fwd.hpp
-	include/awl/window/event/processor_ptr.hpp
+	include/awl/window/event/processor_scoped_ptr.hpp
+	include/awl/window/event/processor_unique_ptr.hpp
 	include/awl/window/event/resize.hpp
 	include/awl/window/event/resize_callback.hpp
 	include/awl/window/event/resize_function.hpp
 	include/awl/window/event/resize_fwd.hpp
 	include/awl/window/instance.hpp
 	include/awl/window/instance_fwd.hpp
-	include/awl/window/instance_ptr.hpp
+	include/awl/window/instance_scoped_ptr.hpp
+	include/awl/window/instance_unique_ptr.hpp
 	include/awl/window/optional_dim.hpp
 	include/awl/window/optional_position.hpp
 	include/awl/window/parameters.hpp
@@ -282,8 +288,6 @@ SET(
 	include/awl/backends/x11/asio/set_fd_flags.hpp
 	include/awl/backends/x11/colormap.hpp
 	include/awl/backends/x11/colormap_fwd.hpp
-	include/awl/backends/x11/colormap_ptr.hpp
-	include/awl/backends/x11/const_visual_ptr.hpp
 	include/awl/backends/x11/deleter.hpp
 	include/awl/backends/x11/display.hpp
 	include/awl/backends/x11/display_fd.hpp
@@ -301,20 +305,18 @@ SET(
 	include/awl/backends/x11/system/event/original_processor.hpp
 	include/awl/backends/x11/system/event/processor.hpp
 	include/awl/backends/x11/system/event/processor_fwd.hpp
-	include/awl/backends/x11/system/event/processor_ptr.hpp
 	include/awl/backends/x11/system/event/type.hpp
 	include/awl/backends/x11/system/object.hpp
 	include/awl/backends/x11/system/object_fwd.hpp
-	include/awl/backends/x11/system/object_ptr.hpp
 	include/awl/backends/x11/system/original_object.hpp
 	include/awl/backends/x11/to_x11_bool.hpp
 	include/awl/backends/x11/visual.hpp
 	include/awl/backends/x11/visual_fwd.hpp
-	include/awl/backends/x11/visual_ptr.hpp
+	include/awl/backends/x11/visual_scoped_ptr.hpp
+	include/awl/backends/x11/visual_unique_ptr.hpp
 	include/awl/backends/x11/window/attributes.hpp
 	include/awl/backends/x11/window/class_hint.hpp
 	include/awl/backends/x11/window/class_hint_fwd.hpp
-	include/awl/backends/x11/window/class_hint_ptr.hpp
 	include/awl/backends/x11/window/common_instance.hpp
 	include/awl/backends/x11/window/create.hpp
 	include/awl/backends/x11/window/event/callback.hpp
@@ -327,13 +329,12 @@ SET(
 	include/awl/backends/x11/window/event/poll.hpp
 	include/awl/backends/x11/window/event/processor.hpp
 	include/awl/backends/x11/window/event/processor_fwd.hpp
-	include/awl/backends/x11/window/event/processor_ptr.hpp
 	include/awl/backends/x11/window/event/to_mask.hpp
 	include/awl/backends/x11/window/hints.hpp
 	include/awl/backends/x11/window/holder.hpp
 	include/awl/backends/x11/window/instance.hpp
 	include/awl/backends/x11/window/instance_fwd.hpp
-	include/awl/backends/x11/window/instance_ptr.hpp
+	include/awl/backends/x11/window/instance_unique_ptr.hpp
 	include/awl/backends/x11/window/original_class_hint.hpp
 	include/awl/backends/x11/window/original_instance.hpp
 	include/awl/backends/x11/window/root.hpp

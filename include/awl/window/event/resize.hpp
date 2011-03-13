@@ -3,7 +3,7 @@
 
 #include <awl/window/event/resize_fwd.hpp>
 #include <awl/window/dim.hpp>
-#include <awl/window/instance_ptr.hpp>
+#include <awl/window/instance_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
 
@@ -19,19 +19,19 @@ class resize
 public:
 	AWL_SYMBOL
 	resize(
-		window::instance_ptr,
+		window::instance &,
 		window::dim const &
 	);
 
 	AWL_SYMBOL
-	window::instance_ptr const
+	window::instance &
 	instance() const;
 
 	AWL_SYMBOL
 	window::dim const &
 	dim() const;
 private:
-	window::instance_ptr instance_;
+	window::instance &instance_;
 
 	window::dim dim_;
 };

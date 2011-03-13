@@ -33,7 +33,7 @@ public:
 	~original_object();
 	
 	AWL_SYMBOL
-	awl::window::instance_ptr const
+	awl::window::instance_unique_ptr
 	create(
 		awl::window::parameters const &
 	);

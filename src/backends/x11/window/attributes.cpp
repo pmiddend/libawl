@@ -1,19 +1,21 @@
 #include <awl/backends/x11/window/attributes.hpp>
+#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/display.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+#include <X11/Xlib.h>
 
 XWindowAttributes const
 awl::backends::x11::window::attributes(
-	Display *const _display,
-	Window const _window
+	x11::window::instance &_window
 )
 {
 	XWindowAttributes ret;
 
 	if(
 		::XGetWindowAttributes(
-			_display,
-			_window,
+			_window.display().get(),
+			_window.get(),
 			&ret
 		)
 		!= 1

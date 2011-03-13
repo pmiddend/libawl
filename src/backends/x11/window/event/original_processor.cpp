@@ -16,7 +16,7 @@
 #include <X11/Xlib.h>
 
 awl::backends::x11::window::event::original_processor::original_processor(
-	x11::window::instance_ptr const _window
+	x11::window::instance &_window
 )
 :
 	window_(_window),
@@ -61,7 +61,7 @@ awl::backends::x11::window::event::original_processor::dispatch()
 		if(
 			::XFilterEvent(
 				&new_event->get(),
-				window_->get()
+				window_.get()
 			)
 			== True
 		)
@@ -90,7 +90,7 @@ awl::backends::x11::window::event::original_processor::resize_callback(
 		);
 }
 
-awl::window::instance_ptr const
+awl::window::instance &
 awl::backends::x11::window::event::original_processor::window() const
 {
 	return window_;

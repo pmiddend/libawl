@@ -1,22 +1,23 @@
 #include <awl/backends/x11/window/visual.hpp>
 #include <awl/backends/x11/window/attributes.hpp>
+#include <awl/backends/x11/window/instance.hpp>
 #include <awl/backends/x11/visual.hpp>
-#include <fcppt/make_shared_ptr.hpp>
-#include <X11/Xlib.h>
+#include <fcppt/tr1/functional.hpp>
+#include <fcppt/make_unique_ptr.hpp>
 
-awl::backends::x11::visual_ptr const
+awl::backends::x11::visual_unique_ptr
 awl::backends::x11::window::visual(
-	Display *const _display,
-	Window const _window
+	awl::backends::x11::window::instance &_window
 )
 {
 	return
-		fcppt::make_shared_ptr<
+		fcppt::make_unique_ptr<
 			x11::visual
 		>(
-			_display,
+			std::tr1::ref(
+				_window.display()
+			),
 			window::attributes(
-				_display,
 				_window
 			).visual
 		);

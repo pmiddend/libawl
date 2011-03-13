@@ -5,12 +5,13 @@
 #include <awl/exception.hpp>
 #include <X11/Xlib.h>
 #include <GL/glx.h>
+#include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/text.hpp>
 
 awl::backends::x11::visual_unique_ptr
 awl::backends::x11::glx::create_visual(
-	x11::display_ptr const _display,
+	x11::display &_display,
 	x11::screen const _screen,
 	int const *_param
 )
@@ -23,7 +24,7 @@ awl::backends::x11::glx::create_visual(
 
 	XVisualInfo *const info(
 		::glXChooseVisual(
-			_display->get(),
+			_display.get(),
 			_screen.get(),
 			const_cast<
 				int *
@@ -41,7 +42,7 @@ awl::backends::x11::glx::create_visual(
 		);
 
 	FCPPT_LOG_DEBUG(
-		log(),
+		x11::log(),
 		fcppt::log::_
 			<< FCPPT_TEXT("Got a visual info from glXChooseVisual")
 	);

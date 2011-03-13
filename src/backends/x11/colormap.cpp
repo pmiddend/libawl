@@ -8,7 +8,7 @@
 awl::backends::x11::colormap::colormap(
 	x11::display &_display,
 	x11::screen const _screen,
-	x11::visual &_visual
+	x11::visual const &_visual
 )
 :
 	display_(
@@ -44,6 +44,12 @@ awl::backends::x11::colormap::~colormap()
 
 Colormap &
 awl::backends::x11::colormap::get()
+{
+	return colormap_;
+}
+
+Colormap const &
+awl::backends::x11::colormap::get() const
 {
 	return colormap_;
 }

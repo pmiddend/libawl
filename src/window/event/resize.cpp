@@ -1,7 +1,7 @@
 #include <awl/window/event/resize.hpp>
 
 awl::window::event::resize::resize(
-	window::instance_ptr const _instance,
+	window::instance &_instance,
 	window::dim const &_dim
 )
 :
@@ -10,7 +10,7 @@ awl::window::event::resize::resize(
 {
 }
 
-awl::window::instance_ptr const
+awl::window::instance &
 awl::window::event::resize::instance() const
 {
 	return instance_;

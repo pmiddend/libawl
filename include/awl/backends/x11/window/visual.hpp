@@ -1,9 +1,9 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_VISUAL_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_VISUAL_HPP_INCLUDED
 
-#include <awl/backends/x11/visual_ptr.hpp>
+#include <awl/backends/x11/window/instance_fwd.hpp>
+#include <awl/backends/x11/visual_unique_ptr.hpp>
 #include <awl/symbol.hpp>
-#include <X11/Xlib.h>
 
 namespace awl
 {
@@ -15,10 +15,9 @@ namespace window
 {
 
 AWL_SYMBOL
-x11::visual_ptr const
+x11::visual_unique_ptr
 visual(
-	Display *,
-	Window
+	x11::window::instance &
 );
 
 }

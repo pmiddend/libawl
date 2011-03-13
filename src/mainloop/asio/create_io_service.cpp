@@ -1,13 +1,15 @@
 #include <awl/mainloop/asio/create_io_service.hpp>
-#include <awl/mainloop/asio/io_service_ptr.hpp>
+#include <awl/mainloop/asio/io_service_unique_ptr.hpp>
 #include <awl/mainloop/asio/original_io_service.hpp>
-#include <fcppt/make_shared_ptr.hpp>
+#include <fcppt/make_unique_ptr.hpp>
 
-awl::mainloop::asio::io_service_ptr const
+awl::mainloop::asio::io_service_unique_ptr
 awl::mainloop::asio::create_io_service()
 {
 	return
-		fcppt::make_shared_ptr<
-			mainloop::asio::original_io_service
-		>();
+		awl::mainloop::asio::io_service_unique_ptr(
+			fcppt::make_unique_ptr<
+				mainloop::asio::original_io_service
+			>()
+		);
 }

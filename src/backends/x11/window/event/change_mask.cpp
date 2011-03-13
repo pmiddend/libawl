@@ -5,7 +5,7 @@
 
 void
 awl::backends::x11::window::event::change_mask(
-	x11::window::instance_ptr const _window,
+	x11::window::instance &_window,
 	long const _mask
 )
 {
@@ -15,8 +15,8 @@ awl::backends::x11::window::event::change_mask(
 
 	// always returns 1
 	::XChangeWindowAttributes(
-		_window->display()->get(),
-		_window->get(),
+		_window.display().get(),
+		_window.get(),
 		CWEventMask,
 		&swa
 	);

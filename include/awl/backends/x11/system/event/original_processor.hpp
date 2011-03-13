@@ -6,7 +6,7 @@
 #include <awl/backends/x11/system/event/opcode.hpp>
 #include <awl/backends/x11/system/event/processor.hpp>
 #include <awl/backends/x11/system/event/type.hpp>
-#include <awl/backends/x11/system/object_ptr.hpp>
+#include <awl/backends/x11/system/object_fwd.hpp>
 #include <awl/system/event/processor.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -36,7 +36,7 @@ class AWL_CLASS_SYMBOL original_processor
 public:
 	AWL_SYMBOL
 	explicit original_processor(
-		x11::system::object_ptr
+		x11::system::object &
 	);
 
 	AWL_SYMBOL
@@ -53,7 +53,7 @@ public:
 		x11::system::event::callback const &
 	);
 private:
-	x11::system::object_ptr const system_;
+	x11::system::object &system_;
 
 	typedef fcppt::signal::object<
 		event::function

@@ -1,6 +1,8 @@
 #include <awl/system/create.hpp>
 #include <awl/system/object.hpp>
+#include <awl/system/object_scoped_ptr.hpp>
 #include <awl/window/instance.hpp>
+#include <awl/window/instance_scoped_ptr.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/chrono/seconds.hpp>
 #include <fcppt/io/cerr.hpp>
@@ -12,11 +14,11 @@
 int main()
 try
 {
-	awl::system::object_ptr const window_system(
+	awl::system::object_scoped_ptr const window_system(
 		awl::system::create()
 	);
 
-	awl::window::instance_ptr const wind(
+	awl::window::instance_scoped_ptr const wind(
 		window_system->create(
 			awl::window::parameters()
 			.class_name(

@@ -5,7 +5,7 @@
 #include <X11/Xlib.h>
 
 awl::backends::x11::system::event::original_processor::original_processor(
-	x11::system::object_ptr const _system
+	x11::system::object &_system
 )
 :
 	system_(_system)
@@ -25,7 +25,7 @@ awl::backends::x11::system::event::original_processor::dispatch()
 
 	while(
 		::XCheckTypedEvent(
-			system_->display()->get(),
+			system_.display().get(),
 			GenericEvent,
 			&xev
 		)

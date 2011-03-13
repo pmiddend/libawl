@@ -1,7 +1,7 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_HOLDER_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_HOLDER_HPP_INCLUDED
 
-#include <awl/backends/x11/display_ptr.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <X11/Xlib.h>
@@ -23,7 +23,7 @@ class holder
 public:
 	AWL_SYMBOL
 	explicit holder(
-		x11::display_ptr,
+		x11::display &,
 		Window
 	);
 
@@ -33,7 +33,7 @@ public:
 	Window
 	get() const;
 private:
-	x11::display_ptr const display_;
+	x11::display &display_;
 
 	Window const window_;
 };

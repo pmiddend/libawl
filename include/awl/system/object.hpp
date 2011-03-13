@@ -2,7 +2,7 @@
 #define AWL_SYSTEM_OBJECT_HPP_INCLUDED
 
 #include <awl/system/object_fwd.hpp>
-#include <awl/window/instance_ptr.hpp>
+#include <awl/window/instance_unique_ptr.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -23,7 +23,7 @@ protected:
 	explicit
 	object();
 public:
-	virtual window::instance_ptr const
+	virtual window::instance_unique_ptr
 	create(
 		window::parameters const &
 	) = 0;

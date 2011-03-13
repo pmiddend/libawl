@@ -3,9 +3,10 @@
 
 #include <awl/mainloop/asio/io_service_fwd.hpp>
 #include <awl/mainloop/dispatcher_callback.hpp>
+#include <awl/mainloop/dispatcher_unique_ptr.hpp>
 #include <awl/mainloop/io_service.hpp>
 #include <awl/mainloop/nullary_callback.hpp>
-#include <awl/system/object_ptr.hpp>
+#include <awl/system/object_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <boost/asio/io_service.hpp>
@@ -56,9 +57,9 @@ public:
 		mainloop::nullary_callback const &
 	);
 
-	dispatcher_ptr const
+	mainloop::dispatcher_unique_ptr
 	create_dispatcher(
-		system::object_ptr,
+		system::object &,
 		mainloop::dispatcher_callback const &
 	);
 };

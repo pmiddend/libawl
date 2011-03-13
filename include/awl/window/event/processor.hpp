@@ -3,7 +3,7 @@
 
 #include <awl/window/event/processor_fwd.hpp>
 #include <awl/window/event/resize_callback.hpp>
-#include <awl/window/instance_ptr.hpp>
+#include <awl/window/instance_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
@@ -33,7 +33,7 @@ public:
 		event::resize_callback const &
 	) = 0;
 
-	virtual awl::window::instance_ptr const
+	virtual awl::window::instance &
 	window() const = 0;
 
 	AWL_SYMBOL

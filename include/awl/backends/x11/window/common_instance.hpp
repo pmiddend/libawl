@@ -2,7 +2,8 @@
 #define AWL_BACKENDS_X11_WINDOW_COMMON_INSTANCE_HPP_INCLUDED
 
 #include <awl/backends/x11/window/instance.hpp>
-#include <awl/backends/x11/window/class_hint_ptr.hpp>
+#include <awl/backends/x11/window/class_hint_fwd.hpp>
+#include <awl/backends/x11/window/wrapped_class_hint.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -40,8 +41,10 @@ public:
 	size() const;
 
 	AWL_SYMBOL
-	x11::window::class_hint_ptr const
+	x11::window::class_hint const &
 	class_hint() const;
+private:
+	x11::window::wrapped_class_hint const class_hint_;	
 };
 
 }

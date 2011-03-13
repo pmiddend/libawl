@@ -7,34 +7,41 @@
 #include <awl/backends/windows/system/event/original_processor.hpp>
 #include <awl/backends/windows/system/object.hpp>
 #endif
-#include <fcppt/make_shared_ptr.hpp>
-#include <fcppt/polymorphic_pointer_cast.hpp>
+#include <fcppt/tr1/functional.hpp>
+#include <fcppt/make_unique_ptr.hpp>
 
-awl::system::event::processor_ptr const
+awl::system::event::processor_unique_ptr
 awl::system::event::create_processor(
-	awl::system::object_ptr const _system
+	awl::system::object &_system
 )
 {
 	return
+		awl::system::event::processor_unique_ptr(
 #if defined(AWL_X11_BACKEND)
-		fcppt::make_shared_ptr<
-			backends::x11::system::event::original_processor
-		>(
-			fcppt::polymorphic_pointer_cast<
-				backends::x11::system::object
+			fcppt::make_unique_ptr<
+				backends::x11::system::event::original_processor
 			>(
-				_system
+				std::tr1::ref(
+					dynamic_cast<
+						backends::x11::system::object &
+					>(
+						_system
+					)
+				)
 			)
-		);
 #elif defined(AWL_WINDOWS_BACKEND)
-		fcppt::make_shared_ptr<
-			backends::windows::system::event::original_processor
-		>(
-			fcppt::polymorphic_pointer_cast<
-				backends::windows::system::object
+			fcppt::make_unique_ptr<
+				backends::windows::system::event::original_processor
 			>(
-				_system
+				std::tr1::ref(
+					dynamic_cast<
+						backends::windows::system::object &
+					>
+					(
+						_system
+					)
+				)
 			)
-		);
 #endif
+		);
 }

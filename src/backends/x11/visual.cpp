@@ -1,12 +1,13 @@
 #include <awl/backends/x11/visual.hpp>
 #include <awl/backends/x11/log.hpp>
+#include <awl/backends/x11/display.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/assert.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 
 awl::backends::x11::visual::visual(
-	Display *const display,
+	x11::display &_display,
 	Visual * const _ptr,
 	XVisualInfo *const _info
 )
@@ -58,7 +59,7 @@ awl::backends::x11::visual::visual(
 
 		info_ = 
 			::XGetVisualInfo(
-				display,
+				_display.get(),
 				VisualIDMask | 
 				VisualRedMaskMask | 
 				VisualGreenMaskMask | 
@@ -75,7 +76,7 @@ awl::backends::x11::visual::visual(
 			);
 
 		FCPPT_LOG_DEBUG(
-			log(),
+			x11::log(),
 			fcppt::log::_ 
 				<< FCPPT_TEXT("Found ") 
 				<< number_of_items 

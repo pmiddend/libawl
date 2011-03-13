@@ -1,9 +1,10 @@
 #include <awl/backends/x11/window/wrapped_instance.hpp>
 #include <awl/backends/x11/window/visual.hpp>
 #include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/visual.hpp>
 
 awl::backends::x11::window::wrapped_instance::wrapped_instance(
-	x11::display_ptr const _display,
+	x11::display & _display,
 	x11::screen const _screen,
 	Window const _window
 )
@@ -13,8 +14,7 @@ awl::backends::x11::window::wrapped_instance::wrapped_instance(
 	window_(_window),
 	visual_(
 		window::visual(
-			display_->get(),
-			window_
+			*this
 		)
 	)
 {
@@ -24,7 +24,7 @@ awl::backends::x11::window::wrapped_instance::~wrapped_instance()
 {
 }
 
-awl::backends::x11::display_ptr const
+awl::backends::x11::display &
 awl::backends::x11::window::wrapped_instance::display() const
 {
 	return display_;
@@ -36,10 +36,10 @@ awl::backends::x11::window::wrapped_instance::screen() const
 	return screen_;
 }
 
-awl::backends::x11::visual_ptr const
+awl::backends::x11::visual const &
 awl::backends::x11::window::wrapped_instance::visual() const
 {
-	return visual_;
+	return *visual_;
 }
 
 Window

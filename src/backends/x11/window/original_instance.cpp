@@ -9,13 +9,14 @@
 #include <awl/backends/x11/visual.hpp>
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/window/parameters.hpp>
-#include <fcppt/make_shared_ptr.hpp>
+#include <fcppt/tr1/functional.hpp>
+#include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/to_std_string.hpp>
 #include <X11/Xlib.h>
 
 awl::backends::x11::window::original_instance::original_instance(
-	x11::display_ptr const _display,
+	x11::display &_display,
 	awl::window::parameters const &_params
 )
 :
@@ -24,14 +25,16 @@ awl::backends::x11::window::original_instance::original_instance(
 	),
 	screen_(
 		::XDefaultScreen(
-			display_->get()
+			display_.get()
 		)
 	),
 	visual_(
 		_params.has_opengl()
 		?
 			glx::create_visual(
-				display_,
+				std::tr1::ref(
+					display_
+				),
 				screen_,
 				glx::create_visual_attributes(
 					_params.bit_depth(),
@@ -40,24 +43,22 @@ awl::backends::x11::window::original_instance::original_instance(
 				).data()
 			)
 		:
-			fcppt::make_shared_ptr<
+			fcppt::make_unique_ptr<
 				x11::visual
 			>(
-				display_->get(),
+				std::tr1::ref(
+					display_
+				),
 				::XDefaultVisual(
-					display_->get(),
+					display_.get(),
 					screen_.get()
 				)
 			)
 	),
 	colormap_(
-		fcppt::make_shared_ptr<
-			x11::colormap
-		>(
-			display_,
-			screen_,
-			visual_
-		)
+		display_,
+		screen_,
+		*visual_
 	),
 	hints_(),
 	size_hints_(
@@ -77,34 +78,34 @@ awl::backends::x11::window::original_instance::original_instance(
 			display_,
 			screen_,
 			colormap_,
-			visual_
+			*visual_
 		)
 	)
 {
 	// always returns 1
 	::XSetWMHints(
-		display_->get(),
+		display_.get(),
 		window_.get(),
 		hints_.get()
 	);
 
 	// always returns 1
 	::XSetWMNormalHints(
-		display_->get(),
+		display_.get(),
 		window_.get(),
 		size_hints_.get()
 	);
 
 	// always returns 1
 	::XSetClassHint(
-		display_->get(),
+		display_.get(),
 		window_.get(),
 		class_hint_.get()
 	);
 
 	// always returns 1
 	::XStoreName(
-		display_->get(),
+		display_.get(),
 		window_.get(),
 		fcppt::to_std_string(
 			_params.title()
@@ -127,7 +128,7 @@ awl::backends::x11::window::original_instance::~original_instance()
 {
 }
 
-awl::backends::x11::display_ptr const
+awl::backends::x11::display &
 awl::backends::x11::window::original_instance::display() const
 {
 	return display_;
@@ -139,10 +140,10 @@ awl::backends::x11::window::original_instance::screen() const
 	return screen_;
 }
 
-awl::backends::x11::visual_ptr const
+awl::backends::x11::visual const &
 awl::backends::x11::window::original_instance::visual() const
 {
-	return visual_;
+	return *visual_;
 }
 
 Window

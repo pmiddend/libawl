@@ -11,7 +11,7 @@
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
-#include <awl/backends/x11/visual.hpp>
+#include <awl/backends/x11/visual_scoped_ptr.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -52,7 +52,7 @@ public:
 	screen() const;
 
 	AWL_SYMBOL
-	x11::visual &
+	x11::visual const &
 	visual() const;
 
 	AWL_SYMBOL
@@ -63,7 +63,7 @@ private:
 
 	x11::screen const screen_;
 	
-	x11::visual const visual_;
+	x11::visual_scoped_ptr const visual_;
 
 	x11::colormap const colormap_;
 

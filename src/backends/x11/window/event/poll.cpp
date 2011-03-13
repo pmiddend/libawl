@@ -7,7 +7,7 @@
 
 awl::backends::x11::window::event::optional const
 awl::backends::x11::window::event::poll(
-	x11::window::instance_ptr const _window,
+	x11::window::instance &_window,
 	long const _event_mask
 )
 {
@@ -15,8 +15,8 @@ awl::backends::x11::window::event::poll(
 
 	return
 		::XCheckWindowEvent(
-			_window->display()->get(),
-			_window->get(),
+			_window.display().get(),
+			_window.get(),
 			_event_mask,
 			&ret
 		)

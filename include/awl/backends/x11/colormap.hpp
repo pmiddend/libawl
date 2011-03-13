@@ -26,7 +26,7 @@ public:
 	colormap(
 		x11::display &,
 		x11::screen,
-		x11::visual &
+		x11::visual const &
 	);
 
 	AWL_SYMBOL
@@ -35,6 +35,10 @@ public:
 	AWL_SYMBOL
 	Colormap &
 	get();
+
+	AWL_SYMBOL
+	Colormap const &
+	get() const;
 private:
 	x11::display &display_;
 

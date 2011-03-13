@@ -3,11 +3,16 @@
 #include <awl/backends/x11/display.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
-#include <fcppt/make_shared_ptr.hpp>
 #include <fcppt/text.hpp>
 #include <X11/Xlib.h>
 
 awl::backends::x11::window::common_instance::common_instance()
+:
+	awl::backends::x11::window::instance(),
+	class_hint_(
+		this->display().get(),
+		this->get()
+	)
 {
 }
 
@@ -20,11 +25,11 @@ awl::backends::x11::window::common_instance::show()
 {
 	// always returns 1
 	::XMapWindow(
-		this->display()->get(),
+		this->display().get(),
 		this->get()
 	);
 
-	this->display()->sync(
+	this->display().sync(
 		false
 	);
 }
@@ -46,7 +51,7 @@ awl::backends::x11::window::common_instance::size() const
 
 	if(
 		::XGetGeometry(
-			display()->get(),
+			display().get(),
 			get(),
 			&root_return,
 			&x_return,
@@ -76,14 +81,8 @@ awl::backends::x11::window::common_instance::size() const
 		);
 }
 
-awl::backends::x11::window::class_hint_ptr const
+awl::backends::x11::window::class_hint const &
 awl::backends::x11::window::common_instance::class_hint() const
 {
-	return
-		fcppt::make_shared_ptr<
-			x11::window::wrapped_class_hint
-		>(
-			this->display()->get(),
-			this->get()
-		);
+	return class_hint_;
 }

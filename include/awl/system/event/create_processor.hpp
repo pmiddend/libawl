@@ -1,8 +1,8 @@
 #ifndef AWL_SYSTEM_EVENT_CREATE_PROCESSOR_HPP_INCLUDED
 #define AWL_SYSTEM_EVENT_CREATE_PROCESSOR_HPP_INCLUDED
 
-#include <awl/system/event/processor_ptr.hpp>
-#include <awl/system/object_ptr.hpp>
+#include <awl/system/event/processor_unique_ptr.hpp>
+#include <awl/system/object_fwd.hpp>
 #include <awl/symbol.hpp>
 
 namespace awl
@@ -13,9 +13,9 @@ namespace event
 {
 
 AWL_SYMBOL
-event::processor_ptr const
+event::processor_unique_ptr
 create_processor(
-	awl::system::object_ptr
+	awl::system::object &
 );
 
 }

@@ -4,11 +4,11 @@
 #include <awl/backends/x11/window/event/processor.hpp>
 #include <awl/backends/x11/window/event/callback.hpp>
 #include <awl/backends/x11/window/event/function.hpp>
-#include <awl/backends/x11/window/instance_ptr.hpp>
+#include <awl/backends/x11/window/instance_fwd.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/resize_callback.hpp>
 #include <awl/window/event/resize_function.hpp>
-#include <awl/window/instance_ptr.hpp>
+#include <awl/window/instance_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
@@ -40,7 +40,7 @@ class AWL_CLASS_SYMBOL original_processor
 public:
 	AWL_SYMBOL
 	explicit original_processor(
-		x11::window::instance_ptr
+		x11::window::instance &
 	);
 
 	AWL_SYMBOL
@@ -55,7 +55,7 @@ public:
 		awl::window::event::resize_callback const &
 	);
 
-	awl::window::instance_ptr const
+	awl::window::instance &
 	window() const;
 
 	AWL_SYMBOL
@@ -75,7 +75,7 @@ private:
 		x11::window::event::object const &
 	);
 
-	x11::window::instance_ptr const window_;
+	x11::window::instance &window_;
 
 	typedef fcppt::signal::object<
 		x11::window::event::function,
