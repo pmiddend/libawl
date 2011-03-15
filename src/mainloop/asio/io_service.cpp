@@ -2,8 +2,8 @@
 #include <awl/system/object.hpp>
 #include <awl/config.hpp>
 #include <fcppt/function/object.hpp>
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
+#include <fcppt/ref.hpp>
 
 #if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/system/object.hpp>
@@ -72,10 +72,10 @@ awl::mainloop::asio::io_service::create_dispatcher(
 			fcppt::make_unique_ptr<
 				awl::backends::x11::asio::dispatcher
 			>(
-				std::tr1::ref(
+				fcppt::ref(
 					this->get()
 				),
-				std::tr1::ref(
+				fcppt::ref(
 					dynamic_cast<
 						awl::backends::x11::system::object &
 					>(
@@ -88,7 +88,7 @@ awl::mainloop::asio::io_service::create_dispatcher(
 			fcppt::make_unique_ptr<
 				awl::backends::windows::asio::dispatcher
 			>(
-				std::tr1::ref(
+				fcppt::ref(
 					this->get()
 				),
 				_callback

@@ -9,9 +9,9 @@
 #include <awl/backends/x11/visual.hpp>
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/window/parameters.hpp>
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
+#include <fcppt/ref.hpp>
 #include <fcppt/to_std_string.hpp>
 #include <X11/Xlib.h>
 
@@ -32,7 +32,7 @@ awl::backends::x11::window::original_instance::original_instance(
 		_params.has_opengl()
 		?
 			glx::create_visual(
-				std::tr1::ref(
+				fcppt::ref(
 					display_
 				),
 				screen_,
@@ -46,7 +46,7 @@ awl::backends::x11::window::original_instance::original_instance(
 			fcppt::make_unique_ptr<
 				x11::visual
 			>(
-				std::tr1::ref(
+				fcppt::ref(
 					display_
 				),
 				::XDefaultVisual(

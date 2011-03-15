@@ -3,6 +3,7 @@
 #include <awl/backends/x11/display.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
+#include <fcppt/ref.hpp>
 #include <X11/Xlib.h>
 
 awl::backends::x11::asio::dispatcher::dispatcher(	
@@ -17,10 +18,10 @@ awl::backends::x11::asio::dispatcher::dispatcher(
 		fcppt::make_unique_ptr<
 			x11::asio::fd_wrapper
 		>(
-			std::tr1::ref(
+			fcppt::ref(
 				_io_service
 			),
-			std::tr1::ref(
+			fcppt::ref(
 				_display
 			)
 		)

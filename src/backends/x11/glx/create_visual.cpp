@@ -5,8 +5,8 @@
 #include <awl/exception.hpp>
 #include <X11/Xlib.h>
 #include <GL/glx.h>
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
+#include <fcppt/ref.hpp>
 #include <fcppt/text.hpp>
 
 awl::backends::x11::visual_unique_ptr
@@ -51,7 +51,7 @@ awl::backends::x11::glx::create_visual(
 		fcppt::make_unique_ptr<
 			x11::visual
 		>(
-			std::tr1::ref(
+			fcppt::ref(
 				_display
 			),
 			info->visual,

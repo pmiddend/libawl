@@ -1,8 +1,8 @@
 #include <awl/backends/x11/window/root.hpp>
 #include <awl/backends/x11/window/wrapped_instance.hpp>
 #include <awl/backends/x11/display.hpp>
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
+#include <fcppt/ref.hpp>
 #include <X11/Xlib.h>
 
 awl::backends::x11::window::instance_unique_ptr
@@ -16,7 +16,7 @@ awl::backends::x11::window::root(
 			fcppt::make_unique_ptr<
 				awl::backends::x11::window::wrapped_instance
 			>(
-				std::tr1::ref(
+				fcppt::ref(
 					_display
 				),
 				_screen,

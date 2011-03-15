@@ -6,6 +6,7 @@
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
+#include <fcppt/ref.hpp>
 
 awl::backends::windows::system::original_object::original_object()
 :
@@ -51,7 +52,7 @@ awl::backends::windows::system::original_object::create(
 				awl::backends::windows::window::original_instance
 			>(
 				_param,
-				std::tr1::ref(
+				fcppt::ref(
 					wndclass_it->second->wndclass()
 				),
 				std::tr1::bind(
