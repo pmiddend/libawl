@@ -34,6 +34,10 @@ IF (CMAKE_COMPILER_IS_GNUCXX OR COMPILER_IS_CLANGPP)
 		"-Wsign-promo -Wstrict-aliasing=1 -Wold-style-cast"
 	)
 
+	IF (CMAKE_COMPILER_IS_GNUCXX)
+		ADD_DEFINITIONS ("-Wsign-conversion")
+	ENDIF()
+
 	ADD_DEFINITIONS(-fvisibility=hidden)
 
 	SET (CMAKE_CXX_FLAGS_RELEASE "-O3 -fomit-frame-pointer -DNDEBUG")
