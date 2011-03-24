@@ -2,57 +2,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 PROJECT (libawl)
 
-IF(${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
-	message(FATAL_ERROR "In-source builds are not permitted. Make a separate folder for building:\nmkdir build; cd build; cmake ..\nBefore that, remove the files that cmake just created:\nrm -rf CMakeCache.txt CMakeFiles")
-ENDIF()
-
 SET(EXTRA_CMAKE_MODULE_PATH "" CACHE PATH "Extra paths to search for cmake modules")
 
 SET (CMAKE_MODULE_PATH "${EXTRA_CMAKE_MODULE_PATH};${CMAKE_SOURCE_DIR}/CMakeModules")
 
-INCLUDE (CheckCXXSourceRuns)
-
-CHECK_CXX_SOURCE_RUNS(
-	"#include <cstdlib>
-	int main()
-	{
-	#ifdef __clang__
-		return EXIT_SUCCESS;
-	#else
-		return EXIT_FAILURE;
-	#endif
-	}
-	"
-	COMPILER_IS_CLANGPP
-)
-
-IF (CMAKE_COMPILER_IS_GNUCXX OR COMPILER_IS_CLANGPP)
-	ADD_DEFINITIONS (
-		"-pedantic-errors -Wall -Wextra -Wconversion"
-		"-Wfloat-equal -Wredundant-decls -Winit-self"
-		"-Woverloaded-virtual -Wnon-virtual-dtor -Wshadow"
-		"-Wsign-promo -Wstrict-aliasing=1 -Wold-style-cast"
-	)
-
-	IF (CMAKE_COMPILER_IS_GNUCXX)
-		ADD_DEFINITIONS ("-Wsign-conversion")
-	ENDIF()
-
-	ADD_DEFINITIONS(-fvisibility=hidden)
-
-	SET (CMAKE_CXX_FLAGS_RELEASE "-O3 -fomit-frame-pointer -DNDEBUG")
-
-	# C++ 98 has no long long but boost insists on using it anyway
-	ADD_DEFINITIONS ("-Wno-long-long")
-ELSEIF (MSVC)
-	ADD_DEFINITIONS ("/W4 /wd4996 /EHa /D_BIND_TO_CURRENT_VCLIBS_VERSION=1")
-	#4996 - unsafe standard C++ functions
-ENDIF ()
+INCLUDE(FcpptCMakeUtils)
 
 INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/include)
-
-SET (EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
-SET (LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 
 # General options begin
 
@@ -63,8 +19,6 @@ OPTION(ENABLE_WINE "Use winelib if available" FALSE)
 # General options end
 
 # Boost begin
-SET (Boost_ADDITIONAL_VERSIONS "1.41" "1.41.0" "1.42" "1.42.0" "1.43" "1.43.0" "1.44" "1.44.0" "1.45" "1.45.0" "1.46" "1.46.0" "1.46.1")
-
 FIND_PACKAGE(
 	Boost 1.45.0 REQUIRED
 	system
@@ -188,10 +142,6 @@ SET(
 	include/awl/window/stencil_buffer.hpp
 	include/awl/window/vector.hpp
 )
-
-IF(UNIX)
-	SET(CMAKE_SHARED_LINKER_FLAGS -Wl,--no-undefined)
-ENDIF()
 
 # We can use either X11, winelib or plain windows
 IF(UNIX)
