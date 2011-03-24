@@ -1,3 +1,8 @@
+FIND_PACKAGE(
+	Fcppt
+	REQUIRED
+)
+
 FIND_PATH(
 	AWL_INCLUDE_DIRS
 	NAMES awl/config.hpp
