@@ -190,6 +190,8 @@ SET(
 	src/backends/x11/asio/get_fd_flags.cpp
 	src/backends/x11/asio/set_fd_flags.cpp
 	src/backends/x11/colormap.cpp
+	src/backends/x11/create_visual_info.cpp
+	src/backends/x11/default_visual.cpp
 	src/backends/x11/display.cpp
 	src/backends/x11/display_fd.cpp
 	src/backends/x11/free.cpp
@@ -231,6 +233,7 @@ SET(
 	src/backends/x11/window/visual.cpp
 	src/backends/x11/window/wrapped_class_hint.cpp
 	src/backends/x11/window/wrapped_instance.cpp
+	src/backends/x11/wrapped_visual.cpp
 )
 
 SET(
@@ -246,6 +249,8 @@ SET(
 	include/awl/backends/x11/asio/set_fd_flags.hpp
 	include/awl/backends/x11/colormap.hpp
 	include/awl/backends/x11/colormap_fwd.hpp
+	include/awl/backends/x11/create_visual_info.hpp
+	include/awl/backends/x11/default_visual.hpp
 	include/awl/backends/x11/deleter.hpp
 	include/awl/backends/x11/display.hpp
 	include/awl/backends/x11/display_fd.hpp
@@ -270,6 +275,8 @@ SET(
 	include/awl/backends/x11/to_x11_bool.hpp
 	include/awl/backends/x11/visual.hpp
 	include/awl/backends/x11/visual_fwd.hpp
+	include/awl/backends/x11/visual_info_scoped_ptr.hpp
+	include/awl/backends/x11/visual_info_unique_ptr.hpp
 	include/awl/backends/x11/visual_scoped_ptr.hpp
 	include/awl/backends/x11/visual_unique_ptr.hpp
 	include/awl/backends/x11/window/attributes.hpp
@@ -302,6 +309,7 @@ SET(
 	include/awl/backends/x11/window/visual.hpp
 	include/awl/backends/x11/window/wrapped_class_hint.hpp
 	include/awl/backends/x11/window/wrapped_instance.hpp
+	include/awl/backends/x11/wrapped_visual.hpp
 )
 
 SET(

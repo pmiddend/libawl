@@ -5,9 +5,10 @@
 #include <awl/backends/x11/window/root.hpp>
 #include <awl/backends/x11/window/transient_for_hint.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
+#include <awl/backends/x11/colormap.hpp>
+#include <awl/backends/x11/default_visual.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/visual.hpp>
-#include <awl/backends/x11/colormap.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
@@ -43,16 +44,9 @@ awl::backends::x11::window::original_instance::original_instance(
 				).data()
 			)
 		:
-			fcppt::make_unique_ptr<
-				x11::visual
-			>(
-				fcppt::ref(
-					display_
-				),
-				::XDefaultVisual(
-					display_.get(),
-					screen_.get()
-				)
+			x11::default_visual(
+				display_,
+				screen_
 			)
 	),
 	colormap_(

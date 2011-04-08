@@ -1,7 +1,8 @@
 #include "create_visual.hpp"
-#include <awl/backends/x11/log.hpp>
 #include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/visual.hpp>
+#include <awl/backends/x11/log.hpp>
+#include <awl/backends/x11/wrapped_visual.hpp>
+#include <awl/backends/x11/visual_info_unique_ptr.hpp>
 #include <awl/exception.hpp>
 #include <X11/Xlib.h>
 #include <GL/glx.h>
@@ -17,12 +18,12 @@ awl::backends::x11::glx::create_visual(
 )
 {
 	FCPPT_LOG_DEBUG(
-		log(),
+		x11::log(),
 		fcppt::log::_
 			<< FCPPT_TEXT("Creating a glx visual")
 	);
 
-	XVisualInfo *const info(
+	x11::visual_info_unique_ptr info(
 		::glXChooseVisual(
 			_display.get(),
 			_screen.get(),
@@ -47,14 +48,19 @@ awl::backends::x11::glx::create_visual(
 			<< FCPPT_TEXT("Got a visual info from glXChooseVisual")
 	);
 
+	// FIXME: why does this segfault?
 	return 
-		fcppt::make_unique_ptr<
-			x11::visual
-		>(
-			fcppt::ref(
-				_display
-			),
-			info->visual,
-			info
+		x11::visual_unique_ptr(
+			new x11::wrapped_visual(
+//			fcppt::make_unique_ptr<
+//				x11::wrapped_visual
+//			>(
+				fcppt::ref(
+					*info->visual
+				),
+				move(
+					info
+				)
+			)
 		);
 }

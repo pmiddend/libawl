@@ -63,9 +63,9 @@ awl::backends::x11::window::create(
 			),
 			// border_width
 			0,
-			_visual.info()->depth,
+			_visual.info().depth,
 			InputOutput,
-			_visual.get(),
+			&_visual.get(),
 			CWColormap | CWBorderPixel | CWEventMask,
 			&swa
 		);

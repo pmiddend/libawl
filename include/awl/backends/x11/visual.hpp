@@ -2,7 +2,6 @@
 #define AWL_BACKENDS_X11_VISUAL_HPP_INCLUDED
 
 #include <awl/backends/x11/visual_fwd.hpp>
-#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <X11/Xlib.h>
@@ -20,34 +19,18 @@ class visual
 	FCPPT_NONCOPYABLE(
 		visual
 	);
+protected:
+	AWL_SYMBOL
+	visual();
 public:
-	// We take an optional XVisualInfo here because sometimes we get a
-	// visual _and_ the corresponing info struct, which we must XFree
-	// afterwards. If no info structure is defined, this class uses a
-	// generic one.
 	AWL_SYMBOL
-	explicit
-	visual(
-		// We need the display for the info guessing
-		x11::display &,
-		Visual *,
-		XVisualInfo * = 0
-	);
+	virtual ~visual();
 
-	AWL_SYMBOL
-	Visual *
-	get() const;
+	virtual Visual &
+	get() const = 0;
 
-	AWL_SYMBOL
-	XVisualInfo *
-	info() const;
-
-	AWL_SYMBOL
-	~visual();
-private:
-	Visual *ptr_;
-
-	XVisualInfo *info_;
+	virtual XVisualInfo &
+	info() const = 0;
 };
 
 }
