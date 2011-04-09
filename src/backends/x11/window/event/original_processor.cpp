@@ -1,5 +1,6 @@
 #include <awl/backends/x11/window/event/original_processor.hpp>
 #include <awl/backends/x11/window/event/change_mask.hpp>
+#include <awl/backends/x11/window/event/filter.hpp>
 #include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
 #include <awl/backends/x11/window/instance.hpp>
@@ -59,11 +60,10 @@ awl::backends::x11::window::event::original_processor::dispatch()
 	)
 	{
 		if(
-			::XFilterEvent(
-				&new_event->get(),
-				window_.get()
+			event::filter(
+				*new_event,
+				window_
 			)
-			== True
 		)
 			continue;
 

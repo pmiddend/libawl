@@ -217,6 +217,7 @@ SET(
 	src/backends/x11/window/common_instance.cpp
 	src/backends/x11/window/create.cpp
 	src/backends/x11/window/event/change_mask.cpp
+	src/backends/x11/window/event/filter.cpp
 	src/backends/x11/window/event/object.cpp
 	src/backends/x11/window/event/original_processor.cpp
 	src/backends/x11/window/event/poll.cpp
@@ -286,6 +287,7 @@ SET(
 	include/awl/backends/x11/window/create.hpp
 	include/awl/backends/x11/window/event/callback.hpp
 	include/awl/backends/x11/window/event/change_mask.hpp
+	include/awl/backends/x11/window/event/filter.hpp
 	include/awl/backends/x11/window/event/function.hpp
 	include/awl/backends/x11/window/event/object.hpp
 	include/awl/backends/x11/window/event/object_fwd.hpp
