@@ -12,7 +12,7 @@ function update_main()
 	update_cmake \
 		"${cmakefile}" \
 		"${@:1}" \
-		|| die 
+		|| die
 
 	mv "${cmakefile}".new "${cmakefile}" || die
 }
