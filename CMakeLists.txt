@@ -565,17 +565,27 @@ FOREACH(
 	CUR_FILE
 	${AWL_INCLUDE_FILES}
 )
+	# Cut the filename
 	GET_FILENAME_COMPONENT(
 		REL_PATH
 		${CUR_FILE}
 		PATH
 	)
 
+	# Replace the leading include/
+	STRING(
+		REPLACE
+		"include/"
+		""
+		TRIMMED_PATH
+		"${REL_PATH}"
+	)
+
 	INSTALL(
 		FILES
 		${CMAKE_SOURCE_DIR}/${CUR_FILE}
 		DESTINATION
-		${INSTALL_INCLUDE_DIR}/${REL_PATH}
+		${INSTALL_INCLUDE_DIR}/${TRIMMED_PATH}
 	)
 ENDFOREACH()
 
