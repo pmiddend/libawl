@@ -11,14 +11,39 @@
 #	AWL_INCLUDEDIR    - Hint where the awl includes might be.
 #	AWL_LIBRARYDIR    - Hint where the awl libraries might be.
 
+if(
+	Awl_FIND_QUIETLY
+)
+	set(
+		AWL_FIND_OPTIONS
+		"QUIET"
+	)
+endif()
+
+if(
+	Awl_FIND_REQUIRED
+)
+	set(
+		AWL_FIND_OPTIONS
+		"REQUIRED"
+	)
+endif()
+
 find_package(
 	Boost
-	${Awl_FIND_REQUIRED}
+	1.45.0
+	${AWL_FIND_OPTIONS}
+	COMPONENTS
+	system thread
 )
 
 find_package(
 	Fcppt
-	${Awl_FIND_REQUIRED}
+	${AWL_FIND_OPTIONS}
+)
+
+unset(
+	AWL_FIND_OPTIONS
 )
 
 find_path(
@@ -39,12 +64,12 @@ include(
 
 set(
 	Awl_INCLUDE_DIRS
-	${Awl_INCLUDE_DIR};${Fcppt_INCLUDE_DIRS};${Boost_INCLUDE_DIRS}
+	"${Awl_INCLUDE_DIR};${Fcppt_INCLUDE_DIRS};${Boost_INCLUDE_DIRS}"
 )
 
 set(
 	Awl_LIBRARIES
-	${Awl_LIBRARY};${Fcppt_LIBRARIES}
+	"${Awl_LIBRARY};${Fcppt_LIBRARIES}"
 )
 
 find_package_Handle_standard_args(
