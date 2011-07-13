@@ -199,13 +199,6 @@ SET(
 	src/backends/x11/display.cpp
 	src/backends/x11/display_fd.cpp
 	src/backends/x11/free.cpp
-	src/backends/x11/glx/create_visual.cpp
-	src/backends/x11/glx/create_visual.hpp
-	src/backends/x11/glx/create_visual_attributes.cpp
-	src/backends/x11/glx/create_visual_attributes.hpp
-	src/backends/x11/glx/handle_bit_depth.cpp
-	src/backends/x11/glx/handle_bit_depth.hpp
-	src/backends/x11/glx/visual_attribute_array.hpp
 	src/backends/x11/log.cpp
 	src/backends/x11/original_display.cpp
 	src/backends/x11/system/event/map_key.cpp
@@ -239,6 +232,17 @@ SET(
 	src/backends/x11/window/wrapped_class_hint.cpp
 	src/backends/x11/window/wrapped_instance.cpp
 	src/backends/x11/wrapped_visual.cpp
+)
+
+SET(
+	AWL_X11_OPENGL_SRC_FILES
+	src/backends/x11/glx/create_visual.cpp
+	src/backends/x11/glx/create_visual.hpp
+	src/backends/x11/glx/create_visual_attributes.cpp
+	src/backends/x11/glx/create_visual_attributes.hpp
+	src/backends/x11/glx/handle_bit_depth.cpp
+	src/backends/x11/glx/handle_bit_depth.hpp
+	src/backends/x11/glx/visual_attribute_array.hpp
 )
 
 SET(
@@ -425,6 +429,15 @@ IF(AWL_X11_BACKEND)
 		AWL_SRC_FILES
 		"${AWL_SRC_FILES};${AWL_X11_SRC_FILES}"
 	)
+
+	IF(
+		ENABLE_OPENGL
+	)
+		SET(
+			AWL_SRC_FILES
+			"${AWL_SRC_FILES};${AWL_X11_OPENGL_SRC_FILES}"
+		)
+	ENDIF()
 ENDIF()
 
 IF(ENABLE_WINELIB OR AWL_WINDOWS_BACKEND)

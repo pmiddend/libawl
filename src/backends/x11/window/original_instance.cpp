@@ -10,6 +10,7 @@
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/visual.hpp>
 #include <awl/window/parameters.hpp>
+#include <awl/config.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/ref.hpp>
@@ -30,6 +31,7 @@ awl::backends::x11::window::original_instance::original_instance(
 		)
 	),
 	visual_(
+#if defined(AWL_HAVE_OPENGL)
 		_params.has_opengl()
 		?
 			glx::create_visual(
@@ -44,6 +46,7 @@ awl::backends::x11::window::original_instance::original_instance(
 				).data()
 			)
 		:
+#endif
 			x11::default_visual(
 				display_,
 				screen_
