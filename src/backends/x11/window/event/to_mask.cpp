@@ -43,7 +43,7 @@ awl::backends::x11::window::event::to_mask(
 	case GenericEvent:
 		throw awl::exception(
 			FCPPT_TEXT("Don't register generic events for a window!")
-		);	
+		);
 	default:
 		throw awl::exception(
 			FCPPT_TEXT("Unknown x11 event type in to_event_mask!")

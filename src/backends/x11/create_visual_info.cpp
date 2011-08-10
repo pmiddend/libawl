@@ -17,7 +17,7 @@ awl::backends::x11::create_visual_info(
 	// function...
 	//tpl.visual  = ptr_;
 	// ...so we take the id
-	tpl.visualid = 
+	tpl.visualid =
 		::XVisualIDFromVisual(
 			&_visual
 		);
@@ -36,12 +36,12 @@ awl::backends::x11::create_visual_info(
 	x11::visual_info_unique_ptr ret(
 		::XGetVisualInfo(
 			_display.get(),
-			VisualIDMask | 
-			VisualRedMaskMask | 
-			VisualGreenMaskMask | 
+			VisualIDMask |
+			VisualRedMaskMask |
+			VisualGreenMaskMask |
 			VisualBlueMaskMask |
 			VisualBitsPerRGBMask |
-			VisualClassMask /* | VisualColormapSizeMask */, 
+			VisualClassMask /* | VisualColormapSizeMask */,
 			&tpl,
 			&number_of_items
 		)
@@ -53,7 +53,7 @@ awl::backends::x11::create_visual_info(
 		throw awl::exception(
 			FCPPT_TEXT("Couldn't get XVisualInfo structure for Visual")
 		);
-	
+
 	return
 		move(
 			ret

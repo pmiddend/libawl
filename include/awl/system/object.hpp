@@ -29,7 +29,7 @@ public:
 	) = 0;
 
 	AWL_SYMBOL
-	virtual 
+	virtual
 	~object();
 };
 

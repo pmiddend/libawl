@@ -26,7 +26,7 @@ awl::backends::x11::system::original_object::create(
 		_param.size()
 	);
 
-	return 
+	return
 		awl::window::instance_unique_ptr(
 			fcppt::make_unique_ptr<
 				x11::window::original_instance

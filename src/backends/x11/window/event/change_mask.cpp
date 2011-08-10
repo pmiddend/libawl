@@ -10,7 +10,7 @@ awl::backends::x11::window::event::change_mask(
 )
 {
 	XSetWindowAttributes swa;
-                
+
 	swa.event_mask = _mask;
 
 	// always returns 1

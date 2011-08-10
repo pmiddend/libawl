@@ -20,6 +20,6 @@ awl::backends::x11::asio::dup(
 		throw awl::exception(
 			FCPPT_TEXT("dup() failed!")
 		);
-	
+
 	return ret;
 }

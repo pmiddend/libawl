@@ -49,7 +49,7 @@ public:
 	display() const;
 
 	AWL_SYMBOL
-	x11::screen const	
+	x11::screen const
 	screen() const;
 
 	AWL_SYMBOL
@@ -67,7 +67,7 @@ private:
 	x11::display &display_;
 
 	x11::screen const screen_;
-	
+
 	x11::visual_scoped_ptr const visual_;
 
 	x11::colormap const colormap_;

@@ -24,7 +24,7 @@ struct deleter
 			_param
 		);
 	}
-		
+
 };
 
 }

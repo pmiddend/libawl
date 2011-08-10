@@ -47,7 +47,7 @@ awl::backends::x11::system::event::original_processor::dispatch()
 			)
 		](
 			system::event::object(
-				generic_event	
+				generic_event
 			)
 		);
 

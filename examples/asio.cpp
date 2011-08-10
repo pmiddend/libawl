@@ -35,7 +35,7 @@ int main()
 			)
 		)
 	);
-	
+
 	window->show();
 
 	awl::window::event::processor_scoped_ptr const processor(

@@ -17,7 +17,7 @@ namespace x11
 namespace window
 {
 
-class size_hints 
+class size_hints
 {
 	FCPPT_NONCOPYABLE(
 		size_hints
@@ -42,7 +42,7 @@ private:
 		XSizeHints,
 		awl::backends::x11::deleter
 	> scoped_hints;
-	
+
 	scoped_hints const hints_;
 };
 

@@ -45,7 +45,7 @@ awl::backends::windows::system::original_object::create(
 			).first;
 	else
 		wndclass_it->second->add_ref();
-	
+
 	return
 		awl::window::instance_unique_ptr(
 			fcppt::make_unique_ptr<

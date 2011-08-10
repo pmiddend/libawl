@@ -26,7 +26,7 @@ awl::backends::x11::window::create(
 	swa.event_mask = StructureNotifyMask | FocusChangeMask;
 
 	// always returns a handle
-	return 
+	return
 		::XCreateWindow(
 			_display.get(),
 			::XRootWindow(

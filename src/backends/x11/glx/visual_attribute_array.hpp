@@ -11,8 +11,8 @@ namespace x11
 {
 namespace glx
 {
-typedef 
-std::vector<int> 
+typedef
+std::vector<int>
 visual_attribute_array;
 }
 }

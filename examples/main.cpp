@@ -32,7 +32,7 @@ try
 			)
 		)
 	);
-	
+
 	wind->show();
 
 	fcppt::time::sleep_any(

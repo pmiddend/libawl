@@ -43,7 +43,7 @@ awl::window::parameters::exact_size_hint(
 	dim const &_exact_size_hint
 )
 {
-	exact_size_hint_ = _exact_size_hint;	
+	exact_size_hint_ = _exact_size_hint;
 
 	return *this;
 }
@@ -53,7 +53,7 @@ awl::window::parameters::minimum_size_hint(
 	dim const &_minimum_size_hint
 )
 {
-	minimum_size_hint_ = _minimum_size_hint;	
+	minimum_size_hint_ = _minimum_size_hint;
 
 	return *this;
 }
@@ -63,7 +63,7 @@ awl::window::parameters::maximum_size_hint(
 	dim const &_maximum_size_hint
 )
 {
-	maximum_size_hint_ = _maximum_size_hint;	
+	maximum_size_hint_ = _maximum_size_hint;
 
 	return *this;
 }

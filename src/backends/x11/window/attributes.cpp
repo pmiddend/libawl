@@ -23,6 +23,6 @@ awl::backends::x11::window::attributes(
 		throw awl::exception(
 			FCPPT_TEXT("XGetWindowAttributes() failed!")
 		);
-	
+
 	return ret;
 }

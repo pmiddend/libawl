@@ -29,7 +29,7 @@ awl::backends::x11::default_visual(
 				x11::wrapped_visual
 			>(
 				fcppt::ref(
-					*visual	
+					*visual
 				),
 				x11::create_visual_info(
 					_display,

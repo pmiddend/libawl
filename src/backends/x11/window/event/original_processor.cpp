@@ -72,7 +72,7 @@ awl::backends::x11::window::event::original_processor::dispatch()
 		](
 			*new_event
 		);
-	
+
 		events_processed = true;
 	}
 
@@ -113,7 +113,7 @@ awl::backends::x11::window::event::original_processor::register_callback(
 			new_mask
 		]
 	);
-	
+
 	if(
 		count == 1u
 	)

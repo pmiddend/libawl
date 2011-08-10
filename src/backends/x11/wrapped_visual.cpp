@@ -13,7 +13,7 @@ awl::backends::x11::wrapped_visual::wrapped_visual(
 	)
 {
 }
-			
+
 awl::backends::x11::wrapped_visual::~wrapped_visual()
 {
 }

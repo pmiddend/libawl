@@ -49,7 +49,7 @@ awl::backends::x11::glx::create_visual(
 	);
 
 	// FIXME: why does this segfault?
-	return 
+	return
 		x11::visual_unique_ptr(
 			new x11::wrapped_visual(
 //			fcppt::make_unique_ptr<

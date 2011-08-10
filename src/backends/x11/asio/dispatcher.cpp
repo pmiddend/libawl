@@ -6,7 +6,7 @@
 #include <fcppt/ref.hpp>
 #include <X11/Xlib.h>
 
-awl::backends::x11::asio::dispatcher::dispatcher(	
+awl::backends::x11::asio::dispatcher::dispatcher(
 	boost::asio::io_service &_io_service,
 	awl::backends::x11::display &_display,
 	awl::mainloop::dispatcher_callback const &_callback

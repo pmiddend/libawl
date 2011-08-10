@@ -22,7 +22,7 @@ awl::backends::x11::window::size_hints::size_hints(
 		);
 
 	hints_->flags = 0;
-	
+
 	if(
 		_exact_hint
 	)

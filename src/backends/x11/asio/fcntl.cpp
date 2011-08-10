@@ -25,6 +25,6 @@ awl::backends::x11::asio::fcntl(
 		throw awl::exception(
 			FCPPT_TEXT("fcntl() failed!")
 		);
-	
+
 	return ret;
 }

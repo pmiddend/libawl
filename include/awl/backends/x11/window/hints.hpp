@@ -14,7 +14,7 @@ namespace x11
 namespace window
 {
 
-class hints 
+class hints
 {
 	FCPPT_NONCOPYABLE(
 		hints

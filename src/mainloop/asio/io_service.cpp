@@ -83,7 +83,7 @@ awl::mainloop::asio::io_service::create_dispatcher(
 					).display()
 				),
 				_callback
-			)	
+			)
 #elif defined(AWL_WINDOWS_BACKEND)
 			fcppt::make_unique_ptr<
 				awl::backends::windows::asio::dispatcher

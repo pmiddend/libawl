@@ -56,7 +56,7 @@ awl::backends::windows::window::original_instance::original_instance(
 		throw awl::exception(
 			FCPPT_TEXT("CreateWindow() failed!")
 		);
-	
+
 	if(
 		_param.has_opengl()
 	)

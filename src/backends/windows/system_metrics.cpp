@@ -20,6 +20,6 @@ awl::backends::windows::system_metrics(
 		throw awl::exception(
 			FCPPT_TEXT("GetSystemMetrics() failed!")
 		);
-	
+
 	return ret;
 }
