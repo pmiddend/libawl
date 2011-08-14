@@ -2,7 +2,8 @@
 #include <awl/backends/x11/create_visual_info.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/wrapped_visual.hpp>
-#include <fcppt/assert.hpp>
+#include <awl/exception.hpp>
+#include <fcppt/assert/post.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
 
@@ -19,8 +20,9 @@ awl::backends::x11::default_visual(
 		)
 	);
 
-	FCPPT_ASSERT(
-		visual
+	FCPPT_ASSERT_POST(
+		visual,
+		awl::exception
 	);
 
 	return

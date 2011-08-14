@@ -2,7 +2,7 @@
 #include <awl/backends/x11/window/original_instance.hpp>
 #include <awl/backends/x11/original_display.hpp>
 #include <awl/window/parameters.hpp>
-#include <fcppt/assert.hpp>
+#include <fcppt/assert/pre.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/ref.hpp>
@@ -22,7 +22,7 @@ awl::backends::x11::system::original_object::create(
 	awl::window::parameters const &_param
 )
 {
-	FCPPT_ASSERT(
+	FCPPT_ASSERT_PRE(
 		_param.size()
 	);
 
