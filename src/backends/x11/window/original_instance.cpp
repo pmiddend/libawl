@@ -15,7 +15,9 @@
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/ref.hpp>
 #include <fcppt/to_std_string.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
 
 awl::backends::x11::window::original_instance::original_instance(
 	x11::display &_display,

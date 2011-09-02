@@ -1,9 +1,11 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_HINTS_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_HINTS_HPP_INCLUDED
 
-#include <X11/Xutil.h>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <X11/Xutil.h>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

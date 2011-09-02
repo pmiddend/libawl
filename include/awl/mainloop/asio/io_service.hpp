@@ -9,8 +9,10 @@
 #include <awl/system/object_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <boost/asio/io_service.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <boost/asio/io_service.hpp>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

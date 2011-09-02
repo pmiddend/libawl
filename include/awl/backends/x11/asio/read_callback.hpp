@@ -2,7 +2,9 @@
 #define AWL_BACKENDS_X11_ASIO_READ_CALLBACK_HPP_INCLUDED
 
 #include <fcppt/function/object_fwd.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <boost/system/error_code.hpp>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

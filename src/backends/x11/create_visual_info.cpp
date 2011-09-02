@@ -3,8 +3,10 @@
 #include <awl/backends/x11/display.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <fcppt/config/external_end.hpp>
 
 awl::backends::x11::visual_info_unique_ptr
 awl::backends::x11::create_visual_info(

@@ -6,8 +6,10 @@
 #include <awl/backends/x11/asio/read_callback.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <boost/asio/posix/stream_descriptor.hpp>
 #include <boost/asio/io_service.hpp>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

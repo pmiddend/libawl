@@ -1,7 +1,9 @@
 #include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
 
 long
 awl::backends::x11::window::event::to_mask(

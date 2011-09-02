@@ -7,7 +7,7 @@
 fcppt::log::object &
 awl::log()
 {
-	static fcppt::log::object l(
+	static fcppt::log::object logger(
 		fcppt::log::parameters::root(
 			fcppt::io::clog)
 		.prefix(
@@ -19,5 +19,6 @@ awl::log()
 		.context(
 			log_context())
 		.create());
-	return l;
+
+	return logger;
 }

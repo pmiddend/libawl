@@ -4,11 +4,13 @@
 #include <awl/backends/x11/wrapped_visual.hpp>
 #include <awl/backends/x11/visual_info_unique_ptr.hpp>
 #include <awl/exception.hpp>
-#include <X11/Xlib.h>
-#include <GL/glx.h>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <X11/Xlib.h>
+#include <GL/glx.h>
+#include <fcppt/config/external_end.hpp>
 
 awl::backends::x11::visual_unique_ptr
 awl::backends::x11::glx::create_visual(

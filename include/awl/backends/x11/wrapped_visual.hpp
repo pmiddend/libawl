@@ -7,8 +7,10 @@
 #include <awl/symbol.hpp>
 #include <fcppt/scoped_ptr.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

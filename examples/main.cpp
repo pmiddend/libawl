@@ -9,7 +9,9 @@
 #include <fcppt/time/sleep_any.hpp>
 #include <fcppt/exception.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <cstdlib>
+#include <fcppt/config/external_end.hpp>
 
 int main()
 try

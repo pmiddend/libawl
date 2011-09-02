@@ -1,8 +1,10 @@
 #include <awl/backends/x11/asio/fcntl.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <unistd.h>
 #include <fcntl.h>
+#include <fcppt/config/external_end.hpp>
 
 int
 awl::backends::x11::asio::fcntl(

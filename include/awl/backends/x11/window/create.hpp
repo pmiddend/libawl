@@ -7,7 +7,9 @@
 #include <awl/backends/x11/visual_fwd.hpp>
 #include <awl/window/optional_dim.hpp>
 #include <awl/window/optional_position.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

@@ -14,9 +14,11 @@
 #include <awl/window/event/processor_scoped_ptr.hpp>
 #include <awl/window/event/processor.hpp>
 #include <fcppt/tr1/functional.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <boost/asio/deadline_timer.hpp>
 #include <boost/asio/impl/src.hpp>
 #include <boost/date_time/posix_time/posix_time_duration.hpp>
+#include <fcppt/config/external_end.hpp>
 
 int main()
 {
