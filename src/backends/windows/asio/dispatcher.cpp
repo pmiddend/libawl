@@ -1,7 +1,9 @@
 #include <awl/backends/windows/asio/dispatcher.hpp>
 #include <fcppt/function/object.hpp>
 #include <fcppt/tr1/functional.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <boost/asio/io_service.hpp>
+#include <fcppt/config/external_end.hpp>
 
 awl::backends::windows::asio::dispatcher::dispatcher(
 	boost::asio::io_service &_io_service,

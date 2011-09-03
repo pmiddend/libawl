@@ -3,7 +3,9 @@
 #include <awl/backends/windows/module_handle.hpp>
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <cstring>
+#include <fcppt/config/external_end.hpp>
 
 awl::backends::windows::wndclass::wndclass(
 	fcppt::string const &_class_name,
