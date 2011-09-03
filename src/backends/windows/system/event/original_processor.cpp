@@ -8,6 +8,9 @@
 #include <fcppt/container/raw_vector_impl.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <boost/static_assert.hpp>
+#include <fcppt/config/external_end.hpp>
 
 awl::backends::windows::system::event::original_processor::original_processor(
 	windows::system::object &
@@ -73,9 +76,12 @@ awl::backends::windows::system::event::original_processor::dispatch()
 			)
 		);
 
+		BOOST_STATIC_ASSERT(
+			WAIT_OBJECT_0 == 0
+		);
+
 		if(
-			result >= WAIT_OBJECT_0
-			&& result < WAIT_OBJECT_0 + handles_.size()
+			result < WAIT_OBJECT_0 + handles_.size()
 		)
 		{
 			handle_signal_();
