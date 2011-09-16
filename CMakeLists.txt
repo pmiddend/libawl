@@ -61,9 +61,11 @@ ADD_DEFINITIONS(-D BOOST_ASIO_SEPARATE_COMPILATION)
 SET(
 	AWL_BASE_SRC_FILES
 	src/asio.cpp
+	src/create_log.cpp
 	src/exception.cpp
 	src/log.cpp
 	src/log_context.cpp
+	src/log_location.cpp
 	src/mainloop/asio/create_io_service.cpp
 	src/mainloop/asio/create_io_service_base.cpp
 	src/mainloop/asio/io_service.cpp
@@ -84,9 +86,11 @@ SET(
 SET(
 	AWL_BASE_INCLUDE_FILES
 	include/awl/class_symbol.hpp
+	include/awl/create_log.hpp
 	include/awl/exception.hpp
 	include/awl/log.hpp
 	include/awl/log_context.hpp
+	include/awl/log_location.hpp
 	include/awl/mainloop/asio/create_io_service.hpp
 	include/awl/mainloop/asio/create_io_service_base.hpp
 	include/awl/mainloop/asio/io_service.hpp

@@ -4,6 +4,8 @@
 #include <awl/backends/x11/wrapped_visual.hpp>
 #include <awl/backends/x11/visual_info_unique_ptr.hpp>
 #include <awl/exception.hpp>
+#include <fcppt/log/debug.hpp>
+#include <fcppt/log/output.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
 #include <fcppt/text.hpp>

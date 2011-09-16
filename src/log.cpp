@@ -1,24 +1,22 @@
 #include <awl/log.hpp>
-#include <awl/log_context.hpp>
-#include <fcppt/log/parameters/root.hpp>
-#include <fcppt/io/clog.hpp>
-#include <fcppt/text.hpp>
+#include <awl/create_log.hpp>
+#include <awl/log_location.hpp>
+#include <fcppt/log/parameters/all.hpp>
+#include <fcppt/log/object.hpp>
+
+namespace
+{
+
+fcppt::log::object logger(
+	awl::create_log(
+		awl::log_location()
+	)
+);
+
+}
 
 fcppt::log::object &
 awl::log()
 {
-	static fcppt::log::object logger(
-		fcppt::log::parameters::root(
-			fcppt::io::clog)
-		.prefix(
-			FCPPT_TEXT("awl"))
-		.enabled(
-			true)
-		.level(
-			fcppt::log::level::warning)
-		.context(
-			log_context())
-		.create());
-
 	return logger;
 }
