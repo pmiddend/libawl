@@ -47,7 +47,7 @@ catch(
 	fcppt::exception const &_exception
 )
 {
-	fcppt::io::cerr
+	fcppt::io::cerr()
 		<< _exception.string()
 		<< FCPPT_TEXT('\n');
 
