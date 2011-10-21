@@ -1,9 +1,10 @@
-#include <awl/backends/windows/window/adjusted_size.hpp>
-#include <awl/backends/windows/windows.hpp>
 #include <awl/exception.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/window/adjusted_size.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/math/dim/basic_impl.hpp>
+
 
 awl::window::dim const
 awl::backends::windows::window::adjusted_size(

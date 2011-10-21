@@ -5,6 +5,7 @@
 #include <boost/asio/io_service.hpp>
 #include <fcppt/config/external_end.hpp>
 
+
 awl::backends::windows::asio::dispatcher::dispatcher(
 	boost::asio::io_service &_io_service,
 	awl::mainloop::dispatcher_callback const &_callback

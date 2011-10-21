@@ -1,6 +1,7 @@
 #include <awl/exception.hpp>
 #include <fcppt/assert/make_message.hpp>
 
+
 awl::exception::exception(
 	fcppt::string const &_string
 )

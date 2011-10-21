@@ -1,8 +1,9 @@
-#include <awl/backends/x11/log.hpp>
 #include <awl/create_log.hpp>
 #include <awl/log_location.hpp>
-#include <fcppt/log/parameters/all.hpp>
+#include <awl/backends/x11/log.hpp>
 #include <fcppt/log/object.hpp>
+#include <fcppt/log/parameters/all.hpp>
+
 
 namespace
 {

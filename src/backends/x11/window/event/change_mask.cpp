@@ -1,9 +1,10 @@
-#include <awl/backends/x11/window/event/change_mask.hpp>
-#include <awl/backends/x11/window/instance.hpp>
 #include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/event/change_mask.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
+
 
 void
 awl::backends::x11::window::event::change_mask(

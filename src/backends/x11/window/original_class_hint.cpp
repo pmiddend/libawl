@@ -1,9 +1,10 @@
+#include <awl/exception.hpp>
 #include <awl/backends/x11/window/original_class_hint.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/to_std_string.hpp>
-#include <awl/exception.hpp>
+
 
 class awl::backends::x11::window::original_class_hint::impl
 {

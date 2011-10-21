@@ -1,18 +1,19 @@
 #include "create_visual.hpp"
+#include <awl/exception.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/log.hpp>
-#include <awl/backends/x11/wrapped_visual.hpp>
 #include <awl/backends/x11/visual_info_unique_ptr.hpp>
-#include <awl/exception.hpp>
-#include <fcppt/log/debug.hpp>
-#include <fcppt/log/output.hpp>
+#include <awl/backends/x11/wrapped_visual.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/log/debug.hpp>
+#include <fcppt/log/output.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <GL/glx.h>
 #include <fcppt/config/external_end.hpp>
+
 
 awl::backends::x11::visual_unique_ptr
 awl::backends::x11::glx::create_visual(

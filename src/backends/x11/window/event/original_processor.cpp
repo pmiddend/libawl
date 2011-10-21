@@ -1,22 +1,23 @@
-#include <awl/backends/x11/window/event/original_processor.hpp>
+#include <awl/backends/x11/window/instance.hpp>
 #include <awl/backends/x11/window/event/change_mask.hpp>
 #include <awl/backends/x11/window/event/filter.hpp>
-#include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/event/original_processor.hpp>
 #include <awl/backends/x11/window/event/poll.hpp>
-#include <awl/window/event/resize.hpp>
+#include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/window/dim.hpp>
+#include <awl/window/event/resize.hpp>
+#include <fcppt/optional_impl.hpp>
 #include <fcppt/assign/make_container.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/signal/shared_connection.hpp>
 #include <fcppt/signal/unregister/base_impl.hpp>
 #include <fcppt/tr1/functional.hpp>
-#include <fcppt/optional_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
+
 
 awl::backends::x11::window::event::original_processor::original_processor(
 	x11::window::instance &_window

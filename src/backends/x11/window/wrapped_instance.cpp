@@ -1,7 +1,8 @@
-#include <awl/backends/x11/window/wrapped_instance.hpp>
-#include <awl/backends/x11/window/visual.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/visual.hpp>
+#include <awl/backends/x11/window/visual.hpp>
+#include <awl/backends/x11/window/wrapped_instance.hpp>
+
 
 awl::backends::x11::window::wrapped_instance::wrapped_instance(
 	x11::display & _display,

@@ -1,13 +1,14 @@
-#include <awl/backends/x11/window/create.hpp>
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/visual.hpp>
+#include <awl/backends/x11/window/create.hpp>
+#include <fcppt/optional_impl.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
 #include <fcppt/math/vector/basic_impl.hpp>
-#include <fcppt/optional_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
+
 
 Window
 awl::backends::x11::window::create(

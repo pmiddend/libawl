@@ -5,6 +5,7 @@
 #include <GL/glx.h>
 #include <fcppt/config/external_end.hpp>
 
+
 namespace
 {
 void

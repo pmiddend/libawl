@@ -7,6 +7,7 @@
 #include <awl/window/stencil_buffer.hpp>
 #include <fcppt/optional.hpp>
 
+
 namespace awl
 {
 namespace backends

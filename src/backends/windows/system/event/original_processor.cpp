@@ -1,16 +1,17 @@
-#include <awl/backends/windows/system/event/original_processor.hpp>
+#include <awl/exception.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/system/event/object.hpp>
 #include <awl/backends/windows/system/event/original_handle.hpp>
-#include <awl/backends/windows/windows.hpp>
-#include <awl/exception.hpp>
-#include <fcppt/algorithm/remove.hpp>
-#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
-#include <fcppt/container/raw_vector_impl.hpp>
+#include <awl/backends/windows/system/event/original_processor.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/algorithm/remove.hpp>
+#include <fcppt/container/raw_vector_impl.hpp>
+#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/static_assert.hpp>
 #include <fcppt/config/external_end.hpp>
+
 
 awl::backends::windows::system::event::original_processor::original_processor(
 	windows::system::object &

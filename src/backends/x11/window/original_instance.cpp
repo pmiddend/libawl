@@ -1,16 +1,16 @@
 #include "../glx/create_visual_attributes.hpp"
 #include "../glx/create_visual.hpp"
+#include <awl/config.hpp>
+#include <awl/backends/x11/colormap.hpp>
+#include <awl/backends/x11/default_visual.hpp>
+#include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/visual.hpp>
 #include <awl/backends/x11/window/create.hpp>
 #include <awl/backends/x11/window/original_instance.hpp>
 #include <awl/backends/x11/window/root.hpp>
 #include <awl/backends/x11/window/transient_for_hint.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
-#include <awl/backends/x11/colormap.hpp>
-#include <awl/backends/x11/default_visual.hpp>
-#include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/visual.hpp>
 #include <awl/window/parameters.hpp>
-#include <awl/config.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/ref.hpp>
@@ -18,6 +18,7 @@
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
+
 
 awl::backends::x11::window::original_instance::original_instance(
 	x11::display &_display,

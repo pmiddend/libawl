@@ -1,11 +1,12 @@
-#include <awl/backends/x11/default_visual.hpp>
+#include <awl/exception.hpp>
 #include <awl/backends/x11/create_visual_info.hpp>
+#include <awl/backends/x11/default_visual.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/wrapped_visual.hpp>
-#include <awl/exception.hpp>
-#include <fcppt/assert/post.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
+#include <fcppt/assert/post.hpp>
+
 
 awl::backends::x11::visual_unique_ptr
 awl::backends::x11::default_visual(

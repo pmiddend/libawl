@@ -1,12 +1,13 @@
+#include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/asio/dispatcher.hpp>
 #include <awl/backends/x11/asio/fd_wrapper.hpp>
-#include <awl/backends/x11/display.hpp>
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
+#include <fcppt/tr1/functional.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
+
 
 awl::backends::x11::asio::dispatcher::dispatcher(
 	boost::asio::io_service &_io_service,

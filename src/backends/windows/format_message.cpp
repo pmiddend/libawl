@@ -1,9 +1,10 @@
+#include <awl/exception.hpp>
 #include <awl/backends/windows/format_message.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/exception.hpp>
-#include <fcppt/container/array.hpp>
-#include <fcppt/text.hpp>
 #include <fcppt/char_type.hpp>
+#include <fcppt/text.hpp>
+#include <fcppt/container/array.hpp>
+
 
 fcppt::string const
 awl::backends::windows::format_message(

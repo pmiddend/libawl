@@ -1,8 +1,9 @@
+#include <awl/exception.hpp>
 #include <awl/backends/windows/choose_and_set_pixel_format.hpp>
 #include <awl/backends/windows/gdi_device.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+
 
 void
 awl::backends::windows::choose_and_set_pixel_format(

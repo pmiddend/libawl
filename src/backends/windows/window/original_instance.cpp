@@ -1,14 +1,15 @@
-#include <awl/backends/windows/window/original_instance.hpp>
+#include <awl/exception.hpp>
+#include <awl/backends/windows/choose_and_set_pixel_format.hpp>
+#include <awl/backends/windows/gdi_device.hpp>
+#include <awl/backends/windows/module_handle.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/wndclass.hpp>
 #include <awl/backends/windows/window/adjusted_size.hpp>
 #include <awl/backends/windows/window/client_rect.hpp>
-#include <awl/backends/windows/choose_and_set_pixel_format.hpp>
-#include <awl/backends/windows/wndclass.hpp>
-#include <awl/backends/windows/module_handle.hpp>
-#include <awl/backends/windows/gdi_device.hpp>
-#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/window/original_instance.hpp>
 #include <awl/window/parameters.hpp>
-#include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+
 
 namespace
 {

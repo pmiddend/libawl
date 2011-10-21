@@ -1,7 +1,8 @@
-#include <awl/backends/windows/system/event/original_handle.hpp>
-#include <awl/backends/windows/windows.hpp>
 #include <awl/exception.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/system/event/original_handle.hpp>
 #include <fcppt/text.hpp>
+
 
 awl::backends::windows::system::event::original_handle::original_handle(
 	system::event::handle_destroy_callback const &_on_destroy

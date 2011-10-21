@@ -1,8 +1,9 @@
+#include <awl/exception.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/client_to_screen.hpp>
 #include <awl/backends/windows/window/instance.hpp>
-#include <awl/backends/windows/windows.hpp>
-#include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+
 
 POINT const
 awl::backends::windows::window::client_to_screen(

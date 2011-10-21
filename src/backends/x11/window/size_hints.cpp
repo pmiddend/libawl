@@ -1,8 +1,9 @@
-#include <awl/backends/x11/window/size_hints.hpp>
 #include <awl/exception.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
+#include <awl/backends/x11/window/size_hints.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/math/dim/basic_impl.hpp>
+
 
 awl::backends::x11::window::size_hints::size_hints(
 	awl::window::optional_dim const &_exact_hint,
