@@ -459,7 +459,7 @@ SET(
 	include/awl/backends/quartz/window/event/processor_ptr.hpp
 	include/awl/backends/quartz/window/instance.hpp
 	include/awl/backends/quartz/window/instance_fwd.hpp
-	include/awl/backends/quartz/window/instance_ptr.hpp
+	include/awl/backends/quartz/window/instance_shared_ptr.hpp
 	include/awl/backends/quartz/window/original_instance.hpp
 	include/awl/backends/quartz/window_ref.hpp
 )

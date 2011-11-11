@@ -2,10 +2,10 @@
 #define AWL_BACKENDS_QUARTZ_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 
 #include <awl/backends/quartz/window/event/processor.hpp>
-#include <awl/backends/quartz/window/instance_ptr.hpp>
+#include <awl/backends/quartz/window/instance_fwd.hpp>
 #include <awl/window/event/resize_callback.hpp>
 #include <awl/window/event/resize_function.hpp>
-#include <awl/window/instance_ptr.hpp>
+#include <awl/window/instance_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
@@ -33,7 +33,7 @@ class AWL_CLASS_SYMBOL original_processor
 public:
 	AWL_SYMBOL
 	explicit original_processor(
-		quartz::window::instance_ptr
+		quartz::window::instance &
 	);
 
 	AWL_SYMBOL
@@ -48,10 +48,10 @@ public:
 		awl::window::event::resize_callback const &
 	);
 
-	awl::window::instance_ptr const
+	awl::window::instance &
 	window() const;
 private:
-	quartz::window::instance_ptr const window_;
+	quartz::window::instance &window_;
 
 	fcppt::signal::object<
 		awl::window::event::resize_function

@@ -96,10 +96,10 @@ awl::mainloop::asio::io_service::create_dispatcher(
 				_callback
 			)
 #elif defined(AWL_QUARTZ_BACKEND)
-			fcppt::make_shared_ptr<
+			fcppt::make_unique_ptr<
 				awl::backends::quartz::asio::dispatcher
 			>(
-				std::tr1::ref(
+				fcppt::ref(
 					get()
 				),
 				_callback

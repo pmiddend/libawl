@@ -11,7 +11,7 @@ function update_main()
 
 	update_cmake \
 		"${cmakefile}" \
-		"${@:1}" \
+		$* \
 		|| die
 
 	mv "${cmakefile}".new "${cmakefile}" || die
@@ -59,3 +59,12 @@ update_main \
 update_main \
 	AWL_WINDOWS_SRC_FILES \
 	src/backends/windows
+
+update_main \
+	AWL_QUARTZ_INCLUDE_FILES \
+	include/awl/backends/quartz
+
+update_main \
+	AWL_QUARTZ_SRC_FILES \
+	-e '.*\..pp|.*\.mm' \
+	src/backends/quartz

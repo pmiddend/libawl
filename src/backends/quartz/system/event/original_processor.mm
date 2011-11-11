@@ -3,7 +3,7 @@
 #include <queue>
 
 awl::backends::quartz::system::event::original_processor::original_processor(
-	quartz::system::object_ptr const _system
+	quartz::system::object &_system
 )
 {
 }

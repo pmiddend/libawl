@@ -45,13 +45,15 @@ awl::window::event::create_processor(
 				)
 			)
 #elif defined(AWL_QUARTZ_BACKEND)
-			fcppt::make_shared_ptr<
+			fcppt::make_unique_ptr<
 				backends::quartz::window::event::original_processor
 			>(
-				fcppt::polymorphic_pointer_cast<
-					backends::quartz::window::instance
-				>(
-					_instance
+				fcppt::ref(
+					dynamic_cast<
+						backends::quartz::window::instance &
+					>(
+						_instance
+					)
 				)
 			)
 #endif

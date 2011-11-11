@@ -4,6 +4,7 @@
 #include <awl/backends/quartz/window_ref.hpp>
 #include <awl/backends/quartz/system/object.hpp>
 #include <awl/system/object.hpp>
+#include <awl/window/instance_unique_ptr.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <map>
@@ -33,7 +34,7 @@ public:
 	~original_object();
 	
 	AWL_SYMBOL
-	awl::window::instance_ptr const
+	awl::window::instance_unique_ptr
 	create(
 		awl::window::parameters const &
 	);

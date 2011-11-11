@@ -4,7 +4,7 @@
 #include <queue>
 
 awl::backends::quartz::window::event::original_processor::original_processor(
-	quartz::window::instance_ptr const _window
+	quartz::window::instance &_window
 )
 :
 	window_(_window)
@@ -42,7 +42,7 @@ awl::backends::quartz::window::event::original_processor::dispatch()
 		{
 			events_processed = true;
 
-			if (event.window == window_->get())
+			if (event.window == window_.get())
 			{
 				[NSApp sendEvent: event];
 			}
@@ -86,7 +86,7 @@ awl::backends::quartz::window::event::original_processor::resize_callback(
 		);
 }
 
-awl::window::instance_ptr const
+awl::window::instance &
 awl::backends::quartz::window::event::original_processor::window() const
 {
 	return window_;

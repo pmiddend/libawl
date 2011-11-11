@@ -1,5 +1,5 @@
-#ifndef AWL_BACKENDS_QUARTZ_WINDOW_INSTANCE_PTR_HPP_INCLUDED
-#define AWL_BACKENDS_QUARTZ_WINDOW_INSTANCE_PTR_HPP_INCLUDED
+#ifndef AWL_BACKENDS_QUARTZ_WINDOW_INSTANCE_SHARED_PTR_HPP_INCLUDED
+#define AWL_BACKENDS_QUARTZ_WINDOW_INSTANCE_SHARED_PTR_HPP_INCLUDED
 
 #include <awl/backends/quartz/window/instance_fwd.hpp>
 #include <fcppt/shared_ptr.hpp>
@@ -15,7 +15,7 @@ namespace window
 
 typedef fcppt::shared_ptr<
 	window::instance
-> instance_ptr;
+> instance_shared_ptr;
 
 }
 }

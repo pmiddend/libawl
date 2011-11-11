@@ -1,9 +1,10 @@
 #include <awl/backends/quartz/system/original_object.hpp>
 #include <awl/backends/quartz/window/original_instance.hpp>
 #include <awl/window/parameters.hpp>
+#include <fcppt/assert/pre.hpp>
+#include <fcppt/make_unique_ptr.hpp>
+#include <fcppt/move.hpp>
 #import <Cocoa/Cocoa.h>
-#include <fcppt/assert.hpp>
-#include <fcppt/make_shared_ptr.hpp>
 #include <queue>
 
 awl::backends::quartz::system::original_object::original_object()
@@ -28,28 +29,32 @@ awl::backends::quartz::system::original_object::~original_object()
 	[(NSAutoreleasePool *) autorelease_pool_ drain];
 }
 
-awl::window::instance_ptr const
+awl::window::instance_unique_ptr
 awl::backends::quartz::system::original_object::create(
 	awl::window::parameters const &_param
 )
 {
 	// TODO Copied from x11 backend. Necessary?
-	FCPPT_ASSERT(
+	FCPPT_ASSERT_PRE(
 		_param.size()
 	);
 
-	awl::window::instance_ptr const result =
-		fcppt::make_shared_ptr<
+	awl::window::instance_unique_ptr result(
+		fcppt::make_unique_ptr<
 			awl::backends::quartz::window::original_instance
 		>(
 			_param
-		);
+		)
+	);
 
 	// This seemingly does some additional initialization stuff I'm not
 	// too sure about...
 	event_loop();
 
-	return result;
+	return
+		fcppt::move(
+			result
+		);
 }
 
 void
