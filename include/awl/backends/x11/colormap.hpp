@@ -1,12 +1,14 @@
 #ifndef AWL_BACKENDS_X11_COLORMAP_HPP_INCLUDED
 #define AWL_BACKENDS_X11_COLORMAP_HPP_INCLUDED
 
-#include <X11/Xlib.h>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/visual_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

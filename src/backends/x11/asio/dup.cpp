@@ -1,7 +1,10 @@
-#include <awl/backends/x11/asio/dup.hpp>
 #include <awl/exception.hpp>
+#include <awl/backends/x11/asio/dup.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <unistd.h>
+#include <fcppt/config/external_end.hpp>
+
 
 int
 awl::backends::x11::asio::dup(
@@ -20,6 +23,6 @@ awl::backends::x11::asio::dup(
 		throw awl::exception(
 			FCPPT_TEXT("dup() failed!")
 		);
-	
+
 	return ret;
 }

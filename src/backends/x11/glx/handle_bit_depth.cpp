@@ -1,7 +1,10 @@
 #include "handle_bit_depth.hpp"
 #include <awl/exception.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <GL/glx.h>
+#include <fcppt/config/external_end.hpp>
+
 
 namespace
 {

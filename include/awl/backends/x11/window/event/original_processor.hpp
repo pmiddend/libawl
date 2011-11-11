@@ -16,8 +16,10 @@
 #include <fcppt/signal/object_decl.hpp>
 #include <fcppt/signal/unregister/base_decl.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <map>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

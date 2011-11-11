@@ -1,8 +1,11 @@
-#include <awl/backends/x11/asio/fcntl.hpp>
 #include <awl/exception.hpp>
+#include <awl/backends/x11/asio/fcntl.hpp>
 #include <fcppt/text.hpp>
-#include <unistd.h>
+#include <fcppt/config/external_begin.hpp>
 #include <fcntl.h>
+#include <unistd.h>
+#include <fcppt/config/external_end.hpp>
+
 
 int
 awl::backends::x11::asio::fcntl(
@@ -25,6 +28,6 @@ awl::backends::x11::asio::fcntl(
 		throw awl::exception(
 			FCPPT_TEXT("fcntl() failed!")
 		);
-	
+
 	return ret;
 }

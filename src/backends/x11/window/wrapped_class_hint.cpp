@@ -1,6 +1,9 @@
-#include <awl/backends/x11/window/wrapped_class_hint.hpp>
 #include <awl/backends/x11/free.hpp>
+#include <awl/backends/x11/window/wrapped_class_hint.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
+
 
 awl::backends::x11::window::wrapped_class_hint::wrapped_class_hint(
 	Display *const _display,

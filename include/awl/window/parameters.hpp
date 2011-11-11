@@ -27,7 +27,7 @@ public:
 	parameters();
 
 	AWL_SYMBOL
-	parameters &	
+	parameters &
 	position(
 		vector const &
 	);
@@ -57,37 +57,37 @@ public:
 	);
 
 	AWL_SYMBOL
-	parameters &	
+	parameters &
 	title(
 		fcppt::string const &
 	);
 
 	AWL_SYMBOL
-	parameters &	
+	parameters &
 	class_name(
 		fcppt::string const &
 	);
 
 	AWL_SYMBOL
-	parameters &	
+	parameters &
 	has_opengl(
 		bool
 	);
 
 	AWL_SYMBOL
-	parameters &	
+	parameters &
 	bit_depth(
 		awl::window::bit_depth::type
 	);
 
 	AWL_SYMBOL
-	parameters &	
+	parameters &
 	stencil_buffer(
 		awl::window::stencil_buffer::type
 	);
 
 	AWL_SYMBOL
-	parameters &	
+	parameters &
 	depth_buffer(
 		awl::window::depth_buffer::type
 	);
@@ -147,7 +147,7 @@ private:
 	window::optional_dim maximum_size_hint_;
 
 	fcppt::string title_;
-	
+
 	fcppt::string class_name_;
 
 	bool has_opengl_;

@@ -1,7 +1,10 @@
-#include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/exception.hpp>
+#include <awl/backends/x11/window/event/to_mask.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
+
 
 long
 awl::backends::x11::window::event::to_mask(
@@ -43,7 +46,7 @@ awl::backends::x11::window::event::to_mask(
 	case GenericEvent:
 		throw awl::exception(
 			FCPPT_TEXT("Don't register generic events for a window!")
-		);	
+		);
 	default:
 		throw awl::exception(
 			FCPPT_TEXT("Unknown x11 event type in to_event_mask!")

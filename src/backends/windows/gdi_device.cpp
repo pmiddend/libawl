@@ -1,6 +1,7 @@
-#include <awl/backends/windows/gdi_device.hpp>
 #include <awl/exception.hpp>
+#include <awl/backends/windows/gdi_device.hpp>
 #include <fcppt/text.hpp>
+
 
 awl::backends::windows::gdi_device::gdi_device(
 	HWND const _hwnd,

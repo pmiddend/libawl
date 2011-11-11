@@ -1,10 +1,13 @@
-#include <awl/backends/x11/create_visual_info.hpp>
-#include <awl/backends/x11/visual_info_unique_ptr.hpp>
-#include <awl/backends/x11/display.hpp>
 #include <awl/exception.hpp>
+#include <awl/backends/x11/create_visual_info.hpp>
+#include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/visual_info_unique_ptr.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <fcppt/config/external_end.hpp>
+
 
 awl::backends::x11::visual_info_unique_ptr
 awl::backends::x11::create_visual_info(
@@ -17,7 +20,7 @@ awl::backends::x11::create_visual_info(
 	// function...
 	//tpl.visual  = ptr_;
 	// ...so we take the id
-	tpl.visualid = 
+	tpl.visualid =
 		::XVisualIDFromVisual(
 			&_visual
 		);
@@ -36,12 +39,12 @@ awl::backends::x11::create_visual_info(
 	x11::visual_info_unique_ptr ret(
 		::XGetVisualInfo(
 			_display.get(),
-			VisualIDMask | 
-			VisualRedMaskMask | 
-			VisualGreenMaskMask | 
+			VisualIDMask |
+			VisualRedMaskMask |
+			VisualGreenMaskMask |
 			VisualBlueMaskMask |
 			VisualBitsPerRGBMask |
-			VisualClassMask /* | VisualColormapSizeMask */, 
+			VisualClassMask /* | VisualColormapSizeMask */,
 			&tpl,
 			&number_of_items
 		)
@@ -53,7 +56,7 @@ awl::backends::x11::create_visual_info(
 		throw awl::exception(
 			FCPPT_TEXT("Couldn't get XVisualInfo structure for Visual")
 		);
-	
+
 	return
 		move(
 			ret

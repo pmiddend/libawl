@@ -1,9 +1,12 @@
-#include <awl/backends/x11/asio/fd_wrapper.hpp>
-#include <awl/backends/x11/asio/dup.hpp>
 #include <awl/backends/x11/display_fd.hpp>
+#include <awl/backends/x11/asio/dup.hpp>
+#include <awl/backends/x11/asio/fd_wrapper.hpp>
 #include <fcppt/function/object.hpp>
 #include <fcppt/tr1/functional.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <boost/asio/buffer.hpp>
+#include <fcppt/config/external_end.hpp>
+
 
 awl::backends::x11::asio::fd_wrapper::fd_wrapper(
 	boost::asio::io_service &_io_service,

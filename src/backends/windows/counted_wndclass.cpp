@@ -26,7 +26,7 @@ awl::backends::windows::counted_wndclass::add_ref()
 awl::backends::windows::counted_wndclass::counter_type
 awl::backends::windows::counted_wndclass::release()
 {
-	return --counter_;	
+	return --counter_;
 }
 
 awl::backends::windows::wndclass &

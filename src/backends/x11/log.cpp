@@ -1,13 +1,25 @@
+#include <awl/create_log.hpp>
+#include <awl/log_location.hpp>
 #include <awl/backends/x11/log.hpp>
-#include <awl/log.hpp>
-#include <fcppt/text.hpp>
+#include <fcppt/log/object.hpp>
+#include <fcppt/log/parameters/all.hpp>
+
+
+namespace
+{
+
+fcppt::log::object logger(
+	awl::create_log(
+		awl::log_location()
+		/
+		FCPPT_TEXT("x11")
+	)
+);
+
+}
 
 fcppt::log::object &
 awl::backends::x11::log()
 {
-	static fcppt::log::object l(
-		fcppt::log::parameters::inherited(
-			awl::log(),
-			FCPPT_TEXT("x11")));
-	return l;
+	return logger;
 }

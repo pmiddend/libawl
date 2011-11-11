@@ -9,8 +9,10 @@
 #include <fcppt/function/object.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/scoped_ptr.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <boost/asio/io_service.hpp>
 #include <boost/system/error_code.hpp>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

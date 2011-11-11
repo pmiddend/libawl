@@ -1,8 +1,11 @@
-#include <awl/backends/x11/system/event/original_processor.hpp>
-#include <awl/backends/x11/system/event/object.hpp>
-#include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/system/object.hpp>
+#include <awl/backends/x11/system/event/object.hpp>
+#include <awl/backends/x11/system/event/original_processor.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
+
 
 awl::backends::x11::system::event::original_processor::original_processor(
 	x11::system::object &_system
@@ -47,7 +50,7 @@ awl::backends::x11::system::event::original_processor::dispatch()
 			)
 		](
 			system::event::object(
-				generic_event	
+				generic_event
 			)
 		);
 

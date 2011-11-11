@@ -12,7 +12,7 @@ function update_main()
 	update_cmake \
 		"${cmakefile}" \
 		"${@:1}" \
-		|| die 
+		|| die
 
 	mv "${cmakefile}".new "${cmakefile}" || die
 }
@@ -41,7 +41,16 @@ update_main \
 
 update_main \
 	AWL_X11_SRC_FILES \
-	src/backends/x11
+	-n \
+	src/backends/x11 \
+	-r \
+	src/backends/x11/asio \
+	src/backends/x11/system \
+	src/backends/x11/window
+
+update_main \
+	AWL_X11_OPENGL_SRC_FILES \
+	src/backends/x11/glx
 
 update_main \
 	AWL_WINDOWS_INCLUDE_FILES \

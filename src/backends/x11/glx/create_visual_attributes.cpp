@@ -1,6 +1,8 @@
 #include "create_visual_attributes.hpp"
 #include "handle_bit_depth.hpp"
+#include <fcppt/config/external_begin.hpp>
 #include <GL/glx.h>
+#include <fcppt/config/external_end.hpp>
 
 awl::backends::x11::glx::visual_attribute_array const
 awl::backends::x11::glx::create_visual_attributes(

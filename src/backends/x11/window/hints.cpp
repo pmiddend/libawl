@@ -1,7 +1,8 @@
-#include <awl/backends/x11/window/hints.hpp>
-#include <awl/backends/x11/free.hpp>
 #include <awl/exception.hpp>
+#include <awl/backends/x11/free.hpp>
+#include <awl/backends/x11/window/hints.hpp>
 #include <fcppt/text.hpp>
+
 
 awl::backends::x11::window::hints::hints()
 :

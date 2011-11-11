@@ -1,15 +1,16 @@
-#include <awl/backends/windows/window/event/original_processor.hpp>
+#include <awl/backends/windows/default_wnd_proc.hpp>
+#include <awl/backends/windows/window/instance.hpp>
 #include <awl/backends/windows/window/event/combine_result.hpp>
 #include <awl/backends/windows/window/event/object.hpp>
+#include <awl/backends/windows/window/event/original_processor.hpp>
 #include <awl/backends/windows/window/event/wnd_proc.hpp>
-#include <awl/backends/windows/window/instance.hpp>
-#include <awl/backends/windows/default_wnd_proc.hpp>
-#include <awl/window/event/resize.hpp>
 #include <awl/window/dim.hpp>
-#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
+#include <awl/window/event/resize.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
+#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
+#include <fcppt/math/dim/basic_impl.hpp>
+
 
 awl::backends::windows::window::event::original_processor::original_processor(
 	windows::window::instance &_window

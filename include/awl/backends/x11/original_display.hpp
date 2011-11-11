@@ -4,7 +4,9 @@
 #include <awl/backends/x11/display.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {

@@ -13,7 +13,7 @@
 awl::system::object_unique_ptr
 awl::system::create()
 {
-	return 
+	return
 		awl::system::object_unique_ptr(
 			fcppt::make_unique_ptr<
 #if defined(AWL_X11_BACKEND)

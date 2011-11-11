@@ -29,7 +29,7 @@ protected:
 public:
 	AWL_SYMBOL
 	virtual ~object();
-	
+
 	virtual x11::display &
 	display() = 0;
 };

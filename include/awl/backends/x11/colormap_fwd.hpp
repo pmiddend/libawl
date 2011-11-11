@@ -7,7 +7,9 @@ namespace backends
 {
 namespace x11
 {
+
 class colormap;
+
 }
 }
 }

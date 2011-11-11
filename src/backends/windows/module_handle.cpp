@@ -1,6 +1,7 @@
-#include <awl/backends/windows/module_handle.hpp>
 #include <awl/exception.hpp>
+#include <awl/backends/windows/module_handle.hpp>
 #include <fcppt/text.hpp>
+
 
 HINSTANCE
 awl::backends::windows::module_handle()

@@ -1,12 +1,13 @@
+#include <awl/backends/windows/counted_wndclass.hpp>
+#include <awl/backends/windows/default_wnd_proc.hpp>
 #include <awl/backends/windows/system/original_object.hpp>
 #include <awl/backends/windows/window/original_instance.hpp>
-#include <awl/backends/windows/default_wnd_proc.hpp>
-#include <awl/backends/windows/counted_wndclass.hpp>
 #include <awl/window/parameters.hpp>
-#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
+#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
+#include <fcppt/tr1/functional.hpp>
+
 
 awl::backends::windows::system::original_object::original_object()
 :
@@ -45,7 +46,7 @@ awl::backends::windows::system::original_object::create(
 			).first;
 	else
 		wndclass_it->second->add_ref();
-	
+
 	return
 		awl::window::instance_unique_ptr(
 			fcppt::make_unique_ptr<

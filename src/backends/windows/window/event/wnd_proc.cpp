@@ -1,8 +1,9 @@
-#include <awl/backends/windows/window/event/wnd_proc.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/event/original_processor.hpp>
 #include <awl/backends/windows/window/event/return_type.hpp>
-#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/window/event/wnd_proc.hpp>
 #include <fcppt/optional_impl.hpp>
+
 
 LRESULT CALLBACK
 awl::backends::windows::window::event::wnd_proc(

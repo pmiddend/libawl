@@ -1,9 +1,10 @@
+#include <awl/exception.hpp>
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/visual.hpp>
 #include <awl/backends/x11/log.hpp>
-#include <awl/exception.hpp>
+#include <awl/backends/x11/visual.hpp>
 #include <fcppt/text.hpp>
+
 
 awl::backends::x11::colormap::colormap(
 	x11::display &_display,

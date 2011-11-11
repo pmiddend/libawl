@@ -16,7 +16,7 @@ namespace event
 {
 
 typedef fcppt::function::object<
-	window::event::function	
+	window::event::function
 > callback;
 
 }

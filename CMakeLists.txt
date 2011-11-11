@@ -23,7 +23,7 @@ FIND_PACKAGE(
 	thread
 )
 
-INCLUDE_DIRECTORIES(SYSTEM ${Boost_INCLUDE_DIR})
+INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
@@ -35,7 +35,11 @@ FIND_PACKAGE(
 	REQUIRED
 )
 
-INCLUDE_DIRECTORIES(${FCPPT_INCLUDE_DIRS})
+ADD_DEFINITIONS(
+	"${Fcppt_DEFINITIONS}"
+)
+
+INCLUDE_DIRECTORIES(${Fcppt_INCLUDE_DIRS})
 
 # Fcppt end
 
@@ -57,9 +61,11 @@ ADD_DEFINITIONS(-D BOOST_ASIO_SEPARATE_COMPILATION)
 SET(
 	AWL_BASE_SRC_FILES
 	src/asio.cpp
+	src/create_log.cpp
 	src/exception.cpp
 	src/log.cpp
 	src/log_context.cpp
+	src/log_location.cpp
 	src/mainloop/asio/create_io_service.cpp
 	src/mainloop/asio/create_io_service_base.cpp
 	src/mainloop/asio/io_service.cpp
@@ -80,9 +86,11 @@ SET(
 SET(
 	AWL_BASE_INCLUDE_FILES
 	include/awl/class_symbol.hpp
+	include/awl/create_log.hpp
 	include/awl/exception.hpp
 	include/awl/log.hpp
 	include/awl/log_context.hpp
+	include/awl/log_location.hpp
 	include/awl/mainloop/asio/create_io_service.hpp
 	include/awl/mainloop/asio/create_io_service_base.hpp
 	include/awl/mainloop/asio/io_service.hpp
@@ -212,13 +220,6 @@ SET(
 	src/backends/x11/display.cpp
 	src/backends/x11/display_fd.cpp
 	src/backends/x11/free.cpp
-	src/backends/x11/glx/create_visual.cpp
-	src/backends/x11/glx/create_visual.hpp
-	src/backends/x11/glx/create_visual_attributes.cpp
-	src/backends/x11/glx/create_visual_attributes.hpp
-	src/backends/x11/glx/handle_bit_depth.cpp
-	src/backends/x11/glx/handle_bit_depth.hpp
-	src/backends/x11/glx/visual_attribute_array.hpp
 	src/backends/x11/log.cpp
 	src/backends/x11/original_display.cpp
 	src/backends/x11/system/event/map_key.cpp
@@ -252,6 +253,17 @@ SET(
 	src/backends/x11/window/wrapped_class_hint.cpp
 	src/backends/x11/window/wrapped_instance.cpp
 	src/backends/x11/wrapped_visual.cpp
+)
+
+SET(
+	AWL_X11_OPENGL_SRC_FILES
+	src/backends/x11/glx/create_visual.cpp
+	src/backends/x11/glx/create_visual.hpp
+	src/backends/x11/glx/create_visual_attributes.cpp
+	src/backends/x11/glx/create_visual_attributes.hpp
+	src/backends/x11/glx/handle_bit_depth.cpp
+	src/backends/x11/glx/handle_bit_depth.hpp
+	src/backends/x11/glx/visual_attribute_array.hpp
 )
 
 SET(
@@ -374,7 +386,6 @@ SET(
 	include/awl/backends/windows/gdi_device.hpp
 	include/awl/backends/windows/gdi_device_fwd.hpp
 	include/awl/backends/windows/module_handle.hpp
-	include/awl/backends/windows/optional_renderer_parameters.hpp
 	include/awl/backends/windows/system/event/callback.hpp
 	include/awl/backends/windows/system/event/function.hpp
 	include/awl/backends/windows/system/event/handle.hpp
@@ -473,6 +484,15 @@ IF(AWL_X11_BACKEND)
 		AWL_SRC_FILES
 		"${AWL_SRC_FILES};${AWL_X11_SRC_FILES}"
 	)
+
+	IF(
+		ENABLE_OPENGL
+	)
+		SET(
+			AWL_SRC_FILES
+			"${AWL_SRC_FILES};${AWL_X11_OPENGL_SRC_FILES}"
+		)
+	ENDIF()
 ENDIF()
 
 IF(ENABLE_WINELIB OR AWL_WINDOWS_BACKEND)
@@ -544,7 +564,7 @@ MACRO(MAKE_AWL_LIBRARY TARGETNAME VARIANT)
 	#rename awl_static into awl for UNIX
 	IF(${TARGETNAME} STREQUAL awl_static AND UNIX)
 		SET_TARGET_PROPERTIES(
-			${TARGETNAME} PROPERTIES OUTPUT_NAME awl 
+			${TARGETNAME} PROPERTIES OUTPUT_NAME awl
 		)
 	ENDIF()
 
@@ -558,20 +578,13 @@ MACRO(MAKE_AWL_LIBRARY TARGETNAME VARIANT)
 
 	TARGET_LINK_LIBRARIES(
 		${TARGETNAME}
-		${FCPPT_LIBRARIES}
+		${Fcppt_LIBRARIES}
 	)
 
 	IF(AWL_X11_BACKEND)
 		TARGET_LINK_LIBRARIES(
 			${TARGETNAME}
 			${X11_X11_LIB}
-		)
-	ENDIF()
-
-	IF(UNIX)
-		TARGET_LINK_LIBRARIES(
-			${TARGETNAME}
-			pthread
 		)
 	ENDIF()
 
@@ -586,7 +599,7 @@ MACRO(MAKE_AWL_LIBRARY TARGETNAME VARIANT)
 		TARGETS
 		${TARGETNAME}
 		DESTINATION
-		${CMAKE_INSTALL_PREFIX}/lib
+		${INSTALL_LIBRARY_DIR}
 	)
 ENDMACRO()
 
@@ -607,7 +620,6 @@ ENDIF()
 
 IF(ENABLE_WINELIB)
 	INCLUDE_DIRECTORIES(
-		SYSTEM
 		${WINE_INCLUDE_DIR}
 	)
 
@@ -629,27 +641,40 @@ FOREACH(
 	CUR_FILE
 	${AWL_INCLUDE_FILES}
 )
+	# Cut the filename
 	GET_FILENAME_COMPONENT(
 		REL_PATH
 		${CUR_FILE}
 		PATH
 	)
 
+	# Replace the leading include/
+	STRING(
+		REPLACE
+		"include/"
+		""
+		TRIMMED_PATH
+		"${REL_PATH}"
+	)
+
 	INSTALL(
 		FILES
 		${CMAKE_SOURCE_DIR}/${CUR_FILE}
 		DESTINATION
-		${REL_PATH}
+		${INSTALL_INCLUDE_DIR}/${TRIMMED_PATH}
 	)
 ENDFOREACH()
 
 INSTALL(
-	FILES ${CMAKE_BINARY_DIR}/include/awl/config.hpp
-	DESTINATION include/awl
+	FILES
+	${CMAKE_BINARY_DIR}/include/awl/config.hpp
+	DESTINATION
+	${INSTALL_INCLUDE_DIR}/awl
 )
 
 INSTALL(
 	FILES
-	${CMAKE_SOURCE_DIR}/CMakeModules/FindAWL.cmake
-	DESTINATION share/cmake/Modules
+	${CMAKE_SOURCE_DIR}/CMakeModules/FindAwl.cmake
+	DESTINATION
+	${INSTALL_CMAKEMODULES_DIR}
 )

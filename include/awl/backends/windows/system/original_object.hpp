@@ -7,7 +7,9 @@
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
+#include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
+#include <fcppt/config/external_end.hpp>
 
 namespace awl
 {
@@ -31,7 +33,7 @@ public:
 
 	AWL_SYMBOL
 	~original_object();
-	
+
 	AWL_SYMBOL
 	awl::window::instance_unique_ptr
 	create(
