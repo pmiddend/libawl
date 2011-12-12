@@ -148,7 +148,7 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 	case WM_SIZE:
 		resize_signal_(
 			awl::window::event::resize(
-				window(),
+				this->window(),
 				awl::window::dim(
 					static_cast<
 						awl::window::dim::value_type

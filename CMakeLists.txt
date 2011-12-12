@@ -335,6 +335,7 @@ SET(
 	src/backends/windows/format_message.cpp
 	src/backends/windows/gdi_device.cpp
 	src/backends/windows/module_handle.cpp
+	src/backends/windows/post_message.cpp
 	src/backends/windows/system/event/handle.cpp
 	src/backends/windows/system/event/object.cpp
 	src/backends/windows/system/event/original_handle.cpp
@@ -369,6 +370,7 @@ SET(
 	include/awl/backends/windows/gdi_device.hpp
 	include/awl/backends/windows/gdi_device_fwd.hpp
 	include/awl/backends/windows/module_handle.hpp
+	include/awl/backends/windows/post_message.hpp
 	include/awl/backends/windows/system/event/callback.hpp
 	include/awl/backends/windows/system/event/function.hpp
 	include/awl/backends/windows/system/event/handle.hpp
