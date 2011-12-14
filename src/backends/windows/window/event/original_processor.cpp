@@ -1,23 +1,34 @@
 #include <awl/backends/windows/default_wnd_proc.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/instance.hpp>
 #include <awl/backends/windows/window/event/combine_result.hpp>
 #include <awl/backends/windows/window/event/object.hpp>
 #include <awl/backends/windows/window/event/original_processor.hpp>
+#include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/window/event/wnd_proc.hpp>
 #include <awl/window/dim.hpp>
+#include <awl/window/event/destroy.hpp>
+#include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/resize.hpp>
+#include <awl/window/event/resize_callback.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/object_impl.hpp>
 
 
 awl::backends::windows::window::event::original_processor::original_processor(
 	windows::window::instance &_window
 )
 :
-	window_(_window),
-	signals_()
+	window_(
+		_window
+	),
+	signals_(),
+	destroy_signal_(),
+	resize_signal_()
 {
 	::SetWindowLongPtr(
 		window_.hwnd(),
@@ -85,6 +96,17 @@ awl::backends::windows::window::event::original_processor::dispatch()
 }
 
 fcppt::signal::auto_connection
+awl::backends::windows::window::event::original_processor::destroy_callback(
+	awl::window::event::destroy_callback const &_callback
+)
+{
+	return
+		destroy_signal_.connect(
+			_callback
+		);
+}
+
+fcppt::signal::auto_connection
 awl::backends::windows::window::event::original_processor::resize_callback(
 	awl::window::event::resize_callback const &_callback
 )
@@ -145,6 +167,13 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 		_msg
 	)
 	{
+	case WM_DESTROY:
+		destroy_signal_(
+			awl::window::event::destroy(
+				this->window()
+			)
+		);
+		break;
 	case WM_SIZE:
 		resize_signal_(
 			awl::window::event::resize(

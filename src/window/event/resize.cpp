@@ -1,3 +1,5 @@
+#include <awl/window/dim.hpp>
+#include <awl/window/instance_fwd.hpp>
 #include <awl/window/event/resize.hpp>
 
 awl::window::event::resize::resize(

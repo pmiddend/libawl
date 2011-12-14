@@ -77,6 +77,7 @@ SET(
 	src/system/event/processor.cpp
 	src/system/object.cpp
 	src/window/event/create_processor.cpp
+	src/window/event/destroy.cpp
 	src/window/event/processor.cpp
 	src/window/event/resize.cpp
 	src/window/instance.cpp
@@ -126,6 +127,11 @@ SET(
 	include/awl/window/depth_buffer.hpp
 	include/awl/window/dim.hpp
 	include/awl/window/event/create_processor.hpp
+	include/awl/window/event/destroy.hpp
+	include/awl/window/event/destroy_callback.hpp
+	include/awl/window/event/destroy_function.hpp
+	include/awl/window/event/destroy_fwd.hpp
+	include/awl/window/event/destroy_signal.hpp
 	include/awl/window/event/processor.hpp
 	include/awl/window/event/processor_fwd.hpp
 	include/awl/window/event/processor_scoped_ptr.hpp
@@ -135,6 +141,7 @@ SET(
 	include/awl/window/event/resize_callback.hpp
 	include/awl/window/event/resize_function.hpp
 	include/awl/window/event/resize_fwd.hpp
+	include/awl/window/event/resize_signal.hpp
 	include/awl/window/instance.hpp
 	include/awl/window/instance_fwd.hpp
 	include/awl/window/instance_scoped_ptr.hpp

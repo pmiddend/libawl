@@ -6,8 +6,10 @@
 #include <awl/backends/x11/window/event/function.hpp>
 #include <awl/backends/x11/window/instance_fwd.hpp>
 #include <awl/window/event/processor.hpp>
+#include <awl/window/event/destroy_callback.hpp>
+#include <awl/window/event/destroy_signal.hpp>
 #include <awl/window/event/resize_callback.hpp>
-#include <awl/window/event/resize_function.hpp>
+#include <awl/window/event/resize_signal.hpp>
 #include <awl/window/instance_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -52,11 +54,19 @@ public:
 	bool
 	dispatch();
 
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
+	destroy_callback(
+		awl::window::event::destroy_callback const &
+	);
+
+	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	resize_callback(
 		awl::window::event::resize_callback const &
 	);
 
+	AWL_SYMBOL
 	awl::window::instance &
 	window() const;
 
@@ -74,6 +84,11 @@ private:
 
 	void
 	on_configure(
+		x11::window::event::object const &
+	);
+
+	void
+	on_destroy(
 		x11::window::event::object const &
 	);
 
@@ -104,9 +119,9 @@ private:
 
 	fcppt::signal::connection_manager const connection_manager_;
 
-	fcppt::signal::object<
-		awl::window::event::resize_function
-	> resize_signal_;
+	awl::window::event::destroy_signal destroy_signal_;
+
+	awl::window::event::resize_signal resize_signal_;
 };
 
 }

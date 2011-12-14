@@ -43,13 +43,15 @@ awl::backends::x11::window::event::to_mask(
 		return SubstructureRedirectMask;
 	case ConfigureNotify:
 		return StructureNotifyMask;
+	case DestroyNotify:
+		return StructureNotifyMask;
 	case GenericEvent:
 		throw awl::exception(
 			FCPPT_TEXT("Don't register generic events for a window!")
 		);
-	default:
-		throw awl::exception(
-			FCPPT_TEXT("Unknown x11 event type in to_event_mask!")
-		);
 	}
+
+	throw awl::exception(
+		FCPPT_TEXT("Unknown x11 event type in to_event_mask!")
+	);
 }

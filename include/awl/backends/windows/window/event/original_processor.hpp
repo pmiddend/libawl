@@ -6,8 +6,10 @@
 #include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/window/instance_fwd.hpp>
 #include <awl/backends/windows/windows.hpp>
+#include <awl/window/event/destroy_callback.hpp>
+#include <awl/window/event/destroy_signal.hpp>
 #include <awl/window/event/resize_callback.hpp>
-#include <awl/window/event/resize_function.hpp>
+#include <awl/window/event/resize_signal.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
@@ -51,6 +53,12 @@ public:
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
+	destroy_callback(
+		awl::window::event::destroy_callback const &
+	);
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
 	resize_callback(
 		awl::window::event::resize_callback const &
 	);
@@ -87,11 +95,9 @@ private:
 
 	signal_map signals_;
 
-	typedef fcppt::signal::object<
-		awl::window::event::resize_function
-	> resize_signal;
+	awl::window::event::destroy_signal destroy_signal_;
 
-	resize_signal resize_signal_;
+	awl::window::event::resize_signal resize_signal_;
 };
 
 }

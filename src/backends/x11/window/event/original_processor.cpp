@@ -6,10 +6,14 @@
 #include <awl/backends/x11/window/event/poll.hpp>
 #include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/window/dim.hpp>
+#include <awl/window/event/destroy.hpp>
+#include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/resize.hpp>
+#include <awl/window/event/resize_callback.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/assign/make_container.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/signal/shared_connection.hpp>
 #include <fcppt/signal/unregister/base_impl.hpp>
@@ -41,9 +45,23 @@ awl::backends::x11::window::event::original_processor::original_processor(
 					)
 				)
 			)
+		)(
+			fcppt::signal::shared_connection(
+				register_callback(
+					DestroyNotify,
+					std::tr1::bind(
+						&window::event::original_processor::on_destroy,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
 		)
-	)
-{}
+	),
+	destroy_signal_(),
+	resize_signal_()
+{
+}
 
 awl::backends::x11::window::event::original_processor::~original_processor()
 {
@@ -80,6 +98,17 @@ awl::backends::x11::window::event::original_processor::dispatch()
 	}
 
 	return events_processed;
+}
+
+fcppt::signal::auto_connection
+awl::backends::x11::window::event::original_processor::destroy_callback(
+	awl::window::event::destroy_callback const &_callback
+)
+{
+	return
+		destroy_signal_.connect(
+			_callback
+		);
 }
 
 fcppt::signal::auto_connection
@@ -180,6 +209,18 @@ awl::backends::x11::window::event::original_processor::on_configure(
 				request.width,
 				request.height
 			)
+		)
+	);
+}
+
+void
+awl::backends::x11::window::event::original_processor::on_destroy(
+	x11::window::event::object const &
+)
+{
+	destroy_signal_(
+		awl::window::event::destroy(
+			window_
 		)
 	);
 }
