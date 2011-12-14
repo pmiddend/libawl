@@ -37,19 +37,11 @@ awl::backends::windows::window::event::wnd_proc(
 			return *ret;
 	}
 
-	switch(
-		_msg
-	)
-	{
-	case WM_CLOSE:
-		return 0;
-	default:
-		return
-			::DefWindowProc(
-				_hwnd,
-				_msg,
-				_wparam,
-				_lparam
-			);
-	}
+	return
+		::DefWindowProc(
+			_hwnd,
+			_msg,
+			_wparam,
+			_lparam
+		);
 }
