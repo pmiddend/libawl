@@ -1,13 +1,17 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 
-#include <awl/backends/x11/window/event/processor_fwd.hpp>
-#include <awl/backends/x11/window/event/callback.hpp>
 #include <awl/window/event/processor.hpp>
+#include <awl/backends/x11/event/object_fwd.hpp>
+#include <awl/backends/x11/window/instance_fwd.hpp>
+#include <awl/backends/x11/window/event/callback.hpp>
+#include <awl/backends/x11/window/event/processor_fwd.hpp>
+#include <awl/backends/x11/window/event/type.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/signal/auto_connection.hpp>
+
 
 namespace awl
 {
@@ -32,12 +36,24 @@ protected:
 	processor();
 public:
 	AWL_SYMBOL
-	~processor();
+	virtual
+	~processor() = 0;
 
-	virtual fcppt::signal::auto_connection
+	virtual
+	awl::backends::x11::window::instance &
+	x11_window() const = 0;
+
+	virtual
+	fcppt::signal::auto_connection
 	register_callback(
-		int event_type,
+		x11::window::event::type,
 		x11::window::event::callback const &
+	) = 0;
+
+	virtual
+	void
+	process(
+		x11::event::object const &
 	) = 0;
 };
 

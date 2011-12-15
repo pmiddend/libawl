@@ -1,9 +1,11 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_EVENT_POLL_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_EVENT_POLL_HPP_INCLUDED
 
-#include <awl/backends/x11/window/event/optional.hpp>
-#include <awl/backends/x11/window/instance_fwd.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/x11/window/instance_fwd.hpp>
+#include <awl/backends/x11/window/event/mask.hpp>
+#include <awl/backends/x11/window/event/optional.hpp>
+
 
 namespace awl
 {
@@ -20,7 +22,7 @@ AWL_SYMBOL
 x11::window::event::optional const
 poll(
 	x11::window::instance &,
-	long event_mask
+	x11::window::event::mask
 );
 
 }

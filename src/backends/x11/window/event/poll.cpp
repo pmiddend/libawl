@@ -1,5 +1,6 @@
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/event/mask.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
 #include <awl/backends/x11/window/event/poll.hpp>
 #include <fcppt/optional_impl.hpp>
@@ -11,7 +12,7 @@
 awl::backends::x11::window::event::optional const
 awl::backends::x11::window::event::poll(
 	x11::window::instance &_window,
-	long const _event_mask
+	x11::window::event::mask const _event_mask
 )
 {
 	XEvent ret;
@@ -20,7 +21,7 @@ awl::backends::x11::window::event::poll(
 		::XCheckWindowEvent(
 			_window.display().get(),
 			_window.get(),
-			_event_mask,
+			_event_mask.get(),
 			&ret
 		)
 		== True

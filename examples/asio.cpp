@@ -54,7 +54,7 @@ int main()
 		io_service->create_dispatcher(
 			*window_system,
 			std::tr1::bind(
-				&awl::window::event::processor::dispatch,
+				&awl::window::event::processor::poll,
 				processor.get()
 			)
 		)

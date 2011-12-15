@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_X11_SYSTEM_EVENT_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_X11_SYSTEM_EVENT_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/x11/event/object_fwd.hpp>
 #include <awl/backends/x11/system/event/processor_fwd.hpp>
 #include <awl/backends/x11/system/event/callback.hpp>
 #include <awl/backends/x11/system/event/opcode.hpp>
@@ -10,6 +11,7 @@
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/noncopyable.hpp>
+
 
 namespace awl
 {
@@ -36,11 +38,18 @@ public:
 	AWL_SYMBOL
 	~processor();
 
-	virtual fcppt::signal::auto_connection
+	virtual
+	fcppt::signal::auto_connection
 	register_callback(
 		x11::system::event::opcode const &,
 		x11::system::event::type const &,
 		x11::system::event::callback const &
+	) = 0;
+
+	virtual
+	void
+	process(
+		x11::event::object const &
 	) = 0;
 };
 

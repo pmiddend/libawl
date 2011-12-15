@@ -62,6 +62,9 @@ SET(
 	AWL_BASE_SRC_FILES
 	src/asio.cpp
 	src/create_log.cpp
+	src/event/create_processor.cpp
+	src/event/processor.cpp
+	src/event/scoped_window_processor.cpp
 	src/exception.cpp
 	src/log.cpp
 	src/log_context.cpp
@@ -88,6 +91,14 @@ SET(
 	AWL_BASE_INCLUDE_FILES
 	include/awl/class_symbol.hpp
 	include/awl/create_log.hpp
+	include/awl/event/create_processor.hpp
+	include/awl/event/processor.hpp
+	include/awl/event/processor_fwd.hpp
+	include/awl/event/processor_scoped_ptr.hpp
+	include/awl/event/processor_shared_ptr.hpp
+	include/awl/event/processor_unique_ptr.hpp
+	include/awl/event/scoped_window_processor.hpp
+	include/awl/event/scoped_window_processor_fwd.hpp
 	include/awl/exception.hpp
 	include/awl/log.hpp
 	include/awl/log_context.hpp
@@ -113,6 +124,7 @@ SET(
 	include/awl/symbol.hpp
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
+	include/awl/system/event/optional_processor_ref.hpp
 	include/awl/system/event/processor.hpp
 	include/awl/system/event/processor_fwd.hpp
 	include/awl/system/event/processor_scoped_ptr.hpp
@@ -209,6 +221,9 @@ SET(
 	src/backends/x11/default_visual.cpp
 	src/backends/x11/display.cpp
 	src/backends/x11/display_fd.cpp
+	src/backends/x11/event/next.cpp
+	src/backends/x11/event/object.cpp
+	src/backends/x11/event/processor.cpp
 	src/backends/x11/free.cpp
 	src/backends/x11/log.cpp
 	src/backends/x11/original_display.cpp
@@ -275,6 +290,11 @@ SET(
 	include/awl/backends/x11/display.hpp
 	include/awl/backends/x11/display_fd.hpp
 	include/awl/backends/x11/display_fwd.hpp
+	include/awl/backends/x11/event/next.hpp
+	include/awl/backends/x11/event/object.hpp
+	include/awl/backends/x11/event/object_fwd.hpp
+	include/awl/backends/x11/event/processor.hpp
+	include/awl/backends/x11/event/processor_fwd.hpp
 	include/awl/backends/x11/free.hpp
 	include/awl/backends/x11/log.hpp
 	include/awl/backends/x11/original_display.hpp
@@ -285,6 +305,7 @@ SET(
 	include/awl/backends/x11/system/event/object.hpp
 	include/awl/backends/x11/system/event/object_fwd.hpp
 	include/awl/backends/x11/system/event/opcode.hpp
+	include/awl/backends/x11/system/event/optional_processor_ref.hpp
 	include/awl/backends/x11/system/event/original_processor.hpp
 	include/awl/backends/x11/system/event/processor.hpp
 	include/awl/backends/x11/system/event/processor_fwd.hpp
@@ -308,6 +329,7 @@ SET(
 	include/awl/backends/x11/window/event/change_mask.hpp
 	include/awl/backends/x11/window/event/filter.hpp
 	include/awl/backends/x11/window/event/function.hpp
+	include/awl/backends/x11/window/event/mask.hpp
 	include/awl/backends/x11/window/event/object.hpp
 	include/awl/backends/x11/window/event/object_fwd.hpp
 	include/awl/backends/x11/window/event/optional.hpp
@@ -316,6 +338,7 @@ SET(
 	include/awl/backends/x11/window/event/processor.hpp
 	include/awl/backends/x11/window/event/processor_fwd.hpp
 	include/awl/backends/x11/window/event/to_mask.hpp
+	include/awl/backends/x11/window/event/type.hpp
 	include/awl/backends/x11/window/hints.hpp
 	include/awl/backends/x11/window/holder.hpp
 	include/awl/backends/x11/window/instance.hpp

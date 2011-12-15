@@ -1,16 +1,19 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/x11/event/object_fwd.hpp>
 #include <awl/backends/x11/window/event/processor.hpp>
 #include <awl/backends/x11/window/event/callback.hpp>
 #include <awl/backends/x11/window/event/function.hpp>
+#include <awl/backends/x11/window/event/mask.hpp>
+#include <awl/backends/x11/window/event/object_fwd.hpp>
+#include <awl/backends/x11/window/event/type.hpp>
 #include <awl/backends/x11/window/instance_fwd.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/destroy_signal.hpp>
 #include <awl/window/event/resize_callback.hpp>
 #include <awl/window/event/resize_signal.hpp>
-#include <awl/window/instance_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
@@ -22,6 +25,7 @@
 #include <boost/ptr_container/ptr_map.hpp>
 #include <map>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {
@@ -52,7 +56,7 @@ public:
 
 	AWL_SYMBOL
 	bool
-	dispatch();
+	poll();
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
@@ -71,15 +75,29 @@ public:
 	window() const;
 
 	AWL_SYMBOL
+	awl::backends::x11::window::instance &
+	x11_window() const;
+
+	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_callback(
-		int event_type,
+		x11::window::event::type,
 		x11::window::event::callback const &
+	);
+
+	void
+	process(
+		x11::event::object const &
 	);
 private:
 	void
+	do_process(
+		x11::window::event::object const &
+	);
+
+	void
 	unregister(
-		int event_type
+		x11::window::event::type
 	);
 
 	void
@@ -100,14 +118,14 @@ private:
 	> signal;
 
 	typedef boost::ptr_map<
-		int,
+		x11::window::event::type,
 		signal
 	> event_signal_map;
 
 	typedef unsigned mask_count;
 
 	typedef std::map<
-		long,
+		x11::window::event::mask,
 		mask_count
 	> mask_count_map;
 
@@ -115,7 +133,7 @@ private:
 
 	mask_count_map mask_counts_;
 
-	long event_mask_;
+	x11::window::event::mask event_mask_;
 
 	fcppt::signal::connection_manager const connection_manager_;
 

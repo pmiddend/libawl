@@ -1,4 +1,6 @@
 #include <awl/system/event/create_processor.hpp>
+#include <awl/system/event/processor_unique_ptr.hpp>
+#include <awl/system/object_fwd.hpp>
 #include <awl/config.hpp>
 #if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/system/event/original_processor.hpp>

@@ -27,7 +27,7 @@ protected:
 	processor();
 public:
 	virtual bool
-	dispatch() = 0;
+	poll() = 0;
 
 	virtual fcppt::signal::auto_connection
 	destroy_callback(
@@ -43,7 +43,7 @@ public:
 	window() const = 0;
 
 	AWL_SYMBOL
-	virtual ~processor();
+	virtual ~processor() = 0;
 };
 
 }

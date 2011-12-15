@@ -22,6 +22,7 @@ update_main \
 	-n \
 	include/awl \
 	-r \
+	include/awl/event \
 	include/awl/mainloop \
 	include/awl/system \
 	include/awl/window
@@ -31,6 +32,7 @@ update_main \
 	-n \
 	src \
 	-r \
+	src/event \
 	src/mainloop \
 	src/system \
 	src/window
@@ -45,6 +47,7 @@ update_main \
 	src/backends/x11 \
 	-r \
 	src/backends/x11/asio \
+	src/backends/x11/event \
 	src/backends/x11/system \
 	src/backends/x11/window
 

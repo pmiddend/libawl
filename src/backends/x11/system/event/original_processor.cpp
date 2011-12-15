@@ -1,7 +1,13 @@
 #include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/event/object.hpp>
 #include <awl/backends/x11/system/object.hpp>
+#include <awl/backends/x11/system/event/callback.hpp>
+#include <awl/backends/x11/system/event/map_key.hpp>
 #include <awl/backends/x11/system/event/object.hpp>
+#include <awl/backends/x11/system/event/opcode.hpp>
 #include <awl/backends/x11/system/event/original_processor.hpp>
+#include <awl/backends/x11/system/event/type.hpp>
+#include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
@@ -20,7 +26,7 @@ awl::backends::x11::system::event::original_processor::~original_processor()
 }
 
 bool
-awl::backends::x11::system::event::original_processor::dispatch()
+awl::backends::x11::system::event::original_processor::poll()
 {
 	bool events_processed = false;
 
@@ -34,28 +40,11 @@ awl::backends::x11::system::event::original_processor::dispatch()
 		)
 		== True
 	)
-	{
-		XGenericEventCookie const &generic_event(
-			xev.xcookie
-		);
-
-		signals_[
-			event::map_key(
-				event::opcode(
-					generic_event.extension
-				),
-				event::type(
-					generic_event.evtype
-				)
-			)
-		](
-			system::event::object(
-				generic_event
+		this->process(
+			x11::event::object(
+				xev
 			)
 		);
-
-		events_processed = true;
-	}
 
 	return events_processed;
 }
@@ -76,5 +65,29 @@ awl::backends::x11::system::event::original_processor::register_callback(
 		].connect(
 			_callback
 		);
+}
 
+void
+awl::backends::x11::system::event::original_processor::process(
+	x11::event::object const &_event
+)
+{
+	XGenericEventCookie const &generic_event(
+		_event.get().xcookie
+	);
+
+	signals_[
+		event::map_key(
+			event::opcode(
+				generic_event.extension
+			),
+			event::type(
+				generic_event.evtype
+			)
+		)
+	](
+		system::event::object(
+			generic_event
+		)
+	);
 }

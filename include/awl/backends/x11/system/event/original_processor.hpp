@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_X11_SYSTEM_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_X11_SYSTEM_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/x11/event/object_fwd.hpp>
 #include <awl/backends/x11/system/event/callback.hpp>
 #include <awl/backends/x11/system/event/map_key.hpp>
 #include <awl/backends/x11/system/event/opcode.hpp>
@@ -16,6 +17,7 @@
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {
@@ -37,7 +39,8 @@ class AWL_CLASS_SYMBOL original_processor
 	);
 public:
 	AWL_SYMBOL
-	explicit original_processor(
+	explicit
+	original_processor(
 		x11::system::object &
 	);
 
@@ -46,13 +49,18 @@ public:
 
 	AWL_SYMBOL
 	bool
-	dispatch();
+	poll();
 
 	fcppt::signal::auto_connection
 	register_callback(
 		x11::system::event::opcode const &,
 		x11::system::event::type const &,
 		x11::system::event::callback const &
+	);
+
+	void
+	process(
+		x11::event::object const &
 	);
 private:
 	x11::system::object &system_;

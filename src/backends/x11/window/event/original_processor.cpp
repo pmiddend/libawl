@@ -1,3 +1,4 @@
+#include <awl/backends/x11/event/object.hpp>
 #include <awl/backends/x11/window/instance.hpp>
 #include <awl/backends/x11/window/event/change_mask.hpp>
 #include <awl/backends/x11/window/event/filter.hpp>
@@ -5,6 +6,7 @@
 #include <awl/backends/x11/window/event/original_processor.hpp>
 #include <awl/backends/x11/window/event/poll.hpp>
 #include <awl/backends/x11/window/event/to_mask.hpp>
+#include <awl/backends/x11/window/event/type.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/event/destroy.hpp>
 #include <awl/window/event/destroy_callback.hpp>
@@ -27,17 +29,23 @@ awl::backends::x11::window::event::original_processor::original_processor(
 	x11::window::instance &_window
 )
 :
-	window_(_window),
+	window_(
+		_window
+	),
 	signals_(),
 	mask_counts_(),
-	event_mask_(0l),
+	event_mask_(
+		0l
+	),
 	connection_manager_(
 		fcppt::assign::make_container<
 			fcppt::signal::connection_manager::container
 		>(
 			fcppt::signal::shared_connection(
-				register_callback(
-					ConfigureNotify,
+				this->register_callback(
+					x11::window::event::type(
+						ConfigureNotify
+					),
 					std::tr1::bind(
 						&window::event::original_processor::on_configure,
 						this,
@@ -47,8 +55,10 @@ awl::backends::x11::window::event::original_processor::original_processor(
 			)
 		)(
 			fcppt::signal::shared_connection(
-				register_callback(
-					DestroyNotify,
+				this->register_callback(
+					x11::window::event::type(
+						DestroyNotify
+					),
 					std::tr1::bind(
 						&window::event::original_processor::on_destroy,
 						this,
@@ -68,7 +78,7 @@ awl::backends::x11::window::event::original_processor::~original_processor()
 }
 
 bool
-awl::backends::x11::window::event::original_processor::dispatch()
+awl::backends::x11::window::event::original_processor::poll()
 {
 	bool events_processed = false;
 
@@ -80,17 +90,7 @@ awl::backends::x11::window::event::original_processor::dispatch()
 			)
 	)
 	{
-		if(
-			event::filter(
-				*new_event,
-				window_
-			)
-		)
-			continue;
-
-		signals_[
-			new_event->get().type
-		](
+		this->do_process(
 			*new_event
 		);
 
@@ -128,13 +128,19 @@ awl::backends::x11::window::event::original_processor::window() const
 	return window_;
 }
 
+awl::backends::x11::window::instance &
+awl::backends::x11::window::event::original_processor::x11_window() const
+{
+	return window_;
+}
+
 fcppt::signal::auto_connection
 awl::backends::x11::window::event::original_processor::register_callback(
-	int const _event_type,
+	x11::window::event::type const _event_type,
 	x11::window::event::callback const &_callback
 )
 {
-	long const new_mask(
+	x11::window::event::mask const new_mask(
 		x11::window::event::to_mask(
 			_event_type
 		)
@@ -168,11 +174,45 @@ awl::backends::x11::window::event::original_processor::register_callback(
 }
 
 void
-awl::backends::x11::window::event::original_processor::unregister(
-	int const _event_type
+awl::backends::x11::window::event::original_processor::process(
+	x11::event::object const &_event
 )
 {
-	long const old_mask(
+	this->do_process(
+		x11::window::event::object(
+			_event.get()
+		)
+	);
+}
+
+void
+awl::backends::x11::window::event::original_processor::do_process(
+	x11::window::event::object const &_event
+)
+{
+	if(
+		event::filter(
+			_event,
+			window_
+		)
+	)
+		return;
+
+	signals_[
+		x11::window::event::type(
+			_event.get().type
+		)
+	](
+		_event
+	);
+}
+
+void
+awl::backends::x11::window::event::original_processor::unregister(
+	x11::window::event::type const _event_type
+)
+{
+	x11::window::event::mask const old_mask(
 		x11::window::event::to_mask(
 			_event_type
 		)

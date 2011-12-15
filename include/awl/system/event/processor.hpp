@@ -23,7 +23,7 @@ protected:
 	processor();
 public:
 	virtual bool
-	dispatch() = 0;
+	poll() = 0;
 
 	AWL_SYMBOL
 	virtual ~processor();
