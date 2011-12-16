@@ -29,6 +29,9 @@ int main()
 	awl::window::instance_scoped_ptr const window(
 		window_system->create(
 			awl::window::parameters()
+			.class_name(
+				FCPPT_TEXT("asiotest")
+			)
 			.size(
 				awl::window::dim(
 					1024,

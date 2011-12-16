@@ -39,9 +39,10 @@ awl::backends::windows::wndclass::wndclass(
 	wndclassex.style = 0;
 
 	if(
-		!::RegisterClassEx(
+		::RegisterClassEx(
 			&wndclassex
 		)
+		== 0
 	)
 		throw awl::exception(
 			FCPPT_TEXT("RegisterClassEx() failed!")

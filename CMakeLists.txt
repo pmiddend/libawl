@@ -362,6 +362,11 @@ SET(
 	src/backends/windows/choose_and_set_pixel_format.cpp
 	src/backends/windows/counted_wndclass.cpp
 	src/backends/windows/default_wnd_proc.cpp
+	src/backends/windows/event/get.cpp
+	src/backends/windows/event/message.cpp
+	src/backends/windows/event/object.cpp
+	src/backends/windows/event/peek.cpp
+	src/backends/windows/event/processor.cpp
 	src/backends/windows/format_message.cpp
 	src/backends/windows/gdi_device.cpp
 	src/backends/windows/local_free.cpp
@@ -398,6 +403,18 @@ SET(
 	include/awl/backends/windows/counted_wndclass.hpp
 	include/awl/backends/windows/counted_wndclass_fwd.hpp
 	include/awl/backends/windows/default_wnd_proc.hpp
+	include/awl/backends/windows/event/get.hpp
+	include/awl/backends/windows/event/lparam.hpp
+	include/awl/backends/windows/event/message.hpp
+	include/awl/backends/windows/event/message_fwd.hpp
+	include/awl/backends/windows/event/object.hpp
+	include/awl/backends/windows/event/object_fwd.hpp
+	include/awl/backends/windows/event/optional_message.hpp
+	include/awl/backends/windows/event/peek.hpp
+	include/awl/backends/windows/event/processor.hpp
+	include/awl/backends/windows/event/processor_fwd.hpp
+	include/awl/backends/windows/event/type.hpp
+	include/awl/backends/windows/event/wparam.hpp
 	include/awl/backends/windows/format_message.hpp
 	include/awl/backends/windows/gdi_device.hpp
 	include/awl/backends/windows/gdi_device_fwd.hpp
@@ -415,6 +432,7 @@ SET(
 	include/awl/backends/windows/system/event/handle_unique_ptr.hpp
 	include/awl/backends/windows/system/event/object.hpp
 	include/awl/backends/windows/system/event/object_fwd.hpp
+	include/awl/backends/windows/system/event/optional_processor_ref.hpp
 	include/awl/backends/windows/system/event/original_handle.hpp
 	include/awl/backends/windows/system/event/original_processor.hpp
 	include/awl/backends/windows/system/event/original_processor_fwd.hpp

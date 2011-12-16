@@ -1,9 +1,11 @@
 #ifndef AWL_BACKENDS_WINDOWS_WINDOW_EVENT_OBJECT_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_WINDOW_EVENT_OBJECT_HPP_INCLUDED
 
-#include <awl/backends/windows/window/event/object_fwd.hpp>
-#include <awl/backends/windows/windows.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/windows/event/lparam.hpp>
+#include <awl/backends/windows/event/wparam.hpp>
+#include <awl/backends/windows/window/event/object_fwd.hpp>
+
 
 namespace awl
 {
@@ -21,21 +23,21 @@ class object
 public:
 	AWL_SYMBOL
 	object(
-		WPARAM,
-		LPARAM
+		awl::backends::windows::event::wparam,
+		awl::backends::windows::event::lparam
 	);
 
 	AWL_SYMBOL
-	WPARAM
+	awl::backends::windows::event::wparam const
 	wparam() const;
 
 	AWL_SYMBOL
-	LPARAM
+	awl::backends::windows::event::lparam const
 	lparam() const;
 private:
-	WPARAM wparam_;
+	awl::backends::windows::event::wparam wparam_;
 
-	LPARAM lparam_;
+	awl::backends::windows::event::lparam lparam_;
 };
 
 }

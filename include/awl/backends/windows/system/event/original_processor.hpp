@@ -1,20 +1,22 @@
 #ifndef AWL_BACKENDS_WINDOWS_SYSTEM_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_SYSTEM_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 
-#include <awl/backends/windows/system/event/original_processor_fwd.hpp>
+#include <awl/class_symbol.hpp>
+#include <awl/symbol.hpp>
+#include <awl/backends/windows/event/object_fwd.hpp>
+#include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/system/event/callback.hpp>
 #include <awl/backends/windows/system/event/handle_callback.hpp>
 #include <awl/backends/windows/system/event/handle_function.hpp>
 #include <awl/backends/windows/system/event/handle_unique_ptr.hpp>
+#include <awl/backends/windows/system/event/original_processor_fwd.hpp>
 #include <awl/backends/windows/system/event/processor.hpp>
 #include <awl/backends/windows/system/object_fwd.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/class_symbol.hpp>
-#include <awl/symbol.hpp>
+#include <fcppt/noncopyable.hpp>
 #include <fcppt/container/raw_vector_decl.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object.hpp>
-#include <fcppt/noncopyable.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/config/external_end.hpp>
@@ -48,12 +50,12 @@ public:
 
 	AWL_SYMBOL
 	bool
-	dispatch();
+	poll();
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_callback(
-		UINT,
+		awl::backends::windows::event::type,
 		windows::system::event::callback const &
 	);
 
@@ -66,7 +68,36 @@ public:
 	AWL_SYMBOL
 	system::event::handle_unique_ptr
 	create_event_handle();
+
+	AWL_SYMBOL
+	void
+	process(
+		awl::backends::windows::event::object const &
+	);
+
+	AWL_SYMBOL
+	bool
+	poll_handles();
+
+	AWL_SYMBOL
+	void
+	next();
 private:
+	void
+	do_process(
+		awl::backends::windows::event::type,
+		awl::backends::windows::system::event::object const &
+	);
+
+	template<
+		typename Function
+	>
+	bool
+	generic_multiple_wait(
+		Function const &,
+		DWORD timeout
+	);
+
 	void
 	unregister_event_handle(
 		HANDLE
@@ -77,7 +108,7 @@ private:
 	> signal_type;
 
 	typedef boost::ptr_map<
-		UINT,
+		windows::event::type,
 		signal_type
 	> signal_map;
 

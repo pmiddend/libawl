@@ -1,14 +1,17 @@
 #ifndef AWL_BACKENDS_WINDOWS_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 
-#include <awl/backends/windows/window/event/processor_fwd.hpp>
-#include <awl/backends/windows/window/event/callback.hpp>
-#include <awl/backends/windows/windows.hpp>
-#include <awl/window/event/processor.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/signal/auto_connection.hpp>
+#include <awl/window/event/processor.hpp>
+#include <awl/backends/windows/event/message_fwd.hpp>
+#include <awl/backends/windows/event/type.hpp>
+#include <awl/backends/windows/window/instance_fwd.hpp>
+#include <awl/backends/windows/window/event/processor_fwd.hpp>
+#include <awl/backends/windows/window/event/callback.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/signal/auto_connection.hpp>
+
 
 namespace awl
 {
@@ -32,13 +35,25 @@ protected:
 	AWL_SYMBOL
 	processor();
 public:
-	AWL_SYMBOL virtual
-	~processor();
+	AWL_SYMBOL
+	virtual
+	~processor() = 0;
 
-	virtual fcppt::signal::auto_connection
+	virtual
+	awl::backends::windows::window::instance &
+	windows_window() const = 0;
+
+	virtual
+	fcppt::signal::auto_connection
 	register_callback(
-		UINT,
-		windows::window::event::callback const &
+		awl::backends::windows::event::type,
+		awl::backends::windows::window::event::callback const &
+	) = 0;
+
+	virtual
+	void
+	process(
+		awl::backends::windows::event::message const &
 	) = 0;
 };
 

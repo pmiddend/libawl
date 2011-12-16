@@ -1,21 +1,24 @@
 #ifndef AWL_BACKENDS_WINDOWS_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/windows/event/lparam.hpp>
+#include <awl/backends/windows/event/message_fwd.hpp>
+#include <awl/backends/windows/event/type.hpp>
+#include <awl/backends/windows/event/wparam.hpp>
 #include <awl/backends/windows/window/event/processor.hpp>
 #include <awl/backends/windows/window/event/callback.hpp>
 #include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/window/instance_fwd.hpp>
-#include <awl/backends/windows/windows.hpp>
 #include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/destroy_signal.hpp>
 #include <awl/window/event/resize_callback.hpp>
 #include <awl/window/event/resize_signal.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/signal/auto_connection.hpp>
-#include <fcppt/signal/object.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/optional_impl.hpp>
+#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/object.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/config/external_end.hpp>
@@ -49,7 +52,7 @@ public:
 
 	AWL_SYMBOL
 	bool
-	dispatch();
+	poll();
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
@@ -68,20 +71,34 @@ public:
 	window() const;
 
 	AWL_SYMBOL
+	awl::backends::windows::window::instance &
+	windows_window() const;
+
+	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_callback(
-		UINT,
+		awl::backends::windows::event::type,
 		windows::window::event::callback const &
+	);
+
+	void
+	process(
+		awl::backends::windows::event::message const &
 	);
 
 	AWL_SYMBOL
 	windows::window::event::return_type const
 	execute_callback(
-		UINT msg,
-		WPARAM wparam,
-		LPARAM lparam
+		awl::backends::windows::event::type,
+		awl::backends::windows::event::wparam,
+		awl::backends::windows::event::lparam
 	);
 private:
+	void
+	do_process(
+		awl::backends::windows::event::message const &
+	);
+
 	windows::window::instance &window_;
 
 	typedef fcppt::signal::object<
@@ -89,7 +106,7 @@ private:
 	> signal_type;
 
 	typedef boost::ptr_map<
-		UINT,
+		awl::backends::windows::event::type,
 		signal_type
 	> signal_map;
 

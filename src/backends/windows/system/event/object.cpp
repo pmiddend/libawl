@@ -1,8 +1,11 @@
+#include <awl/backends/windows/event/lparam.hpp>
+#include <awl/backends/windows/event/wparam.hpp>
 #include <awl/backends/windows/system/event/object.hpp>
 
+
 awl::backends::windows::system::event::object::object(
-	WPARAM const _wparam,
-	LPARAM const _lparam
+	awl::backends::windows::event::wparam const _wparam,
+	awl::backends::windows::event::lparam const _lparam
 )
 :
 	wparam_(_wparam),
@@ -10,13 +13,13 @@ awl::backends::windows::system::event::object::object(
 {
 }
 
-WPARAM
+awl::backends::windows::event::wparam const
 awl::backends::windows::system::event::object::wparam() const
 {
 	return wparam_;
 }
 
-LPARAM
+awl::backends::windows::event::lparam const
 awl::backends::windows::system::event::object::lparam() const
 {
 	return lparam_;

@@ -1,4 +1,10 @@
 #include <awl/backends/windows/default_wnd_proc.hpp>
+#include <awl/backends/windows/event/lparam.hpp>
+#include <awl/backends/windows/event/message.hpp>
+#include <awl/backends/windows/event/optional_message.hpp>
+#include <awl/backends/windows/event/peek.hpp>
+#include <awl/backends/windows/event/type.hpp>
+#include <awl/backends/windows/event/wparam.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/instance.hpp>
 #include <awl/backends/windows/window/event/combine_result.hpp>
@@ -65,28 +71,19 @@ awl::backends::windows::window::event::original_processor::~original_processor()
 }
 
 bool
-awl::backends::windows::window::event::original_processor::dispatch()
+awl::backends::windows::window::event::original_processor::poll()
 {
-	MSG msg;
-
 	bool events_processed = false;
 
 	while(
-		::PeekMessage(
-			&msg,
-			window_.hwnd(),
-			0,
-			0,
-			PM_REMOVE
-		)
+		awl::backends::windows::event::optional_message const message =
+			awl::backends::windows::event::peek(
+				window_.hwnd()
+			)
 	)
 	{
-		::TranslateMessage(
-			&msg
-		);
-
-		::DispatchMessage(
-			&msg
+		this->do_process(
+			*message
 		);
 
 		events_processed = true;
@@ -123,15 +120,21 @@ awl::backends::windows::window::event::original_processor::window() const
 	return window_;
 }
 
+awl::backends::windows::window::instance &
+awl::backends::windows::window::event::original_processor::windows_window() const
+{
+	return window_;
+}
+
 fcppt::signal::auto_connection
 awl::backends::windows::window::event::original_processor::register_callback(
-	UINT const _msg,
-	windows::window::event::callback const &_func
+	awl::backends::windows::event::type const _type,
+	awl::backends::windows::window::event::callback const &_func
 )
 {
 	signal_map::iterator it(
 		signals_.find(
-			_msg
+			_type
 		)
 	);
 
@@ -141,7 +144,7 @@ awl::backends::windows::window::event::original_processor::register_callback(
 		it =
 			fcppt::container::ptr::insert_unique_ptr_map(
 				signals_,
-				_msg,
+				_type,
 				fcppt::make_unique_ptr<
 					signal_type
 				>(
@@ -156,15 +159,25 @@ awl::backends::windows::window::event::original_processor::register_callback(
 		);
 }
 
+void
+awl::backends::windows::window::event::original_processor::process(
+	awl::backends::windows::event::message const &_message
+)
+{
+	this->do_process(
+		_message
+	);
+}
+
 awl::backends::windows::window::event::return_type const
 awl::backends::windows::window::event::original_processor::execute_callback(
-	UINT const _msg,
-	WPARAM const _wparam,
-	LPARAM const _lparam
+	awl::backends::windows::event::type const _type,
+	awl::backends::windows::event::wparam const _wparam,
+	awl::backends::windows::event::lparam const _lparam
 )
 {
 	switch(
-		_msg
+		_type.get()
 	)
 	{
 	case WM_DESTROY:
@@ -183,14 +196,14 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 						awl::window::dim::value_type
 					>(
 						LOWORD(
-							_lparam
+							_lparam.get()
 						)
 					),
 					static_cast<
 						awl::window::dim::value_type
 					>(
 						HIWORD(
-							_lparam
+							_lparam.get()
 						)
 					)
 				)
@@ -201,7 +214,7 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 
 	signal_map::iterator const it(
 		signals_.find(
-			_msg
+			_type
 		)
 	);
 
@@ -216,4 +229,18 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 		)
 		:
 			windows::window::event::return_type();
+}
+
+void
+awl::backends::windows::window::event::original_processor::do_process(
+	awl::backends::windows::event::message const &_message
+)
+{
+	::TranslateMessage(
+		&_message.get()
+	);
+
+	::DispatchMessage(
+		&_message.get()
+	);
 }

@@ -47,7 +47,7 @@ awl::event::create_processor(
 			)
 #elif defined(AWL_WINDOWS_BACKEND)
 			fcppt::make_unique_ptr<
-				awl::backends::windows::system::original_object
+				awl::backends::windows::event::processor
 			>(
 				fcppt::ref(
 					dynamic_cast<
