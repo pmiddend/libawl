@@ -9,7 +9,7 @@
 bool
 awl::backends::x11::window::event::filter(
 	event::object _event,
-	x11::window::instance &_window
+	x11::window::instance const &_window
 )
 {
 	return

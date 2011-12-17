@@ -20,7 +20,7 @@ AWL_SYMBOL
 bool
 filter(
 	event::object,
-	x11::window::instance &
+	x11::window::instance const &
 );
 
 }
