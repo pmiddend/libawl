@@ -121,6 +121,7 @@ SET(
 	include/awl/mainloop/io_service_shared_ptr.hpp
 	include/awl/mainloop/io_service_unique_ptr.hpp
 	include/awl/mainloop/nullary_callback.hpp
+	include/awl/mainloop/optional_io_service_ref.hpp
 	include/awl/symbol.hpp
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
