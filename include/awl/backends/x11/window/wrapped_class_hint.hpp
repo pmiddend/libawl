@@ -4,7 +4,7 @@
 #include <awl/backends/x11/window/class_hint.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/scoped_ptr.hpp>
+#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <string>
 #include <X11/Xutil.h>

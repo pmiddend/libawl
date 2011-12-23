@@ -5,7 +5,7 @@
 #include <awl/symbol.hpp>
 #include <fcppt/string.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/scoped_ptr.hpp>
+#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <string>
 #include <X11/Xutil.h>

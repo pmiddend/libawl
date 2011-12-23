@@ -2,7 +2,7 @@
 #define AWL_EVENT_PROCESSOR_SHARED_PTR_HPP_INCLUDED
 
 #include <awl/event/processor_fwd.hpp>
-#include <fcppt/shared_ptr.hpp>
+#include <fcppt/shared_ptr_impl.hpp>
 
 
 namespace awl

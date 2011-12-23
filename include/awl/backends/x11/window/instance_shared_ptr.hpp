@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_X11_WINDOW_INSTANCE_SHARED_PTR_HPP_INCLUDED
 
 #include <awl/backends/x11/window/instance_fwd.hpp>
-#include <fcppt/shared_ptr.hpp>
+#include <fcppt/shared_ptr_impl.hpp>
 
 namespace awl
 {

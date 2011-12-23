@@ -2,7 +2,7 @@
 #define AWL_MAINLOOP_IO_SERVICE_SHARED_PTR_HPP_INCLUDED
 
 #include <awl/mainloop/io_service_fwd.hpp>
-#include <fcppt/shared_ptr.hpp>
+#include <fcppt/shared_ptr_impl.hpp>
 
 namespace awl
 {

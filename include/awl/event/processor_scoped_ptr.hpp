@@ -2,7 +2,7 @@
 #define AWL_EVENT_PROCESSOR_SCOPED_PTR_HPP_INCLUDED
 
 #include <awl/event/processor_fwd.hpp>
-#include <fcppt/scoped_ptr.hpp>
+#include <fcppt/scoped_ptr_impl.hpp>
 
 
 namespace awl

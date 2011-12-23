@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_X11_VISUAL_UNIQUE_PTR_HPP_INCLUDED
 
 #include <awl/backends/x11/visual_fwd.hpp>
-#include <fcppt/unique_ptr.hpp>
+#include <fcppt/unique_ptr_impl.hpp>
 
 namespace awl
 {

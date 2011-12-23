@@ -2,7 +2,7 @@
 #define AWL_WINDOW_EVENT_PROCESSOR_UNIQUE_PTR_HPP_INCLUDED
 
 #include <awl/window/event/processor_fwd.hpp>
-#include <fcppt/unique_ptr.hpp>
+#include <fcppt/unique_ptr_impl.hpp>
 
 namespace awl
 {

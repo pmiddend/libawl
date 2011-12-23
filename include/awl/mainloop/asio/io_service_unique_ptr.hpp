@@ -2,7 +2,7 @@
 #define AWL_MAINLOOP_ASIO_IO_SERVICE_UNIQUE_PTR_HPP_INCLUDED
 
 #include <awl/mainloop/asio/io_service_fwd.hpp>
-#include <fcppt/unique_ptr.hpp>
+#include <fcppt/unique_ptr_impl.hpp>
 
 namespace awl
 {

@@ -5,7 +5,7 @@
 #include <awl/backends/x11/visual_info_unique_ptr.hpp>
 #include <awl/backends/x11/visual_info_scoped_ptr.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/scoped_ptr.hpp>
+#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>

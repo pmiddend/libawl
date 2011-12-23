@@ -5,7 +5,7 @@
 #include <awl/window/optional_dim.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/scoped_ptr.hpp>
+#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xutil.h>
 #include <fcppt/config/external_end.hpp>
