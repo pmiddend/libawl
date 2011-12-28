@@ -615,7 +615,6 @@ if(
 		awl_static
 	)
 
-
 	set(
 		AWL_CONFIG_LINK_MACROS
 		"-D AWL_STATIC_LINK"
@@ -639,6 +638,17 @@ function(
 		target_link_libraries(
 			${TARGETNAME}
 			${Boost_SYSTEM_LIBRARY}
+		)
+	endif()
+
+	if(
+		${VARIANT} STREQUAL "STATIC"
+	)
+		set_target_properties(
+			${TARGETNAME}
+			PROPERTIES
+			COMPILE_DEFINITIONS
+			"AWL_STATIC_LINK"
 		)
 	endif()
 

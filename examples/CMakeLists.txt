@@ -9,6 +9,7 @@ add_definitions(
 function(
 	add_awl_example
 	EXAMPLE_NAME
+	ADDITIONAL_DEPS
 )
 	add_executable(
 		${EXAMPLE_NAME}
@@ -18,9 +19,10 @@ function(
 	target_link_libraries(
 		${EXAMPLE_NAME}
 		${AWL_DEFAULT_LINK_TARGET}
+		${ADDITIONAL_DEPS}
 	)
 endfunction()
 
-add_awl_example(asio)
-add_awl_example(main)
-add_awl_example(resize)
+add_awl_example(asio "${Fcppt_core_LIBRARY}")
+add_awl_example(main "${Fcppt_core_LIBRARY}")
+add_awl_example(resize "${Fcppt_core_LIBRARY}")
