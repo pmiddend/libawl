@@ -3,13 +3,15 @@
 # This module defines the following variables
 #
 #	AWL_FOUND        - True when awl was found
+#	Awl_DEFINITIONS  - Additional compiler flags required
 #	Awl_INCLUDE_DIRS - All includes required for awl to work
 #	Awl_LIBRARIES    - All libraries required for awl to work
 #
 # This modules accepts the following variables
 #
-#	AWL_INCLUDEDIR    - Hint where the awl includes might be.
-#	AWL_LIBRARYDIR    - Hint where the awl libraries might be.
+#	Awl_USE_STATIC_LIBS - Use static linking.
+#	AWL_INCLUDEDIR      - Hint where the awl includes might be.
+#	AWL_LIBRARYDIR      - Hint where the awl libraries might be.
 
 if(
 	Awl_FIND_QUIETLY
@@ -33,8 +35,6 @@ find_package(
 	Boost
 	1.45.0
 	${AWL_FIND_OPTIONS}
-	COMPONENTS
-	system thread
 )
 
 find_package(
@@ -52,11 +52,33 @@ find_path(
 	HINTS ${AWL_INCLUDEDIR}
 )
 
-find_library(
-	Awl_LIBRARY
-	NAMES awl
-	HINTS ${AWL_LIBRARYDIR}
+macro(
+	find_awl_library
+	LIBNAME
 )
+	find_library(
+		Awl_LIBRARY
+		NAMES ${LIBNAME}
+		HINTS ${AWL_LIBRARYDIR}
+	)
+endmacro()
+
+if(
+	Awl_USE_STATIC_LIBS
+)
+	find_awl_library(
+		awl_static
+	)
+
+	set(
+		Awl_DEFINITIONS
+		"-D AWL_STATIC_LINK"
+	)
+else()
+	find_awl_library(
+		awl
+	)
+endif()
 
 include(
 	FindPackageHandleStandardArgs
@@ -69,7 +91,7 @@ set(
 
 set(
 	Awl_LIBRARIES
-	"${Awl_LIBRARY};${Fcppt_LIBRARIES}"
+	"${Awl_LIBRARY};${Fcppt_core_LIBRARIES}"
 )
 
 find_package_Handle_standard_args(

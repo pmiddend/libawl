@@ -1,62 +1,102 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+cmake_minimum_required(
+	VERSION 2.6
+)
 
-PROJECT (libawl)
+project(
+	libawl
+)
 
-SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules;${CMAKE_MODULE_PATH}")
+set(
+	CMAKE_MODULE_PATH
+	"${CMAKE_SOURCE_DIR}/CMakeModules;${CMAKE_MODULE_PATH}"
+)
 
-INCLUDE(FcpptCMakeUtils)
+include(
+	FcpptCMakeUtils
+)
 
-INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/include)
+include_directories(
+	${CMAKE_SOURCE_DIR}/include
+)
 
 # General options begin
 
-OPTION(ENABLE_OPENGL "Enable opengl support" TRUE)
-
-OPTION(ENABLE_WINE "Use winelib if available" FALSE)
+option(
+	ENABLE_OPENGL
+	"Enable opengl support"
+	TRUE
+)
 
 # General options end
 
 # Boost begin
-FIND_PACKAGE(
+find_package(
 	Boost 1.45.0 REQUIRED
 	system
-	thread
 )
 
-INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
+include_directories(
+	${Boost_INCLUDE_DIRS}
+)
 
-LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
+link_directories(
+	${Boost_LIBRARY_DIRS}
+)
 
 # Boost end
 
 # Fcppt begin
-FIND_PACKAGE(
+find_package(
 	Fcppt
 	REQUIRED
 )
 
-ADD_DEFINITIONS(
+add_definitions(
 	"${Fcppt_DEFINITIONS}"
 )
 
-INCLUDE_DIRECTORIES(${Fcppt_INCLUDE_DIRS})
+include_directories(
+	${Fcppt_INCLUDE_DIRS}
+)
 
 # Fcppt end
 
-IF(ENABLE_OPENGL)
-	FIND_PACKAGE(
+# FcpptThreads begin
+
+find_package(
+	FcpptThreads
+	REQUIRED
+)
+
+add_definitions(
+	"${FcpptThreads_DEFINITIONS}"
+)
+
+# FcpptThreads end
+
+if(
+	ENABLE_OPENGL
+)
+	find_package(
 		OpenGL
 		REQUIRED
 	)
 
-	INCLUDE_DIRECTORIES(${OPENGL_INCLUDE_DIR})
+	include_directories(
+		${OPENGL_INCLUDE_DIR}
+	)
 
-	SET(AWL_HAVE_OPENGL TRUE)
-ENDIF()
+	set(
+		AWL_HAVE_OPENGL
+		TRUE
+	)
+endif()
 
 # Source groups end
 
-ADD_DEFINITIONS(-D BOOST_ASIO_SEPARATE_COMPILATION)
+add_definitions(
+	-D BOOST_ASIO_SEPARATE_COMPILATION
+)
 
 SET(
 	AWL_BASE_SRC_FILES
@@ -169,46 +209,49 @@ SET(
 	include/awl/window/vector.hpp
 )
 
-# We can use either X11, winelib or plain windows
-IF(UNIX)
-	IF(ENABLE_WINELIB)
-		FIND_PACKAGE(
-			Wine
-			REQUIRED
-			COMPONENTS
-			user32
-			gdi32
-		)
+# We can use either X11 or plain windows
+if(
+	UNIX
+)
+	find_package(
+		X11
+		REQUIRED
+	)
 
-		SET(AWL_WINDOWS_BACKEND TRUE)
-	ELSE()
-		FIND_PACKAGE(X11 REQUIRED)
-
-		SET(AWL_X11_BACKEND TRUE)
-	ENDIF()
-ELSEIF(WIN32)
-	SET(AWL_WINDOWS_BACKEND TRUE)
+	set(
+		AWL_X11_BACKEND
+		TRUE
+	)
+elseif(
+	WIN32
+)
+	set(
+		AWL_WINDOWS_BACKEND
+		TRUE
+	)
 
 	# TODO: actually check what we need here
-	ADD_DEFINITIONS(-D UNICODE -D _UNICODE)
+	add_definitions(
+		-D UNICODE -D _UNICODE
+	)
 	# TODO: Find windows.h, etc.
-ELSE()
-	MESSAGE(
+else()
+	message(
 		FATAL_ERROR
 		"This configuration is not supported!"
 	)
-ENDIF()
+endif()
 
-CONFIGURE_FILE(
+configure_file(
 	${CMAKE_SOURCE_DIR}/config.hpp.in
 	${CMAKE_BINARY_DIR}/include/awl/config.hpp
 )
 
-INCLUDE_DIRECTORIES(
+include_directories(
 	${CMAKE_BINARY_DIR}/include
 )
 
-SET(
+set(
 	AWL_X11_SRC_FILES
 	src/backends/x11/asio/dispatcher.cpp
 	src/backends/x11/asio/dup.cpp
@@ -261,7 +304,7 @@ SET(
 	src/backends/x11/wrapped_visual.cpp
 )
 
-SET(
+set(
 	AWL_X11_OPENGL_SRC_FILES
 	src/backends/x11/glx/create_visual.cpp
 	src/backends/x11/glx/create_visual.hpp
@@ -272,7 +315,7 @@ SET(
 	src/backends/x11/glx/visual_attribute_array.hpp
 )
 
-SET(
+set(
 	AWL_X11_INCLUDE_FILES
 	include/awl/backends/x11/asio/dispatcher.hpp
 	include/awl/backends/x11/asio/dup.hpp
@@ -358,7 +401,7 @@ SET(
 	include/awl/backends/x11/wrapped_visual.hpp
 )
 
-SET(
+set(
 	AWL_WINDOWS_SRC_FILES
 	src/backends/windows/asio/dispatcher.cpp
 	src/backends/windows/choose_and_set_pixel_format.cpp
@@ -398,7 +441,7 @@ SET(
 	src/backends/windows/wndclass.cpp
 )
 
-SET(
+set(
 	AWL_WINDOWS_INCLUDE_FILES
 	include/awl/backends/windows/asio/dispatcher.hpp
 	include/awl/backends/windows/choose_and_set_pixel_format.hpp
@@ -468,50 +511,54 @@ SET(
 	include/awl/backends/windows/wndclass_remove_callback.hpp
 )
 
-SET(
+set(
 	AWL_INCLUDE_FILES
 	"${AWL_BASE_INCLUDE_FILES}"
 )
 
-SET(
+set(
 	AWL_SRC_FILES
 	"${AWL_BASE_SRC_FILES}"
 )
 
-IF(AWL_X11_BACKEND)
-	SET(
+if(
+	AWL_X11_BACKEND
+)
+	set(
 		AWL_INCLUDE_FILES
 		"${AWL_INCLUDE_FILES};${AWL_X11_INCLUDE_FILES}"
 	)
 
-	SET(
+	set(
 		AWL_SRC_FILES
 		"${AWL_SRC_FILES};${AWL_X11_SRC_FILES}"
 	)
 
-	IF(
+	if(
 		ENABLE_OPENGL
 	)
-		SET(
+		set(
 			AWL_SRC_FILES
 			"${AWL_SRC_FILES};${AWL_X11_OPENGL_SRC_FILES}"
 		)
-	ENDIF()
-ENDIF()
+	endif()
+endif()
 
-IF(ENABLE_WINELIB OR AWL_WINDOWS_BACKEND)
-	SET(
+if(
+	AWL_WINDOWS_BACKEND
+)
+	set(
 		AWL_INCLUDE_FILES
 		"${AWL_INCLUDE_FILES};${AWL_WINDOWS_INCLUDE_FILES}"
 	)
 
-	SET(
+	set(
 		AWL_SRC_FILES
 		"${AWL_SRC_FILES};${AWL_WINDOWS_SRC_FILES}"
 	)
-ENDIF()
+endif()
 
-SET(
+set(
 	AWL_FILES
 	"${AWL_SRC_FILES};${AWL_INCLUDE_FILES}"
 )
@@ -520,128 +567,159 @@ FCPPT_UTILS_ADD_SOURCE_GROUPS(
 	"${AWL_FILES}"
 )
 
-IF (MSVC)
-	SET (ENABLE_SHARED_DEFAULT OFF)
-	SET (ENABLE_STATIC_DEFAULT ON)
-ELSE ()
-	SET (ENABLE_SHARED_DEFAULT ON)
-	SET (ENABLE_STATIC_DEFAULT OFF)
-ENDIF ()
+if(MSVC)
+	set(ENABLE_SHARED_DEFAULT OFF)
+	set(ENABLE_STATIC_DEFAULT ON)
+else()
+	set(ENABLE_SHARED_DEFAULT ON)
+	set(ENABLE_STATIC_DEFAULT OFF)
+endif()
 
-OPTION(ENABLE_SHARED "Build awl as a shared library" ${ENABLE_SHARED_DEFAULT})
+option(
+	ENABLE_SHARED
+	"Build awl as a shared library"
+	${ENABLE_SHARED_DEFAULT}
+)
 
-OPTION(ENABLE_STATIC "Build awl as a static library" ${ENABLE_STATIC_DEFAULT})
+option(
+	ENABLE_STATIC
+	"Build awl as a static library"
+	${ENABLE_STATIC_DEFAULT}
+)
 
-IF(NOT ENABLE_SHARED AND NOT ENABLE_STATIC)
-	MESSAGE(FATAL_ERROR "You disabled both STATIC and SHARED")
-ENDIF()
+if(
+	NOT ENABLE_SHARED AND NOT ENABLE_STATIC
+)
+	message(
+		FATAL_ERROR
+		"You disabled both STATIC and SHARED"
+	)
+endif()
 
 # choose a library to link the tests to
-IF(ENABLE_SHARED)
-	SET(AWL_DEFAULT_LINK_TARGET awl)
-ENDIF()
+if(
+	ENABLE_SHARED
+)
+	set(
+		AWL_DEFAULT_LINK_TARGET
+		awl
+	)
+endif()
 
 # static overrides shared
-IF(ENABLE_STATIC)
-	SET(AWL_DEFAULT_LINK_TARGET awl_static)
-ENDIF()
-
-IF(MSVC AND ${AWL_DEFAULT_LINK_TARGET} STREQUAL "awl")
-	SET (AWL_CONFIG_LINK_MACROS "-D AWL_DYN_LINK")
-ENDIF()
-
-MACRO(MAKE_AWL_LIBRARY TARGETNAME VARIANT)
-	ADD_LIBRARY (${TARGETNAME} ${VARIANT} ${AWL_FILES})
-
-	#rename awl_static into awl for UNIX
-	IF(${TARGETNAME} STREQUAL awl_static AND UNIX)
-		SET_TARGET_PROPERTIES(
-			${TARGETNAME} PROPERTIES OUTPUT_NAME awl
-		)
-	ENDIF()
-
-	IF (NOT MSVC)
-		TARGET_LINK_LIBRARIES(
-			${TARGETNAME}
-			${Boost_SYSTEM_LIBRARY}
-			${Boost_THREAD_LIBRARY}
-		)
-	ENDIF ()
-
-	TARGET_LINK_LIBRARIES(
-		${TARGETNAME}
-		${Fcppt_LIBRARIES}
+if(
+	ENABLE_STATIC
+)
+	set(
+		AWL_DEFAULT_LINK_TARGET
+		awl_static
 	)
 
-	IF(AWL_X11_BACKEND)
-		TARGET_LINK_LIBRARIES(
+
+	set(
+		AWL_CONFIG_LINK_MACROS
+		"-D AWL_STATIC_LINK"
+	)
+endif()
+
+function(
+	MAKE_AWL_LIBRARY
+	TARGETNAME
+	VARIANT
+)
+	add_library(
+		${TARGETNAME}
+		${VARIANT}
+		${AWL_FILES}
+	)
+
+	if(
+		NOT MSVC
+	)
+		target_link_libraries(
+			${TARGETNAME}
+			${Boost_SYSTEM_LIBRARY}
+		)
+	endif()
+
+	target_link_libraries(
+		${TARGETNAME}
+		${Fcppt_core_LIBRARIES}
+		${FcpptThreads_LIBRARIES}
+	)
+
+	if(
+		AWL_X11_BACKEND
+	)
+		target_link_libraries(
 			${TARGETNAME}
 			${X11_X11_LIB}
 		)
-	ENDIF()
+	endif()
 
-	IF(ENABLE_OPENGL)
-		TARGET_LINK_LIBRARIES(
+	if(
+		ENABLE_OPENGL
+	)
+		target_link_libraries(
 			${TARGETNAME}
 			${OPENGL_gl_LIBRARY}
 		)
-	ENDIF()
+	endif()
 
-	INSTALL(
+	install(
 		TARGETS
 		${TARGETNAME}
 		DESTINATION
 		${INSTALL_LIBRARY_DIR}
 	)
-ENDMACRO()
+endfunction()
 
-IF(ENABLE_STATIC)
-	MAKE_AWL_LIBRARY(awl_static STATIC)
-ENDIF()
+if(
+	ENABLE_STATIC
+)
+	make_awl_library(
+		awl_static
+		STATIC
+	)
+endif()
 
-IF(ENABLE_SHARED)
-	MAKE_AWL_LIBRARY(awl SHARED)
-ENDIF()
+if(
+	ENABLE_SHARED
+)
+	make_awl_library(
+		awl
+		SHARED
+	)
+endif()
 
-IF(AWL_X11_BACKEND)
-	INCLUDE_DIRECTORIES(
+if(
+	AWL_X11_BACKEND
+)
+	include_directories(
 		${X11_INCLUDE_PATH}
 	)
 
-ENDIF()
-
-IF(ENABLE_WINELIB)
-	INCLUDE_DIRECTORIES(
-		${WINE_INCLUDE_DIR}
-	)
-
-	#LINK_DIRECTORIES(
-	#	${WINE_DLL_PATH}
-	#)
-
-	TARGET_LINK_LIBRARIES(
-		awl
-		"${WINE_user32_LIBRARY}"
-	)
-ENDIF()
+endif()
 
 # TODO: Link to certain windows libs
 
-ADD_SUBDIRECTORY(examples)
+add_subdirectory(
+	examples
+)
 
-FOREACH(
+foreach(
 	CUR_FILE
 	${AWL_INCLUDE_FILES}
 )
 	# Cut the filename
-	GET_FILENAME_COMPONENT(
+	get_filename_component(
 		REL_PATH
 		${CUR_FILE}
 		PATH
 	)
 
 	# Replace the leading include/
-	STRING(
+	string(
 		REPLACE
 		"include/"
 		""
@@ -649,22 +727,22 @@ FOREACH(
 		"${REL_PATH}"
 	)
 
-	INSTALL(
+	install(
 		FILES
 		${CMAKE_SOURCE_DIR}/${CUR_FILE}
 		DESTINATION
 		${INSTALL_INCLUDE_DIR}/${TRIMMED_PATH}
 	)
-ENDFOREACH()
+endforeach()
 
-INSTALL(
+install(
 	FILES
 	${CMAKE_BINARY_DIR}/include/awl/config.hpp
 	DESTINATION
 	${INSTALL_INCLUDE_DIR}/awl
 )
 
-INSTALL(
+install(
 	FILES
 	${CMAKE_SOURCE_DIR}/CMakeModules/FindAwl.cmake
 	DESTINATION

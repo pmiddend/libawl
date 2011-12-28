@@ -1,20 +1,26 @@
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include)
-
-FUNCTION(
-	ADD_AWL_EXAMPLE
-	NAME
+include_directories(
+	${CMAKE_SOURCE_DIR}/include
 )
-	ADD_EXECUTABLE(
-		${NAME}
-		${NAME}.cpp
+
+add_definitions(
+	"${AWL_CONFIG_LINK_MACROS}"
+)
+
+function(
+	add_awl_example
+	EXAMPLE_NAME
+)
+	add_executable(
+		${EXAMPLE_NAME}
+		${EXAMPLE_NAME}.cpp
 	)
 
-	TARGET_LINK_LIBRARIES(
-		${NAME}
+	target_link_libraries(
+		${EXAMPLE_NAME}
 		${AWL_DEFAULT_LINK_TARGET}
 	)
-ENDFUNCTION()
+endfunction()
 
-ADD_AWL_EXAMPLE(asio)
-ADD_AWL_EXAMPLE(main)
-ADD_AWL_EXAMPLE(resize)
+add_awl_example(asio)
+add_awl_example(main)
+add_awl_example(resize)
