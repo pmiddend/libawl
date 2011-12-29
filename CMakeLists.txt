@@ -567,24 +567,16 @@ FCPPT_UTILS_ADD_SOURCE_GROUPS(
 	"${AWL_FILES}"
 )
 
-if(MSVC)
-	set(ENABLE_SHARED_DEFAULT OFF)
-	set(ENABLE_STATIC_DEFAULT ON)
-else()
-	set(ENABLE_SHARED_DEFAULT ON)
-	set(ENABLE_STATIC_DEFAULT OFF)
-endif()
-
 option(
 	ENABLE_SHARED
 	"Build awl as a shared library"
-	${ENABLE_SHARED_DEFAULT}
+	TRUE
 )
 
 option(
 	ENABLE_STATIC
 	"Build awl as a static library"
-	${ENABLE_STATIC_DEFAULT}
+	FALSE
 )
 
 if(
