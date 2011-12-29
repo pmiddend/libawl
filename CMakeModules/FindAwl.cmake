@@ -10,6 +10,7 @@
 # This modules accepts the following variables
 #
 #	Awl_USE_STATIC_LIBS - Use static linking.
+#	Awl_ENABLE_OPENGL   - Use opengl.
 #	AWL_INCLUDEDIR      - Hint where the awl includes might be.
 #	AWL_LIBRARYDIR      - Hint where the awl libraries might be.
 
@@ -40,10 +41,6 @@ find_package(
 find_package(
 	Fcppt
 	${AWL_FIND_OPTIONS}
-)
-
-unset(
-	AWL_FIND_OPTIONS
 )
 
 find_path(
@@ -80,10 +77,6 @@ else()
 	)
 endif()
 
-include(
-	FindPackageHandleStandardArgs
-)
-
 set(
 	Awl_INCLUDE_DIRS
 	"${Awl_INCLUDE_DIR};${Fcppt_INCLUDE_DIRS};${Boost_INCLUDE_DIRS}"
@@ -92,6 +85,46 @@ set(
 set(
 	Awl_LIBRARIES
 	"${Awl_LIBRARY};${Fcppt_core_LIBRARIES}"
+)
+
+if(
+	Awl_USE_STATIC_LIBS
+)
+	if(
+		UNIX
+	)
+		find_package(
+			X11
+			${AWL_FIND_OPTIONS}
+		)
+
+		set(
+			Awl_LIBRARIES
+			"${Awl_LIBRARIES};${X11_X11_LIB}"
+		)
+	endif()
+
+	if(
+		Awl_ENABLE_OPENGL
+	)
+		find_package(
+			OpenGL
+			${AWL_FIND_OPTIONS}
+		)
+
+		set(
+			Awl_LIBRARIES
+			"${Awl_LIBRARIES};${OPENGL_gl_LIBRARY}"
+		)
+	endif()
+endif()
+
+unset(
+	AWL_FIND_OPTIONS
+)
+
+include(
+	FindPackageHandleStandardArgs
 )
 
 find_package_Handle_standard_args(
