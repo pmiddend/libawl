@@ -34,7 +34,7 @@ awl::backends::windows::format_message(
 		throw awl::exception(
 			FCPPT_TEXT("FormatMessage() failed!")
 		);
-	
+
 	windows::scoped_local_memory const guard(
 		out
 	);

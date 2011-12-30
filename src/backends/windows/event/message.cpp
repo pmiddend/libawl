@@ -1,6 +1,6 @@
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/event/message.hpp>
-	
+
 awl::backends::windows::event::message::message(
 	MSG const &_msg
 )

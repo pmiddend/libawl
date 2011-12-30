@@ -181,5 +181,5 @@ awl::backends::windows::window::original_instance::show()
 				cur_size.h()
 			)
 		)
-	);	
+	);
 }

@@ -223,7 +223,7 @@ awl::backends::windows::system::event::original_processor::generic_multiple_wait
 			_timeout
 		)
 	);
-	
+
 	BOOST_STATIC_ASSERT(
 		WAIT_OBJECT_0 == 0
 	);
@@ -242,7 +242,7 @@ awl::backends::windows::system::event::original_processor::generic_multiple_wait
 		throw awl::exception(
 			FCPPT_TEXT("WaitForMultipleObjects() failed!")
 		);
-	
+
 	return false;
 }
 
