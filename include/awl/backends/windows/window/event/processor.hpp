@@ -55,6 +55,16 @@ public:
 	process(
 		awl::backends::windows::event::message const &
 	) = 0;
+
+	virtual
+	awl::backends::windows::event::type const
+	allocate_user_message() = 0;
+
+	virtual
+	void
+	free_user_message(
+		awl::backends::windows::event::type
+	) = 0;
 };
 
 }

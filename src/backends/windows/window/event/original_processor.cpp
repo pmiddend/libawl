@@ -169,6 +169,24 @@ awl::backends::windows::window::event::original_processor::process(
 	);
 }
 
+awl::backends::windows::event::type const
+awl::backends::windows::window::event::original_processor::allocate_user_message()
+{
+	// FIXME
+	return
+		awl::backends::windows::event::type(
+			WM_USER
+		);
+}
+
+void
+awl::backends::windows::window::event::original_processor::free_user_message(
+	awl::backends::windows::event::type const _message
+)
+{
+	// FIXME
+}
+
 awl::backends::windows::window::event::return_type const
 awl::backends::windows::window::event::original_processor::execute_callback(
 	awl::backends::windows::event::type const _type,

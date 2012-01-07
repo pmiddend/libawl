@@ -442,6 +442,7 @@ set(
 	src/backends/windows/window/event/object.cpp
 	src/backends/windows/window/event/original_processor.cpp
 	src/backends/windows/window/event/processor.cpp
+	src/backends/windows/window/event/scoped_user_message.cpp
 	src/backends/windows/window/event/wnd_proc.cpp
 	src/backends/windows/window/instance.cpp
 	src/backends/windows/window/original_instance.cpp
@@ -508,6 +509,8 @@ set(
 	include/awl/backends/windows/window/event/processor.hpp
 	include/awl/backends/windows/window/event/processor_fwd.hpp
 	include/awl/backends/windows/window/event/return_type.hpp
+	include/awl/backends/windows/window/event/scoped_user_message.hpp
+	include/awl/backends/windows/window/event/scoped_user_message_fwd.hpp
 	include/awl/backends/windows/window/event/wnd_proc.hpp
 	include/awl/backends/windows/window/instance.hpp
 	include/awl/backends/windows/window/instance_fwd.hpp

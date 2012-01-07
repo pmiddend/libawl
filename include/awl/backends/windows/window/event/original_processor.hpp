@@ -86,6 +86,14 @@ public:
 		awl::backends::windows::event::message const &
 	);
 
+	awl::backends::windows::event::type const
+	allocate_user_message();
+
+	void
+	free_user_message(
+		awl::backends::windows::event::type
+	);
+
 	AWL_SYMBOL
 	windows::window::event::return_type const
 	execute_callback(
