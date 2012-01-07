@@ -140,25 +140,30 @@ awl::backends::x11::window::event::original_processor::register_callback(
 	x11::window::event::callback const &_callback
 )
 {
-	x11::window::event::mask const new_mask(
-		x11::window::event::to_mask(
-			_event_type
-		)
-	);
-
-	mask_count const count(
-		++mask_counts_[
-			new_mask
-		]
-	);
-
 	if(
-		count == 1u
+		_event_type.get() != ClientMessage
 	)
-		x11::window::event::change_mask(
-			window_,
-			event_mask_ |= new_mask
+	{
+		x11::window::event::mask const new_mask(
+			x11::window::event::to_mask(
+				_event_type
+			)
 		);
+
+		mask_count const count(
+			++mask_counts_[
+				new_mask
+			]
+		);
+
+		if(
+			count == 1u
+		)
+			x11::window::event::change_mask(
+				window_,
+				event_mask_ |= new_mask
+			);
+	}
 
 	return
 		signals_[
@@ -212,6 +217,11 @@ awl::backends::x11::window::event::original_processor::unregister(
 	x11::window::event::type const _event_type
 )
 {
+	if(
+		_event_type.get() == ClientMessage
+	)
+		return;
+
 	x11::window::event::mask const old_mask(
 		x11::window::event::to_mask(
 			_event_type

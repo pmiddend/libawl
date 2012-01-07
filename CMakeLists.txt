@@ -269,6 +269,7 @@ set(
 	src/backends/x11/event/object.cpp
 	src/backends/x11/event/processor.cpp
 	src/backends/x11/free.cpp
+	src/backends/x11/intern_atom.cpp
 	src/backends/x11/log.cpp
 	src/backends/x11/original_display.cpp
 	src/backends/x11/system/event/map_key.cpp
@@ -289,6 +290,7 @@ set(
 	src/backends/x11/window/event/original_processor.cpp
 	src/backends/x11/window/event/poll.cpp
 	src/backends/x11/window/event/processor.cpp
+	src/backends/x11/window/event/send.cpp
 	src/backends/x11/window/event/to_mask.cpp
 	src/backends/x11/window/hints.cpp
 	src/backends/x11/window/holder.cpp
@@ -326,6 +328,7 @@ set(
 	include/awl/backends/x11/asio/get_fd_flags.hpp
 	include/awl/backends/x11/asio/read_callback.hpp
 	include/awl/backends/x11/asio/set_fd_flags.hpp
+	include/awl/backends/x11/atom.hpp
 	include/awl/backends/x11/colormap.hpp
 	include/awl/backends/x11/colormap_fwd.hpp
 	include/awl/backends/x11/create_visual_info.hpp
@@ -340,6 +343,7 @@ set(
 	include/awl/backends/x11/event/processor.hpp
 	include/awl/backends/x11/event/processor_fwd.hpp
 	include/awl/backends/x11/free.hpp
+	include/awl/backends/x11/intern_atom.hpp
 	include/awl/backends/x11/log.hpp
 	include/awl/backends/x11/original_display.hpp
 	include/awl/backends/x11/screen.hpp
@@ -381,6 +385,7 @@ set(
 	include/awl/backends/x11/window/event/poll.hpp
 	include/awl/backends/x11/window/event/processor.hpp
 	include/awl/backends/x11/window/event/processor_fwd.hpp
+	include/awl/backends/x11/window/event/send.hpp
 	include/awl/backends/x11/window/event/to_mask.hpp
 	include/awl/backends/x11/window/event/type.hpp
 	include/awl/backends/x11/window/hints.hpp
