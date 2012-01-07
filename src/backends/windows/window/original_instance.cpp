@@ -2,10 +2,13 @@
 #include <awl/backends/windows/choose_and_set_pixel_format.hpp>
 #include <awl/backends/windows/gdi_device.hpp>
 #include <awl/backends/windows/module_handle.hpp>
-#include <awl/backends/windows/post_message.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/wndclass.hpp>
 #include <awl/backends/windows/wndclass_remove_callback.hpp>
+#include <awl/backends/windows/event/post_message.hpp>
+#include <awl/backends/windows/event/lparam.hpp>
+#include <awl/backends/windows/event/type.hpp>
+#include <awl/backends/windows/event/wparam.hpp>
 #include <awl/backends/windows/window/adjusted_size.hpp>
 #include <awl/backends/windows/window/client_rect.hpp>
 #include <awl/backends/windows/window/original_instance.hpp>
@@ -165,20 +168,26 @@ awl::backends::windows::window::original_instance::show()
 		this->size()
 	);
 
-	windows::post_message(
+	windows::event::post_message(
 		this->hwnd(),
-		WM_SIZE,
-		SIZE_RESTORED,
-		MAKELPARAM(
-			static_cast<
-				WORD
-			>(
-				cur_size.w()
-			),
-			static_cast<
-				WORD
-			>(
-				cur_size.h()
+		windows::event::type(
+			WM_SIZE
+		),
+		windows::event::wparam(
+			SIZE_RESTORED
+		),
+		windows::event::lparam(
+			MAKELPARAM(
+				static_cast<
+					WORD
+				>(
+					cur_size.w()
+				),
+				static_cast<
+					WORD
+				>(
+					cur_size.h()
+				)
 			)
 		)
 	);
