@@ -27,7 +27,7 @@ protected:
 	class_hint();
 public:
 	AWL_SYMBOL
-	virtual ~class_hint();
+	virtual ~class_hint() = 0;
 
 	virtual
 	std::string const

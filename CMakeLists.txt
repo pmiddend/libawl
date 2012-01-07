@@ -288,7 +288,8 @@ set(
 	src/backends/x11/window/event/filter.cpp
 	src/backends/x11/window/event/object.cpp
 	src/backends/x11/window/event/original_processor.cpp
-	src/backends/x11/window/event/poll.cpp
+	src/backends/x11/window/event/poll_mask.cpp
+	src/backends/x11/window/event/poll_type.cpp
 	src/backends/x11/window/event/processor.cpp
 	src/backends/x11/window/event/send.cpp
 	src/backends/x11/window/event/to_mask.cpp
@@ -381,8 +382,10 @@ set(
 	include/awl/backends/x11/window/event/object.hpp
 	include/awl/backends/x11/window/event/object_fwd.hpp
 	include/awl/backends/x11/window/event/optional.hpp
+	include/awl/backends/x11/window/event/optional_mask.hpp
 	include/awl/backends/x11/window/event/original_processor.hpp
-	include/awl/backends/x11/window/event/poll.hpp
+	include/awl/backends/x11/window/event/poll_mask.hpp
+	include/awl/backends/x11/window/event/poll_type.hpp
 	include/awl/backends/x11/window/event/processor.hpp
 	include/awl/backends/x11/window/event/processor_fwd.hpp
 	include/awl/backends/x11/window/event/send.hpp

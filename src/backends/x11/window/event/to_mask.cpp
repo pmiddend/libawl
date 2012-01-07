@@ -1,4 +1,5 @@
 #include <awl/backends/x11/window/event/mask.hpp>
+#include <awl/backends/x11/window/event/optional_mask.hpp>
 #include <awl/backends/x11/window/event/type.hpp>
 #include <awl/backends/x11/window/event/to_mask.hpp>
 #include <fcppt/text.hpp>
@@ -8,7 +9,7 @@
 #include <fcppt/config/external_end.hpp>
 
 
-awl::backends::x11::window::event::mask const
+awl::backends::x11::window::event::optional_mask const
 awl::backends::x11::window::event::to_mask(
 	x11::window::event::type const _event_type
 )
@@ -19,9 +20,11 @@ awl::backends::x11::window::event::to_mask(
 )\
 case type_value: \
 	return \
-		awl::backends::x11::window::event::mask(\
-			mask_value\
-		)
+		awl::backends::x11::window::event::optional_mask(\
+			awl::backends::x11::window::event::mask(\
+				mask_value\
+			) \
+		);
 	switch(
 		_event_type.get()
 	)
@@ -92,7 +95,6 @@ case type_value: \
 		);
 	}
 
-	FCPPT_ASSERT_UNREACHABLE_MESSAGE(
-		FCPPT_TEXT("Unknown x11 event type in to_event_mask!")
-	);
+	return
+		awl::backends::x11::window::event::optional_mask();
 }

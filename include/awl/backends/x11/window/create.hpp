@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_CREATE_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_CREATE_HPP_INCLUDED
 
+#include <awl/symbol.hpp>
 #include <awl/backends/x11/colormap_fwd.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
@@ -20,6 +21,7 @@ namespace x11
 namespace window
 {
 
+AWL_SYMBOL
 Window
 create(
 	awl::window::optional_position const &,
