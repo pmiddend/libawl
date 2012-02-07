@@ -37,6 +37,19 @@ update_main \
 	src/system \
 	src/window
 
+# Cocoa begin
+update_main \
+	AWL_COCOA_INCLUDE_FILES \
+	include/awl/backends/cocoa/window \
+	include/awl/backends/cocoa/system
+
+update_main \
+	AWL_COCOA_SRC_FILES \
+	-e '.*\.(mm|cpp)?' \
+	src/backends/cocoa
+# Cocoa end
+
+# X11 begin
 update_main \
 	AWL_X11_INCLUDE_FILES \
 	include/awl/backends/x11
@@ -54,7 +67,9 @@ update_main \
 update_main \
 	AWL_X11_OPENGL_SRC_FILES \
 	src/backends/x11/glx
+# X11 end
 
+# Windows begin
 update_main \
 	AWL_WINDOWS_INCLUDE_FILES \
 	include/awl/backends/windows
@@ -62,3 +77,4 @@ update_main \
 update_main \
 	AWL_WINDOWS_SRC_FILES \
 	src/backends/windows
+# Windows end

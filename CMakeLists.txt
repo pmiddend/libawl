@@ -209,8 +209,15 @@ SET(
 	include/awl/window/vector.hpp
 )
 
-# We can use either X11 or plain windows
+# We can use either X11 or plain windows or Apple
 if(
+		APPLE
+)
+	set(
+		AWL_COCOA_BACKEND
+		TRUE
+	)
+elseif(
 	UNIX
 )
 	find_package(
@@ -249,6 +256,36 @@ configure_file(
 
 include_directories(
 	${CMAKE_BINARY_DIR}/include
+)
+
+set(
+	AWL_COCOA_SRC_FILES
+	src/backends/cocoa/event/create_processor.mm
+	src/backends/cocoa/event/processor.mm
+	src/backends/cocoa/from_fcppt_string.mm
+	src/backends/cocoa/system/event/create_processor.mm
+	src/backends/cocoa/system/event/processor.mm
+	src/backends/cocoa/system/object.mm
+	src/backends/cocoa/window/event/AWLWindowDelegate.mm
+	src/backends/cocoa/window/event/create_processor.mm
+	src/backends/cocoa/window/event/processor.mm
+	src/backends/cocoa/window/instance.mm
+)
+
+set(
+	AWL_COCOA_INCLUDE_FILES
+	include/awl/backends/cocoa/system/event/create_processor.hpp
+	include/awl/backends/cocoa/system/event/optional_processor_ref.hpp
+	include/awl/backends/cocoa/system/event/processor.hpp
+	include/awl/backends/cocoa/system/event/processor_fwd.hpp
+	include/awl/backends/cocoa/system/object.hpp
+	include/awl/backends/cocoa/system/object_fwd.hpp
+	include/awl/backends/cocoa/window/event/AWLWindowDelegate.hpp
+	include/awl/backends/cocoa/window/event/create_processor.hpp
+	include/awl/backends/cocoa/window/event/processor.hpp
+	include/awl/backends/cocoa/window/event/processor_fwd.hpp
+	include/awl/backends/cocoa/window/instance.hpp
+	include/awl/backends/cocoa/window/instance_fwd.hpp
 )
 
 set(
@@ -305,6 +342,97 @@ set(
 	src/backends/x11/window/wrapped_class_hint.cpp
 	src/backends/x11/window/wrapped_instance.cpp
 	src/backends/x11/wrapped_visual.cpp
+)
+
+set(
+	AWL_X11_INCLUDE_FILES
+	include/awl/backends/x11/asio/dispatcher.hpp
+	include/awl/backends/x11/asio/dup.hpp
+	include/awl/backends/x11/asio/fcntl.hpp
+	include/awl/backends/x11/asio/fd_flags_resetter.hpp
+	include/awl/backends/x11/asio/fd_wrapper.hpp
+	include/awl/backends/x11/asio/fd_wrapper_fwd.hpp
+	include/awl/backends/x11/asio/get_fd_flags.hpp
+	include/awl/backends/x11/asio/read_callback.hpp
+	include/awl/backends/x11/asio/set_fd_flags.hpp
+	include/awl/backends/x11/atom.hpp
+	include/awl/backends/x11/colormap.hpp
+	include/awl/backends/x11/colormap_fwd.hpp
+	include/awl/backends/x11/create_visual_info.hpp
+	include/awl/backends/x11/default_visual.hpp
+	include/awl/backends/x11/deleter.hpp
+	include/awl/backends/x11/display.hpp
+	include/awl/backends/x11/display_fd.hpp
+	include/awl/backends/x11/display_fwd.hpp
+	include/awl/backends/x11/event/next.hpp
+	include/awl/backends/x11/event/object.hpp
+	include/awl/backends/x11/event/object_fwd.hpp
+	include/awl/backends/x11/event/processor.hpp
+	include/awl/backends/x11/event/processor_fwd.hpp
+	include/awl/backends/x11/free.hpp
+	include/awl/backends/x11/intern_atom.hpp
+	include/awl/backends/x11/log.hpp
+	include/awl/backends/x11/original_display.hpp
+	include/awl/backends/x11/screen.hpp
+	include/awl/backends/x11/system/event/callback.hpp
+	include/awl/backends/x11/system/event/function.hpp
+	include/awl/backends/x11/system/event/map_key.hpp
+	include/awl/backends/x11/system/event/object.hpp
+	include/awl/backends/x11/system/event/object_fwd.hpp
+	include/awl/backends/x11/system/event/opcode.hpp
+	include/awl/backends/x11/system/event/optional_processor_ref.hpp
+	include/awl/backends/x11/system/event/original_processor.hpp
+	include/awl/backends/x11/system/event/processor.hpp
+	include/awl/backends/x11/system/event/processor_fwd.hpp
+	include/awl/backends/x11/system/event/type.hpp
+	include/awl/backends/x11/system/object.hpp
+	include/awl/backends/x11/system/object_fwd.hpp
+	include/awl/backends/x11/system/original_object.hpp
+	include/awl/backends/x11/to_x11_bool.hpp
+	include/awl/backends/x11/visual.hpp
+	include/awl/backends/x11/visual_fwd.hpp
+	include/awl/backends/x11/visual_info_scoped_ptr.hpp
+	include/awl/backends/x11/visual_info_unique_ptr.hpp
+	include/awl/backends/x11/visual_scoped_ptr.hpp
+	include/awl/backends/x11/visual_unique_ptr.hpp
+	include/awl/backends/x11/window/attributes.hpp
+	include/awl/backends/x11/window/class_hint.hpp
+	include/awl/backends/x11/window/class_hint_fwd.hpp
+	include/awl/backends/x11/window/common_instance.hpp
+	include/awl/backends/x11/window/create.hpp
+	include/awl/backends/x11/window/event/callback.hpp
+	include/awl/backends/x11/window/event/change_mask.hpp
+	include/awl/backends/x11/window/event/filter.hpp
+	include/awl/backends/x11/window/event/function.hpp
+	include/awl/backends/x11/window/event/mask.hpp
+	include/awl/backends/x11/window/event/object.hpp
+	include/awl/backends/x11/window/event/object_fwd.hpp
+	include/awl/backends/x11/window/event/optional.hpp
+	include/awl/backends/x11/window/event/optional_mask.hpp
+	include/awl/backends/x11/window/event/original_processor.hpp
+	include/awl/backends/x11/window/event/poll_mask.hpp
+	include/awl/backends/x11/window/event/poll_type.hpp
+	include/awl/backends/x11/window/event/processor.hpp
+	include/awl/backends/x11/window/event/processor_fwd.hpp
+	include/awl/backends/x11/window/event/send.hpp
+	include/awl/backends/x11/window/event/to_mask.hpp
+	include/awl/backends/x11/window/event/type.hpp
+	include/awl/backends/x11/window/hints.hpp
+	include/awl/backends/x11/window/holder.hpp
+	include/awl/backends/x11/window/instance.hpp
+	include/awl/backends/x11/window/instance_fwd.hpp
+	include/awl/backends/x11/window/instance_scoped_ptr.hpp
+	include/awl/backends/x11/window/instance_shared_ptr.hpp
+	include/awl/backends/x11/window/instance_unique_ptr.hpp
+	include/awl/backends/x11/window/original_class_hint.hpp
+	include/awl/backends/x11/window/original_instance.hpp
+	include/awl/backends/x11/window/root.hpp
+	include/awl/backends/x11/window/size_hints.hpp
+	include/awl/backends/x11/window/transient_for_hint.hpp
+	include/awl/backends/x11/window/visual.hpp
+	include/awl/backends/x11/window/wrapped_class_hint.hpp
+	include/awl/backends/x11/window/wrapped_instance.hpp
+	include/awl/backends/x11/wrapped_visual.hpp
 )
 
 set(
@@ -533,6 +661,22 @@ set(
 )
 
 if(
+	AWL_COCOA_BACKEND
+)
+	set(
+		AWL_INCLUDE_FILES
+		"${AWL_INCLUDE_FILES};${AWL_COCOA_INCLUDE_FILES}"
+	)
+
+	set(
+		AWL_SRC_FILES
+		"${AWL_SRC_FILES};${AWL_COCOA_SRC_FILES}"
+	)
+
+	add_definitions(-fobjc-arc)
+endif()
+
+if(
 	AWL_X11_BACKEND
 )
 	set(
@@ -668,6 +812,12 @@ function(
 			${TARGETNAME}
 			${X11_X11_LIB}
 		)
+	endif()
+
+	if(
+		AWL_COCOA_BACKEND
+	)
+		target_link_libraries(${TARGETNAME} "-framework Cocoa")
 	endif()
 
 	if(

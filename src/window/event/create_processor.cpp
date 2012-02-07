@@ -6,6 +6,9 @@
 #elif defined(AWL_WINDOWS_BACKEND)
 #include <awl/backends/windows/window/event/original_processor.hpp>
 #include <awl/backends/windows/window/instance.hpp>
+#elif defined(AWL_COCOA_BACKEND)
+#include <awl/backends/cocoa/window/event/create_processor.hpp>
+#include <awl/window/event/processor.hpp>
 #endif
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
@@ -41,6 +44,9 @@ awl::window::event::create_processor(
 					)
 				)
 			)
+#elif defined(AWL_COCOA_BACKEND)
+			backends::cocoa::window::event::create_processor(
+					_instance)
 #endif
 		);
 }

@@ -8,6 +8,9 @@
 #elif defined(AWL_WINDOWS_BACKEND)
 #include <awl/backends/windows/system/event/original_processor.hpp>
 #include <awl/backends/windows/system/object.hpp>
+#elif defined(AWL_COCOA_BACKEND)
+#include <awl/backends/cocoa/system/event/create_processor.hpp>
+#include <awl/system/event/processor.hpp>
 #endif
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
@@ -43,6 +46,10 @@ awl::system::event::create_processor(
 					)
 				)
 			)
+#elif defined(AWL_COCOA_BACKEND)
+			backends::cocoa::system::event::create_processor(
+					fcppt::ref(
+						_system))
 #endif
 		);
 }

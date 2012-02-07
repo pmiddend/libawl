@@ -11,8 +11,12 @@
 #include <awl/backends/windows/event/processor.hpp>
 #include <awl/backends/windows/system/object.hpp>
 #include <awl/backends/windows/system/event/processor.hpp>
+#elif defined(AWL_COCOA_BACKEND)
+#include <awl/backends/cocoa/event/create_processor.hpp>
+#include <awl/event/processor.hpp>
 #endif
 #include <fcppt/cref.hpp>
+#include <fcppt/move.hpp>
 #include <fcppt/dynamic_optional_cast.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
@@ -25,8 +29,8 @@ awl::event::create_processor(
 )
 {
 	return
-		awl::event::processor_unique_ptr(
 #if defined(AWL_X11_BACKEND)
+		awl::event::processor_unique_ptr(
 			fcppt::make_unique_ptr<
 				awl::backends::x11::event::processor
 			>(
@@ -45,7 +49,9 @@ awl::event::create_processor(
 					)
 				)
 			)
+		)
 #elif defined(AWL_WINDOWS_BACKEND)
+		awl::event::processor_unique_ptr(
 			fcppt::make_unique_ptr<
 				awl::backends::windows::event::processor
 			>(
@@ -64,6 +70,12 @@ awl::event::create_processor(
 					)
 				)
 			)
+		)
+#elif defined(AWL_COCOA_BACKEND)
+			awl::backends::cocoa::event::create_processor(
+				_system,
+				_system_processor
+			)
 #endif
-		);
+			;
 }

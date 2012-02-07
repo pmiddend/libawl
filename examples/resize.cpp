@@ -15,6 +15,7 @@
 #include <awl/window/event/resize.hpp>
 #include <fcppt/exception.hpp>
 #include <fcppt/optional_impl.hpp>
+#include <fcppt/ref.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/io/cerr.hpp>
 #include <fcppt/io/cout.hpp>
@@ -39,6 +40,14 @@ print_resize(
 		<< FCPPT_TEXT('\n');
 }
 
+void
+window_destroyed(
+	awl::window::event::destroy const &,
+	bool &running)
+{
+	running = false;
+}
+
 }
 
 int main()
@@ -51,6 +60,9 @@ try
 	awl::window::instance_scoped_ptr const window(
 		window_system->create(
 			awl::window::parameters()
+			.title(
+				FCPPT_TEXT("awltest")
+			)
 			.class_name(
 				FCPPT_TEXT("awltest")
 			)
@@ -92,7 +104,21 @@ try
 		)
 	);
 
-	for(;;)
+	bool running =
+		true;
+
+	fcppt::signal::scoped_connection const destroy_connection(
+		window_processor->destroy_callback(
+			std::tr1::bind(
+				window_destroyed,
+				std::tr1::placeholders::_1,
+				fcppt::ref(
+					running)
+			)
+		)
+	);
+
+	while(running)
 		processor->next();
 }
 catch(
