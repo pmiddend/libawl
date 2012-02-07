@@ -40,11 +40,15 @@ awl::backends::x11::system::event::original_processor::poll()
 		)
 		== True
 	)
+	{
 		this->process(
 			x11::event::object(
 				xev
 			)
 		);
+
+		events_processed = true;
+	}
 
 	return events_processed;
 }
