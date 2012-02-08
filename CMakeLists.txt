@@ -263,6 +263,7 @@ set(
 	src/backends/cocoa/event/create_processor.mm
 	src/backends/cocoa/event/processor.mm
 	src/backends/cocoa/from_fcppt_string.mm
+	src/backends/cocoa/system/create.mm
 	src/backends/cocoa/system/event/create_processor.mm
 	src/backends/cocoa/system/event/processor.mm
 	src/backends/cocoa/system/object.mm
@@ -274,6 +275,7 @@ set(
 
 set(
 	AWL_COCOA_INCLUDE_FILES
+	include/awl/backends/cocoa/system/create.hpp
 	include/awl/backends/cocoa/system/event/create_processor.hpp
 	include/awl/backends/cocoa/system/event/optional_processor_ref.hpp
 	include/awl/backends/cocoa/system/event/processor.hpp

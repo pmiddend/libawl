@@ -8,11 +8,20 @@
 namespace
 {
 NSUInteger base_style_mask = 
-	NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask;
+	NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask | NSMiniaturizableWindowMask;
 }
 
 awl::backends::cocoa::window::instance::instance(
 	awl::window::parameters const &_params)
+:
+	has_opengl_(
+		_params.has_opengl()),
+	bit_depth_(
+		_params.bit_depth()),
+	stencil_buffer_(
+		_params.stencil_buffer()),
+	depth_buffer_(
+		_params.depth_buffer())
 {
 	awl::window::vector const position =
 		_params.position()
@@ -90,6 +99,36 @@ awl::backends::cocoa::window::instance::size() const
 				frame.size.width),
 			static_cast<awl::window::dim::value_type>(
 				frame.size.height));
+}
+
+bool
+awl::backends::cocoa::window::instance::has_opengl() const
+{
+	return has_opengl_;
+}
+
+fcppt::optional<awl::window::bit_depth::type> const
+awl::backends::cocoa::window::instance::bit_depth() const
+{
+	return bit_depth_;
+}
+
+fcppt::optional<awl::window::stencil_buffer::type> const
+awl::backends::cocoa::window::instance::stencil_buffer() const
+{
+	return stencil_buffer_;
+}
+
+fcppt::optional<awl::window::depth_buffer::type> const
+awl::backends::cocoa::window::instance::depth_buffer() const
+{
+	return depth_buffer_;
+}
+
+NSWindow *
+awl::backends::cocoa::window::instance::window_handle()
+{
+	return window_;
 }
 
 awl::backends::cocoa::window::instance::~instance()
