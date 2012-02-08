@@ -9,6 +9,7 @@
 #include <awl/window/depth_buffer.hpp>
 #include <awl/backends/cocoa/window/event/processor_fwd.hpp>
 #include <awl/backends/cocoa/event/processor_fwd.hpp>
+#include <awl/class_symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/optional_impl.hpp>
 
@@ -22,7 +23,7 @@ namespace cocoa
 {
 namespace window
 {
-class instance
+class AWL_CLASS_SYMBOL instance
 :
 	public awl::window::instance
 {
