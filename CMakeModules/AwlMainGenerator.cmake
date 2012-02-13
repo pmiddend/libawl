@@ -7,8 +7,10 @@ set(awl_utils_prototype_main_file
 #include <fcppt/config/platform.hpp>
 
 @AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN@
-void
-@AWL_UTILS_MAIN_FUNCTION_NAME@();\;
+int
+@AWL_UTILS_MAIN_FUNCTION_NAME@(
+	awl::main::function_context const &,
+	awl::system::object &);\;
 @AWL_UTILS_MAIN_FUNCTION_NAMESPACES_END@
 
 #ifdef FCPPT_CONFIG_WINDOWS_PLATFORM
@@ -22,7 +24,7 @@ WinMain(
 	awl::main::function_context main_context(
 		argc,
 		argv,
-		_show_command);
+		_show_command)\;
 #else
 int
 main(
@@ -32,16 +34,19 @@ main(
 	awl::main::function_context main_context(
 		argc,
 		argv,
-		awl::main::optional_show_command());
+		awl::main::optional_show_command())\;
 #endif
 	awl::system::object_scoped_ptr awl_system(
 		awl::system::create(
-			main_context));
+			main_context))\;
 
-	@AWL_UTILS_FULLY_QUALIFIED_MAIN_FUNCTION_NAME@(
-		main_context)\;
+	int const exit_code =
+		@AWL_UTILS_FULLY_QUALIFIED_MAIN_FUNCTION_NAME@(
+			main_context,
+			*awl_system)\;
 
-	//awl_system->quit();
+	//return awl_system->quit(exit_code)\;
+	return exit_code\;
 }
 "
 )
@@ -69,22 +74,30 @@ function(
 		awl_utils_current_namespace_list
 		${main_function_name})
 
+	message("AWL CMAKE DEBUG: Current namespace list: ${awl_utils_current_namespace_list}")
+
 	list(LENGTH awl_utils_current_namespace_list awl_utils_current_number_of_namespaces)
+
+	message("AWL CMAKE DEBUG: List length: ${awl_utils_current_number_of_namespaces}")
+
 	math(EXPR awl_utils_current_number_of_namespaces_minus_one "${awl_utils_current_number_of_namespaces}-1")
 	math(EXPR awl_utils_current_number_of_namespaces_minus_two "${awl_utils_current_number_of_namespaces_minus_one}-1")
 
 	set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN "")
 	set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_END "")
-	foreach(i RANGE ${awl_utils_current_number_of_namespaces_minus_two})
-		list(GET awl_utils_current_namespace_list ${i} awl_utils_current_namespace)
-		set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN
+	if(${awl_utils_current_number_of_namespaces_minus_two} GREATER 0)
+		foreach(i RANGE 0 ${awl_utils_current_number_of_namespaces_minus_two})
+			list(GET awl_utils_current_namespace_list ${i} awl_utils_current_namespace)
+			message("AWL CMAKE DEBUG: Namespace iteration, current element: ${awl_utils_current_namespace}")
+			set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN
 "${AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN}namespace ${awl_utils_current_namespace}
 {
 ")
-		set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_END
+			set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_END
 "${AWL_UTILS_MAIN_FUNCTION_NAMESPACES_END}
 }")
-	endforeach()
+		endforeach()
+	endif()
 
 	list(GET awl_utils_current_namespace_list ${awl_utils_current_number_of_namespaces_minus_one} AWL_UTILS_MAIN_FUNCTION_NAME)
 
@@ -96,18 +109,11 @@ function(
 		${awl_utils_temp_target_name}
 		@ONLY)
 
-	#add_executable(
-	#	${target_name}
-	#	WIN32
-	#	${awl_utils_temp_target_name}
-	#	${ARGN})
-endfunction()
+	#message("Adding executable ${target_name} with source file ${awl_utils_temp_target_name} and files ${ARGN}")
 
-# - Write test program to .in file
-# - Run configure_file on the .in file, generate concrete main.cpp file
-# - Add new executable using the input files and the newly generated file
-awl_utils_add_portable_executable(
-	"insert_executable_name_here"
-	"sgeroids::foobar::main"
-	"insert_source_files_here"
-)
+	add_executable(
+		${target_name}
+		WIN32
+		${awl_utils_temp_target_name}
+		${ARGN})
+endfunction()
