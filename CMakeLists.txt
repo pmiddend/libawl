@@ -109,6 +109,7 @@ SET(
 	src/log.cpp
 	src/log_context.cpp
 	src/log_location.cpp
+	src/main/function_context.cpp
 	src/mainloop/asio/create_io_service.cpp
 	src/mainloop/asio/create_io_service_base.cpp
 	src/mainloop/asio/io_service.cpp
@@ -606,6 +607,7 @@ set(
 	include/awl/backends/windows/local_free.hpp
 	include/awl/backends/windows/module_handle.hpp
 	include/awl/backends/windows/scoped_local_memory.hpp
+	include/awl/backends/windows/system/1329153562original_object.hpp
 	include/awl/backends/windows/system/event/callback.hpp
 	include/awl/backends/windows/system/event/function.hpp
 	include/awl/backends/windows/system/event/handle.hpp

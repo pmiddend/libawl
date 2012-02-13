@@ -33,6 +33,7 @@ update_main \
 	src \
 	-r \
 	src/event \
+	src/main \
 	src/mainloop \
 	src/system \
 	src/window
