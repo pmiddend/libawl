@@ -607,7 +607,6 @@ set(
 	include/awl/backends/windows/local_free.hpp
 	include/awl/backends/windows/module_handle.hpp
 	include/awl/backends/windows/scoped_local_memory.hpp
-	include/awl/backends/windows/system/1329153562original_object.hpp
 	include/awl/backends/windows/system/event/callback.hpp
 	include/awl/backends/windows/system/event/function.hpp
 	include/awl/backends/windows/system/event/handle.hpp
