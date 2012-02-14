@@ -1,16 +1,13 @@
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS ON)
 
 set(awl_utils_prototype_main_file
-"#include <awl/system/object_scoped_ptr.hpp>
-#include <awl/system/create.hpp>
-#include <awl/main/function_context.hpp>
+"#include <awl/main/function_context.hpp>
 #include <fcppt/config/platform.hpp>
 
 @AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN@
 int
 @AWL_UTILS_MAIN_FUNCTION_NAME@(
-	awl::main::function_context const &,
-	awl::system::object &);\;
+	awl::main::function_context const &);\;
 @AWL_UTILS_MAIN_FUNCTION_NAMESPACES_END@
 
 #ifdef FCPPT_CONFIG_WINDOWS_PLATFORM
@@ -24,7 +21,8 @@ WinMain(
 	awl::main::function_context main_context(
 		argc,
 		argv,
-		_show_command)\;
+		awl::main::optional_show_command(
+			_show_command))\;
 #else
 int
 main(
@@ -36,17 +34,9 @@ main(
 		argv,
 		awl::main::optional_show_command())\;
 #endif
-	awl::system::object_scoped_ptr awl_system(
-		awl::system::create(
-			main_context))\;
-
-	int const exit_code =
+	return
 		@AWL_UTILS_FULLY_QUALIFIED_MAIN_FUNCTION_NAME@(
-			main_context,
-			*awl_system)\;
-
-	//return awl_system->quit(exit_code)\;
-	return exit_code\;
+			main_context)\;
 }
 "
 )
@@ -74,11 +64,11 @@ function(
 		awl_utils_current_namespace_list
 		${main_function_name})
 
-	message("AWL CMAKE DEBUG: Current namespace list: ${awl_utils_current_namespace_list}")
+	#	message("AWL CMAKE DEBUG: Current namespace list: ${awl_utils_current_namespace_list}")
 
 	list(LENGTH awl_utils_current_namespace_list awl_utils_current_number_of_namespaces)
 
-	message("AWL CMAKE DEBUG: List length: ${awl_utils_current_number_of_namespaces}")
+	#	message("AWL CMAKE DEBUG: List length: ${awl_utils_current_number_of_namespaces}")
 
 	math(EXPR awl_utils_current_number_of_namespaces_minus_one "${awl_utils_current_number_of_namespaces}-1")
 	math(EXPR awl_utils_current_number_of_namespaces_minus_two "${awl_utils_current_number_of_namespaces_minus_one}-1")
@@ -88,7 +78,7 @@ function(
 	if(${awl_utils_current_number_of_namespaces_minus_two} GREATER 0)
 		foreach(i RANGE 0 ${awl_utils_current_number_of_namespaces_minus_two})
 			list(GET awl_utils_current_namespace_list ${i} awl_utils_current_namespace)
-			message("AWL CMAKE DEBUG: Namespace iteration, current element: ${awl_utils_current_namespace}")
+			#			message("AWL CMAKE DEBUG: Namespace iteration, current element: ${awl_utils_current_namespace}")
 			set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN
 "${AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN}namespace ${awl_utils_current_namespace}
 {
