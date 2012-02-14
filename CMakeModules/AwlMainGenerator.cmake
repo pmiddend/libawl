@@ -3,6 +3,11 @@ set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS ON)
 set(awl_utils_prototype_main_file
 "#include <awl/main/function_context.hpp>
 #include <fcppt/config/platform.hpp>
+#ifdef FCPPT_CONFIG_WINDOWS_PLATFORM
+#include <fcppt/config/external_begin.hpp>
+#include <windows.h>
+#include <fcppt/config/external_end.hpp>
+#endif
 
 @AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN@
 int
@@ -19,8 +24,8 @@ WinMain(
 	int const _show_command)
 {
 	awl::main::function_context main_context(
-		argc,
-		argv,
+		__argc,
+		__argv,
 		awl::main::optional_show_command(
 			_show_command))\;
 #else
