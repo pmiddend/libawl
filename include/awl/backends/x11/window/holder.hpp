@@ -24,7 +24,7 @@ class holder
 	);
 public:
 	AWL_SYMBOL
-	explicit holder(
+	holder(
 		x11::display &,
 		Window
 	);
@@ -32,12 +32,20 @@ public:
 	AWL_SYMBOL
 	~holder();
 
+	AWL_SYMBOL
+	void
+	destroy();
+
+	AWL_SYMBOL
 	Window
 	get() const;
 private:
+	void
+	do_destroy();
+
 	x11::display &display_;
 
-	Window const window_;
+	Window window_;
 };
 
 }

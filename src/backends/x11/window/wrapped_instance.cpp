@@ -1,7 +1,14 @@
+#include <awl/exception.hpp>
 #include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/visual.hpp>
+#include <awl/backends/x11/window/class_hint_fwd.hpp>
 #include <awl/backends/x11/window/visual.hpp>
 #include <awl/backends/x11/window/wrapped_instance.hpp>
+#include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
 
 
 awl::backends::x11::window::wrapped_instance::wrapped_instance(
@@ -27,6 +34,14 @@ awl::backends::x11::window::wrapped_instance::wrapped_instance(
 
 awl::backends::x11::window::wrapped_instance::~wrapped_instance()
 {
+}
+
+void
+awl::backends::x11::window::wrapped_instance::destroy()
+{
+	throw awl::exception(
+		FCPPT_TEXT("x11::window::wrapped_instance::destroy called!")
+	);
 }
 
 awl::backends::x11::display &

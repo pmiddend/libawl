@@ -46,6 +46,10 @@ public:
 	~wrapped_instance();
 
 	AWL_SYMBOL
+	void
+	destroy();
+
+	AWL_SYMBOL
 	x11::display &
 	display() const;
 

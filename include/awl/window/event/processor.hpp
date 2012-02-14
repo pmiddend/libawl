@@ -1,6 +1,7 @@
 #ifndef AWL_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 #define AWL_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 
+#include <awl/window/event/close_callback.hpp>
 #include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/processor_fwd.hpp>
 #include <awl/window/event/resize_callback.hpp>
@@ -28,6 +29,11 @@ protected:
 public:
 	virtual bool
 	poll() = 0;
+
+	virtual fcppt::signal::auto_connection
+	close_callback(
+		event::close_callback const &
+	) = 0;
 
 	virtual fcppt::signal::auto_connection
 	destroy_callback(

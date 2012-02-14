@@ -10,6 +10,8 @@
 #include <awl/backends/x11/window/event/type.hpp>
 #include <awl/backends/x11/window/instance_fwd.hpp>
 #include <awl/window/event/processor.hpp>
+#include <awl/window/event/close_callback.hpp>
+#include <awl/window/event/close_signal.hpp>
 #include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/destroy_signal.hpp>
 #include <awl/window/event/resize_callback.hpp>
@@ -57,6 +59,12 @@ public:
 	AWL_SYMBOL
 	bool
 	poll();
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
+	close_callback(
+		awl::window::event::close_callback const &
+	);
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
@@ -143,6 +151,8 @@ private:
 	x11::window::event::mask event_mask_;
 
 	fcppt::signal::connection_manager const connection_manager_;
+
+	awl::window::event::close_signal close_signal_;
 
 	awl::window::event::destroy_signal destroy_signal_;
 

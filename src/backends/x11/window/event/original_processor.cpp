@@ -10,6 +10,7 @@
 #include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/backends/x11/window/event/type.hpp>
 #include <awl/window/dim.hpp>
+#include <awl/window/event/close_callback.hpp>
 #include <awl/window/event/destroy.hpp>
 #include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/resize.hpp>
@@ -24,6 +25,8 @@
 #include <fcppt/signal/unregister/base_impl.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/config/external_begin.hpp>
+#include <boost/spirit/home/phoenix/core/argument.hpp>
+#include <boost/spirit/home/phoenix/operator/logical.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
 
@@ -71,6 +74,12 @@ awl::backends::x11::window::event::original_processor::original_processor(
 				)
 			)
 		)
+	),
+	close_signal_(
+		boost::phoenix::arg_names::arg1
+		&&
+		boost::phoenix::arg_names::arg2,
+		true
 	),
 	destroy_signal_(),
 	resize_signal_()
@@ -124,6 +133,17 @@ awl::backends::x11::window::event::original_processor::poll()
 		}
 
 	return events_processed;
+}
+
+fcppt::signal::auto_connection
+awl::backends::x11::window::event::original_processor::close_callback(
+	awl::window::event::close_callback const &_callback
+)
+{
+	return
+		close_signal_.connect(
+			_callback
+		);
 }
 
 fcppt::signal::auto_connection

@@ -37,6 +37,10 @@ public:
 	AWL_SYMBOL
 	virtual ~instance() = 0;
 
+	virtual
+	void
+	destroy() = 0;
+
 	virtual x11::display &
 	display() const = 0;
 

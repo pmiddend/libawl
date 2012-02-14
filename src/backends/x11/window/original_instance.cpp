@@ -128,6 +128,12 @@ awl::backends::x11::window::original_instance::~original_instance()
 {
 }
 
+void
+awl::backends::x11::window::original_instance::destroy()
+{
+	window_.destroy();
+}
+
 awl::backends::x11::display &
 awl::backends::x11::window::original_instance::display() const
 {

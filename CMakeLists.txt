@@ -180,6 +180,11 @@ SET(
 	include/awl/window/bit_depth.hpp
 	include/awl/window/depth_buffer.hpp
 	include/awl/window/dim.hpp
+	include/awl/window/event/close.hpp
+	include/awl/window/event/close_callback.hpp
+	include/awl/window/event/close_function.hpp
+	include/awl/window/event/close_fwd.hpp
+	include/awl/window/event/close_signal.hpp
 	include/awl/window/event/create_processor.hpp
 	include/awl/window/event/destroy.hpp
 	include/awl/window/event/destroy_callback.hpp
@@ -320,6 +325,7 @@ set(
 	src/backends/x11/system/original_object.cpp
 	src/backends/x11/to_x11_bool.cpp
 	src/backends/x11/visual.cpp
+	src/backends/x11/window/atoms.cpp
 	src/backends/x11/window/attributes.cpp
 	src/backends/x11/window/class_hint.cpp
 	src/backends/x11/window/common_instance.cpp
@@ -339,6 +345,7 @@ set(
 	src/backends/x11/window/original_class_hint.cpp
 	src/backends/x11/window/original_instance.cpp
 	src/backends/x11/window/root.cpp
+	src/backends/x11/window/set_wm_protocols.cpp
 	src/backends/x11/window/size_hints.cpp
 	src/backends/x11/window/transient_for_hint.cpp
 	src/backends/x11/window/visual.cpp
@@ -398,7 +405,11 @@ set(
 	include/awl/backends/x11/visual_info_unique_ptr.hpp
 	include/awl/backends/x11/visual_scoped_ptr.hpp
 	include/awl/backends/x11/visual_unique_ptr.hpp
+	include/awl/backends/x11/window/atom_count.hpp
+	include/awl/backends/x11/window/atoms.hpp
+	include/awl/backends/x11/window/atoms_fwd.hpp
 	include/awl/backends/x11/window/attributes.hpp
+	include/awl/backends/x11/window/change_wm_protocols.hpp
 	include/awl/backends/x11/window/class_hint.hpp
 	include/awl/backends/x11/window/class_hint_fwd.hpp
 	include/awl/backends/x11/window/common_instance.hpp
@@ -430,6 +441,7 @@ set(
 	include/awl/backends/x11/window/original_class_hint.hpp
 	include/awl/backends/x11/window/original_instance.hpp
 	include/awl/backends/x11/window/root.hpp
+	include/awl/backends/x11/window/set_wm_protocols.hpp
 	include/awl/backends/x11/window/size_hints.hpp
 	include/awl/backends/x11/window/transient_for_hint.hpp
 	include/awl/backends/x11/window/visual.hpp

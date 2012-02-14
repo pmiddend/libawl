@@ -45,6 +45,10 @@ public:
 	~original_instance();
 
 	AWL_SYMBOL
+	void
+	destroy();
+
+	AWL_SYMBOL
 	x11::display &
 	display() const;
 
@@ -78,7 +82,7 @@ private:
 
 	x11::window::original_class_hint const class_hint_;
 
-	x11::window::holder const window_;
+	x11::window::holder window_;
 };
 
 }
