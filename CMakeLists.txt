@@ -120,6 +120,7 @@ SET(
 	src/system/event/create_processor.cpp
 	src/system/event/processor.cpp
 	src/system/object.cpp
+	src/window/event/close.cpp
 	src/window/event/create_processor.cpp
 	src/window/event/destroy.cpp
 	src/window/event/processor.cpp
@@ -331,6 +332,8 @@ set(
 	src/backends/x11/window/common_instance.cpp
 	src/backends/x11/window/create.cpp
 	src/backends/x11/window/event/change_mask.cpp
+	src/backends/x11/window/event/client_message/object.cpp
+	src/backends/x11/window/event/client_message/original_demuxer.cpp
 	src/backends/x11/window/event/filter.cpp
 	src/backends/x11/window/event/object.cpp
 	src/backends/x11/window/event/original_processor.cpp
@@ -339,6 +342,7 @@ set(
 	src/backends/x11/window/event/processor.cpp
 	src/backends/x11/window/event/send.cpp
 	src/backends/x11/window/event/to_mask.cpp
+	src/backends/x11/window/event/wm_protocols.cpp
 	src/backends/x11/window/hints.cpp
 	src/backends/x11/window/holder.cpp
 	src/backends/x11/window/instance.cpp
@@ -414,8 +418,16 @@ set(
 	include/awl/backends/x11/window/class_hint_fwd.hpp
 	include/awl/backends/x11/window/common_instance.hpp
 	include/awl/backends/x11/window/create.hpp
+	include/awl/backends/x11/window/event/atom_vector.hpp
 	include/awl/backends/x11/window/event/callback.hpp
 	include/awl/backends/x11/window/event/change_mask.hpp
+	include/awl/backends/x11/window/event/client_message/callback.hpp
+	include/awl/backends/x11/window/event/client_message/demuxer.hpp
+	include/awl/backends/x11/window/event/client_message/demuxer_fwd.hpp
+	include/awl/backends/x11/window/event/client_message/function.hpp
+	include/awl/backends/x11/window/event/client_message/object.hpp
+	include/awl/backends/x11/window/event/client_message/object_fwd.hpp
+	include/awl/backends/x11/window/event/client_message/original_demuxer.hpp
 	include/awl/backends/x11/window/event/filter.hpp
 	include/awl/backends/x11/window/event/function.hpp
 	include/awl/backends/x11/window/event/mask.hpp
@@ -431,6 +443,7 @@ set(
 	include/awl/backends/x11/window/event/send.hpp
 	include/awl/backends/x11/window/event/to_mask.hpp
 	include/awl/backends/x11/window/event/type.hpp
+	include/awl/backends/x11/window/event/wm_protocols.hpp
 	include/awl/backends/x11/window/hints.hpp
 	include/awl/backends/x11/window/holder.hpp
 	include/awl/backends/x11/window/instance.hpp

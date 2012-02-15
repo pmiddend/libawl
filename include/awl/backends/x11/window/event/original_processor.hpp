@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/x11/atom.hpp>
 #include <awl/backends/x11/event/object_fwd.hpp>
 #include <awl/backends/x11/window/event/processor.hpp>
 #include <awl/backends/x11/window/event/callback.hpp>
@@ -8,6 +9,9 @@
 #include <awl/backends/x11/window/event/mask.hpp>
 #include <awl/backends/x11/window/event/object_fwd.hpp>
 #include <awl/backends/x11/window/event/type.hpp>
+#include <awl/backends/x11/window/event/wm_protocols.hpp>
+#include <awl/backends/x11/window/event/client_message/object_fwd.hpp>
+#include <awl/backends/x11/window/event/client_message/original_demuxer.hpp>
 #include <awl/backends/x11/window/instance_fwd.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/close_callback.hpp>
@@ -49,8 +53,9 @@ class AWL_CLASS_SYMBOL original_processor
 	);
 public:
 	AWL_SYMBOL
-	explicit original_processor(
-		x11::window::instance &
+	explicit
+	original_processor(
+		awl::backends::x11::window::instance &
 	);
 
 	AWL_SYMBOL
@@ -89,56 +94,61 @@ public:
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_callback(
-		x11::window::event::type,
-		x11::window::event::callback const &
+		awl::backends::x11::window::event::type,
+		awl::backends::x11::window::event::callback const &
 	);
 
 	void
 	process(
-		x11::event::object const &
+		awl::backends::x11::event::object const &
 	);
 private:
 	void
 	do_process(
-		x11::window::event::object const &
+		awl::backends::x11::window::event::object const &
 	);
 
 	void
 	unregister(
-		x11::window::event::type
+		awl::backends::x11::window::event::type
+	);
+
+	void
+	on_close(
+		awl::backends::x11::window::event::client_message::object const &
 	);
 
 	void
 	on_configure(
-		x11::window::event::object const &
+		awl::backends::x11::window::event::object const &
 	);
 
 	void
 	on_destroy(
-		x11::window::event::object const &
+		awl::backends::x11::window::event::object const &
 	);
 
-	x11::window::instance &window_;
+	awl::backends::x11::window::instance &window_;
 
 	typedef fcppt::signal::object<
-		x11::window::event::function,
+		awl::backends::x11::window::event::function,
 		fcppt::signal::unregister::base
 	> signal;
 
 	typedef boost::ptr_map<
-		x11::window::event::type,
+		awl::backends::x11::window::event::type,
 		signal
 	> event_signal_map;
 
 	typedef unsigned mask_count;
 
 	typedef std::map<
-		x11::window::event::mask,
+		awl::backends::x11::window::event::mask,
 		mask_count
 	> mask_count_map;
 
 	typedef std::map<
-		x11::window::event::type,
+		awl::backends::x11::window::event::type,
 		mask_count
 	> type_count_map;
 
@@ -148,7 +158,13 @@ private:
 
 	type_count_map type_counts_;
 
-	x11::window::event::mask event_mask_;
+	awl::backends::x11::window::event::mask event_mask_;
+
+	awl::backends::x11::window::event::client_message::original_demuxer client_message_demuxer_;
+
+	awl::backends::x11::atom const wm_delete_atom_;
+
+	awl::backends::x11::window::event::wm_protocols const wm_protocols_;
 
 	fcppt::signal::connection_manager const connection_manager_;
 
