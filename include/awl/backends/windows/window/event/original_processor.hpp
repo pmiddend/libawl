@@ -9,6 +9,8 @@
 #include <awl/backends/windows/window/event/callback.hpp>
 #include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/window/instance_fwd.hpp>
+#include <awl/window/event/close_callback.hpp>
+#include <awl/window/event/close_signal.hpp>
 #include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/destroy_signal.hpp>
 #include <awl/window/event/resize_callback.hpp>
@@ -53,6 +55,12 @@ public:
 	AWL_SYMBOL
 	bool
 	poll();
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
+	close_callback(
+		awl::window::event::close_callback const &
+	);
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
@@ -119,6 +127,8 @@ private:
 	> signal_map;
 
 	signal_map signals_;
+
+	awl::window::event::close_signal close_signal_;
 
 	awl::window::event::destroy_signal destroy_signal_;
 

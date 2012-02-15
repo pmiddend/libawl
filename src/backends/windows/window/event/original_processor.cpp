@@ -13,6 +13,8 @@
 #include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/window/event/wnd_proc.hpp>
 #include <awl/window/dim.hpp>
+#include <awl/window/event/close.hpp>
+#include <awl/window/event/close_callback.hpp>
 #include <awl/window/event/destroy.hpp>
 #include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/resize.hpp>
@@ -23,6 +25,10 @@
 #include <fcppt/math/dim/basic_impl.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object_impl.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <boost/spirit/home/phoenix/core/argument.hpp>
+#include <boost/spirit/home/phoenix/operator/logical.hpp>
+#include <fcppt/config/external_end.hpp>
 
 
 awl::backends::windows::window::event::original_processor::original_processor(
@@ -33,6 +39,12 @@ awl::backends::windows::window::event::original_processor::original_processor(
 		_window
 	),
 	signals_(),
+	close_signal_(
+		boost::phoenix::arg_names::arg1
+		&&
+		boost::phoenix::arg_names::arg2,
+		true
+	),
 	destroy_signal_(),
 	resize_signal_()
 {
@@ -90,6 +102,17 @@ awl::backends::windows::window::event::original_processor::poll()
 	}
 
 	return events_processed;
+}
+
+fcppt::signal::auto_connection
+awl::backends::windows::window::event::original_processor::close_callback(
+	awl::window::event::close_callback const &_callback
+)
+{
+	return
+		close_signal_.connect(
+			_callback
+		);
 }
 
 fcppt::signal::auto_connection
@@ -198,6 +221,21 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 		_type.get()
 	)
 	{
+	case WM_CLOSE:
+		// FIXME: don't return here, take the other signals into account as well
+		return
+			close_signal_(
+				awl::window::event::close(
+					this->window()
+				)
+			)
+			?
+				awl::backends::windows::window::event::return_type()
+			:
+				awl::backends::windows::window::event::return_type(
+					0
+				)
+			;
 	case WM_DESTROY:
 		destroy_signal_(
 			awl::window::event::destroy(

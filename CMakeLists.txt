@@ -145,6 +145,10 @@ SET(
 	include/awl/log.hpp
 	include/awl/log_context.hpp
 	include/awl/log_location.hpp
+	include/awl/main/function_context.hpp
+	include/awl/main/function_context_fwd.hpp
+	include/awl/main/optional_show_command.hpp
+	include/awl/main/show_command.hpp
 	include/awl/mainloop/asio/create_io_service.hpp
 	include/awl/mainloop/asio/create_io_service_base.hpp
 	include/awl/mainloop/asio/io_service.hpp

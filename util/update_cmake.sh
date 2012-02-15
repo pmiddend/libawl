@@ -23,6 +23,7 @@ update_main \
 	include/awl \
 	-r \
 	include/awl/event \
+	include/awl/main \
 	include/awl/mainloop \
 	include/awl/system \
 	include/awl/window
