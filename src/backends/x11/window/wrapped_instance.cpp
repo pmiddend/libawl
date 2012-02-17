@@ -44,6 +44,12 @@ awl::backends::x11::window::wrapped_instance::destroy()
 	);
 }
 
+bool
+awl::backends::x11::window::wrapped_instance::destroyed() const
+{
+	return false;
+}
+
 awl::backends::x11::display &
 awl::backends::x11::window::wrapped_instance::display() const
 {

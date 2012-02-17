@@ -41,6 +41,10 @@ public:
 	void
 	destroy() = 0;
 
+	virtual
+	bool
+	destroyed() const = 0;
+
 	virtual x11::display &
 	display() const = 0;
 

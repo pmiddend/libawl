@@ -50,6 +50,10 @@ public:
 	destroy();
 
 	AWL_SYMBOL
+	bool
+	destroyed() const;
+
+	AWL_SYMBOL
 	x11::display &
 	display() const;
 

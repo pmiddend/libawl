@@ -37,6 +37,10 @@ public:
 	destroy();
 
 	AWL_SYMBOL
+	bool
+	destroyed() const;
+
+	AWL_SYMBOL
 	Window
 	get() const;
 private:

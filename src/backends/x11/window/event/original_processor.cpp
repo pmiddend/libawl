@@ -379,7 +379,15 @@ awl::backends::x11::window::event::original_processor::on_close(
 			)
 		)
 	)
+	{
 		window_.destroy();
+
+		destroy_signal_(
+			awl::window::event::destroy(
+				window_
+			)
+		);
+	}
 }
 
 void

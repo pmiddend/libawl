@@ -134,6 +134,13 @@ awl::backends::x11::window::original_instance::destroy()
 	window_.destroy();
 }
 
+bool
+awl::backends::x11::window::original_instance::destroyed() const
+{
+	return
+		window_.destroyed();
+}
+
 awl::backends::x11::display &
 awl::backends::x11::window::original_instance::display() const
 {

@@ -33,6 +33,15 @@ awl::backends::x11::window::holder::destroy()
 	window_ = None;
 }
 
+bool
+awl::backends::x11::window::holder::destroyed() const
+{
+	return
+		window_
+		==
+		None;
+}
+
 Window
 awl::backends::x11::window::holder::get() const
 {
@@ -43,9 +52,7 @@ void
 awl::backends::x11::window::holder::do_destroy()
 {
 	if(
-		window_
-		!=
-		None
+		!this->destroyed()
 	)
 		::XDestroyWindow(
 			display_.get(),
