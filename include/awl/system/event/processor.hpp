@@ -22,8 +22,17 @@ protected:
 	AWL_SYMBOL
 	processor();
 public:
-	virtual bool
+	virtual
+	bool
 	poll() = 0;
+
+	virtual
+	void
+	quit() = 0;
+
+	virtual
+	bool
+	running() const = 0;
 
 	AWL_SYMBOL
 	virtual ~processor();

@@ -8,6 +8,7 @@
 #include <awl/backends/x11/system/event/original_processor.hpp>
 #include <awl/backends/x11/system/event/type.hpp>
 #include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/object_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
@@ -17,7 +18,13 @@ awl::backends::x11::system::event::original_processor::original_processor(
 	x11::system::object &_system
 )
 :
-	system_(_system)
+	system_(
+		_system
+	),
+	running_(
+		true
+	),
+	signals_()
 {
 }
 
@@ -51,6 +58,18 @@ awl::backends::x11::system::event::original_processor::poll()
 	}
 
 	return events_processed;
+}
+
+void
+awl::backends::x11::system::event::original_processor::quit()
+{
+	running_ = false;
+}
+
+bool
+awl::backends::x11::system::event::original_processor::running() const
+{
+	return running_;
 }
 
 fcppt::signal::auto_connection

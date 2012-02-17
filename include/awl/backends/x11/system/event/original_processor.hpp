@@ -12,7 +12,7 @@
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection.hpp>
-#include <fcppt/signal/object.hpp>
+#include <fcppt/signal/object_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
@@ -51,6 +51,12 @@ public:
 	bool
 	poll();
 
+	void
+	quit();
+
+	bool
+	running() const;
+
 	fcppt::signal::auto_connection
 	register_callback(
 		x11::system::event::opcode const &,
@@ -64,6 +70,8 @@ public:
 	);
 private:
 	x11::system::object &system_;
+
+	bool running_;
 
 	typedef fcppt::signal::object<
 		event::function
