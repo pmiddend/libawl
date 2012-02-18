@@ -157,7 +157,7 @@ awl::backends::windows::window::original_instance::show()
 	BOOL const prev_visible(
 		::ShowWindow(
 			this->hwnd(),
-			SW_NORMAL
+			SW_SHOWDEFAULT
 		)
 	);
 
