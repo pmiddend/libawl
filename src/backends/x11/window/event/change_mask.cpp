@@ -13,6 +13,11 @@ awl::backends::x11::window::event::change_mask(
 	x11::window::event::mask const _mask
 )
 {
+	if(
+		_window.destroyed()
+	)
+		return;
+
 	XSetWindowAttributes swa;
 
 	swa.event_mask = _mask.get();

@@ -16,6 +16,9 @@ awl::backends::x11::window::holder::holder(
 	),
 	window_(
 		_window
+	),
+	destroyed_(
+		false
 	)
 {
 }
@@ -30,22 +33,21 @@ awl::backends::x11::window::holder::destroy()
 {
 	this->do_destroy();
 
-	window_ = None;
+	destroyed_ = true;
 }
 
 bool
 awl::backends::x11::window::holder::destroyed() const
 {
 	return
-		window_
-		==
-		None;
+		destroyed_;
 }
 
 Window
 awl::backends::x11::window::holder::get() const
 {
-	return window_;
+	return
+		window_;
 }
 
 void

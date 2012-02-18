@@ -49,7 +49,9 @@ private:
 
 	x11::display &display_;
 
-	Window window_;
+	Window const window_;
+
+	bool destroyed_;
 };
 
 }
