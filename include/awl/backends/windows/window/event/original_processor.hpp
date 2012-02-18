@@ -5,8 +5,9 @@
 #include <awl/backends/windows/event/message_fwd.hpp>
 #include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/event/wparam.hpp>
-#include <awl/backends/windows/window/event/processor.hpp>
 #include <awl/backends/windows/window/event/callback.hpp>
+#include <awl/backends/windows/window/event/object_fwd.hpp>
+#include <awl/backends/windows/window/event/processor.hpp>
 #include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/window/instance_fwd.hpp>
 #include <awl/window/event/close_callback.hpp>
@@ -20,6 +21,7 @@
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/connection_manager.hpp>
 #include <fcppt/signal/object.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
@@ -115,6 +117,21 @@ private:
 		awl::backends::windows::event::message const &
 	);
 
+	awl::backends::windows::window::event::return_type const
+	on_close(
+		awl::backends::windows::window::event::object const &
+	);
+
+	awl::backends::windows::window::event::return_type const
+	on_destroy(
+		awl::backends::windows::window::event::object const &
+	);
+
+	awl::backends::windows::window::event::return_type const
+	on_resize(
+		awl::backends::windows::window::event::object const &
+	);
+
 	windows::window::instance &window_;
 
 	typedef fcppt::signal::object<
@@ -133,6 +150,8 @@ private:
 	awl::window::event::destroy_signal destroy_signal_;
 
 	awl::window::event::resize_signal resize_signal_;
+
+	fcppt::signal::connection_manager const connections_;
 };
 
 }
