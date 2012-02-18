@@ -11,6 +11,7 @@
 #include <awl/backends/windows/event/wparam.hpp>
 #include <awl/backends/windows/window/adjusted_size.hpp>
 #include <awl/backends/windows/window/client_rect.hpp>
+#include <awl/backends/windows/window/instance.hpp>
 #include <awl/backends/windows/window/original_instance.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/parameters.hpp>
@@ -32,6 +33,7 @@ awl::backends::windows::window::original_instance::original_instance(
 	windows::wndclass_remove_callback const &_remove_wndclass
 )
 :
+	awl::backends::windows::window::instance(),
 	handle_(
 		CreateWindow(
 			_wndclass.name().c_str(),

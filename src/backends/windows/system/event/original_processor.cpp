@@ -28,7 +28,8 @@ awl::backends::windows::system::event::original_processor::original_processor(
 :
 	signals_(),
 	handle_signal_(),
-	handles_()
+	handles_(),
+	exit_code_()
 {
 }
 
@@ -74,6 +75,28 @@ awl::backends::windows::system::event::original_processor::poll()
 		|| events_processed;
 
 	return events_processed;
+}
+
+void
+awl::backends::windows::system::event::original_processor::quit()
+{
+	::PostQuitMessage(
+		0
+	);
+}
+
+bool
+awl::backends::windows::system::event::original_processor::running() const
+{
+	return
+		!exit_code_.has_value();
+}
+
+int
+awl::backends::windows::system::event::original_processor::exit_code() const
+{
+	return
+		*exit_code_;
 }
 
 fcppt::signal::auto_connection
@@ -195,6 +218,11 @@ awl::backends::windows::system::event::original_processor::do_process(
 	awl::backends::windows::system::event::object const &_event
 )
 {
+	if(
+		_type.get() == WM_QUIT
+	)
+		exit_code_ = _event.wparam().get();
+
 	signals_[
 		_type
 	](

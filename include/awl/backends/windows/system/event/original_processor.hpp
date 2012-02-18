@@ -14,6 +14,7 @@
 #include <awl/backends/windows/system/object_fwd.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/optional_decl.hpp>
 #include <fcppt/container/raw_vector_decl.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object.hpp>
@@ -51,6 +52,18 @@ public:
 	AWL_SYMBOL
 	bool
 	poll();
+
+	AWL_SYMBOL
+	void
+	quit();
+
+	AWL_SYMBOL
+	bool
+	running() const;
+
+	AWL_SYMBOL
+	int
+	exit_code() const;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
@@ -125,6 +138,12 @@ private:
 	> handle_vector;
 
 	handle_vector handles_;
+
+	typedef fcppt::optional<
+		int
+	> optional_exit_code;
+
+	optional_exit_code exit_code_;
 };
 
 }
