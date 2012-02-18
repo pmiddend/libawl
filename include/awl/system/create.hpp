@@ -3,7 +3,6 @@
 
 #include <awl/system/object_unique_ptr.hpp>
 #include <awl/system/object.hpp>
-#include <awl/main/function_context_fwd.hpp>
 #include <awl/symbol.hpp>
 
 namespace awl
@@ -16,8 +15,7 @@ namespace system
 // and the WinAPI system on windows)
 AWL_SYMBOL
 system::object_unique_ptr
-create(
-	awl::main::function_context const &);
+create();
 
 }
 }

@@ -4,7 +4,6 @@
 #include <awl/window/instance.hpp>
 #include <awl/window/instance_scoped_ptr.hpp>
 #include <awl/window/parameters.hpp>
-#include <awl/main/function_context.hpp>
 #include <fcppt/chrono/seconds.hpp>
 #include <fcppt/io/cerr.hpp>
 #include <fcppt/time/sleep_any.hpp>
@@ -15,17 +14,11 @@
 #include <fcppt/config/external_end.hpp>
 
 int
-main(
-	int argc,
-	char *argv[])
+main()
 try
 {
 	awl::system::object_scoped_ptr const window_system(
-		awl::system::create(
-			awl::main::function_context(
-				argc,
-				argv,
-				awl::main::optional_show_command()))
+		awl::system::create()
 	);
 
 	awl::window::instance_scoped_ptr const window(

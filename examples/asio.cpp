@@ -3,7 +3,6 @@
 #include <awl/mainloop/asio/io_service_scoped_ptr.hpp>
 #include <awl/mainloop/asio/create_io_service.hpp>
 #include <awl/mainloop/dispatcher.hpp>
-#include <awl/main/function_context.hpp>
 #include <awl/system/create.hpp>
 #include <awl/system/object.hpp>
 #include <awl/system/object_scoped_ptr.hpp>
@@ -22,16 +21,10 @@
 #include <fcppt/config/external_end.hpp>
 
 int
-main(
-	int argc,
-	char *argv[])
+main()
 {
 	awl::system::object_scoped_ptr const window_system(
-		awl::system::create(
-			awl::main::function_context(
-				argc,
-				argv,
-				awl::main::optional_show_command()))
+		awl::system::create()
 	);
 
 	awl::window::instance_scoped_ptr const window(

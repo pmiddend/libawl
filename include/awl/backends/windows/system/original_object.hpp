@@ -4,7 +4,6 @@
 #include <awl/backends/windows/system/object.hpp>
 #include <awl/backends/windows/counted_wndclass_fwd.hpp>
 #include <awl/window/instance_unique_ptr.hpp>
-#include <awl/main/function_context_Fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
@@ -30,8 +29,7 @@ class original_object
 	);
 public:
 	AWL_SYMBOL
-	original_object(
-		awl::main::function_context const &);
+	original_object();
 
 	AWL_SYMBOL
 	~original_object();

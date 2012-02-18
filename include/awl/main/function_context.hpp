@@ -1,9 +1,8 @@
 #ifndef AWL_MAIN_FUNCTION_CONTEXT_HPP_INCLUDED
 #define AWL_MAIN_FUNCTION_CONTEXT_HPP_INCLUDED
 
-#include <awl/main/optional_show_command.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/optional_impl.hpp>
+
 
 namespace awl
 {
@@ -16,8 +15,7 @@ public:
 	explicit
 	function_context(
 		int argc,
-		char *argv[],
-		main::optional_show_command const &);
+		char *argv[]);
 
 	AWL_SYMBOL
 	int
@@ -26,14 +24,9 @@ public:
 	AWL_SYMBOL
 	char**
 	argv() const;
-
-	AWL_SYMBOL
-	main::optional_show_command const &
-	show_command();
 private:
 	int argc_;
 	char **argv_;
-	main::optional_show_command show_command_;
 };
 }
 }

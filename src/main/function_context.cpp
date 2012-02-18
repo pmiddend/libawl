@@ -2,15 +2,12 @@
 
 awl::main::function_context::function_context(
 	int const _argc,
-	char *_argv[],
-	main::optional_show_command const &_show_command)
+	char *_argv[])
 :
 	argc_(
 		_argc),
 	argv_(
-		_argv),
-	show_command_(
-		_show_command)
+		_argv)
 {
 }
 
@@ -24,10 +21,4 @@ char**
 awl::main::function_context::argv() const
 {
 	return argv_;
-}
-
-awl::main::optional_show_command const &
-awl::main::function_context::show_command()
-{
-	return show_command_;
 }

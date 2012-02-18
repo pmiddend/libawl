@@ -9,8 +9,7 @@
 #include <fcppt/tr1/functional.hpp>
 
 
-awl::backends::windows::system::original_object::original_object(
-	awl::main::function_context const &_context)
+awl::backends::windows::system::original_object::original_object()
 :
 	wndclasses_()
 {
