@@ -51,12 +51,19 @@ public:
 	bool
 	poll();
 
+	AWL_SYMBOL
 	void
 	quit();
 
+	AWL_SYMBOL
 	bool
 	running() const;
 
+	AWL_SYMBOL
+	int
+	exit_code() const;
+
+	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_callback(
 		x11::system::event::opcode const &,
@@ -64,6 +71,7 @@ public:
 		x11::system::event::callback const &
 	);
 
+	AWL_SYMBOL
 	void
 	process(
 		x11::event::object const &

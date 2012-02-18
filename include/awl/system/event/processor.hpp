@@ -34,6 +34,10 @@ public:
 	bool
 	running() const = 0;
 
+	virtual
+	int
+	exit_code() const = 0;
+
 	AWL_SYMBOL
 	virtual ~processor();
 };

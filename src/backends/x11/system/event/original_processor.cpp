@@ -7,6 +7,7 @@
 #include <awl/backends/x11/system/event/opcode.hpp>
 #include <awl/backends/x11/system/event/original_processor.hpp>
 #include <awl/backends/x11/system/event/type.hpp>
+#include <fcppt/assert/pre.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -70,6 +71,16 @@ bool
 awl::backends::x11::system::event::original_processor::running() const
 {
 	return running_;
+}
+
+int
+awl::backends::x11::system::event::original_processor::exit_code() const
+{
+	FCPPT_ASSERT_PRE(
+		!running_
+	);
+
+	return 0;
 }
 
 fcppt::signal::auto_connection
