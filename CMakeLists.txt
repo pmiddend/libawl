@@ -334,8 +334,6 @@ set(
 	src/backends/x11/window/common_instance.cpp
 	src/backends/x11/window/create.cpp
 	src/backends/x11/window/event/change_mask.cpp
-	src/backends/x11/window/event/client_message/object.cpp
-	src/backends/x11/window/event/client_message/original_demuxer.cpp
 	src/backends/x11/window/event/filter.cpp
 	src/backends/x11/window/event/object.cpp
 	src/backends/x11/window/event/original_processor.cpp
@@ -423,13 +421,6 @@ set(
 	include/awl/backends/x11/window/event/atom_vector.hpp
 	include/awl/backends/x11/window/event/callback.hpp
 	include/awl/backends/x11/window/event/change_mask.hpp
-	include/awl/backends/x11/window/event/client_message/callback.hpp
-	include/awl/backends/x11/window/event/client_message/demuxer.hpp
-	include/awl/backends/x11/window/event/client_message/demuxer_fwd.hpp
-	include/awl/backends/x11/window/event/client_message/function.hpp
-	include/awl/backends/x11/window/event/client_message/object.hpp
-	include/awl/backends/x11/window/event/client_message/object_fwd.hpp
-	include/awl/backends/x11/window/event/client_message/original_demuxer.hpp
 	include/awl/backends/x11/window/event/filter.hpp
 	include/awl/backends/x11/window/event/function.hpp
 	include/awl/backends/x11/window/event/mask.hpp

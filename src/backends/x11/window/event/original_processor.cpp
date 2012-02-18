@@ -11,8 +11,6 @@
 #include <awl/backends/x11/window/event/poll_type.hpp>
 #include <awl/backends/x11/window/event/to_mask.hpp>
 #include <awl/backends/x11/window/event/type.hpp>
-#include <awl/backends/x11/window/event/client_message/object.hpp>
-#include <awl/backends/x11/window/event/client_message/original_demuxer.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/event/close.hpp>
 #include <awl/window/event/close_callback.hpp>
@@ -33,6 +31,7 @@
 #include <fcppt/config/external_begin.hpp>
 #include <boost/spirit/home/phoenix/core/argument.hpp>
 #include <boost/spirit/home/phoenix/operator/logical.hpp>
+#include <X11/X.h>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
 
@@ -50,8 +49,13 @@ awl::backends::x11::window::event::original_processor::original_processor(
 	event_mask_(
 		0l
 	),
-	client_message_demuxer_(),
-	wm_delete_atom_(
+	wm_protocols_atom_(
+		awl::backends::x11::intern_atom(
+			_window.display(),
+			"WM_PROTOCOLS"
+		)
+	),
+	wm_delete_window_atom_(
 		awl::backends::x11::intern_atom(
 			_window.display(),
 			"WM_DELETE_WINDOW"
@@ -62,7 +66,7 @@ awl::backends::x11::window::event::original_processor::original_processor(
 		fcppt::assign::make_container<
 			awl::backends::x11::window::event::atom_vector
 		>(
-			wm_delete_atom_.get()
+			wm_delete_window_atom_.get()
 		)
 	),
 	connection_manager_(
@@ -75,8 +79,8 @@ awl::backends::x11::window::event::original_processor::original_processor(
 						ClientMessage
 					),
 					std::tr1::bind(
-						&awl::backends::x11::window::event::client_message::original_demuxer::process,
-						&client_message_demuxer_,
+						&awl::backends::x11::window::event::original_processor::on_client_message,
+						this,
 						std::tr1::placeholders::_1
 					)
 				)
@@ -102,20 +106,6 @@ awl::backends::x11::window::event::original_processor::original_processor(
 					),
 					std::tr1::bind(
 						&awl::backends::x11::window::event::original_processor::on_destroy,
-						this,
-						std::tr1::placeholders::_1
-					)
-				)
-			)
-		)(
-			fcppt::signal::shared_connection(
-				client_message_demuxer_.register_callback(
-					awl::backends::x11::intern_atom(
-						window_.display(),
-						"WM_PROTOCOLS"
-					),
-					std::tr1::bind(
-						&awl::backends::x11::window::event::original_processor::on_close,
 						this,
 						std::tr1::placeholders::_1
 					)
@@ -361,14 +351,28 @@ awl::backends::x11::window::event::original_processor::unregister(
 }
 
 void
-awl::backends::x11::window::event::original_processor::on_close(
-	awl::backends::x11::window::event::client_message::object const &_event
+awl::backends::x11::window::event::original_processor::on_client_message(
+	awl::backends::x11::window::event::object const &_event
 )
 {
+	XClientMessageEvent const request(
+		_event.get().xclient
+	);
+
 	if(
-		_event.get().data.l[0]
+		request.message_type
 		!=
-		wm_delete_atom_.get()
+		wm_protocols_atom_.get()
+	)
+		return;
+	if(
+		static_cast<
+			Atom
+		>(
+			request.data.l[0]
+		)
+		!=
+		wm_delete_window_atom_.get()
 	)
 		return;
 

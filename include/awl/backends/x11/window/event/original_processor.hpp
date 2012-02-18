@@ -10,8 +10,6 @@
 #include <awl/backends/x11/window/event/object_fwd.hpp>
 #include <awl/backends/x11/window/event/type.hpp>
 #include <awl/backends/x11/window/event/wm_protocols.hpp>
-#include <awl/backends/x11/window/event/client_message/object_fwd.hpp>
-#include <awl/backends/x11/window/event/client_message/original_demuxer.hpp>
 #include <awl/backends/x11/window/instance_fwd.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/close_callback.hpp>
@@ -114,8 +112,8 @@ private:
 	);
 
 	void
-	on_close(
-		awl::backends::x11::window::event::client_message::object const &
+	on_client_message(
+		awl::backends::x11::window::event::object const &
 	);
 
 	void
@@ -160,9 +158,9 @@ private:
 
 	awl::backends::x11::window::event::mask event_mask_;
 
-	awl::backends::x11::window::event::client_message::original_demuxer client_message_demuxer_;
+	awl::backends::x11::atom const wm_protocols_atom_;
 
-	awl::backends::x11::atom const wm_delete_atom_;
+	awl::backends::x11::atom const wm_delete_window_atom_;
 
 	awl::backends::x11::window::event::wm_protocols const wm_protocols_;
 
