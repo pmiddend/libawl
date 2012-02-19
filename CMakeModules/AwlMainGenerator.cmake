@@ -1,7 +1,9 @@
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS ON)
 
 set(awl_utils_prototype_main_file
-"#include <awl/main/function_context.hpp>
+"
+#include <awl/main/exit_code.hpp>
+#include <awl/main/function_context.hpp>
 #include <fcppt/config/platform.hpp>
 #if defined(FCPPT_CONFIG_WINDOWS_PLATFORM)
 #include <fcppt/config/external_begin.hpp>
@@ -10,7 +12,7 @@ set(awl_utils_prototype_main_file
 #endif
 
 @AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN@
-int
+awl::main::exit_code const
 @AWL_UTILS_MAIN_FUNCTION_NAME@(
 	awl::main::function_context const &);\;
 @AWL_UTILS_MAIN_FUNCTION_NAMESPACES_END@
@@ -38,7 +40,7 @@ main(
 #endif
 	return
 		@AWL_UTILS_FULLY_QUALIFIED_MAIN_FUNCTION_NAME@(
-			main_context)\;
+			main_context).get()\;
 }
 "
 )

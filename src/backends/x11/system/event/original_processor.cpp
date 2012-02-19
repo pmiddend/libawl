@@ -7,7 +7,9 @@
 #include <awl/backends/x11/system/event/opcode.hpp>
 #include <awl/backends/x11/system/event/original_processor.hpp>
 #include <awl/backends/x11/system/event/type.hpp>
-#include <fcppt/assert/pre.hpp>
+#include <awl/main/exit_code.hpp>
+#include <awl/system/event/quit.hpp>
+#include <awl/system/event/quit_callback.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -22,10 +24,9 @@ awl::backends::x11::system::event::original_processor::original_processor(
 	system_(
 		_system
 	),
-	running_(
-		true
-	),
-	signals_()
+	signals_(),
+	exit_code_(),
+	quit_signal_()
 {
 }
 
@@ -62,25 +63,42 @@ awl::backends::x11::system::event::original_processor::poll()
 }
 
 void
-awl::backends::x11::system::event::original_processor::quit()
+awl::backends::x11::system::event::original_processor::quit(
+	awl::main::exit_code const _exit_code
+)
 {
-	running_ = false;
+	exit_code_
+		= _exit_code;
+
+	// TODO: can we integrate this in the message loop instead?
+	quit_signal_(
+		awl::system::event::quit(
+			_exit_code
+		)
+	);
 }
 
 bool
 awl::backends::x11::system::event::original_processor::running() const
 {
-	return running_;
+	return !exit_code_.has_value();
 }
 
-int
+awl::main::exit_code const
 awl::backends::x11::system::event::original_processor::exit_code() const
 {
-	FCPPT_ASSERT_PRE(
-		!running_
-	);
+	return *exit_code_;
+}
 
-	return 0;
+fcppt::signal::auto_connection
+awl::backends::x11::system::event::original_processor::quit_callback(
+	awl::system::event::quit_callback const &_callback
+)
+{
+	return
+		quit_signal_.connect(
+			_callback
+		);
 }
 
 fcppt::signal::auto_connection

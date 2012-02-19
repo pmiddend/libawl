@@ -109,6 +109,8 @@ SET(
 	src/log.cpp
 	src/log_context.cpp
 	src/log_location.cpp
+	src/main/exit_failure.cpp
+	src/main/exit_success.cpp
 	src/main/function_context.cpp
 	src/mainloop/asio/create_io_service.cpp
 	src/mainloop/asio/create_io_service_base.cpp
@@ -119,6 +121,7 @@ SET(
 	src/system/create.cpp
 	src/system/event/create_processor.cpp
 	src/system/event/processor.cpp
+	src/system/event/quit.cpp
 	src/system/object.cpp
 	src/window/event/close.cpp
 	src/window/event/create_processor.cpp
@@ -145,6 +148,9 @@ SET(
 	include/awl/log.hpp
 	include/awl/log_context.hpp
 	include/awl/log_location.hpp
+	include/awl/main/exit_code.hpp
+	include/awl/main/exit_failure.hpp
+	include/awl/main/exit_success.hpp
 	include/awl/main/function_context.hpp
 	include/awl/main/function_context_fwd.hpp
 	include/awl/mainloop/asio/create_io_service.hpp
@@ -175,11 +181,18 @@ SET(
 	include/awl/system/event/processor_scoped_ptr.hpp
 	include/awl/system/event/processor_shared_ptr.hpp
 	include/awl/system/event/processor_unique_ptr.hpp
+	include/awl/system/event/quit.hpp
+	include/awl/system/event/quit_callback.hpp
+	include/awl/system/event/quit_function.hpp
+	include/awl/system/event/quit_fwd.hpp
+	include/awl/system/event/quit_signal.hpp
 	include/awl/system/object.hpp
 	include/awl/system/object_fwd.hpp
 	include/awl/system/object_scoped_ptr.hpp
 	include/awl/system/object_shared_ptr.hpp
 	include/awl/system/object_unique_ptr.hpp
+	include/awl/system/optional_exit_code.hpp
+	include/awl/system/optional_exit_code_fwd.hpp
 	include/awl/window/bit_depth.hpp
 	include/awl/window/depth_buffer.hpp
 	include/awl/window/dim.hpp
