@@ -10,18 +10,27 @@
 #include <awl/backends/windows/system/event/object.hpp>
 #include <awl/backends/windows/system/event/original_handle.hpp>
 #include <awl/backends/windows/system/event/original_processor.hpp>
+#include <awl/system/event/quit.hpp>
+#include <awl/system/event/quit_callback.hpp>
+#include <awl/main/exit_code.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/algorithm/remove.hpp>
 #include <fcppt/container/raw_vector_impl.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
+#include <fcppt/preprocessor/disable_vc_warning.hpp>
+#include <fcppt/preprocessor/pop_warning.hpp>
+#include <fcppt/preprocessor/push_warning.hpp>
+#include <fcppt/signal/object_impl.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/static_assert.hpp>
 #include <fcppt/config/external_end.hpp>
 
 
+FCPPT_PP_PUSH_WARNING
+FCPPT_PP_DISABLE_VC_WARNING(4355)
 awl::backends::windows::system::event::original_processor::original_processor(
 	windows::system::object &
 )
@@ -29,9 +38,23 @@ awl::backends::windows::system::event::original_processor::original_processor(
 	signals_(),
 	handle_signal_(),
 	handles_(),
-	exit_code_()
+	exit_code_(),
+	quit_signal_(),
+	quit_connection_(
+		this->register_callback(
+			awl::backends::windows::event::type(
+				WM_QUIT
+			),
+			std::tr1::bind(
+				&awl::backends::windows::system::event::original_processor::on_quit,
+				this,
+				std::tr1::placeholders::_1
+			)
+		)
+	)
 {
 }
+FCPPT_PP_POP_WARNING
 
 awl::backends::windows::system::event::original_processor::~original_processor()
 {
@@ -78,10 +101,12 @@ awl::backends::windows::system::event::original_processor::poll()
 }
 
 void
-awl::backends::windows::system::event::original_processor::quit()
+awl::backends::windows::system::event::original_processor::quit(
+	awl::main::exit_code const _exit_code
+)
 {
 	::PostQuitMessage(
-		0
+		_exit_code.get()
 	);
 }
 
@@ -92,11 +117,22 @@ awl::backends::windows::system::event::original_processor::running() const
 		!exit_code_.has_value();
 }
 
-int
+awl::main::exit_code const
 awl::backends::windows::system::event::original_processor::exit_code() const
 {
 	return
 		*exit_code_;
+}
+
+fcppt::signal::auto_connection
+awl::backends::windows::system::event::original_processor::quit_callback(
+	awl::system::event::quit_callback const &_callback
+)
+{
+	return
+		quit_signal_.connect(
+			_callback
+		);
 }
 
 fcppt::signal::auto_connection
@@ -218,15 +254,31 @@ awl::backends::windows::system::event::original_processor::do_process(
 	awl::backends::windows::system::event::object const &_event
 )
 {
-	if(
-		_type.get() == WM_QUIT
-	)
-		exit_code_ = _event.wparam().get();
-
 	signals_[
 		_type
 	](
 		_event
+	);
+}
+
+void
+awl::backends::windows::system::event::original_processor::on_quit(
+	awl::backends::windows::system::event::object const &_event
+)
+{
+	exit_code_ =
+		awl::main::exit_code(
+			static_cast<
+				int
+			>(
+				_event.wparam().get()
+			)
+		);
+
+	quit_signal_(
+		awl::system::event::quit(
+			*exit_code_
+		)
 	);
 }
 

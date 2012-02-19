@@ -10,14 +10,19 @@
 #include <awl/backends/windows/system/event/handle_function.hpp>
 #include <awl/backends/windows/system/event/handle_unique_ptr.hpp>
 #include <awl/backends/windows/system/event/original_processor_fwd.hpp>
+#include <awl/backends/windows/system/event/object_fwd.hpp>
 #include <awl/backends/windows/system/event/processor.hpp>
 #include <awl/backends/windows/system/object_fwd.hpp>
 #include <awl/backends/windows/windows.hpp>
+#include <awl/main/exit_code.hpp>
+#include <awl/system/optional_exit_code.hpp>
+#include <awl/system/event/quit_callback.hpp>
+#include <awl/system/event/quit_signal.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/optional_decl.hpp>
 #include <fcppt/container/raw_vector_decl.hpp>
 #include <fcppt/signal/auto_connection.hpp>
-#include <fcppt/signal/object.hpp>
+#include <fcppt/signal/object_decl.hpp>
+#include <fcppt/signal/scoped_connection.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/config/external_end.hpp>
@@ -55,15 +60,23 @@ public:
 
 	AWL_SYMBOL
 	void
-	quit();
+	quit(
+		awl::main::exit_code
+	);
 
 	AWL_SYMBOL
 	bool
 	running() const;
 
 	AWL_SYMBOL
-	int
+	awl::main::exit_code const
 	exit_code() const;
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
+	quit_callback(
+		awl::system::event::quit_callback const &
+	);
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
@@ -99,6 +112,11 @@ private:
 	void
 	do_process(
 		awl::backends::windows::event::type,
+		awl::backends::windows::system::event::object const &
+	);
+
+	void
+	on_quit(
 		awl::backends::windows::system::event::object const &
 	);
 
@@ -139,11 +157,11 @@ private:
 
 	handle_vector handles_;
 
-	typedef fcppt::optional<
-		int
-	> optional_exit_code;
+	awl::system::optional_exit_code exit_code_;
 
-	optional_exit_code exit_code_;
+	awl::system::event::quit_signal quit_signal_;
+
+	fcppt::signal::scoped_connection const quit_connection_;
 };
 
 }
