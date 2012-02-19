@@ -77,7 +77,7 @@ function(
 
 	set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_BEGIN "")
 	set(AWL_UTILS_MAIN_FUNCTION_NAMESPACES_END "")
-	if(${awl_utils_current_number_of_namespaces_minus_two} GREATER 0)
+	if(${awl_utils_current_number_of_namespaces_minus_one} GREATER 0)
 		foreach(i RANGE 0 ${awl_utils_current_number_of_namespaces_minus_two})
 			list(GET awl_utils_current_namespace_list ${i} awl_utils_current_namespace)
 			#			message("AWL CMAKE DEBUG: Namespace iteration, current element: ${awl_utils_current_namespace}")
