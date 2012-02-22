@@ -941,6 +941,7 @@ install(
 
 install(
 	FILES
+	${CMAKE_SOURCE_DIR}/CMakeModules/AwlMainGenerator.cmake
 	${CMAKE_SOURCE_DIR}/CMakeModules/FindAwl.cmake
 	DESTINATION
 	${INSTALL_CMAKEMODULES_DIR}
