@@ -2,7 +2,7 @@
 #include <awl/log_location.hpp>
 #include <awl/backends/x11/log.hpp>
 #include <fcppt/log/object.hpp>
-#include <fcppt/log/parameters/all.hpp>
+#include <fcppt/log/parameters/object.hpp>
 
 
 namespace
