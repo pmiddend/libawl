@@ -15,10 +15,10 @@ awl::create_log(
 	return
 		fcppt::log::parameters::with_context(
 			awl::log_context(),
-			fcppt::io::clog(),
 			_location
 		)
 		.level_defaults(
+			fcppt::io::clog(),
 			fcppt::log::level::warning
 		)
 		.enabled(
