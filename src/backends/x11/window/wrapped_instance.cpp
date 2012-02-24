@@ -5,6 +5,7 @@
 #include <awl/backends/x11/window/class_hint_fwd.hpp>
 #include <awl/backends/x11/window/visual.hpp>
 #include <awl/backends/x11/window/wrapped_instance.hpp>
+#include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
@@ -82,5 +83,6 @@ awl::backends::x11::window::wrapped_instance::class_hint() const
 		?
 			&class_hint_
 		:
-			0;
+			fcppt::null_ptr()
+		;
 }
