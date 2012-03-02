@@ -15,6 +15,10 @@ include(
 	FcpptCMakeUtils
 )
 
+include(
+	FcpptSymbol
+)
+
 include_directories(
 	${CMAKE_SOURCE_DIR}/include
 )
@@ -172,7 +176,6 @@ SET(
 	include/awl/mainloop/io_service_unique_ptr.hpp
 	include/awl/mainloop/nullary_callback.hpp
 	include/awl/mainloop/optional_io_service_ref.hpp
-	include/awl/symbol.hpp
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
 	include/awl/system/event/optional_processor_ref.hpp
@@ -274,6 +277,13 @@ endif()
 configure_file(
 	${CMAKE_SOURCE_DIR}/config.hpp.in
 	${CMAKE_BINARY_DIR}/include/awl/config.hpp
+)
+
+fcppt_generate_symbol_header(
+	AWL_STATIC_LINK
+	awl
+	AWL
+	awl
 )
 
 include_directories(
