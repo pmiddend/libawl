@@ -40,6 +40,7 @@ find_package(
 )
 
 include_directories(
+	${FCPPT_UTILS_INCLUDE_SYSTEM}
 	${Boost_INCLUDE_DIRS}
 )
 
@@ -87,6 +88,7 @@ if(
 	)
 
 	include_directories(
+		${FCPPT_UTILS_INCLUDE_SYSTEM}
 		${OPENGL_INCLUDE_DIR}
 	)
 
@@ -903,6 +905,7 @@ if(
 	AWL_X11_BACKEND
 )
 	include_directories(
+		${FCPPT_UTILS_INCLUDE_SYSTEM}
 		${X11_INCLUDE_PATH}
 	)
 
