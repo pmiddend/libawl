@@ -946,10 +946,10 @@ foreach(
 endforeach()
 
 install(
-	FILES
-	${CMAKE_BINARY_DIR}/include/awl/config.hpp
+	DIRECTORY
+	${CMAKE_BINARY_DIR}/include/
 	DESTINATION
-	${INSTALL_INCLUDE_DIR}/awl
+	${INSTALL_INCLUDE_DIR}
 )
 
 install(
