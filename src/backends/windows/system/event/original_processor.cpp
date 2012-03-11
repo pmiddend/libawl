@@ -15,6 +15,7 @@
 #include <awl/main/exit_code.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
+#include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/algorithm/remove.hpp>
 #include <fcppt/container/raw_vector_impl.hpp>
@@ -42,7 +43,9 @@ awl::backends::windows::system::event::original_processor::original_processor(
 	quit_signal_(),
 	quit_connection_(
 		this->register_callback(
-			awl::backends::windows::event::type(
+			fcppt::strong_typedef_construct_cast<
+				awl::backends::windows::event::type
+			>(
 				WM_QUIT
 			),
 			std::tr1::bind(

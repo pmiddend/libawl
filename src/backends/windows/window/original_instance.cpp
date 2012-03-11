@@ -15,6 +15,7 @@
 #include <awl/backends/windows/window/original_instance.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/parameters.hpp>
+#include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
 
 
@@ -172,10 +173,14 @@ awl::backends::windows::window::original_instance::show()
 
 	windows::event::post_message(
 		this->hwnd(),
-		windows::event::type(
+		fcppt::strong_typedef_construct_cast<
+			windows::event::type
+		>(
 			WM_SIZE
 		),
-		windows::event::wparam(
+		fcppt::strong_typedef_construct_cast<
+			windows::event::wparam
+		>(
 			SIZE_RESTORED
 		),
 		windows::event::lparam(

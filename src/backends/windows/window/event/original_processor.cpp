@@ -21,6 +21,7 @@
 #include <awl/window/event/resize_callback.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
+#include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/assign/make_container.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/math/dim/basic_impl.hpp>
@@ -62,7 +63,9 @@ awl::backends::windows::window::event::original_processor::original_processor(
 		>(
 			fcppt::signal::shared_connection(
 				this->register_callback(
-					awl::backends::windows::event::type(
+					fcppt::strong_typedef_construct_cast<
+						awl::backends::windows::event::type
+					>(
 						WM_CLOSE
 					),
 					std::tr1::bind(
@@ -75,7 +78,9 @@ awl::backends::windows::window::event::original_processor::original_processor(
 		)(
 			fcppt::signal::shared_connection(
 				this->register_callback(
-					awl::backends::windows::event::type(
+					fcppt::strong_typedef_construct_cast<
+						awl::backends::windows::event::type
+					>(
 						WM_DESTROY
 					),
 					std::tr1::bind(
@@ -88,7 +93,9 @@ awl::backends::windows::window::event::original_processor::original_processor(
 		)(
 			fcppt::signal::shared_connection(
 				this->register_callback(
-					awl::backends::windows::event::type(
+					fcppt::strong_typedef_construct_cast<
+						awl::backends::windows::event::type
+					>(
 						WM_SIZE
 					),
 					std::tr1::bind(
@@ -251,7 +258,9 @@ awl::backends::windows::window::event::original_processor::allocate_user_message
 {
 	// FIXME
 	return
-		awl::backends::windows::event::type(
+		fcppt::strong_typedef_construct_cast<
+			awl::backends::windows::event::type
+		>(
 			WM_USER
 		);
 }

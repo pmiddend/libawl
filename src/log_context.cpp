@@ -1,11 +1,7 @@
 #include <awl/log_context.hpp>
-#include <fcppt/log/context.hpp>
+#include <fcppt/log/define_context.hpp>
 
 
-fcppt::log::context &
-awl::log_context()
-{
-	static fcppt::log::context context;
-
-	return context;
-}
+FCPPT_LOG_DEFINE_CONTEXT(
+	awl::log_context
+)
