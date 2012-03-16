@@ -10,11 +10,11 @@ namespace backends
 namespace x11
 {
 
-template<
-	typename T
->
 struct deleter
 {
+	template<
+		typename T
+	>
 	void
 	operator()(
 		T *const _param
