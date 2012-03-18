@@ -10,8 +10,8 @@
 #include <awl/window/stencil_buffer.hpp>
 #include <awl/window/vector.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/math/vector/basic_impl.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/math/vector/object_impl.hpp>
+#include <fcppt/math/dim/object_impl.hpp>
 #include <fcppt/optional.hpp>
 #include <fcppt/string.hpp>
 

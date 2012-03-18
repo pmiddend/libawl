@@ -5,7 +5,7 @@
 #include <awl/window/dim.hpp>
 #include <awl/window/instance_fwd.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/math/dim/object_impl.hpp>
 #include <fcppt/nonassignable.hpp>
 
 namespace awl
