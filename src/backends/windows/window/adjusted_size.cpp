@@ -3,7 +3,7 @@
 #include <awl/backends/windows/window/adjusted_size.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/text.hpp>
-#include <fcppt/math/dim/basic_impl.hpp>
+#include <fcppt/math/dim/object_impl.hpp>
 
 
 awl::window::dim const
