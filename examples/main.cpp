@@ -4,12 +4,12 @@
 #include <awl/window/instance.hpp>
 #include <awl/window/instance_scoped_ptr.hpp>
 #include <awl/window/parameters.hpp>
-#include <fcppt/chrono/seconds.hpp>
 #include <fcppt/io/cerr.hpp>
 #include <fcppt/time/sleep_any.hpp>
 #include <fcppt/exception.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
+#include <boost/chrono/duration.hpp>
 #include <cstdlib>
 #include <fcppt/config/external_end.hpp>
 
@@ -39,7 +39,7 @@ try
 	window->show();
 
 	fcppt::time::sleep_any(
-		fcppt::chrono::seconds(
+		boost::chrono::seconds(
 			1
 		)
 	);

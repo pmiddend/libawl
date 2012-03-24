@@ -35,7 +35,7 @@ option(
 
 # Boost begin
 find_package(
-	Boost 1.45.0 REQUIRED
+	Boost 1.47.0 REQUIRED
 	system
 )
 
