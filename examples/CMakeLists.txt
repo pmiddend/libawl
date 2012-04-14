@@ -23,6 +23,5 @@ function(
 	)
 endfunction()
 
-add_awl_example(asio "${Fcppt_core_LIBRARY}")
 add_awl_example(main "${Fcppt_core_LIBRARY}")
 add_awl_example(resize "${Fcppt_core_LIBRARY}")

@@ -36,6 +36,7 @@ option(
 # Boost begin
 find_package(
 	Boost 1.47.0 REQUIRED
+	chrono
 	system
 )
 
@@ -66,19 +67,6 @@ include_directories(
 
 # Fcppt end
 
-# FcpptThreads begin
-
-find_package(
-	FcpptThreads
-	REQUIRED
-)
-
-add_definitions(
-	"${FcpptThreads_DEFINITIONS}"
-)
-
-# FcpptThreads end
-
 if(
 	ENABLE_OPENGL
 )
@@ -106,7 +94,6 @@ add_definitions(
 
 SET(
 	AWL_BASE_SRC_FILES
-	src/asio.cpp
 	src/create_log.cpp
 	src/event/create_processor.cpp
 	src/event/processor.cpp
@@ -118,12 +105,6 @@ SET(
 	src/main/exit_failure.cpp
 	src/main/exit_success.cpp
 	src/main/function_context.cpp
-	src/mainloop/asio/create_io_service.cpp
-	src/mainloop/asio/create_io_service_base.cpp
-	src/mainloop/asio/io_service.cpp
-	src/mainloop/asio/original_io_service.cpp
-	src/mainloop/dispatcher.cpp
-	src/mainloop/io_service.cpp
 	src/system/create.cpp
 	src/system/event/create_processor.cpp
 	src/system/event/processor.cpp
@@ -159,25 +140,6 @@ SET(
 	include/awl/main/exit_success.hpp
 	include/awl/main/function_context.hpp
 	include/awl/main/function_context_fwd.hpp
-	include/awl/mainloop/asio/create_io_service.hpp
-	include/awl/mainloop/asio/create_io_service_base.hpp
-	include/awl/mainloop/asio/io_service.hpp
-	include/awl/mainloop/asio/io_service_fwd.hpp
-	include/awl/mainloop/asio/io_service_scoped_ptr.hpp
-	include/awl/mainloop/asio/io_service_unique_ptr.hpp
-	include/awl/mainloop/asio/original_io_service.hpp
-	include/awl/mainloop/dispatcher.hpp
-	include/awl/mainloop/dispatcher_callback.hpp
-	include/awl/mainloop/dispatcher_fwd.hpp
-	include/awl/mainloop/dispatcher_scoped_ptr.hpp
-	include/awl/mainloop/dispatcher_unique_ptr.hpp
-	include/awl/mainloop/io_service.hpp
-	include/awl/mainloop/io_service_fwd.hpp
-	include/awl/mainloop/io_service_scoped_ptr.hpp
-	include/awl/mainloop/io_service_shared_ptr.hpp
-	include/awl/mainloop/io_service_unique_ptr.hpp
-	include/awl/mainloop/nullary_callback.hpp
-	include/awl/mainloop/optional_io_service_ref.hpp
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
 	include/awl/system/event/optional_processor_ref.hpp
@@ -326,13 +288,6 @@ set(
 
 set(
 	AWL_X11_SRC_FILES
-	src/backends/x11/asio/dispatcher.cpp
-	src/backends/x11/asio/dup.cpp
-	src/backends/x11/asio/fcntl.cpp
-	src/backends/x11/asio/fd_flags_resetter.cpp
-	src/backends/x11/asio/fd_wrapper.cpp
-	src/backends/x11/asio/get_fd_flags.cpp
-	src/backends/x11/asio/set_fd_flags.cpp
 	src/backends/x11/colormap.cpp
 	src/backends/x11/create_visual_info.cpp
 	src/backends/x11/default_visual.cpp
@@ -391,15 +346,6 @@ set(
 
 set(
 	AWL_X11_INCLUDE_FILES
-	include/awl/backends/x11/asio/dispatcher.hpp
-	include/awl/backends/x11/asio/dup.hpp
-	include/awl/backends/x11/asio/fcntl.hpp
-	include/awl/backends/x11/asio/fd_flags_resetter.hpp
-	include/awl/backends/x11/asio/fd_wrapper.hpp
-	include/awl/backends/x11/asio/fd_wrapper_fwd.hpp
-	include/awl/backends/x11/asio/get_fd_flags.hpp
-	include/awl/backends/x11/asio/read_callback.hpp
-	include/awl/backends/x11/asio/set_fd_flags.hpp
 	include/awl/backends/x11/atom.hpp
 	include/awl/backends/x11/colormap.hpp
 	include/awl/backends/x11/colormap_fwd.hpp
@@ -516,15 +462,6 @@ set(
 
 set(
 	AWL_X11_INCLUDE_FILES
-	include/awl/backends/x11/asio/dispatcher.hpp
-	include/awl/backends/x11/asio/dup.hpp
-	include/awl/backends/x11/asio/fcntl.hpp
-	include/awl/backends/x11/asio/fd_flags_resetter.hpp
-	include/awl/backends/x11/asio/fd_wrapper.hpp
-	include/awl/backends/x11/asio/fd_wrapper_fwd.hpp
-	include/awl/backends/x11/asio/get_fd_flags.hpp
-	include/awl/backends/x11/asio/read_callback.hpp
-	include/awl/backends/x11/asio/set_fd_flags.hpp
 	include/awl/backends/x11/atom.hpp
 	include/awl/backends/x11/colormap.hpp
 	include/awl/backends/x11/colormap_fwd.hpp
@@ -607,7 +544,6 @@ set(
 
 set(
 	AWL_WINDOWS_SRC_FILES
-	src/backends/windows/asio/dispatcher.cpp
 	src/backends/windows/choose_and_set_pixel_format.cpp
 	src/backends/windows/counted_wndclass.cpp
 	src/backends/windows/default_wnd_proc.cpp
@@ -648,7 +584,6 @@ set(
 
 set(
 	AWL_WINDOWS_INCLUDE_FILES
-	include/awl/backends/windows/asio/dispatcher.hpp
 	include/awl/backends/windows/choose_and_set_pixel_format.hpp
 	include/awl/backends/windows/counted_wndclass.hpp
 	include/awl/backends/windows/counted_wndclass_fwd.hpp
@@ -852,7 +787,7 @@ function(
 	)
 		target_link_libraries(
 			${TARGETNAME}
-			${Boost_SYSTEM_LIBRARY}
+			${Boost_CHRONO_LIBRARY}
 		)
 	endif()
 
@@ -870,7 +805,6 @@ function(
 	target_link_libraries(
 		${TARGETNAME}
 		${Fcppt_core_LIBRARIES}
-		${FcpptThreads_LIBRARIES}
 	)
 
 	if(

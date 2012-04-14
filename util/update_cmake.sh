@@ -2,6 +2,8 @@
 
 function die()
 {
+	echo "failure"
+
 	exit -1
 }
 
@@ -24,7 +26,6 @@ update_main \
 	-r \
 	include/awl/event \
 	include/awl/main \
-	include/awl/mainloop \
 	include/awl/system \
 	include/awl/window
 
@@ -35,7 +36,6 @@ update_main \
 	-r \
 	src/event \
 	src/main \
-	src/mainloop \
 	src/system \
 	src/window
 
@@ -61,7 +61,6 @@ update_main \
 	-n \
 	src/backends/x11 \
 	-r \
-	src/backends/x11/asio \
 	src/backends/x11/event \
 	src/backends/x11/system \
 	src/backends/x11/window
