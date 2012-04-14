@@ -4,7 +4,7 @@
 #include <fcppt/null_ptr.hpp>
 #include <fcppt/algorithm/remove_if.hpp>
 #include <fcppt/assert/error.hpp>
-#include <fcppt/container/raw_vector_impl.hpp>
+#include <fcppt/container/data.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/spirit/home/phoenix/bind/bind_member_variable.hpp>
 #include <boost/spirit/home/phoenix/core/argument.hpp>
@@ -29,8 +29,8 @@ awl::backends::x11::event::fd::set::add(
 	awl::backends::x11::event::fd::object const _fd
 )
 {
-	events_.resize_uninitialized(
-		events_.size() + 1u
+	events_.push_back(
+		epoll_event()
 	);
 
 	awl::backends::x11::event::fd::epoll_ctl(
@@ -89,5 +89,7 @@ epoll_event *
 awl::backends::x11::event::fd::set::events()
 {
 	return
-		events_.data();
+		fcppt::container::data(
+			events_
+		);
 }

@@ -6,9 +6,9 @@
 #include <awl/backends/x11/event/fd/object.hpp>
 #include <awl/backends/x11/event/fd/set_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/container/raw_vector_decl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <sys/epoll.h>
+#include <vector>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -61,7 +61,7 @@ public:
 private:
 	awl::backends::x11::event::fd::epoll_fd const epoll_fd_;
 
-	typedef fcppt::container::raw_vector<
+	typedef std::vector<
 		epoll_event
 	> event_vector;
 
