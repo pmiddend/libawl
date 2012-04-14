@@ -10,7 +10,7 @@
 #include <awl/system/event/processor.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/auto_connection_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 
 namespace awl

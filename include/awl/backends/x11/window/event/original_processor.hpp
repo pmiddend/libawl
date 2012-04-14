@@ -20,7 +20,7 @@
 #include <awl/window/event/resize_signal.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/auto_connection_fwd.hpp>
 #include <fcppt/signal/connection_manager.hpp>
 #include <fcppt/signal/object_decl.hpp>
 #include <fcppt/signal/unregister/base_decl.hpp>

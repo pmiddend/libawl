@@ -10,7 +10,7 @@
 #include <awl/backends/windows/window/event/processor_fwd.hpp>
 #include <awl/backends/windows/window/event/callback.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/auto_connection_fwd.hpp>
 
 
 namespace awl

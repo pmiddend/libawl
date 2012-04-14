@@ -7,7 +7,7 @@
 #include <awl/system/event/processor_fwd.hpp>
 #include <awl/system/event/quit_callback.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/auto_connection_fwd.hpp>
 
 
 namespace awl

@@ -20,7 +20,7 @@
 #include <awl/system/event/quit_signal.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/container/raw_vector_decl.hpp>
-#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/auto_connection_fwd.hpp>
 #include <fcppt/signal/object_decl.hpp>
 #include <fcppt/signal/scoped_connection.hpp>
 #include <fcppt/config/external_begin.hpp>
