@@ -1,5 +1,6 @@
 #include <awl/backends/x11/event/next.hpp>
 #include <awl/backends/x11/event/object.hpp>
+#include <awl/backends/x11/event/pending.hpp>
 #include <awl/backends/x11/event/processor.hpp>
 #include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/system/event/processor.hpp>
@@ -79,6 +80,24 @@ awl::backends::x11::event::processor::poll()
 void
 awl::backends::x11::event::processor::next()
 {
+	if(
+		system_processor_
+	)
+	{
+		system_processor_->epoll(
+			awl::backends::x11::event::fd::duration(
+				-1
+			)
+		);
+
+		if(
+			!awl::backends::x11::event::pending(
+				system_.display()
+			)
+		)
+			return;
+	}
+
 	x11::event::object const event(
 		x11::event::next(
 			system_.display()

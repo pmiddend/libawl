@@ -13,7 +13,7 @@ awl::backends::x11::asio::fd_flags_resetter::fd_flags_resetter(
 		x11::asio::get_fd_flags(
 			x11::display_fd(
 				display_
-			)
+			).get()
 		)
 	)
 {
@@ -24,7 +24,7 @@ awl::backends::x11::asio::fd_flags_resetter::~fd_flags_resetter()
 	x11::asio::set_fd_flags(
 		x11::display_fd(
 			display_
-		),
+		).get(),
 		flags_
 	);
 }

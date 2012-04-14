@@ -21,7 +21,7 @@ awl::backends::x11::asio::fd_wrapper::fd_wrapper(
 		x11::asio::dup(
 			x11::display_fd(
 				_display
-			)
+			).get()
 		)
 	)
 {

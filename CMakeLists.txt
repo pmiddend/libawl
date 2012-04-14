@@ -338,8 +338,14 @@ set(
 	src/backends/x11/default_visual.cpp
 	src/backends/x11/display.cpp
 	src/backends/x11/display_fd.cpp
+	src/backends/x11/event/fd/epoll.cpp
+	src/backends/x11/event/fd/epoll_ctl.cpp
+	src/backends/x11/event/fd/epoll_fd.cpp
+	src/backends/x11/event/fd/scoped.cpp
+	src/backends/x11/event/fd/set.cpp
 	src/backends/x11/event/next.cpp
 	src/backends/x11/event/object.cpp
+	src/backends/x11/event/pending.cpp
 	src/backends/x11/event/processor.cpp
 	src/backends/x11/free.cpp
 	src/backends/x11/intern_atom.cpp
@@ -403,9 +409,25 @@ set(
 	include/awl/backends/x11/display.hpp
 	include/awl/backends/x11/display_fd.hpp
 	include/awl/backends/x11/display_fwd.hpp
+	include/awl/backends/x11/event/fd/callback.hpp
+	include/awl/backends/x11/event/fd/callback_fwd.hpp
+	include/awl/backends/x11/event/fd/duration.hpp
+	include/awl/backends/x11/event/fd/epoll.hpp
+	include/awl/backends/x11/event/fd/epoll_ctl.hpp
+	include/awl/backends/x11/event/fd/epoll_fd.hpp
+	include/awl/backends/x11/event/fd/epoll_fd_fwd.hpp
+	include/awl/backends/x11/event/fd/event.hpp
+	include/awl/backends/x11/event/fd/event_fwd.hpp
+	include/awl/backends/x11/event/fd/function.hpp
+	include/awl/backends/x11/event/fd/object.hpp
+	include/awl/backends/x11/event/fd/scoped.hpp
+	include/awl/backends/x11/event/fd/scoped_fwd.hpp
+	include/awl/backends/x11/event/fd/set.hpp
+	include/awl/backends/x11/event/fd/set_fwd.hpp
 	include/awl/backends/x11/event/next.hpp
 	include/awl/backends/x11/event/object.hpp
 	include/awl/backends/x11/event/object_fwd.hpp
+	include/awl/backends/x11/event/pending.hpp
 	include/awl/backends/x11/event/processor.hpp
 	include/awl/backends/x11/event/processor_fwd.hpp
 	include/awl/backends/x11/free.hpp

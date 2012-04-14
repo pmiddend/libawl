@@ -1,8 +1,10 @@
 #ifndef AWL_BACKENDS_X11_DISPLAY_FD_HPP_INCLUDED
 #define AWL_BACKENDS_X11_DISPLAY_FD_HPP_INCLUDED
 
-#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
+#include <awl/backends/x11/event/fd/object.hpp>
+
 
 namespace awl
 {
@@ -12,9 +14,9 @@ namespace x11
 {
 
 AWL_SYMBOL
-int
+awl::backends::x11::event::fd::object const
 display_fd(
-	x11::display &
+	awl::backends::x11::display &
 );
 
 }
