@@ -18,6 +18,7 @@
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/algorithm/remove.hpp>
+#include <fcppt/assert/error.hpp>
 #include <fcppt/container/raw_vector_impl.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/preprocessor/disable_vc_warning.hpp>
@@ -123,6 +124,10 @@ awl::backends::windows::system::event::original_processor::running() const
 awl::main::exit_code const
 awl::backends::windows::system::event::original_processor::exit_code() const
 {
+	FCPPT_ASSERT_ERROR(
+		!this->running()
+	);
+
 	return
 		*exit_code_;
 }

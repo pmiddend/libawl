@@ -110,13 +110,19 @@ awl::backends::x11::system::event::original_processor::quit(
 bool
 awl::backends::x11::system::event::original_processor::running() const
 {
-	return !exit_code_.has_value();
+	return
+		!exit_code_.has_value();
 }
 
 awl::main::exit_code const
 awl::backends::x11::system::event::original_processor::exit_code() const
 {
-	return *exit_code_;
+	FCPPT_ASSERT_ERROR(
+		!this->running()
+	);
+
+	return
+		*exit_code_;
 }
 
 fcppt::signal::auto_connection
