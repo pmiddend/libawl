@@ -10,7 +10,7 @@
 #include <awl/backends/windows/system/object_fwd.hpp>
 #include <awl/backends/windows/system/event/optional_processor_ref.hpp>
 #include <awl/backends/windows/system/event/processor.hpp>
-#include <awl/backends/windows/window/instance.hpp>
+#include <awl/backends/windows/window/object.hpp>
 #include <awl/backends/windows/window/event/processor.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/assert/error.hpp>

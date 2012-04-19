@@ -1,7 +1,7 @@
 #include <awl/exception.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/window/attributes.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
@@ -10,7 +10,7 @@
 
 XWindowAttributes const
 awl::backends::x11::window::attributes(
-	x11::window::instance &_window
+	x11::window::object &_window
 )
 {
 	XWindowAttributes ret;

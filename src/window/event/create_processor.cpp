@@ -2,10 +2,10 @@
 #include <awl/config.hpp>
 #if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/window/event/original_processor.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #elif defined(AWL_WINDOWS_BACKEND)
 #include <awl/backends/windows/window/event/original_processor.hpp>
-#include <awl/backends/windows/window/instance.hpp>
+#include <awl/backends/windows/window/object.hpp>
 #elif defined(AWL_COCOA_BACKEND)
 #include <awl/backends/cocoa/window/event/create_processor.hpp>
 #include <awl/window/event/processor.hpp>
@@ -15,7 +15,7 @@
 
 awl::window::event::processor_unique_ptr
 awl::window::event::create_processor(
-	awl::window::instance &_instance
+	awl::window::object &_object
 )
 {
 	return
@@ -26,9 +26,9 @@ awl::window::event::create_processor(
 			>(
 				fcppt::ref(
 					dynamic_cast<
-						backends::x11::window::instance &
+						backends::x11::window::object &
 					>(
-						_instance
+						_object
 					)
 				)
 			)
@@ -38,15 +38,15 @@ awl::window::event::create_processor(
 			>(
 				fcppt::ref(
 					dynamic_cast<
-						backends::windows::window::instance &
+						backends::windows::window::object &
 					>(
-						_instance
+						_object
 					)
 				)
 			)
 #elif defined(AWL_COCOA_BACKEND)
 			backends::cocoa::window::event::create_processor(
-					_instance)
+					_object)
 #endif
 		);
 }

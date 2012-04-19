@@ -5,12 +5,13 @@
 #include <awl/backends/x11/colormap_fwd.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
-#include <awl/backends/x11/visual_fwd.hpp>
-#include <awl/window/optional_dim.hpp>
-#include <awl/window/optional_position.hpp>
+#include <awl/backends/x11/visual/object_fwd.hpp>
+#include <awl/window/optional_dim_fwd.hpp>
+#include <awl/window/optional_position_fwd.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {
@@ -26,10 +27,10 @@ Window
 create(
 	awl::window::optional_position const &,
 	awl::window::optional_dim const &,
-	x11::display &,
-	x11::screen,
-	x11::colormap const &,
-	x11::visual const &
+	awl::backends::x11::display &,
+	awl::backends::x11::screen,
+	awl::backends::x11::colormap const &,
+	awl::backends::x11::visual::object const &
 );
 
 }

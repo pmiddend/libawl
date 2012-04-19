@@ -6,8 +6,10 @@
 #include <awl/system/object.hpp>
 #include <awl/system/object_scoped_ptr.hpp>
 #include <awl/system/event/optional_processor_ref.hpp>
-#include <awl/window/instance.hpp>
-#include <awl/window/instance_scoped_ptr.hpp>
+#include <awl/visual/object.hpp>
+#include <awl/visual/object_scoped_ptr.hpp>
+#include <awl/window/object.hpp>
+#include <awl/window/object_scoped_ptr.hpp>
 #include <awl/window/parameters.hpp>
 #include <awl/window/event/create_processor.hpp>
 #include <awl/window/event/processor.hpp>
@@ -58,9 +60,15 @@ try
 		awl::system::create()
 	);
 
-	awl::window::instance_scoped_ptr const window(
-		window_system->create(
-			awl::window::parameters()
+	awl::visual::object_scoped_ptr const visual(
+		window_system->default_visual()
+	);
+
+	awl::window::object_scoped_ptr const window(
+		window_system->create_window(
+			awl::window::parameters(
+				*visual
+			)
 			.title(
 				FCPPT_TEXT("awltest")
 			)

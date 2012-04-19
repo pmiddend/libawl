@@ -1,34 +1,27 @@
-#include <awl/backends/x11/create_visual_info.hpp>
-#include <awl/backends/x11/wrapped_visual.hpp>
+#include <awl/backends/x11/visual/create_info.hpp>
+#include <awl/backends/x11/visual/object_unique_ptr.hpp>
+#include <awl/backends/x11/visual/wrapped.hpp>
 #include <awl/backends/x11/window/attributes.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/visual.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/ref.hpp>
 
 
-awl::backends::x11::visual_unique_ptr
+awl::backends::x11::visual::object_unique_ptr
 awl::backends::x11::window::visual(
-	awl::backends::x11::window::instance &_window
+	awl::backends::x11::window::object &_window
 )
 {
-	Visual &visual(
-		*window::attributes(
-			_window
-		).visual
-	);
-
 	return
-		x11::visual_unique_ptr(
+		awl::backends::x11::visual::object_unique_ptr(
 			fcppt::make_unique_ptr<
-				x11::wrapped_visual
+				awl::backends::x11::visual::wrapped
 			>(
-				fcppt::ref(
-					visual
-				),
-				x11::create_visual_info(
+				awl::backends::x11::visual::create_info(
 					_window.display(),
-					visual
+					*awl::backends::x11::window::attributes(
+						_window
+					).visual
 				)
 			)
 		);

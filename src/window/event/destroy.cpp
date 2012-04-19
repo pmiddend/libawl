@@ -1,16 +1,16 @@
-#include <awl/window/instance_fwd.hpp>
+#include <awl/window/object_fwd.hpp>
 #include <awl/window/event/destroy.hpp>
 
 awl::window::event::destroy::destroy(
-	window::instance &_instance
+	window::object &_object
 )
 :
-	instance_(_instance)
+	object_(_object)
 {
 }
 
-awl::window::instance &
-awl::window::event::destroy::instance() const
+awl::window::object &
+awl::window::event::destroy::object() const
 {
-	return instance_;
+	return object_;
 }

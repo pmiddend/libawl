@@ -3,17 +3,17 @@
 #include <fcppt/text.hpp>
 
 
-HINSTANCE
+HOBJECT
 awl::backends::windows::module_handle()
 {
-	HINSTANCE const instance(
+	HOBJECT const object(
 		::GetModuleHandle(0)
 	);
 
-	if(!instance)
+	if(!object)
 		throw awl::exception(
 			FCPPT_TEXT("GetModuleHandle() failed!")
 		);
 
-	return instance;
+	return object;
 }

@@ -9,7 +9,7 @@
 #include <awl/backends/windows/window/event/object_fwd.hpp>
 #include <awl/backends/windows/window/event/processor.hpp>
 #include <awl/backends/windows/window/event/return_type.hpp>
-#include <awl/backends/windows/window/instance_fwd.hpp>
+#include <awl/backends/windows/window/object_fwd.hpp>
 #include <awl/window/event/close_callback.hpp>
 #include <awl/window/event/close_signal.hpp>
 #include <awl/window/event/destroy_callback.hpp>
@@ -48,7 +48,7 @@ class AWL_CLASS_SYMBOL original_processor
 public:
 	AWL_SYMBOL
 	explicit original_processor(
-		windows::window::instance &
+		windows::window::object &
 	);
 
 	AWL_SYMBOL
@@ -77,11 +77,11 @@ public:
 	);
 
 	AWL_SYMBOL
-	awl::window::instance &
+	awl::window::object &
 	window() const;
 
 	AWL_SYMBOL
-	awl::backends::windows::window::instance &
+	awl::backends::windows::window::object &
 	windows_window() const;
 
 	AWL_SYMBOL
@@ -132,7 +132,7 @@ private:
 		awl::backends::windows::window::event::object const &
 	);
 
-	windows::window::instance &window_;
+	windows::window::object &window_;
 
 	typedef fcppt::signal::object<
 		windows::window::event::function

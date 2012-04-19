@@ -5,7 +5,7 @@
 
 RECT const
 awl::backends::windows::window::client_rect_to_screen(
-	window::instance const &_window,
+	window::object const &_window,
 	RECT const &_rect
 )
 {

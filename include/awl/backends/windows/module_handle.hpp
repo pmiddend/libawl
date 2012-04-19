@@ -12,7 +12,7 @@ namespace windows
 {
 
 AWL_SYMBOL
-HINSTANCE
+HOBJECT
 module_handle();
 
 }

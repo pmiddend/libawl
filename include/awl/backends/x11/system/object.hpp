@@ -1,11 +1,13 @@
 #ifndef AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
 #define AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
 
-#include <awl/backends/x11/system/object_fwd.hpp>
-#include <awl/backends/x11/display_fwd.hpp>
-#include <awl/system/object.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
+#include <awl/backends/x11/screen.hpp>
+#include <awl/backends/x11/system/object_fwd.hpp>
+#include <awl/system/object.hpp>
 #include <fcppt/noncopyable.hpp>
+
 
 namespace awl
 {
@@ -28,10 +30,16 @@ protected:
 	object();
 public:
 	AWL_SYMBOL
-	virtual ~object();
+	virtual
+	~object() = 0;
 
-	virtual x11::display &
+	virtual
+	awl::backends::x11::display &
 	display() = 0;
+
+	virtual
+	awl::backends::x11::screen const
+	screen() const = 0;
 };
 
 }

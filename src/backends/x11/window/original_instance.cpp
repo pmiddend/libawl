@@ -1,12 +1,10 @@
-#include "../glx/create_visual_attributes.hpp"
-#include "../glx/create_visual.hpp"
 #include <awl/config.hpp>
 #include <awl/backends/x11/colormap.hpp>
-#include <awl/backends/x11/default_visual.hpp>
 #include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/visual.hpp>
+#include <awl/backends/x11/screen.hpp>
+#include <awl/backends/x11/visual/object.hpp>
 #include <awl/backends/x11/window/create.hpp>
-#include <awl/backends/x11/window/original_instance.hpp>
+#include <awl/backends/x11/window/original_object.hpp>
 #include <awl/backends/x11/window/root.hpp>
 #include <awl/backends/x11/window/transient_for_hint.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
@@ -20,8 +18,9 @@
 #include <fcppt/config/external_end.hpp>
 
 
-awl::backends::x11::window::original_instance::original_instance(
-	x11::display &_display,
+awl::backends::x11::window::original_object::original_object(
+	awl::backends::x11::display &_display,
+	awl::backends::x11::screen const _screen,
 	awl::window::parameters const &_params
 )
 :
@@ -29,36 +28,19 @@ awl::backends::x11::window::original_instance::original_instance(
 		_display
 	),
 	screen_(
-		::XDefaultScreen(
-			display_.get()
-		)
+		_screen
 	),
 	visual_(
-#if defined(AWL_HAVE_OPENGL)
-		_params.has_opengl()
-		?
-			glx::create_visual(
-				fcppt::ref(
-					display_
-				),
-				screen_,
-				glx::create_visual_attributes(
-					_params.bit_depth(),
-					_params.depth_buffer(),
-					_params.stencil_buffer()
-				).data()
-			)
-		:
-#endif
-			x11::default_visual(
-				display_,
-				screen_
-			)
+		dynamic_cast<
+			awl::backends::x11::visual::object const &
+		>(
+			_params.visual()
+		)
 	),
 	colormap_(
 		display_,
-		screen_,
-		*visual_
+		_screen,
+		visual_
 	),
 	hints_(),
 	size_hints_(
@@ -78,7 +60,7 @@ awl::backends::x11::window::original_instance::original_instance(
 			display_,
 			screen_,
 			colormap_,
-			*visual_
+			visual_
 		)
 	)
 {
@@ -124,49 +106,49 @@ awl::backends::x11::window::original_instance::original_instance(
 		);
 }
 
-awl::backends::x11::window::original_instance::~original_instance()
+awl::backends::x11::window::original_object::~original_object()
 {
 }
 
 void
-awl::backends::x11::window::original_instance::destroy()
+awl::backends::x11::window::original_object::destroy()
 {
 	window_.destroy();
 }
 
 bool
-awl::backends::x11::window::original_instance::destroyed() const
+awl::backends::x11::window::original_object::destroyed() const
 {
 	return
 		window_.destroyed();
 }
 
 awl::backends::x11::display &
-awl::backends::x11::window::original_instance::display() const
+awl::backends::x11::window::original_object::display() const
 {
 	return display_;
 }
 
 awl::backends::x11::screen const
-awl::backends::x11::window::original_instance::screen() const
+awl::backends::x11::window::original_object::screen() const
 {
 	return screen_;
 }
 
-awl::backends::x11::visual const &
-awl::backends::x11::window::original_instance::visual() const
+awl::backends::x11::visual::object const &
+awl::backends::x11::window::original_object::visual() const
 {
-	return *visual_;
+	return visual_;
 }
 
 Window
-awl::backends::x11::window::original_instance::get() const
+awl::backends::x11::window::original_object::get() const
 {
 	return window_.get();
 }
 
 awl::backends::x11::window::class_hint const *
-awl::backends::x11::window::original_instance::class_hint() const
+awl::backends::x11::window::original_object::class_hint() const
 {
 	return &class_hint_;
 }

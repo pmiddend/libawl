@@ -10,7 +10,6 @@
 # This modules accepts the following variables
 #
 #	Awl_USE_STATIC_LIBS - Use static linking.
-#	Awl_ENABLE_OPENGL   - Use opengl.
 #	AWL_INCLUDEDIR      - Hint where the awl includes might be.
 #	AWL_LIBRARYDIR      - Hint where the awl libraries might be.
 
@@ -101,20 +100,6 @@ if(
 		set(
 			Awl_LIBRARIES
 			"${Awl_LIBRARIES};${X11_X11_LIB}"
-		)
-	endif()
-
-	if(
-		Awl_ENABLE_OPENGL
-	)
-		find_package(
-			OpenGL
-			${AWL_FIND_OPTIONS}
-		)
-
-		set(
-			Awl_LIBRARIES
-			"${Awl_LIBRARIES};${OPENGL_gl_LIBRARY}"
 		)
 	endif()
 endif()

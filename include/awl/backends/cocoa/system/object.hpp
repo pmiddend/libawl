@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_COCOA_SYSTEM_OBJECT_HPP_INCLUDED
 
 #include <awl/system/object.hpp>
-#include <awl/window/instance_unique_ptr.hpp>
+#include <awl/window/object_unique_ptr.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -26,7 +26,7 @@ public:
 	explicit
 	object();
 
-	awl::window::instance_unique_ptr
+	awl::window::object_unique_ptr
 	create(
 		awl::window::parameters const &);
 

@@ -1,11 +1,15 @@
 #ifndef AWL_BACKENDS_X11_SYSTEM_ORIGINAL_OBJECT_HPP_INCLUDED
 #define AWL_BACKENDS_X11_SYSTEM_ORIGINAL_OBJECT_HPP_INCLUDED
 
-#include <awl/backends/x11/system/object.hpp>
-#include <awl/backends/x11/original_display.hpp>
-#include <awl/system/object.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
+#include <awl/backends/x11/original_display.hpp>
+#include <awl/backends/x11/screen.hpp>
+#include <awl/backends/x11/system/object.hpp>
+#include <awl/visual/object_unique_ptr.hpp>
+#include <awl/window/object_unique_ptr.hpp>
 #include <fcppt/noncopyable.hpp>
+
 
 namespace awl
 {
@@ -33,16 +37,26 @@ public:
 	~original_object();
 
 	AWL_SYMBOL
-	awl::window::instance_unique_ptr
-	create(
+	awl::window::object_unique_ptr
+	create_window(
 		awl::window::parameters const &
 	);
 
 	AWL_SYMBOL
-	x11::display &
+	awl::visual::object_unique_ptr
+	default_visual();
+
+	AWL_SYMBOL
+	awl::backends::x11::display &
 	display();
+
+	AWL_SYMBOL
+	awl::backends::x11::screen const
+	screen() const;
 private:
-	x11::original_display display_;
+	awl::backends::x11::original_display display_;
+
+	awl::backends::x11::screen const screen_;
 };
 
 }

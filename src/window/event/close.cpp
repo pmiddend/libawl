@@ -1,16 +1,16 @@
-#include <awl/window/instance_fwd.hpp>
+#include <awl/window/object_fwd.hpp>
 #include <awl/window/event/close.hpp>
 
 awl::window::event::close::close(
-	window::instance &_instance
+	window::object &_object
 )
 :
-	instance_(_instance)
+	object_(_object)
 {
 }
 
-awl::window::instance &
-awl::window::event::close::instance() const
+awl::window::object &
+awl::window::event::close::object() const
 {
-	return instance_;
+	return object_;
 }

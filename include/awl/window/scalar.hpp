@@ -5,9 +5,11 @@ namespace awl
 {
 namespace window
 {
+
 typedef
 int
 scalar;
+
 }
 }
 

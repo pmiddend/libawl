@@ -1,26 +1,26 @@
 #include <awl/exception.hpp>
 #include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/window/common_instance.hpp>
+#include <awl/backends/x11/window/common_object.hpp>
 #include <awl/backends/x11/window/wrapped_class_hint.hpp>
+#include <awl/window/dim.hpp>
 #include <fcppt/text.hpp>
-#include <fcppt/math/dim/object_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
 
 
-awl::backends::x11::window::common_instance::common_instance()
+awl::backends::x11::window::common_object::common_object()
 :
-	awl::backends::x11::window::instance()
+	awl::backends::x11::window::object()
 {
 }
 
-awl::backends::x11::window::common_instance::~common_instance()
+awl::backends::x11::window::common_object::~common_object()
 {
 }
 
 void
-awl::backends::x11::window::common_instance::show()
+awl::backends::x11::window::common_object::show()
 {
 	// always returns 1
 	::XMapWindow(
@@ -34,7 +34,7 @@ awl::backends::x11::window::common_instance::show()
 }
 
 awl::window::dim const
-awl::backends::x11::window::common_instance::size() const
+awl::backends::x11::window::common_object::size() const
 {
 	Window root_return;
 

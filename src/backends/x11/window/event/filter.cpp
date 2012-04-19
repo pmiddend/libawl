@@ -1,4 +1,4 @@
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/event/filter.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -9,7 +9,7 @@
 bool
 awl::backends::x11::window::event::filter(
 	event::object _event,
-	x11::window::instance const &_window
+	x11::window::object const &_window
 )
 {
 	return

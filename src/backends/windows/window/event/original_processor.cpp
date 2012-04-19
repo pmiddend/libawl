@@ -6,7 +6,7 @@
 #include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/event/wparam.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/backends/windows/window/instance.hpp>
+#include <awl/backends/windows/window/object.hpp>
 #include <awl/backends/windows/window/event/combine_result.hpp>
 #include <awl/backends/windows/window/event/object.hpp>
 #include <awl/backends/windows/window/event/original_processor.hpp>
@@ -42,7 +42,7 @@
 FCPPT_PP_PUSH_WARNING
 FCPPT_PP_DISABLE_VC_WARNING(4355)
 awl::backends::windows::window::event::original_processor::original_processor(
-	windows::window::instance &_window
+	windows::window::object &_window
 )
 :
 	window_(
@@ -198,13 +198,13 @@ awl::backends::windows::window::event::original_processor::resize_callback(
 		);
 }
 
-awl::window::instance &
+awl::window::object &
 awl::backends::windows::window::event::original_processor::window() const
 {
 	return window_;
 }
 
-awl::backends::windows::window::instance &
+awl::backends::windows::window::object &
 awl::backends::windows::window::event::original_processor::windows_window() const
 {
 	return window_;

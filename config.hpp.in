@@ -1,7 +1,6 @@
 #ifndef AWL_CONFIG_HPP_INCLUDED
 #define AWL_CONFIG_HPP_INCLUDED
 
-#cmakedefine AWL_HAVE_OPENGL
 #cmakedefine AWL_WINDOWS_BACKEND
 #cmakedefine AWL_X11_BACKEND
 #cmakedefine AWL_COCOA_BACKEND

@@ -1,9 +1,9 @@
-#include <awl/window/instance.hpp>
+#include <awl/window/object.hpp>
 
-awl::window::instance::instance()
+awl::window::object::object()
 {
 }
 
-awl::window::instance::~instance()
+awl::window::object::~object()
 {
 }

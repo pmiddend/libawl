@@ -1,9 +1,9 @@
-#include <awl/backends/windows/window/instance.hpp>
+#include <awl/backends/windows/window/object.hpp>
 
-awl::backends::windows::window::instance::instance()
+awl::backends::windows::window::object::object()
 {
 }
 
-awl::backends::windows::window::instance::~instance()
+awl::backends::windows::window::object::~object()
 {
 }

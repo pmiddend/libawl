@@ -2,11 +2,13 @@
 #define AWL_SYSTEM_OBJECT_HPP_INCLUDED
 
 #include <awl/system/object_fwd.hpp>
-#include <awl/window/instance_unique_ptr.hpp>
+#include <awl/visual/object_unique_ptr.hpp>
+#include <awl/window/object_unique_ptr.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
+
 
 namespace awl
 {
@@ -20,13 +22,17 @@ class AWL_CLASS_SYMBOL object
 	);
 protected:
 	AWL_SYMBOL
-	explicit
 	object();
 public:
-	virtual window::instance_unique_ptr
-	create(
-		window::parameters const &
+	virtual
+	awl::window::object_unique_ptr
+	create_window(
+		awl::window::parameters const &
 	) = 0;
+
+	virtual
+	awl::visual::object_unique_ptr
+	default_visual() = 0;
 
 	AWL_SYMBOL
 	virtual

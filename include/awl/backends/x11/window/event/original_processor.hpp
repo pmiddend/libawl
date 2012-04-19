@@ -10,7 +10,7 @@
 #include <awl/backends/x11/window/event/object_fwd.hpp>
 #include <awl/backends/x11/window/event/type.hpp>
 #include <awl/backends/x11/window/event/wm_protocols.hpp>
-#include <awl/backends/x11/window/instance_fwd.hpp>
+#include <awl/backends/x11/window/object_fwd.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/close_callback.hpp>
 #include <awl/window/event/close_signal.hpp>
@@ -53,7 +53,7 @@ public:
 	AWL_SYMBOL
 	explicit
 	original_processor(
-		awl::backends::x11::window::instance &
+		awl::backends::x11::window::object &
 	);
 
 	AWL_SYMBOL
@@ -82,11 +82,11 @@ public:
 	);
 
 	AWL_SYMBOL
-	awl::window::instance &
+	awl::window::object &
 	window() const;
 
 	AWL_SYMBOL
-	awl::backends::x11::window::instance &
+	awl::backends::x11::window::object &
 	x11_window() const;
 
 	AWL_SYMBOL
@@ -126,7 +126,7 @@ private:
 		awl::backends::x11::window::event::object const &
 	);
 
-	awl::backends::x11::window::instance &window_;
+	awl::backends::x11::window::object &window_;
 
 	typedef fcppt::signal::object<
 		awl::backends::x11::window::event::function,

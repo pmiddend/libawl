@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_X11_WINDOW_EVENT_FILTER_HPP_INCLUDED
 
 #include <awl/backends/x11/window/event/object_fwd.hpp>
-#include <awl/backends/x11/window/instance_fwd.hpp>
+#include <awl/backends/x11/window/object_fwd.hpp>
 #include <awl/symbol.hpp>
 
 namespace awl
@@ -20,7 +20,7 @@ AWL_SYMBOL
 bool
 filter(
 	event::object,
-	x11::window::instance const &
+	x11::window::object const &
 );
 
 }

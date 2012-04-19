@@ -37,6 +37,7 @@ update_main \
 	src/event \
 	src/main \
 	src/system \
+	src/visual \
 	src/window
 
 # Cocoa begin
@@ -58,16 +59,7 @@ update_main \
 
 update_main \
 	AWL_X11_SRC_FILES \
-	-n \
-	src/backends/x11 \
-	-r \
-	src/backends/x11/event \
-	src/backends/x11/system \
-	src/backends/x11/window
-
-update_main \
-	AWL_X11_OPENGL_SRC_FILES \
-	src/backends/x11/glx
+	src/backends/x11
 # X11 end
 
 # Windows begin

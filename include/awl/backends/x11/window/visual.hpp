@@ -1,9 +1,10 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_VISUAL_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_VISUAL_HPP_INCLUDED
 
-#include <awl/backends/x11/window/instance_fwd.hpp>
-#include <awl/backends/x11/visual_unique_ptr.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/x11/visual/object_unique_ptr.hpp>
+#include <awl/backends/x11/window/object_fwd.hpp>
+
 
 namespace awl
 {
@@ -15,9 +16,9 @@ namespace window
 {
 
 AWL_SYMBOL
-x11::visual_unique_ptr
+awl::backends::x11::visual::object_unique_ptr
 visual(
-	x11::window::instance &
+	awl::backends::x11::window::object &
 );
 
 }

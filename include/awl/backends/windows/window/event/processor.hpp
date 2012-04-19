@@ -6,7 +6,7 @@
 #include <awl/window/event/processor.hpp>
 #include <awl/backends/windows/event/message_fwd.hpp>
 #include <awl/backends/windows/event/type.hpp>
-#include <awl/backends/windows/window/instance_fwd.hpp>
+#include <awl/backends/windows/window/object_fwd.hpp>
 #include <awl/backends/windows/window/event/processor_fwd.hpp>
 #include <awl/backends/windows/window/event/callback.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -40,7 +40,7 @@ public:
 	~processor() = 0;
 
 	virtual
-	awl::backends::windows::window::instance &
+	awl::backends::windows::window::object &
 	windows_window() const = 0;
 
 	virtual

@@ -3,7 +3,7 @@
 
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
-#include <awl/backends/x11/visual_fwd.hpp>
+#include <awl/backends/x11/visual/object_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -24,11 +24,10 @@ class colormap
 	);
 public:
 	AWL_SYMBOL
-	explicit
 	colormap(
-		x11::display &,
-		x11::screen,
-		x11::visual const &
+		awl::backends::x11::display &,
+		awl::backends::x11::screen,
+		awl::backends::x11::visual::object const &
 	);
 
 	AWL_SYMBOL
@@ -42,7 +41,7 @@ public:
 	Colormap const &
 	get() const;
 private:
-	x11::display &display_;
+	awl::backends::x11::display &display_;
 
 	Colormap colormap_;
 };

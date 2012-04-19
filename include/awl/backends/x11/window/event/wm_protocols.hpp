@@ -1,7 +1,7 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_EVENT_WM_PROTOCOLS_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_EVENT_WM_PROTOCOLS_HPP_INCLUDED
 
-#include <awl/backends/x11/window/instance_fwd.hpp>
+#include <awl/backends/x11/window/object_fwd.hpp>
 #include <awl/backends/x11/window/event/atom_vector.hpp>
 #include <fcppt/noncopyable.hpp>
 
@@ -24,7 +24,7 @@ class wm_protocols
 	);
 public:
 	wm_protocols(
-		awl::backends::x11::window::instance &,
+		awl::backends::x11::window::object &,
 		awl::backends::x11::window::event::atom_vector const &
 	);
 

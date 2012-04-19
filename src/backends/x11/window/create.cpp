@@ -1,10 +1,10 @@
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/visual.hpp>
+#include <awl/backends/x11/screen.hpp>
+#include <awl/backends/x11/visual/object.hpp>
 #include <awl/backends/x11/window/create.hpp>
-#include <fcppt/optional_impl.hpp>
-#include <fcppt/math/dim/object_impl.hpp>
-#include <fcppt/math/vector/object_impl.hpp>
+#include <awl/window/optional_position.hpp>
+#include <awl/window/optional_dim.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
@@ -14,10 +14,10 @@ Window
 awl::backends::x11::window::create(
 	awl::window::optional_position const &_position,
 	awl::window::optional_dim const &_dim,
-	x11::display &_display,
-	x11::screen const _screen,
-	x11::colormap const &_colormap,
-	x11::visual const &_visual
+	awl::backends::x11::display &_display,
+	awl::backends::x11::screen const _screen,
+	awl::backends::x11::colormap const &_colormap,
+	awl::backends::x11::visual::object const &_visual
 )
 {
 	XSetWindowAttributes swa;

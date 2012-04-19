@@ -3,7 +3,7 @@
 
 #include <awl/window/event/processor.hpp>
 #include <awl/backends/x11/event/object_fwd.hpp>
-#include <awl/backends/x11/window/instance_fwd.hpp>
+#include <awl/backends/x11/window/object_fwd.hpp>
 #include <awl/backends/x11/window/event/callback.hpp>
 #include <awl/backends/x11/window/event/processor_fwd.hpp>
 #include <awl/backends/x11/window/event/type.hpp>
@@ -40,7 +40,7 @@ public:
 	~processor() = 0;
 
 	virtual
-	awl::backends::x11::window::instance &
+	awl::backends::x11::window::object &
 	x11_window() const = 0;
 
 	virtual

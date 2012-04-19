@@ -1,21 +1,21 @@
 #include <awl/window/dim.hpp>
-#include <awl/window/instance_fwd.hpp>
+#include <awl/window/object_fwd.hpp>
 #include <awl/window/event/resize.hpp>
 
 awl::window::event::resize::resize(
-	window::instance &_instance,
+	window::object &_object,
 	window::dim const &_dim
 )
 :
-	instance_(_instance),
+	object_(_object),
 	dim_(_dim)
 {
 }
 
-awl::window::instance &
-awl::window::event::resize::instance() const
+awl::window::object &
+awl::window::event::resize::object() const
 {
-	return instance_;
+	return object_;
 }
 
 awl::window::dim const &

@@ -1,13 +1,13 @@
 #include <awl/exception.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/client_to_screen.hpp>
-#include <awl/backends/windows/window/instance.hpp>
+#include <awl/backends/windows/window/object.hpp>
 #include <fcppt/text.hpp>
 
 
 POINT const
 awl::backends::windows::window::client_to_screen(
-	window::instance const &_window,
+	window::object const &_window,
 	POINT const &_point
 )
 {

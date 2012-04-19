@@ -5,7 +5,7 @@
 #include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/system/event/processor.hpp>
 #include <awl/backends/x11/system/event/optional_processor_ref.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/event/processor.hpp>
 #include <awl/window/event/processor_fwd.hpp>
 #include <fcppt/optional_impl.hpp>

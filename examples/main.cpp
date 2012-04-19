@@ -1,8 +1,10 @@
 #include <awl/system/create.hpp>
 #include <awl/system/object.hpp>
 #include <awl/system/object_scoped_ptr.hpp>
-#include <awl/window/instance.hpp>
-#include <awl/window/instance_scoped_ptr.hpp>
+#include <awl/visual/object.hpp>
+#include <awl/visual/object_scoped_ptr.hpp>
+#include <awl/window/object.hpp>
+#include <awl/window/object_scoped_ptr.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/io/cerr.hpp>
 #include <fcppt/time/sleep_any.hpp>
@@ -21,9 +23,15 @@ try
 		awl::system::create()
 	);
 
-	awl::window::instance_scoped_ptr const window(
-		window_system->create(
-			awl::window::parameters()
+	awl::visual::object_scoped_ptr const visual(
+		window_system->default_visual()
+	);
+
+	awl::window::object_scoped_ptr const window(
+		window_system->create_window(
+			awl::window::parameters(
+				*visual
+			)
 			.class_name(
 				FCPPT_TEXT("awltest")
 			)

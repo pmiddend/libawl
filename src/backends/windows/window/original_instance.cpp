@@ -11,8 +11,8 @@
 #include <awl/backends/windows/event/wparam.hpp>
 #include <awl/backends/windows/window/adjusted_size.hpp>
 #include <awl/backends/windows/window/client_rect.hpp>
-#include <awl/backends/windows/window/instance.hpp>
-#include <awl/backends/windows/window/original_instance.hpp>
+#include <awl/backends/windows/window/object.hpp>
+#include <awl/backends/windows/window/original_object.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
@@ -28,13 +28,13 @@ DWORD const window_flags(
 
 }
 
-awl::backends::windows::window::original_instance::original_instance(
+awl::backends::windows::window::original_object::original_object(
 	awl::window::parameters const &_param,
 	windows::wndclass &_wndclass,
 	windows::wndclass_remove_callback const &_remove_wndclass
 )
 :
-	awl::backends::windows::window::instance(),
+	awl::backends::windows::window::object(),
 	handle_(
 		CreateWindow(
 			_wndclass.name().c_str(),
@@ -121,7 +121,7 @@ awl::backends::windows::window::original_instance::original_instance(
 		);
 }
 
-awl::backends::windows::window::original_instance::~original_instance()
+awl::backends::windows::window::original_object::~original_object()
 {
 	::DestroyWindow(
 		handle_
@@ -131,7 +131,7 @@ awl::backends::windows::window::original_instance::~original_instance()
 }
 
 awl::window::dim const
-awl::backends::windows::window::original_instance::size() const
+awl::backends::windows::window::original_object::size() const
 {
 	RECT const rect(
 		window::client_rect(
@@ -147,13 +147,13 @@ awl::backends::windows::window::original_instance::size() const
 }
 
 HWND
-awl::backends::windows::window::original_instance::hwnd() const
+awl::backends::windows::window::original_object::hwnd() const
 {
 	return handle_;
 }
 
 void
-awl::backends::windows::window::original_instance::show()
+awl::backends::windows::window::original_object::show()
 {
 	BOOL const prev_visible(
 		::ShowWindow(

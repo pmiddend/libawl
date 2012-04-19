@@ -1,20 +1,20 @@
 #include <awl/exception.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/client_rect.hpp>
-#include <awl/backends/windows/window/instance.hpp>
+#include <awl/backends/windows/window/object.hpp>
 #include <fcppt/text.hpp>
 
 
 RECT const
 awl::backends::windows::window::client_rect(
-	window::instance const &_instance
+	window::object const &_object
 )
 {
 	RECT rect;
 
 	if(
 		::GetClientRect(
-			_instance.hwnd(),
+			_object.hwnd(),
 			&rect
 		)
 		== FALSE

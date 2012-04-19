@@ -1,6 +1,6 @@
 #include <awl/backends/x11/intern_atom.hpp>
 #include <awl/backends/x11/event/object.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/event/atom_vector.hpp>
 #include <awl/backends/x11/window/event/change_mask.hpp>
 #include <awl/backends/x11/window/event/filter.hpp>
@@ -37,7 +37,7 @@
 
 
 awl::backends::x11::window::event::original_processor::original_processor(
-	x11::window::instance &_window
+	x11::window::object &_window
 )
 :
 	window_(
@@ -206,13 +206,13 @@ awl::backends::x11::window::event::original_processor::resize_callback(
 		);
 }
 
-awl::window::instance &
+awl::window::object &
 awl::backends::x11::window::event::original_processor::window() const
 {
 	return window_;
 }
 
-awl::backends::x11::window::instance &
+awl::backends::x11::window::object &
 awl::backends::x11::window::event::original_processor::x11_window() const
 {
 	return window_;

@@ -1,5 +1,5 @@
 #include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/event/mask.hpp>
 #include <awl/backends/x11/window/event/object.hpp>
 #include <awl/backends/x11/window/event/poll_mask.hpp>
@@ -11,7 +11,7 @@
 
 awl::backends::x11::window::event::optional const
 awl::backends::x11::window::event::poll_mask(
-	x11::window::instance &_window,
+	x11::window::object &_window,
 	x11::window::event::mask const _event_mask
 )
 {

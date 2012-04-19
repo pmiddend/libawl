@@ -2,18 +2,8 @@
 #define AWL_WINDOW_OPTIONAL_DIM_HPP_INCLUDED
 
 #include <awl/window/dim.hpp>
-#include <fcppt/optional_fwd.hpp>
+#include <awl/window/optional_dim_fwd.hpp>
+#include <fcppt/optional_impl.hpp>
 
-namespace awl
-{
-namespace window
-{
-
-typedef fcppt::optional<
-	awl::window::dim
-> optional_dim;
-
-}
-}
 
 #endif

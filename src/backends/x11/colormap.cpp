@@ -2,14 +2,18 @@
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/log.hpp>
-#include <awl/backends/x11/visual.hpp>
+#include <awl/backends/x11/screen.hpp>
+#include <awl/backends/x11/visual/object.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <X11/Xlib.h>
+#include <fcppt/config/external_end.hpp>
 
 
 awl::backends::x11::colormap::colormap(
-	x11::display &_display,
-	x11::screen const _screen,
-	x11::visual const &_visual
+	awl::backends::x11::display &_display,
+	awl::backends::x11::screen const _screen,
+	awl::backends::x11::visual::object const &_visual
 )
 :
 	display_(

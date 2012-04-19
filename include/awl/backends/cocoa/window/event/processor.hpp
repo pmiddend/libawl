@@ -7,7 +7,7 @@
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/signal/object.hpp>
 #include <awl/backends/cocoa/window/event/AWLWindowDelegate.hpp>
-#include <awl/backends/cocoa/window/instance_fwd.hpp>
+#include <awl/backends/cocoa/window/object_fwd.hpp>
 
 namespace awl
 {
@@ -28,7 +28,7 @@ FCPPT_NONCOPYABLE(
 public:
 	explicit
 	processor(
-		cocoa::window::instance &);
+		cocoa::window::object &);
 
 	bool
 	poll();
@@ -41,7 +41,7 @@ public:
 	resize_callback(
 		awl::window::event::resize_callback const &);
 
-	awl::window::instance &
+	awl::window::object &
 	window() const;
 
 	void
@@ -52,7 +52,7 @@ public:
 
 	~processor();
 private:
-	cocoa::window::instance &window_;
+	cocoa::window::object &window_;
 	awl::window::event::resize_signal resize_;
 	awl::window::event::destroy_signal destroy_;
 	__strong AWLWindowDelegate *delegate_;

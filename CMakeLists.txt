@@ -23,16 +23,6 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/include
 )
 
-# General options begin
-
-option(
-	ENABLE_OPENGL
-	"Enable opengl support"
-	TRUE
-)
-
-# General options end
-
 # Boost begin
 find_package(
 	Boost 1.47.0 REQUIRED
@@ -67,25 +57,6 @@ include_directories(
 
 # Fcppt end
 
-if(
-	ENABLE_OPENGL
-)
-	find_package(
-		OpenGL
-		REQUIRED
-	)
-
-	include_directories(
-		${FCPPT_UTILS_INCLUDE_SYSTEM}
-		${OPENGL_INCLUDE_DIR}
-	)
-
-	set(
-		AWL_HAVE_OPENGL
-		TRUE
-	)
-endif()
-
 # Source groups end
 
 add_definitions(
@@ -110,6 +81,7 @@ SET(
 	src/system/event/processor.cpp
 	src/system/event/quit.cpp
 	src/system/object.cpp
+	src/visual/object.cpp
 	src/window/event/close.cpp
 	src/window/event/create_processor.cpp
 	src/window/event/destroy.cpp
@@ -160,9 +132,8 @@ SET(
 	include/awl/system/object_unique_ptr.hpp
 	include/awl/system/optional_exit_code.hpp
 	include/awl/system/optional_exit_code_fwd.hpp
-	include/awl/window/bit_depth.hpp
-	include/awl/window/depth_buffer.hpp
 	include/awl/window/dim.hpp
+	include/awl/window/dim_fwd.hpp
 	include/awl/window/event/close.hpp
 	include/awl/window/event/close_callback.hpp
 	include/awl/window/event/close_function.hpp
@@ -184,18 +155,20 @@ SET(
 	include/awl/window/event/resize_function.hpp
 	include/awl/window/event/resize_fwd.hpp
 	include/awl/window/event/resize_signal.hpp
-	include/awl/window/instance.hpp
-	include/awl/window/instance_fwd.hpp
-	include/awl/window/instance_scoped_ptr.hpp
-	include/awl/window/instance_shared_ptr.hpp
-	include/awl/window/instance_unique_ptr.hpp
+	include/awl/window/object.hpp
+	include/awl/window/object_fwd.hpp
+	include/awl/window/object_scoped_ptr.hpp
+	include/awl/window/object_shared_ptr.hpp
+	include/awl/window/object_unique_ptr.hpp
 	include/awl/window/optional_dim.hpp
+	include/awl/window/optional_dim_fwd.hpp
 	include/awl/window/optional_position.hpp
+	include/awl/window/optional_position_fwd.hpp
 	include/awl/window/parameters.hpp
 	include/awl/window/parameters_fwd.hpp
 	include/awl/window/scalar.hpp
-	include/awl/window/stencil_buffer.hpp
 	include/awl/window/vector.hpp
+	include/awl/window/vector_fwd.hpp
 )
 
 # We can use either X11 or plain windows or Apple
@@ -282,15 +255,14 @@ set(
 	include/awl/backends/cocoa/window/event/create_processor.hpp
 	include/awl/backends/cocoa/window/event/processor.hpp
 	include/awl/backends/cocoa/window/event/processor_fwd.hpp
-	include/awl/backends/cocoa/window/instance.hpp
-	include/awl/backends/cocoa/window/instance_fwd.hpp
+	include/awl/backends/cocoa/window/object.hpp
+	include/awl/backends/cocoa/window/object_fwd.hpp
 )
 
 set(
 	AWL_X11_SRC_FILES
 	src/backends/x11/colormap.cpp
-	src/backends/x11/create_visual_info.cpp
-	src/backends/x11/default_visual.cpp
+	src/backends/x11/default_screen.cpp
 	src/backends/x11/display.cpp
 	src/backends/x11/display_fd.cpp
 	src/backends/x11/event/fd/epoll.cpp
@@ -313,7 +285,10 @@ set(
 	src/backends/x11/system/object.cpp
 	src/backends/x11/system/original_object.cpp
 	src/backends/x11/to_x11_bool.cpp
-	src/backends/x11/visual.cpp
+	src/backends/x11/visual/create_info.cpp
+	src/backends/x11/visual/default.cpp
+	src/backends/x11/visual/object.cpp
+	src/backends/x11/visual/wrapped.cpp
 	src/backends/x11/window/atoms.cpp
 	src/backends/x11/window/attributes.cpp
 	src/backends/x11/window/class_hint.cpp
@@ -341,7 +316,6 @@ set(
 	src/backends/x11/window/visual.cpp
 	src/backends/x11/window/wrapped_class_hint.cpp
 	src/backends/x11/window/wrapped_instance.cpp
-	src/backends/x11/wrapped_visual.cpp
 )
 
 set(
@@ -349,8 +323,7 @@ set(
 	include/awl/backends/x11/atom.hpp
 	include/awl/backends/x11/colormap.hpp
 	include/awl/backends/x11/colormap_fwd.hpp
-	include/awl/backends/x11/create_visual_info.hpp
-	include/awl/backends/x11/default_visual.hpp
+	include/awl/backends/x11/default_screen.hpp
 	include/awl/backends/x11/deleter.hpp
 	include/awl/backends/x11/display.hpp
 	include/awl/backends/x11/display_fd.hpp
@@ -396,12 +369,15 @@ set(
 	include/awl/backends/x11/system/object_fwd.hpp
 	include/awl/backends/x11/system/original_object.hpp
 	include/awl/backends/x11/to_x11_bool.hpp
-	include/awl/backends/x11/visual.hpp
-	include/awl/backends/x11/visual_fwd.hpp
-	include/awl/backends/x11/visual_info_scoped_ptr.hpp
-	include/awl/backends/x11/visual_info_unique_ptr.hpp
-	include/awl/backends/x11/visual_scoped_ptr.hpp
-	include/awl/backends/x11/visual_unique_ptr.hpp
+	include/awl/backends/x11/visual/create_info.hpp
+	include/awl/backends/x11/visual/default.hpp
+	include/awl/backends/x11/visual/info_scoped_ptr.hpp
+	include/awl/backends/x11/visual/info_unique_ptr.hpp
+	include/awl/backends/x11/visual/object.hpp
+	include/awl/backends/x11/visual/object_fwd.hpp
+	include/awl/backends/x11/visual/object_scoped_ptr.hpp
+	include/awl/backends/x11/visual/object_unique_ptr.hpp
+	include/awl/backends/x11/visual/wrapped.hpp
 	include/awl/backends/x11/window/atom_count.hpp
 	include/awl/backends/x11/window/atoms.hpp
 	include/awl/backends/x11/window/atoms_fwd.hpp
@@ -409,7 +385,7 @@ set(
 	include/awl/backends/x11/window/change_wm_protocols.hpp
 	include/awl/backends/x11/window/class_hint.hpp
 	include/awl/backends/x11/window/class_hint_fwd.hpp
-	include/awl/backends/x11/window/common_instance.hpp
+	include/awl/backends/x11/window/common_object.hpp
 	include/awl/backends/x11/window/create.hpp
 	include/awl/backends/x11/window/event/atom_vector.hpp
 	include/awl/backends/x11/window/event/callback.hpp
@@ -432,32 +408,20 @@ set(
 	include/awl/backends/x11/window/event/wm_protocols.hpp
 	include/awl/backends/x11/window/hints.hpp
 	include/awl/backends/x11/window/holder.hpp
-	include/awl/backends/x11/window/instance.hpp
-	include/awl/backends/x11/window/instance_fwd.hpp
-	include/awl/backends/x11/window/instance_scoped_ptr.hpp
-	include/awl/backends/x11/window/instance_shared_ptr.hpp
-	include/awl/backends/x11/window/instance_unique_ptr.hpp
+	include/awl/backends/x11/window/object.hpp
+	include/awl/backends/x11/window/object_fwd.hpp
+	include/awl/backends/x11/window/object_scoped_ptr.hpp
+	include/awl/backends/x11/window/object_shared_ptr.hpp
+	include/awl/backends/x11/window/object_unique_ptr.hpp
 	include/awl/backends/x11/window/original_class_hint.hpp
-	include/awl/backends/x11/window/original_instance.hpp
+	include/awl/backends/x11/window/original_object.hpp
 	include/awl/backends/x11/window/root.hpp
 	include/awl/backends/x11/window/set_wm_protocols.hpp
 	include/awl/backends/x11/window/size_hints.hpp
 	include/awl/backends/x11/window/transient_for_hint.hpp
 	include/awl/backends/x11/window/visual.hpp
 	include/awl/backends/x11/window/wrapped_class_hint.hpp
-	include/awl/backends/x11/window/wrapped_instance.hpp
-	include/awl/backends/x11/wrapped_visual.hpp
-)
-
-set(
-	AWL_X11_OPENGL_SRC_FILES
-	src/backends/x11/glx/create_visual.cpp
-	src/backends/x11/glx/create_visual.hpp
-	src/backends/x11/glx/create_visual_attributes.cpp
-	src/backends/x11/glx/create_visual_attributes.hpp
-	src/backends/x11/glx/handle_bit_depth.cpp
-	src/backends/x11/glx/handle_bit_depth.hpp
-	src/backends/x11/glx/visual_attribute_array.hpp
+	include/awl/backends/x11/window/wrapped_object.hpp
 )
 
 set(
@@ -561,9 +525,9 @@ set(
 	include/awl/backends/windows/window/event/scoped_user_message.hpp
 	include/awl/backends/windows/window/event/scoped_user_message_fwd.hpp
 	include/awl/backends/windows/window/event/wnd_proc.hpp
-	include/awl/backends/windows/window/instance.hpp
-	include/awl/backends/windows/window/instance_fwd.hpp
-	include/awl/backends/windows/window/original_instance.hpp
+	include/awl/backends/windows/window/object.hpp
+	include/awl/backends/windows/window/object_fwd.hpp
+	include/awl/backends/windows/window/original_object.hpp
 	include/awl/backends/windows/window/screen_to_client.hpp
 	include/awl/backends/windows/windows.hpp
 	include/awl/backends/windows/wndclass.hpp
@@ -609,15 +573,6 @@ if(
 		AWL_SRC_FILES
 		"${AWL_SRC_FILES};${AWL_X11_SRC_FILES}"
 	)
-
-	if(
-		ENABLE_OPENGL
-	)
-		set(
-			AWL_SRC_FILES
-			"${AWL_SRC_FILES};${AWL_X11_OPENGL_SRC_FILES}"
-		)
-	endif()
 endif()
 
 if(
@@ -738,15 +693,6 @@ function(
 		AWL_COCOA_BACKEND
 	)
 		target_link_libraries(${TARGETNAME} "-framework Cocoa")
-	endif()
-
-	if(
-		ENABLE_OPENGL
-	)
-		target_link_libraries(
-			${TARGETNAME}
-			${OPENGL_gl_LIBRARY}
-		)
 	endif()
 
 	install(

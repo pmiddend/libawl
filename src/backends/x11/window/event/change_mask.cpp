@@ -1,5 +1,5 @@
 #include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/window/instance.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/event/change_mask.hpp>
 #include <awl/backends/x11/window/event/mask.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -9,7 +9,7 @@
 
 void
 awl::backends::x11::window::event::change_mask(
-	x11::window::instance &_window,
+	x11::window::object &_window,
 	x11::window::event::mask const _mask
 )
 {

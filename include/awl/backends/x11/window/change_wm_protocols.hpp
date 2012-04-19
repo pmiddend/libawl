@@ -3,7 +3,7 @@
 
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/window/atoms_fwd.hpp>
-#include <awl/backends/x11/window/instance_fwd.hpp>
+#include <awl/backends/x11/window/object_fwd.hpp>
 
 
 namespace awl
@@ -18,7 +18,7 @@ namespace window
 AWL_SYMBOL
 void
 set_wm_protocols(
-	awl::backends::x11::window::instance const &,
+	awl::backends::x11::window::object const &,
 	awl::backends::x11::window::atoms const &
 );
 
