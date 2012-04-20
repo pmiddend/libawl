@@ -132,6 +132,10 @@ SET(
 	include/awl/system/object_unique_ptr.hpp
 	include/awl/system/optional_exit_code.hpp
 	include/awl/system/optional_exit_code_fwd.hpp
+	include/awl/visual/object.hpp
+	include/awl/visual/object_fwd.hpp
+	include/awl/visual/object_scoped_ptr.hpp
+	include/awl/visual/object_unique_ptr.hpp
 	include/awl/window/dim.hpp
 	include/awl/window/dim_fwd.hpp
 	include/awl/window/event/close.hpp

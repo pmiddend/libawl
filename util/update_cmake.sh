@@ -27,6 +27,7 @@ update_main \
 	include/awl/event \
 	include/awl/main \
 	include/awl/system \
+	include/awl/visual \
 	include/awl/window
 
 update_main \
