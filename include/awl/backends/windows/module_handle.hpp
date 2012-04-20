@@ -4,6 +4,7 @@
 #include <awl/backends/windows/windows.hpp>
 #include <awl/symbol.hpp>
 
+
 namespace awl
 {
 namespace backends
@@ -12,7 +13,7 @@ namespace windows
 {
 
 AWL_SYMBOL
-HOBJECT
+HMODULE
 module_handle();
 
 }

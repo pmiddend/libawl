@@ -426,7 +426,6 @@ set(
 
 set(
 	AWL_WINDOWS_SRC_FILES
-	src/backends/windows/choose_and_set_pixel_format.cpp
 	src/backends/windows/counted_wndclass.cpp
 	src/backends/windows/default_wnd_proc.cpp
 	src/backends/windows/event/get.cpp
@@ -436,7 +435,6 @@ set(
 	src/backends/windows/event/post_message.cpp
 	src/backends/windows/event/processor.cpp
 	src/backends/windows/format_message.cpp
-	src/backends/windows/gdi_device.cpp
 	src/backends/windows/local_free.cpp
 	src/backends/windows/module_handle.cpp
 	src/backends/windows/scoped_local_memory.cpp
@@ -448,6 +446,8 @@ set(
 	src/backends/windows/system/object.cpp
 	src/backends/windows/system/original_object.cpp
 	src/backends/windows/system_metrics.cpp
+	src/backends/windows/visual/null_object.cpp
+	src/backends/windows/visual/object.cpp
 	src/backends/windows/window/adjusted_size.cpp
 	src/backends/windows/window/client_rect.cpp
 	src/backends/windows/window/client_rect_to_screen.cpp
@@ -466,7 +466,6 @@ set(
 
 set(
 	AWL_WINDOWS_INCLUDE_FILES
-	include/awl/backends/windows/choose_and_set_pixel_format.hpp
 	include/awl/backends/windows/counted_wndclass.hpp
 	include/awl/backends/windows/counted_wndclass_fwd.hpp
 	include/awl/backends/windows/default_wnd_proc.hpp
@@ -484,8 +483,6 @@ set(
 	include/awl/backends/windows/event/type.hpp
 	include/awl/backends/windows/event/wparam.hpp
 	include/awl/backends/windows/format_message.hpp
-	include/awl/backends/windows/gdi_device.hpp
-	include/awl/backends/windows/gdi_device_fwd.hpp
 	include/awl/backends/windows/local_free.hpp
 	include/awl/backends/windows/module_handle.hpp
 	include/awl/backends/windows/scoped_local_memory.hpp
@@ -509,6 +506,11 @@ set(
 	include/awl/backends/windows/system/object_fwd.hpp
 	include/awl/backends/windows/system/original_object.hpp
 	include/awl/backends/windows/system_metrics.hpp
+	include/awl/backends/windows/visual/null_object.hpp
+	include/awl/backends/windows/visual/object.hpp
+	include/awl/backends/windows/visual/object_fwd.hpp
+	include/awl/backends/windows/visual/object_scoped_ptr.hpp
+	include/awl/backends/windows/visual/object_unique_ptr.hpp
 	include/awl/backends/windows/window/adjusted_size.hpp
 	include/awl/backends/windows/window/client_rect.hpp
 	include/awl/backends/windows/window/client_rect_to_screen.hpp

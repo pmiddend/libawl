@@ -1,8 +1,9 @@
 #ifndef AWL_BACKENDS_WINDOWS_SYSTEM_ORIGINAL_OBJECT_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_SYSTEM_ORIGINAL_OBJECT_HPP_INCLUDED
 
-#include <awl/backends/windows/system/object.hpp>
 #include <awl/backends/windows/counted_wndclass_fwd.hpp>
+#include <awl/backends/windows/system/object.hpp>
+#include <awl/visual/object_unique_ptr.hpp>
 #include <awl/window/object_unique_ptr.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -10,6 +11,7 @@
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {
@@ -36,9 +38,12 @@ public:
 
 	AWL_SYMBOL
 	awl::window::object_unique_ptr
-	create(
+	create_window(
 		awl::window::parameters const &
 	);
+
+	awl::visual::object_unique_ptr
+	default_visual();
 private:
 	void
 	unregister_wndclass(

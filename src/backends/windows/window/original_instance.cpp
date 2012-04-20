@@ -1,6 +1,4 @@
 #include <awl/exception.hpp>
-#include <awl/backends/windows/choose_and_set_pixel_format.hpp>
-#include <awl/backends/windows/gdi_device.hpp>
 #include <awl/backends/windows/module_handle.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/wndclass.hpp>
@@ -9,6 +7,7 @@
 #include <awl/backends/windows/event/lparam.hpp>
 #include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/event/wparam.hpp>
+#include <awl/backends/windows/visual/object.hpp>
 #include <awl/backends/windows/window/adjusted_size.hpp>
 #include <awl/backends/windows/window/client_rect.hpp>
 #include <awl/backends/windows/window/object.hpp>
@@ -67,58 +66,13 @@ awl::backends::windows::window::original_object::original_object(
 			FCPPT_TEXT("CreateWindow() failed!")
 		);
 
-	if(
-		_param.has_opengl()
-	)
-		windows::choose_and_set_pixel_format(
-			windows::gdi_device(
-				handle_,
-				windows::gdi_device::get_tag()
-			),
-			PFD_DRAW_TO_WINDOW
-			| PFD_SUPPORT_OPENGL
-			| PFD_DOUBLEBUFFER,
-			PFD_TYPE_RGBA,
-			_param.bit_depth()
-			?
-				static_cast<
-					BYTE
-				>(
-					*_param.bit_depth()
-				)
-			:
-				static_cast<
-					BYTE
-				>(
-					32
-				),
-			_param.depth_buffer()
-			?
-				static_cast<
-					BYTE
-				>(
-					*_param.depth_buffer()
-				)
-			:
-				static_cast<
-					BYTE
-				>(
-					0
-				),
-			_param.stencil_buffer()
-			?
-				static_cast<
-					BYTE
-				>(
-					*_param.stencil_buffer()
-				)
-			:
-				static_cast<
-					BYTE
-				>(
-					0
-				)
-		);
+	dynamic_cast<
+		awl::backends::windows::visual::object const &
+	>(
+		_param.visual()
+	).apply(
+		handle_
+	);
 }
 
 awl::backends::windows::window::original_object::~original_object()

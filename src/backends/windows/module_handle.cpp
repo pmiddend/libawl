@@ -1,16 +1,22 @@
 #include <awl/exception.hpp>
 #include <awl/backends/windows/module_handle.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 
 
-HOBJECT
+HMODULE
 awl::backends::windows::module_handle()
 {
-	HOBJECT const object(
+	HMODULE const object(
 		::GetModuleHandle(0)
 	);
 
-	if(!object)
+	if(
+		object
+		==
+		fcppt::null_ptr()
+	)
 		throw awl::exception(
 			FCPPT_TEXT("GetModuleHandle() failed!")
 		);
