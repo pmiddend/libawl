@@ -7,8 +7,6 @@
 #include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/truncation_check_cast.hpp>
-#include <fcppt/algorithm/remove.hpp>
-#include <fcppt/assert/error.hpp>
 #include <fcppt/container/data.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/chrono/duration.hpp>
@@ -20,7 +18,6 @@ awl::backends::x11::event::fd::set::set()
 :
 	epoll_fd_(),
 	events_(),
-	fds_(),
 	ready_fds_()
 {
 }
@@ -36,10 +33,6 @@ awl::backends::x11::event::fd::set::add(
 {
 	events_.push_back(
 		epoll_event()
-	);
-
-	fds_.push_back(
-		_fd
 	);
 
 	awl::backends::x11::event::fd::epoll_ctl(
@@ -58,13 +51,6 @@ awl::backends::x11::event::fd::set::remove(
 		epoll_fd_,
 		_fd,
 		fcppt::null_ptr()
-	);
-
-	FCPPT_ASSERT_ERROR(
-		fcppt::algorithm::remove(
-			fds_,
-			_fd
-		)
 	);
 
 	events_.pop_back();

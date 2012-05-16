@@ -63,8 +63,6 @@ private:
 
 	event_vector events_;
 
-	awl::backends::x11::event::fd::object_vector fds_;
-
 	awl::backends::x11::event::fd::object_vector ready_fds_;
 };
 
