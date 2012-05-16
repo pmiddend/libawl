@@ -3,9 +3,9 @@
 #include <awl/backends/x11/event/object.hpp>
 #include <awl/backends/x11/event/fd/callback.hpp>
 #include <awl/backends/x11/event/fd/duration.hpp>
-#include <awl/backends/x11/event/fd/epoll.hpp>
 #include <awl/backends/x11/event/fd/event.hpp>
 #include <awl/backends/x11/event/fd/object.hpp>
+#include <awl/backends/x11/event/fd/optional_duration.hpp>
 #include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/system/event/callback.hpp>
 #include <awl/backends/x11/system/event/map_key.hpp>
@@ -80,8 +80,10 @@ awl::backends::x11::system::event::original_processor::poll()
 
 	events_processed =
 		this->epoll(
-			awl::backends::x11::event::fd::duration(
-				0
+			awl::backends::x11::event::fd::optional_duration(
+				awl::backends::x11::event::fd::duration(
+					0
+				)
 			)
 		)
 		||
@@ -197,23 +199,22 @@ awl::backends::x11::system::event::original_processor::register_fd_callback(
 
 bool
 awl::backends::x11::system::event::original_processor::epoll(
-	awl::backends::x11::event::fd::duration const &_duration
+	awl::backends::x11::event::fd::optional_duration const &_duration
 )
 {
 	unsigned const ready_fds(
-		awl::backends::x11::event::fd::epoll(
-			fd_set_,
+		fd_set_.epoll(
 			_duration
 		)
 	);
 
 	for(
-		int index = 0;
-		index < fd_set_.count();
+		unsigned index = 0;
+		index < ready_fds;
 		++index
 	)
 	{
-		epoll_event &event(
+		epoll_event const &event(
 			fd_set_.events()[
 				index
 			]

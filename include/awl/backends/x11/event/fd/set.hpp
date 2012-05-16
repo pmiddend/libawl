@@ -4,6 +4,7 @@
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/event/fd/epoll_fd.hpp>
 #include <awl/backends/x11/event/fd/object.hpp>
+#include <awl/backends/x11/event/fd/optional_duration_fwd.hpp>
 #include <awl/backends/x11/event/fd/set_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -47,17 +48,16 @@ public:
 		awl::backends::x11::event::fd::object
 	);
 
+	// TODO: replace this by a range!
 	AWL_SYMBOL
-	awl::backends::x11::event::fd::object const
-	epoll_fd() const;
+	unsigned
+	epoll(
+		awl::backends::x11::event::fd::optional_duration const &
+	);
 
 	AWL_SYMBOL
-	int
-	count() const;
-
-	AWL_SYMBOL
-	epoll_event *
-	events();
+	epoll_event const *
+	events() const;
 private:
 	awl::backends::x11::event::fd::epoll_fd const epoll_fd_;
 

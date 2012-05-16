@@ -2,6 +2,7 @@
 #include <awl/backends/x11/event/object.hpp>
 #include <awl/backends/x11/event/pending.hpp>
 #include <awl/backends/x11/event/processor.hpp>
+#include <awl/backends/x11/event/fd/optional_duration.hpp>
 #include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/system/event/processor.hpp>
 #include <awl/backends/x11/system/event/optional_processor_ref.hpp>
@@ -85,9 +86,7 @@ awl::backends::x11::event::processor::next()
 	)
 	{
 		system_processor_->epoll(
-			awl::backends::x11::event::fd::duration(
-				-1
-			)
+			awl::backends::x11::event::fd::optional_duration()
 		);
 
 		if(

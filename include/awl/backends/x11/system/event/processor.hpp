@@ -3,8 +3,8 @@
 
 #include <awl/backends/x11/event/object_fwd.hpp>
 #include <awl/backends/x11/event/fd/callback_fwd.hpp>
-#include <awl/backends/x11/event/fd/duration.hpp>
 #include <awl/backends/x11/event/fd/object.hpp>
+#include <awl/backends/x11/event/fd/optional_duration_fwd.hpp>
 #include <awl/backends/x11/system/event/processor_fwd.hpp>
 #include <awl/backends/x11/system/event/callback.hpp>
 #include <awl/backends/x11/system/event/opcode.hpp>
@@ -59,7 +59,7 @@ public:
 	virtual
 	bool
 	epoll(
-		awl::backends::x11::event::fd::duration const &
+		awl::backends::x11::event::fd::optional_duration const &
 	) = 0;
 
 	virtual

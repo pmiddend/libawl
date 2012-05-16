@@ -5,9 +5,9 @@
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/event/object_fwd.hpp>
 #include <awl/backends/x11/event/fd/callback_fwd.hpp>
-#include <awl/backends/x11/event/fd/duration.hpp>
 #include <awl/backends/x11/event/fd/function.hpp>
 #include <awl/backends/x11/event/fd/object.hpp>
+#include <awl/backends/x11/event/fd/optional_duration_fwd.hpp>
 #include <awl/backends/x11/event/fd/scoped.hpp>
 #include <awl/backends/x11/event/fd/set.hpp>
 #include <awl/backends/x11/system/object_fwd.hpp>
@@ -100,7 +100,7 @@ public:
 	AWL_SYMBOL
 	bool
 	epoll(
-		awl::backends::x11::event::fd::duration const &
+		awl::backends::x11::event::fd::optional_duration const &
 	);
 
 	AWL_SYMBOL
