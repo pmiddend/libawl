@@ -4,6 +4,7 @@
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/event/fd/epoll_fd.hpp>
 #include <awl/backends/x11/event/fd/object.hpp>
+#include <awl/backends/x11/event/fd/object_vector.hpp>
 #include <awl/backends/x11/event/fd/optional_duration_fwd.hpp>
 #include <awl/backends/x11/event/fd/set_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -48,16 +49,11 @@ public:
 		awl::backends::x11::event::fd::object
 	);
 
-	// TODO: replace this by a range!
 	AWL_SYMBOL
-	unsigned
+	awl::backends::x11::event::fd::object_vector const &
 	epoll(
 		awl::backends::x11::event::fd::optional_duration const &
 	);
-
-	AWL_SYMBOL
-	epoll_event const *
-	events() const;
 private:
 	awl::backends::x11::event::fd::epoll_fd const epoll_fd_;
 
@@ -66,6 +62,10 @@ private:
 	> event_vector;
 
 	event_vector events_;
+
+	awl::backends::x11::event::fd::object_vector fds_;
+
+	awl::backends::x11::event::fd::object_vector ready_fds_;
 };
 
 }

@@ -341,6 +341,7 @@ set(
 	include/awl/backends/x11/event/fd/event_fwd.hpp
 	include/awl/backends/x11/event/fd/function.hpp
 	include/awl/backends/x11/event/fd/object.hpp
+	include/awl/backends/x11/event/fd/object_vector.hpp
 	include/awl/backends/x11/event/fd/optional_duration.hpp
 	include/awl/backends/x11/event/fd/optional_duration_fwd.hpp
 	include/awl/backends/x11/event/fd/scoped.hpp

@@ -5,6 +5,7 @@
 #include <awl/backends/x11/event/fd/duration.hpp>
 #include <awl/backends/x11/event/fd/event.hpp>
 #include <awl/backends/x11/event/fd/object.hpp>
+#include <awl/backends/x11/event/fd/object_vector.hpp>
 #include <awl/backends/x11/event/fd/optional_duration.hpp>
 #include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/system/event/callback.hpp>
@@ -23,7 +24,6 @@
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/signal/unregister/base_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <sys/epoll.h>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
 
@@ -202,50 +202,36 @@ awl::backends::x11::system::event::original_processor::epoll(
 	awl::backends::x11::event::fd::optional_duration const &_duration
 )
 {
-	unsigned const ready_fds(
+	awl::backends::x11::event::fd::object_vector const &ready_fds(
 		fd_set_.epoll(
 			_duration
 		)
 	);
 
 	for(
-		unsigned index = 0;
-		index < ready_fds;
-		++index
+		awl::backends::x11::event::fd::object_vector::const_iterator it(
+			ready_fds.begin()
+		);
+		it != ready_fds.end();
+		++it
 	)
 	{
-		epoll_event const &event(
-			fd_set_.events()[
-				index
-			]
+		fd_signal_map::iterator const map_it(
+			fd_signals_.find(
+				*it
+			)
 		);
 
 		if(
-			event.events
-			& EPOLLIN
+			map_it != fd_signals_.end()
 		)
-		{
-			fd_signal_map::iterator const it(
-				fd_signals_.find(
-					awl::backends::x11::event::fd::object(
-						event.data.fd
-					)
-				)
+			(*map_it->second)(
+				awl::backends::x11::event::fd::event()
 			);
-
-			if(
-				it != fd_signals_.end()
-			)
-				(*it->second)(
-					awl::backends::x11::event::fd::event()
-				);
-		}
 	}
 
 	return
-		ready_fds
-		!=
-		0u;
+		!ready_fds.empty();
 }
 
 void
