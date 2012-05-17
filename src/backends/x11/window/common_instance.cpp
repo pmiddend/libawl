@@ -1,4 +1,5 @@
 #include <awl/exception.hpp>
+#include <awl/backends/x11/discard.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/window/common_object.hpp>
 #include <awl/backends/x11/window/wrapped_class_hint.hpp>
@@ -29,7 +30,9 @@ awl::backends::x11::window::common_object::show()
 	);
 
 	this->display().sync(
-		false
+		awl::backends::x11::discard(
+			false
+		)
 	);
 }
 

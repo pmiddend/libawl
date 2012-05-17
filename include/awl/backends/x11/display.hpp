@@ -3,6 +3,7 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/x11/discard.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
@@ -33,7 +34,7 @@ public:
 	AWL_SYMBOL
 	void
 	sync(
-		bool discard
+		awl::backends::x11::discard
 	);
 };
 

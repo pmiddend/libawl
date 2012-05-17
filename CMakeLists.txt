@@ -328,6 +328,7 @@ set(
 	include/awl/backends/x11/colormap_fwd.hpp
 	include/awl/backends/x11/default_screen.hpp
 	include/awl/backends/x11/deleter.hpp
+	include/awl/backends/x11/discard.hpp
 	include/awl/backends/x11/display.hpp
 	include/awl/backends/x11/display_fd.hpp
 	include/awl/backends/x11/display_fwd.hpp
