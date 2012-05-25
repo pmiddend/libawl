@@ -332,14 +332,14 @@ set(
 	src/backends/x11/window/holder.cpp
 	src/backends/x11/window/object.cpp
 	src/backends/x11/window/original_class_hint.cpp
-	src/backends/x11/window/original_instance.cpp
+	src/backends/x11/window/original_object.cpp
 	src/backends/x11/window/root.cpp
 	src/backends/x11/window/set_wm_protocols.cpp
 	src/backends/x11/window/size_hints.cpp
 	src/backends/x11/window/transient_for_hint.cpp
 	src/backends/x11/window/visual.cpp
 	src/backends/x11/window/wrapped_class_hint.cpp
-	src/backends/x11/window/wrapped_instance.cpp
+	src/backends/x11/window/wrapped_object.cpp
 )
 
 set(
