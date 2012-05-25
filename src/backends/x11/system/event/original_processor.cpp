@@ -1,18 +1,20 @@
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/display_fd.hpp>
 #include <awl/backends/x11/event/object.hpp>
-#include <awl/backends/x11/event/fd/callback.hpp>
-#include <awl/backends/x11/event/fd/duration.hpp>
-#include <awl/backends/x11/event/fd/event.hpp>
-#include <awl/backends/x11/event/fd/object.hpp>
-#include <awl/backends/x11/event/fd/object_vector.hpp>
-#include <awl/backends/x11/event/fd/optional_duration.hpp>
+#include <awl/backends/linux/fd/callback.hpp>
+#include <awl/backends/linux/fd/duration.hpp>
+#include <awl/backends/linux/fd/event.hpp>
+#include <awl/backends/linux/fd/object.hpp>
+#include <awl/backends/linux/fd/object_vector.hpp>
+#include <awl/backends/linux/fd/optional_duration.hpp>
+#include <awl/backends/linux/fd/processor.hpp>
 #include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/system/event/callback.hpp>
 #include <awl/backends/x11/system/event/map_key.hpp>
 #include <awl/backends/x11/system/event/object.hpp>
 #include <awl/backends/x11/system/event/opcode.hpp>
 #include <awl/backends/x11/system/event/original_processor.hpp>
+#include <awl/backends/x11/system/event/processor.hpp>
 #include <awl/backends/x11/system/event/type.hpp>
 #include <awl/main/exit_code.hpp>
 #include <awl/system/event/quit.hpp>
@@ -29,9 +31,11 @@
 
 
 awl::backends::x11::system::event::original_processor::original_processor(
-	x11::system::object &_system
+	awl::backends::x11::system::object &_system
 )
 :
+	awl::backends::x11::system::event::processor(),
+	awl::backends::linux::fd::processor(),
 	system_(
 		_system
 	),
@@ -40,8 +44,10 @@ awl::backends::x11::system::event::original_processor::original_processor(
 	fd_signals_(),
 	scoped_fd_(
 		fd_set_,
-		awl::backends::x11::display_fd(
-			system_.display()
+		awl::backends::linux::fd::object(
+			awl::backends::x11::display_fd(
+				system_.display()
+			)
 		)
 	),
 	exit_code_(),
@@ -80,8 +86,8 @@ awl::backends::x11::system::event::original_processor::poll()
 
 	events_processed =
 		this->epoll(
-			awl::backends::x11::event::fd::optional_duration(
-				awl::backends::x11::event::fd::duration(
+			awl::backends::linux::fd::optional_duration(
+				awl::backends::linux::fd::duration(
 					0
 				)
 			)
@@ -140,9 +146,9 @@ awl::backends::x11::system::event::original_processor::quit_callback(
 
 fcppt::signal::auto_connection
 awl::backends::x11::system::event::original_processor::register_callback(
-	x11::system::event::opcode const &_opcode,
-	x11::system::event::type const &_type,
-	x11::system::event::callback const &_callback
+	awl::backends::x11::system::event::opcode const &_opcode,
+	awl::backends::x11::system::event::type const &_type,
+	awl::backends::x11::system::event::callback const &_callback
 )
 {
 	return
@@ -158,8 +164,8 @@ awl::backends::x11::system::event::original_processor::register_callback(
 
 fcppt::signal::auto_connection
 awl::backends::x11::system::event::original_processor::register_fd_callback(
-	awl::backends::x11::event::fd::object const &_fd,
-	awl::backends::x11::event::fd::callback const &_callback
+	awl::backends::linux::fd::object const &_fd,
+	awl::backends::linux::fd::callback const &_callback
 )
 {
 	fd_signal_map::iterator it(
@@ -199,17 +205,17 @@ awl::backends::x11::system::event::original_processor::register_fd_callback(
 
 bool
 awl::backends::x11::system::event::original_processor::epoll(
-	awl::backends::x11::event::fd::optional_duration const &_duration
+	awl::backends::linux::fd::optional_duration const &_duration
 )
 {
-	awl::backends::x11::event::fd::object_vector const &ready_fds(
+	awl::backends::linux::fd::object_vector const &ready_fds(
 		fd_set_.epoll(
 			_duration
 		)
 	);
 
 	for(
-		awl::backends::x11::event::fd::object_vector::const_iterator it(
+		awl::backends::linux::fd::object_vector::const_iterator it(
 			ready_fds.begin()
 		);
 		it != ready_fds.end();
@@ -226,7 +232,7 @@ awl::backends::x11::system::event::original_processor::epoll(
 			map_it != fd_signals_.end()
 		)
 			(*map_it->second)(
-				awl::backends::x11::event::fd::event()
+				awl::backends::linux::fd::event()
 			);
 	}
 
@@ -261,7 +267,7 @@ awl::backends::x11::system::event::original_processor::process(
 
 void
 awl::backends::x11::system::event::original_processor::unregister_fd_signal(
-	awl::backends::x11::event::fd::object const &_fd
+	awl::backends::linux::fd::object const &_fd
 )
 {
 	fd_signal_map::iterator const it(

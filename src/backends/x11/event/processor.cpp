@@ -1,8 +1,9 @@
+#include <awl/backends/linux/fd/optional_duration.hpp>
+#include <awl/backends/linux/fd/processor.hpp>
 #include <awl/backends/x11/event/next.hpp>
 #include <awl/backends/x11/event/object.hpp>
 #include <awl/backends/x11/event/pending.hpp>
 #include <awl/backends/x11/event/processor.hpp>
-#include <awl/backends/x11/event/fd/optional_duration.hpp>
 #include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/system/event/processor.hpp>
 #include <awl/backends/x11/system/event/optional_processor_ref.hpp>
@@ -84,18 +85,27 @@ awl::backends::x11::event::processor::next()
 	if(
 		system_processor_
 	)
-	{
-		system_processor_->epoll(
-			awl::backends::x11::event::fd::optional_duration()
-		);
-
 		if(
-			!awl::backends::x11::event::pending(
-				system_.display()
-			)
+			awl::backends::linux::fd::processor *linux_processor =
+				dynamic_cast<
+					awl::backends::linux::fd::processor *
+				>(
+					&*system_processor_
+				)
 		)
-			return;
-	}
+		{
+
+			linux_processor->epoll(
+				awl::backends::linux::fd::optional_duration()
+			);
+
+			if(
+				!awl::backends::x11::event::pending(
+					system_.display()
+				)
+			)
+				return;
+		}
 
 	x11::event::object const event(
 		x11::event::next(

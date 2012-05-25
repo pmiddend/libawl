@@ -3,7 +3,6 @@
 
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
-#include <awl/backends/x11/event/fd/object.hpp>
 
 
 namespace awl
@@ -14,7 +13,7 @@ namespace x11
 {
 
 AWL_SYMBOL
-awl::backends::x11::event::fd::object const
+int
 display_fd(
 	awl::backends::x11::display &
 );

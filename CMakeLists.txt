@@ -190,7 +190,7 @@ SET(
 
 # We can use either X11 or plain windows or Apple
 if(
-		APPLE
+	APPLE
 )
 	set(
 		AWL_COCOA_BACKEND
@@ -225,6 +225,15 @@ else()
 	message(
 		FATAL_ERROR
 		"This configuration is not supported!"
+	)
+endif()
+
+if(
+	${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
+)
+	set(
+		AWL_LINUX_BACKEND
+		TRUE
 	)
 endif()
 
@@ -282,10 +291,6 @@ set(
 	src/backends/x11/default_screen.cpp
 	src/backends/x11/display.cpp
 	src/backends/x11/display_fd.cpp
-	src/backends/x11/event/fd/epoll_ctl.cpp
-	src/backends/x11/event/fd/epoll_fd.cpp
-	src/backends/x11/event/fd/scoped.cpp
-	src/backends/x11/event/fd/set.cpp
 	src/backends/x11/event/next.cpp
 	src/backends/x11/event/object.cpp
 	src/backends/x11/event/pending.cpp
@@ -345,23 +350,6 @@ set(
 	include/awl/backends/x11/display.hpp
 	include/awl/backends/x11/display_fd.hpp
 	include/awl/backends/x11/display_fwd.hpp
-	include/awl/backends/x11/event/fd/callback.hpp
-	include/awl/backends/x11/event/fd/callback_fwd.hpp
-	include/awl/backends/x11/event/fd/duration.hpp
-	include/awl/backends/x11/event/fd/epoll_ctl.hpp
-	include/awl/backends/x11/event/fd/epoll_fd.hpp
-	include/awl/backends/x11/event/fd/epoll_fd_fwd.hpp
-	include/awl/backends/x11/event/fd/event.hpp
-	include/awl/backends/x11/event/fd/event_fwd.hpp
-	include/awl/backends/x11/event/fd/function.hpp
-	include/awl/backends/x11/event/fd/object.hpp
-	include/awl/backends/x11/event/fd/object_vector.hpp
-	include/awl/backends/x11/event/fd/optional_duration.hpp
-	include/awl/backends/x11/event/fd/optional_duration_fwd.hpp
-	include/awl/backends/x11/event/fd/scoped.hpp
-	include/awl/backends/x11/event/fd/scoped_fwd.hpp
-	include/awl/backends/x11/event/fd/set.hpp
-	include/awl/backends/x11/event/fd/set_fwd.hpp
 	include/awl/backends/x11/event/next.hpp
 	include/awl/backends/x11/event/object.hpp
 	include/awl/backends/x11/event/object_fwd.hpp
@@ -441,6 +429,38 @@ set(
 	include/awl/backends/x11/window/visual.hpp
 	include/awl/backends/x11/window/wrapped_class_hint.hpp
 	include/awl/backends/x11/window/wrapped_object.hpp
+)
+
+set(
+	AWL_LINUX_INCLUDE_FILES
+	include/awl/backends/linux/fd/callback.hpp
+	include/awl/backends/linux/fd/callback_fwd.hpp
+	include/awl/backends/linux/fd/duration.hpp
+	include/awl/backends/linux/fd/epoll/ctl.hpp
+	include/awl/backends/linux/fd/epoll/fd.hpp
+	include/awl/backends/linux/fd/epoll/fd_fwd.hpp
+	include/awl/backends/linux/fd/epoll/scoped.hpp
+	include/awl/backends/linux/fd/epoll/scoped_fwd.hpp
+	include/awl/backends/linux/fd/epoll/set.hpp
+	include/awl/backends/linux/fd/epoll/set_fwd.hpp
+	include/awl/backends/linux/fd/event.hpp
+	include/awl/backends/linux/fd/event_fwd.hpp
+	include/awl/backends/linux/fd/function.hpp
+	include/awl/backends/linux/fd/object.hpp
+	include/awl/backends/linux/fd/object_vector.hpp
+	include/awl/backends/linux/fd/optional_duration.hpp
+	include/awl/backends/linux/fd/optional_duration_fwd.hpp
+	include/awl/backends/linux/fd/processor.hpp
+	include/awl/backends/linux/fd/processor_fwd.hpp
+)
+
+set(
+	AWL_LINUX_SRC_FILES
+	src/backends/linux/fd/epoll/ctl.cpp
+	src/backends/linux/fd/epoll/fd.cpp
+	src/backends/linux/fd/epoll/scoped.cpp
+	src/backends/linux/fd/epoll/set.cpp
+	src/backends/linux/fd/processor.cpp
 )
 
 set(
@@ -593,6 +613,20 @@ if(
 	set(
 		AWL_SRC_FILES
 		"${AWL_SRC_FILES};${AWL_X11_SRC_FILES}"
+	)
+endif()
+
+if(
+	AWL_LINUX_BACKEND
+)
+	set(
+		AWL_INCLUDE_FILES
+		"${AWL_INCLUDE_FILES};${AWL_LINUX_INCLUDE_FILES}"
+	)
+
+	set(
+		AWL_SRC_FILES
+		"${AWL_SRC_FILES};${AWL_LINUX_SRC_FILES}"
 	)
 endif()
 

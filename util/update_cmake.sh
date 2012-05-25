@@ -63,6 +63,16 @@ update_main \
 	src/backends/x11
 # X11 end
 
+# Linux begin
+update_main \
+	AWL_LINUX_INCLUDE_FILES \
+	include/awl/backends/linux
+
+update_main \
+	AWL_LINUX_SRC_FILES \
+	src/backends/linux
+# Linux end
+
 # Windows begin
 update_main \
 	AWL_WINDOWS_INCLUDE_FILES \

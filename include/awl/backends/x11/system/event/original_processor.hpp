@@ -3,13 +3,14 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/linux/fd/callback_fwd.hpp>
+#include <awl/backends/linux/fd/function.hpp>
+#include <awl/backends/linux/fd/processor.hpp>
+#include <awl/backends/linux/fd/object.hpp>
+#include <awl/backends/linux/fd/optional_duration_fwd.hpp>
+#include <awl/backends/linux/fd/epoll/scoped.hpp>
+#include <awl/backends/linux/fd/epoll/set.hpp>
 #include <awl/backends/x11/event/object_fwd.hpp>
-#include <awl/backends/x11/event/fd/callback_fwd.hpp>
-#include <awl/backends/x11/event/fd/function.hpp>
-#include <awl/backends/x11/event/fd/object.hpp>
-#include <awl/backends/x11/event/fd/optional_duration_fwd.hpp>
-#include <awl/backends/x11/event/fd/scoped.hpp>
-#include <awl/backends/x11/event/fd/set.hpp>
 #include <awl/backends/x11/system/object_fwd.hpp>
 #include <awl/backends/x11/system/event/callback.hpp>
 #include <awl/backends/x11/system/event/map_key.hpp>
@@ -43,7 +44,8 @@ namespace event
 
 class AWL_CLASS_SYMBOL original_processor
 :
-	public awl::backends::x11::system::event::processor
+	public awl::backends::x11::system::event::processor,
+	public awl::backends::linux::fd::processor
 {
 	FCPPT_NONCOPYABLE(
 		original_processor
@@ -93,14 +95,14 @@ public:
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_fd_callback(
-		awl::backends::x11::event::fd::object const &,
-		awl::backends::x11::event::fd::callback const &
+		awl::backends::linux::fd::object const &,
+		awl::backends::linux::fd::callback const &
 	);
 
 	AWL_SYMBOL
 	bool
 	epoll(
-		awl::backends::x11::event::fd::optional_duration const &
+		awl::backends::linux::fd::optional_duration const &
 	);
 
 	AWL_SYMBOL
@@ -111,7 +113,7 @@ public:
 private:
 	void
 	unregister_fd_signal(
-		awl::backends::x11::event::fd::object const &
+		awl::backends::linux::fd::object const &
 	);
 
 	awl::backends::x11::system::object &system_;
@@ -127,21 +129,21 @@ private:
 
 	event_signal_map signals_;
 
-	awl::backends::x11::event::fd::set fd_set_;
+	awl::backends::linux::fd::epoll::set fd_set_;
 
 	typedef fcppt::signal::object<
-		awl::backends::x11::event::fd::function,
+		awl::backends::linux::fd::function,
 		fcppt::signal::unregister::base
 	> fd_signal;
 
 	typedef boost::ptr_map<
-		awl::backends::x11::event::fd::object,
+		awl::backends::linux::fd::object,
 		fd_signal
 	> fd_signal_map;
 
 	fd_signal_map fd_signals_;
 
-	awl::backends::x11::event::fd::scoped const scoped_fd_;
+	awl::backends::linux::fd::epoll::scoped const scoped_fd_;
 
 	awl::system::optional_exit_code exit_code_;
 

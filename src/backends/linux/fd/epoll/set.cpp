@@ -1,9 +1,9 @@
 #include <awl/exception.hpp>
-#include <awl/backends/x11/event/fd/epoll_ctl.hpp>
-#include <awl/backends/x11/event/fd/object.hpp>
-#include <awl/backends/x11/event/fd/object_vector.hpp>
-#include <awl/backends/x11/event/fd/optional_duration.hpp>
-#include <awl/backends/x11/event/fd/set.hpp>
+#include <awl/backends/linux/fd/object.hpp>
+#include <awl/backends/linux/fd/object_vector.hpp>
+#include <awl/backends/linux/fd/optional_duration.hpp>
+#include <awl/backends/linux/fd/epoll/ctl.hpp>
+#include <awl/backends/linux/fd/epoll/set.hpp>
 #include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/truncation_check_cast.hpp>
@@ -14,7 +14,7 @@
 #include <fcppt/config/external_end.hpp>
 
 
-awl::backends::x11::event::fd::set::set()
+awl::backends::linux::fd::epoll::set::set()
 :
 	epoll_fd_(),
 	events_(),
@@ -22,20 +22,20 @@ awl::backends::x11::event::fd::set::set()
 {
 }
 
-awl::backends::x11::event::fd::set::~set()
+awl::backends::linux::fd::epoll::set::~set()
 {
 }
 
 void
-awl::backends::x11::event::fd::set::add(
-	awl::backends::x11::event::fd::object const _fd
+awl::backends::linux::fd::epoll::set::add(
+	awl::backends::linux::fd::object const _fd
 )
 {
 	events_.push_back(
 		epoll_event()
 	);
 
-	awl::backends::x11::event::fd::epoll_ctl(
+	awl::backends::linux::fd::epoll::ctl(
 		epoll_fd_,
 		_fd,
 		&events_.back()
@@ -43,11 +43,11 @@ awl::backends::x11::event::fd::set::add(
 }
 
 void
-awl::backends::x11::event::fd::set::remove(
-	awl::backends::x11::event::fd::object const _fd
+awl::backends::linux::fd::epoll::set::remove(
+	awl::backends::linux::fd::object const _fd
 )
 {
-	awl::backends::x11::event::fd::epoll_ctl(
+	awl::backends::linux::fd::epoll::ctl(
 		epoll_fd_,
 		_fd,
 		fcppt::null_ptr()
@@ -56,9 +56,9 @@ awl::backends::x11::event::fd::set::remove(
 	events_.pop_back();
 }
 
-awl::backends::x11::event::fd::object_vector const &
-awl::backends::x11::event::fd::set::epoll(
-	awl::backends::x11::event::fd::optional_duration const &_duration
+awl::backends::linux::fd::object_vector const &
+awl::backends::linux::fd::epoll::set::epoll(
+	awl::backends::linux::fd::optional_duration const &_duration
 )
 {
 	int const ret(
@@ -122,7 +122,7 @@ awl::backends::x11::event::fd::set::epoll(
 			& EPOLLIN
 		)
 			ready_fds_.push_back(
-				awl::backends::x11::event::fd::object(
+				awl::backends::linux::fd::object(
 					event.data.fd
 				)
 			);
