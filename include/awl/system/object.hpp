@@ -34,6 +34,10 @@ public:
 	awl::visual::object_unique_ptr
 	default_visual() = 0;
 
+	virtual
+	awl::window::object_unique_ptr
+	focus_window() = 0;
+
 	AWL_SYMBOL
 	virtual
 	~object();

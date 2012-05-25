@@ -2,9 +2,12 @@
 #include <awl/backends/x11/discard.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/window/common_object.hpp>
+#include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/wrapped_class_hint.hpp>
 #include <awl/window/dim.hpp>
+#include <awl/window/object.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/try_dynamic_cast.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
@@ -81,4 +84,24 @@ awl::backends::x11::window::common_object::size() const
 				height_return
 			)
 		);
+}
+
+bool
+awl::backends::x11::window::common_object::equal_to(
+	awl::window::object const &_other
+) const
+{
+	FCPPT_TRY_DYNAMIC_CAST(
+		awl::backends::x11::window::object const *,
+		casted_other,
+		&_other
+	)
+	{
+		return
+			casted_other->get()
+			==
+			this->get();
+	}
+
+	return false;
 }

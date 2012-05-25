@@ -1,5 +1,6 @@
 #include <awl/backends/x11/default_screen.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
+#include <awl/backends/x11/get_input_focus.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/system/original_object.hpp>
 #include <awl/backends/x11/visual/default.hpp>
@@ -57,6 +58,18 @@ awl::backends::x11::system::original_object::default_visual()
 	return
 		awl::visual::object_unique_ptr(
 			awl::backends::x11::visual::default_(
+				display_,
+				screen_
+			)
+		);
+}
+
+awl::window::object_unique_ptr
+awl::backends::x11::system::original_object::focus_window()
+{
+	return
+		awl::window::object_unique_ptr(
+			awl::backends::x11::get_input_focus(
 				display_,
 				screen_
 			)

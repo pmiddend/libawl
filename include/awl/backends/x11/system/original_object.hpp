@@ -47,6 +47,10 @@ public:
 	default_visual();
 
 	AWL_SYMBOL
+	awl::window::object_unique_ptr
+	focus_window();
+
+	AWL_SYMBOL
 	awl::backends::x11::display &
 	display();
 

@@ -85,7 +85,7 @@ SET(
 	src/window/event/create_processor.cpp
 	src/window/event/processor.cpp
 	src/window/event/resize.cpp
-	src/window/instance.cpp
+	src/window/object.cpp
 	src/window/parameters.cpp
 )
 
@@ -296,6 +296,7 @@ set(
 	src/backends/x11/event/pending.cpp
 	src/backends/x11/event/processor.cpp
 	src/backends/x11/free.cpp
+	src/backends/x11/get_input_focus.cpp
 	src/backends/x11/intern_atom.cpp
 	src/backends/x11/log.cpp
 	src/backends/x11/original_display.cpp
@@ -313,7 +314,7 @@ set(
 	src/backends/x11/window/atoms.cpp
 	src/backends/x11/window/attributes.cpp
 	src/backends/x11/window/class_hint.cpp
-	src/backends/x11/window/common_instance.cpp
+	src/backends/x11/window/common_object.cpp
 	src/backends/x11/window/create.cpp
 	src/backends/x11/window/event/change_mask.cpp
 	src/backends/x11/window/event/filter.cpp
@@ -327,7 +328,7 @@ set(
 	src/backends/x11/window/event/wm_protocols.cpp
 	src/backends/x11/window/hints.cpp
 	src/backends/x11/window/holder.cpp
-	src/backends/x11/window/instance.cpp
+	src/backends/x11/window/object.cpp
 	src/backends/x11/window/original_class_hint.cpp
 	src/backends/x11/window/original_instance.cpp
 	src/backends/x11/window/root.cpp
@@ -357,6 +358,7 @@ set(
 	include/awl/backends/x11/event/processor.hpp
 	include/awl/backends/x11/event/processor_fwd.hpp
 	include/awl/backends/x11/free.hpp
+	include/awl/backends/x11/get_input_focus.hpp
 	include/awl/backends/x11/intern_atom.hpp
 	include/awl/backends/x11/log.hpp
 	include/awl/backends/x11/original_display.hpp
@@ -497,8 +499,8 @@ set(
 	src/backends/windows/window/event/processor.cpp
 	src/backends/windows/window/event/scoped_user_message.cpp
 	src/backends/windows/window/event/wnd_proc.cpp
-	src/backends/windows/window/instance.cpp
-	src/backends/windows/window/original_instance.cpp
+	src/backends/windows/window/object.cpp
+	src/backends/windows/window/original_object.cpp
 	src/backends/windows/window/screen_to_client.cpp
 	src/backends/windows/wndclass.cpp
 )

@@ -29,6 +29,12 @@ public:
 	awl::window::dim const
 	size() const = 0;
 
+	virtual
+	bool
+	equal_to(
+		awl::window::object const &
+	) const = 0;
+
 	AWL_SYMBOL
 	virtual
 	~object() = 0;

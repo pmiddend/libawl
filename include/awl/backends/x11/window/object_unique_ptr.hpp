@@ -4,6 +4,7 @@
 #include <awl/backends/x11/window/object_fwd.hpp>
 #include <fcppt/unique_ptr_impl.hpp>
 
+
 namespace awl
 {
 namespace backends
@@ -14,7 +15,7 @@ namespace window
 {
 
 typedef fcppt::unique_ptr<
-	window::object
+	awl::backends::x11::window::object
 > object_unique_ptr;
 
 }

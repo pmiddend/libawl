@@ -4,6 +4,7 @@
 #include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/class_hint_fwd.hpp>
 #include <awl/window/dim_fwd.hpp>
+#include <awl/window/object_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -40,6 +41,12 @@ public:
 	AWL_SYMBOL
 	awl::window::dim const
 	size() const;
+
+	AWL_SYMBOL
+	bool
+	equal_to(
+		awl::window::object const &
+	) const;
 };
 
 }
