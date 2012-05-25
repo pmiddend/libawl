@@ -10,11 +10,15 @@
 #include <awl/backends/windows/window/event/processor.hpp>
 #include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/window/object_fwd.hpp>
-#include <awl/window/event/close_callback.hpp>
+#include <awl/window/event/close_callback_fwd.hpp>
 #include <awl/window/event/close_signal.hpp>
-#include <awl/window/event/destroy_callback.hpp>
+#include <awl/window/event/destroy_callback_fwd.hpp>
 #include <awl/window/event/destroy_signal.hpp>
-#include <awl/window/event/resize_callback.hpp>
+#include <awl/window/event/focus_in_callback_fwd.hpp>
+#include <awl/window/event/focus_in_signal.hpp>
+#include <awl/window/event/focus_out_callback_fwd.hpp>
+#include <awl/window/event/focus_out_signal.hpp>
+#include <awl/window/event/resize_callback_fwd.hpp>
 #include <awl/window/event/resize_signal.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
@@ -26,6 +30,7 @@
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {
@@ -68,6 +73,18 @@ public:
 	fcppt::signal::auto_connection
 	destroy_callback(
 		awl::window::event::destroy_callback const &
+	);
+	
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
+	focus_in_callback(
+		awl::window::event::focus_in_callback const &
+	);
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
+	focus_out_callback(
+		awl::window::event::focus_out_callback const &
 	);
 
 	AWL_SYMBOL
@@ -128,6 +145,16 @@ private:
 	);
 
 	awl::backends::windows::window::event::return_type const
+	on_focus_in(
+		awl::backends::windows::window::event::object const &
+	);
+
+	awl::backends::windows::window::event::return_type const
+	on_focus_out(
+		awl::backends::windows::window::event::object const &
+	);
+
+	awl::backends::windows::window::event::return_type const
 	on_resize(
 		awl::backends::windows::window::event::object const &
 	);
@@ -148,6 +175,10 @@ private:
 	awl::window::event::close_signal close_signal_;
 
 	awl::window::event::destroy_signal destroy_signal_;
+
+	awl::window::event::focus_in_signal focus_in_signal_;
+
+	awl::window::event::focus_out_signal focus_out_signal_;
 
 	awl::window::event::resize_signal resize_signal_;
 

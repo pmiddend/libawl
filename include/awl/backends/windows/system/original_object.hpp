@@ -44,6 +44,9 @@ public:
 
 	awl::visual::object_unique_ptr
 	default_visual();
+
+	awl::window::object_unique_ptr
+	focus_window();
 private:
 	void
 	unregister_wndclass(

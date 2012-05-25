@@ -17,6 +17,10 @@
 #include <awl/window/event/close_callback.hpp>
 #include <awl/window/event/destroy.hpp>
 #include <awl/window/event/destroy_callback.hpp>
+#include <awl/window/event/focus_in.hpp>
+#include <awl/window/event/focus_in_callback.hpp>
+#include <awl/window/event/focus_out.hpp>
+#include <awl/window/event/focus_out_callback.hpp>
 #include <awl/window/event/resize.hpp>
 #include <awl/window/event/resize_callback.hpp>
 #include <fcppt/make_unique_ptr.hpp>
@@ -56,6 +60,8 @@ awl::backends::windows::window::event::original_processor::original_processor(
 		true
 	),
 	destroy_signal_(),
+	focus_in_signal_(),
+	focus_out_signal_(),
 	resize_signal_(),
 	connections_(
 		fcppt::assign::make_container<
@@ -85,6 +91,36 @@ awl::backends::windows::window::event::original_processor::original_processor(
 					),
 					std::tr1::bind(
 						&awl::backends::windows::window::event::original_processor::on_destroy,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
+		)(
+			fcppt::signal::shared_connection(
+				this->register_callback(
+					fcppt::strong_typedef_construct_cast<
+						awl::backends::windows::event::type
+					>(
+						WM_SETFOCUS
+					),
+					std::tr1::bind(
+						&awl::backends::windows::window::event::original_processor::on_focus_in,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
+		)(
+			fcppt::signal::shared_connection(
+				this->register_callback(
+					fcppt::strong_typedef_construct_cast<
+						awl::backends::windows::event::type
+					>(
+						WM_KILLFOCUS
+					),
+					std::tr1::bind(
+						&awl::backends::windows::window::event::original_processor::on_focus_out,
 						this,
 						std::tr1::placeholders::_1
 					)
@@ -183,6 +219,28 @@ awl::backends::windows::window::event::original_processor::destroy_callback(
 {
 	return
 		destroy_signal_.connect(
+			_callback
+		);
+}
+
+fcppt::signal::auto_connection
+awl::backends::windows::window::event::original_processor::focus_in_callback(
+	awl::window::event::focus_in_callback const &_callback
+)
+{
+	return
+		focus_in_signal_.connect(
+			_callback
+		);
+}
+
+fcppt::signal::auto_connection
+awl::backends::windows::window::event::original_processor::focus_out_callback(
+	awl::window::event::focus_out_callback const &_callback
+)
+{
+	return
+		focus_out_signal_.connect(
 			_callback
 		);
 }
@@ -320,9 +378,7 @@ awl::backends::windows::window::event::original_processor::on_close(
 {
 	return
 		close_signal_(
-			awl::window::event::close(
-				this->window()
-			)
+			awl::window::event::close()
 		)
 		?
 			awl::backends::windows::window::event::return_type()
@@ -339,9 +395,33 @@ awl::backends::windows::window::event::original_processor::on_destroy(
 )
 {
 	destroy_signal_(
-		awl::window::event::destroy(
-			this->window()
-		)
+		awl::window::event::destroy()
+	);
+
+	return
+		awl::backends::windows::window::event::return_type();
+}
+
+awl::backends::windows::window::event::return_type const
+awl::backends::windows::window::event::original_processor::on_focus_in(
+	awl::backends::windows::window::event::object const &
+)
+{
+	focus_in_signal_(
+		awl::window::event::focus_in()
+	);
+
+	return
+		awl::backends::windows::window::event::return_type();
+}
+
+awl::backends::windows::window::event::return_type const
+awl::backends::windows::window::event::original_processor::on_focus_out(
+	awl::backends::windows::window::event::object const &
+)
+{
+	focus_out_signal_(
+		awl::window::event::focus_out()
 	);
 
 	return
@@ -355,7 +435,6 @@ awl::backends::windows::window::event::original_processor::on_resize(
 {
 	resize_signal_(
 		awl::window::event::resize(
-			this->window(),
 			awl::window::dim(
 				static_cast<
 					awl::window::dim::value_type

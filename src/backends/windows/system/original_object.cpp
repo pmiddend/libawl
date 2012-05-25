@@ -1,5 +1,6 @@
 #include <awl/backends/windows/counted_wndclass.hpp>
 #include <awl/backends/windows/default_wnd_proc.hpp>
+#include <awl/backends/windows/get_focus.hpp>
 #include <awl/backends/windows/system/original_object.hpp>
 #include <awl/backends/windows/visual/null_object.hpp>
 #include <awl/backends/windows/window/original_object.hpp>
@@ -77,6 +78,15 @@ awl::backends::windows::system::original_object::default_visual()
 			fcppt::make_unique_ptr<
 				awl::backends::windows::visual::null_object
 			>()
+		);
+}
+
+awl::window::object_unique_ptr
+awl::backends::windows::system::original_object::focus_window()
+{
+	return
+		awl::window::object_unique_ptr(
+			awl::backends::windows::get_focus()
 		);
 }
 

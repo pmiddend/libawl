@@ -478,6 +478,7 @@ set(
 	src/backends/windows/event/post_message.cpp
 	src/backends/windows/event/processor.cpp
 	src/backends/windows/format_message.cpp
+	src/backends/windows/get_focus.cpp
 	src/backends/windows/local_free.cpp
 	src/backends/windows/module_handle.cpp
 	src/backends/windows/scoped_local_memory.cpp
@@ -495,6 +496,7 @@ set(
 	src/backends/windows/window/client_rect.cpp
 	src/backends/windows/window/client_rect_to_screen.cpp
 	src/backends/windows/window/client_to_screen.cpp
+	src/backends/windows/window/common_object.cpp
 	src/backends/windows/window/event/combine_result.cpp
 	src/backends/windows/window/event/object.cpp
 	src/backends/windows/window/event/original_processor.cpp
@@ -504,6 +506,7 @@ set(
 	src/backends/windows/window/object.cpp
 	src/backends/windows/window/original_object.cpp
 	src/backends/windows/window/screen_to_client.cpp
+	src/backends/windows/window/wrapped_object.cpp
 	src/backends/windows/wndclass.cpp
 )
 
@@ -526,6 +529,7 @@ set(
 	include/awl/backends/windows/event/type.hpp
 	include/awl/backends/windows/event/wparam.hpp
 	include/awl/backends/windows/format_message.hpp
+	include/awl/backends/windows/get_focus.hpp
 	include/awl/backends/windows/local_free.hpp
 	include/awl/backends/windows/module_handle.hpp
 	include/awl/backends/windows/scoped_local_memory.hpp
@@ -558,6 +562,7 @@ set(
 	include/awl/backends/windows/window/client_rect.hpp
 	include/awl/backends/windows/window/client_rect_to_screen.hpp
 	include/awl/backends/windows/window/client_to_screen.hpp
+	include/awl/backends/windows/window/common_object.hpp
 	include/awl/backends/windows/window/event/callback.hpp
 	include/awl/backends/windows/window/event/combine_result.hpp
 	include/awl/backends/windows/window/event/function.hpp
@@ -572,8 +577,12 @@ set(
 	include/awl/backends/windows/window/event/wnd_proc.hpp
 	include/awl/backends/windows/window/object.hpp
 	include/awl/backends/windows/window/object_fwd.hpp
+	include/awl/backends/windows/window/object_scoped_ptr.hpp
+	include/awl/backends/windows/window/object_shared_ptr.hpp
+	include/awl/backends/windows/window/object_unique_ptr.hpp
 	include/awl/backends/windows/window/original_object.hpp
 	include/awl/backends/windows/window/screen_to_client.hpp
+	include/awl/backends/windows/window/wrapped_object.hpp
 	include/awl/backends/windows/windows.hpp
 	include/awl/backends/windows/wndclass.hpp
 	include/awl/backends/windows/wndclass_fwd.hpp
