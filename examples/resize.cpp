@@ -15,6 +15,7 @@
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/processor_scoped_ptr.hpp>
 #include <awl/window/event/resize.hpp>
+#include <awl/window/event/resize_callback.hpp>
 #include <fcppt/exception.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/ref.hpp>
@@ -106,9 +107,11 @@ try
 
 	fcppt::signal::scoped_connection const resize_connection(
 		window_processor->resize_callback(
-			std::tr1::bind(
-				print_resize,
-				std::tr1::placeholders::_1
+			awl::window::event::resize_callback(
+				std::tr1::bind(
+					print_resize,
+					std::tr1::placeholders::_1
+				)
 			)
 		)
 	);

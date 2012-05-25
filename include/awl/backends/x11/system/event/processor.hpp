@@ -44,9 +44,9 @@ public:
 	virtual
 	fcppt::signal::auto_connection
 	register_callback(
-		x11::system::event::opcode const &,
-		x11::system::event::type const &,
-		x11::system::event::callback const &
+		awl::backends::x11::system::event::opcode const &,
+		awl::backends::x11::system::event::type const &,
+		awl::backends::x11::system::event::callback const &
 	) = 0;
 
 	virtual

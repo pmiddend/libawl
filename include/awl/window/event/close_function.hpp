@@ -3,6 +3,7 @@
 
 #include <awl/window/event/close_fwd.hpp>
 
+
 namespace awl
 {
 namespace window
@@ -10,9 +11,10 @@ namespace window
 namespace event
 {
 
-typedef bool
+typedef
+bool
 close_function(
-	event::close const &
+	awl::window::event::close const &
 );
 
 }

@@ -82,9 +82,7 @@ SET(
 	src/system/event/quit.cpp
 	src/system/object.cpp
 	src/visual/object.cpp
-	src/window/event/close.cpp
 	src/window/event/create_processor.cpp
-	src/window/event/destroy.cpp
 	src/window/event/processor.cpp
 	src/window/event/resize.cpp
 	src/window/instance.cpp
@@ -140,15 +138,29 @@ SET(
 	include/awl/window/dim_fwd.hpp
 	include/awl/window/event/close.hpp
 	include/awl/window/event/close_callback.hpp
+	include/awl/window/event/close_callback_fwd.hpp
 	include/awl/window/event/close_function.hpp
 	include/awl/window/event/close_fwd.hpp
 	include/awl/window/event/close_signal.hpp
 	include/awl/window/event/create_processor.hpp
 	include/awl/window/event/destroy.hpp
 	include/awl/window/event/destroy_callback.hpp
+	include/awl/window/event/destroy_callback_fwd.hpp
 	include/awl/window/event/destroy_function.hpp
 	include/awl/window/event/destroy_fwd.hpp
 	include/awl/window/event/destroy_signal.hpp
+	include/awl/window/event/focus_in.hpp
+	include/awl/window/event/focus_in_callback.hpp
+	include/awl/window/event/focus_in_callback_fwd.hpp
+	include/awl/window/event/focus_in_function.hpp
+	include/awl/window/event/focus_in_fwd.hpp
+	include/awl/window/event/focus_in_signal.hpp
+	include/awl/window/event/focus_out.hpp
+	include/awl/window/event/focus_out_callback.hpp
+	include/awl/window/event/focus_out_callback_fwd.hpp
+	include/awl/window/event/focus_out_function.hpp
+	include/awl/window/event/focus_out_fwd.hpp
+	include/awl/window/event/focus_out_signal.hpp
 	include/awl/window/event/processor.hpp
 	include/awl/window/event/processor_fwd.hpp
 	include/awl/window/event/processor_scoped_ptr.hpp
@@ -156,6 +168,7 @@ SET(
 	include/awl/window/event/processor_unique_ptr.hpp
 	include/awl/window/event/resize.hpp
 	include/awl/window/event/resize_callback.hpp
+	include/awl/window/event/resize_callback_fwd.hpp
 	include/awl/window/event/resize_function.hpp
 	include/awl/window/event/resize_fwd.hpp
 	include/awl/window/event/resize_signal.hpp
