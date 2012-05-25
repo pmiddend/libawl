@@ -85,6 +85,7 @@ SET(
 	src/window/event/create_processor.cpp
 	src/window/event/processor.cpp
 	src/window/event/resize.cpp
+	src/window/has_focus.cpp
 	src/window/object.cpp
 	src/window/parameters.cpp
 )
@@ -172,6 +173,7 @@ SET(
 	include/awl/window/event/resize_function.hpp
 	include/awl/window/event/resize_fwd.hpp
 	include/awl/window/event/resize_signal.hpp
+	include/awl/window/has_focus.hpp
 	include/awl/window/object.hpp
 	include/awl/window/object_fwd.hpp
 	include/awl/window/object_scoped_ptr.hpp
