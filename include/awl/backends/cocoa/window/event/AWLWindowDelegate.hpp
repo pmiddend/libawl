@@ -8,6 +8,6 @@
 
 - (AWLWindowDelegate *)init: (awl::backends::cocoa::window::event::processor *)parentProcessor;
 
-@end 
+@end
 
 #endif

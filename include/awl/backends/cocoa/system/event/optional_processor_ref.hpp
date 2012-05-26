@@ -14,7 +14,7 @@ namespace system
 {
 namespace event
 {
-typedef 
+typedef
 fcppt::optional
 <
 	awl::backends::cocoa::system::event::processor &

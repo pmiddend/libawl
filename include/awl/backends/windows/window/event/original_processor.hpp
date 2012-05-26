@@ -74,7 +74,7 @@ public:
 	destroy_callback(
 		awl::window::event::destroy_callback const &
 	);
-	
+
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	focus_in_callback(
