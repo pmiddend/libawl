@@ -494,7 +494,6 @@ set(
 	src/backends/windows/visual/object.cpp
 	src/backends/windows/window/adjusted_size.cpp
 	src/backends/windows/window/client_rect.cpp
-	src/backends/windows/window/client_rect_to_screen.cpp
 	src/backends/windows/window/client_to_screen.cpp
 	src/backends/windows/window/common_object.cpp
 	src/backends/windows/window/event/combine_result.cpp
@@ -532,6 +531,8 @@ set(
 	include/awl/backends/windows/get_focus.hpp
 	include/awl/backends/windows/local_free.hpp
 	include/awl/backends/windows/module_handle.hpp
+	include/awl/backends/windows/optional_point.hpp
+	include/awl/backends/windows/optional_point_fwd.hpp
 	include/awl/backends/windows/scoped_local_memory.hpp
 	include/awl/backends/windows/system/event/callback.hpp
 	include/awl/backends/windows/system/event/function.hpp
@@ -560,7 +561,6 @@ set(
 	include/awl/backends/windows/visual/object_unique_ptr.hpp
 	include/awl/backends/windows/window/adjusted_size.hpp
 	include/awl/backends/windows/window/client_rect.hpp
-	include/awl/backends/windows/window/client_rect_to_screen.hpp
 	include/awl/backends/windows/window/client_to_screen.hpp
 	include/awl/backends/windows/window/common_object.hpp
 	include/awl/backends/windows/window/event/callback.hpp

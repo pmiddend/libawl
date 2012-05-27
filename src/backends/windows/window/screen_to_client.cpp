@@ -1,13 +1,12 @@
-#include <awl/exception.hpp>
+#include <awl/backends/windows/optional_point.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/object.hpp>
 #include <awl/backends/windows/window/screen_to_client.hpp>
-#include <fcppt/text.hpp>
 
 
-POINT const
+awl::backends::windows::optional_point const
 awl::backends::windows::window::screen_to_client(
-	window::object const &_window,
+	awl::backends::windows::window::object const &_window,
 	POINT const &_point
 )
 {
@@ -15,16 +14,17 @@ awl::backends::windows::window::screen_to_client(
 		_point
 	);
 
-	if(
+	return
 		::ScreenToClient(
 			_window.hwnd(),
 			&ret
 		)
 		== FALSE
-	)
-		throw awl::exception(
-			FCPPT_TEXT("ScreenToClient() failed!")
-		);
-
-	return ret;
+		?
+			awl::backends::windows::optional_point()
+		:
+			awl::backends::windows::optional_point(
+				ret
+			)
+		;
 }
