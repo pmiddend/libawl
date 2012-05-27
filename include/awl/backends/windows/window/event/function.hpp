@@ -1,8 +1,9 @@
 #ifndef AWL_BACKENDS_WINDOWS_WINDOW_EVENT_FUNCTION_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_WINDOW_EVENT_FUNCTION_HPP_INCLUDED
 
-#include <awl/backends/windows/window/event/return_type.hpp>
 #include <awl/backends/windows/window/event/object_fwd.hpp>
+#include <awl/backends/windows/window/event/return_type_fwd.hpp>
+
 
 namespace awl
 {
@@ -15,9 +16,10 @@ namespace window
 namespace event
 {
 
-typedef windows::window::event::return_type
+typedef
+awl::backends::windows::window::event::return_type
 function(
-	windows::window::event::object const &
+	awl::backends::windows::window::event::object const &
 );
 
 }

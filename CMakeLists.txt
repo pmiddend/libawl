@@ -572,6 +572,7 @@ set(
 	include/awl/backends/windows/window/event/processor.hpp
 	include/awl/backends/windows/window/event/processor_fwd.hpp
 	include/awl/backends/windows/window/event/return_type.hpp
+	include/awl/backends/windows/window/event/return_type_fwd.hpp
 	include/awl/backends/windows/window/event/scoped_user_message.hpp
 	include/awl/backends/windows/window/event/scoped_user_message_fwd.hpp
 	include/awl/backends/windows/window/event/wnd_proc.hpp
