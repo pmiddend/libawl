@@ -15,6 +15,7 @@
 #include <awl/main/exit_code.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
+#include <fcppt/static_assert_expression.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/algorithm/remove.hpp>
@@ -26,9 +27,6 @@
 #include <fcppt/preprocessor/push_warning.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/tr1/functional.hpp>
-#include <fcppt/config/external_begin.hpp>
-#include <boost/static_assert.hpp>
-#include <fcppt/config/external_end.hpp>
 
 
 FCPPT_PP_PUSH_WARNING
@@ -312,7 +310,7 @@ awl::backends::windows::system::event::original_processor::generic_multiple_wait
 		)
 	);
 
-	BOOST_STATIC_ASSERT(
+	FCPPT_STATIC_ASSERT_EXPRESSION(
 		WAIT_OBJECT_0 == 0
 	);
 
