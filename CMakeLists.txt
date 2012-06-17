@@ -493,7 +493,6 @@ set(
 	src/backends/windows/visual/null_object.cpp
 	src/backends/windows/visual/object.cpp
 	src/backends/windows/window/adjusted_size.cpp
-	src/backends/windows/window/client_rect.cpp
 	src/backends/windows/window/client_to_screen.cpp
 	src/backends/windows/window/common_object.cpp
 	src/backends/windows/window/event/combine_result.cpp
@@ -502,6 +501,8 @@ set(
 	src/backends/windows/window/event/processor.cpp
 	src/backends/windows/window/event/scoped_user_message.cpp
 	src/backends/windows/window/event/wnd_proc.cpp
+	src/backends/windows/window/get_client_rect.cpp
+	src/backends/windows/window/get_rect.cpp
 	src/backends/windows/window/object.cpp
 	src/backends/windows/window/original_object.cpp
 	src/backends/windows/window/screen_to_client.cpp
@@ -533,6 +534,8 @@ set(
 	include/awl/backends/windows/module_handle.hpp
 	include/awl/backends/windows/optional_point.hpp
 	include/awl/backends/windows/optional_point_fwd.hpp
+	include/awl/backends/windows/optional_rect.hpp
+	include/awl/backends/windows/optional_rect_fwd.hpp
 	include/awl/backends/windows/scoped_local_memory.hpp
 	include/awl/backends/windows/system/event/callback.hpp
 	include/awl/backends/windows/system/event/function.hpp
@@ -560,7 +563,6 @@ set(
 	include/awl/backends/windows/visual/object_scoped_ptr.hpp
 	include/awl/backends/windows/visual/object_unique_ptr.hpp
 	include/awl/backends/windows/window/adjusted_size.hpp
-	include/awl/backends/windows/window/client_rect.hpp
 	include/awl/backends/windows/window/client_to_screen.hpp
 	include/awl/backends/windows/window/common_object.hpp
 	include/awl/backends/windows/window/event/callback.hpp
@@ -576,6 +578,8 @@ set(
 	include/awl/backends/windows/window/event/scoped_user_message.hpp
 	include/awl/backends/windows/window/event/scoped_user_message_fwd.hpp
 	include/awl/backends/windows/window/event/wnd_proc.hpp
+	include/awl/backends/windows/window/get_client_rect.hpp
+	include/awl/backends/windows/window/get_rect.hpp
 	include/awl/backends/windows/window/object.hpp
 	include/awl/backends/windows/window/object_fwd.hpp
 	include/awl/backends/windows/window/object_scoped_ptr.hpp
