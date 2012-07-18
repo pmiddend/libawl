@@ -753,6 +753,8 @@ function(
 		${Fcppt_core_LIBRARIES}
 	)
 
+	# TODO: Link to certain windows libs
+
 	if(
 		AWL_X11_BACKEND
 	)
@@ -804,11 +806,19 @@ if(
 
 endif()
 
-# TODO: Link to certain windows libs
-
-add_subdirectory(
-	examples
+option(
+	ENABLE_EXAMPLES
+	"Build the examples"
+	ON
 )
+
+if(
+	ENABLE_EXAMPLES
+)
+	add_subdirectory(
+		examples
+	)
+endif()
 
 foreach(
 	CUR_FILE
