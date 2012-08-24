@@ -20,8 +20,12 @@
 #include <awl/window/event/focus_in_callback.hpp>
 #include <awl/window/event/focus_out.hpp>
 #include <awl/window/event/focus_out_callback.hpp>
+#include <awl/window/event/hide.hpp>
+#include <awl/window/event/hide_callback.hpp>
 #include <awl/window/event/resize.hpp>
 #include <awl/window/event/resize_callback.hpp>
+#include <awl/window/event/show.hpp>
+#include <awl/window/event/show_callback.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/assert/error.hpp>
 #include <fcppt/assign/make_container.hpp>
@@ -82,7 +86,9 @@ awl::backends::x11::window::event::original_processor::original_processor(
 	destroy_signal_(),
 	focus_in_signal_(),
 	focus_out_signal_(),
+	hide_signal_(),
 	resize_signal_(),
+	show_signal_(),
 	connection_manager_(
 		fcppt::assign::make_container<
 			fcppt::signal::connection_manager::container
@@ -146,6 +152,32 @@ awl::backends::x11::window::event::original_processor::original_processor(
 					),
 					std::tr1::bind(
 						&awl::backends::x11::window::event::original_processor::on_focus_out,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
+		)(
+			fcppt::signal::shared_connection(
+				this->register_callback(
+					awl::backends::x11::window::event::type(
+						MapNotify
+					),
+					std::tr1::bind(
+						&awl::backends::x11::window::event::original_processor::on_map,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
+		)(
+			fcppt::signal::shared_connection(
+				this->register_callback(
+					awl::backends::x11::window::event::type(
+						UnmapNotify
+					),
+					std::tr1::bind(
+						&awl::backends::x11::window::event::original_processor::on_unmap,
 						this,
 						std::tr1::placeholders::_1
 					)
@@ -250,12 +282,34 @@ awl::backends::x11::window::event::original_processor::focus_out_callback(
 }
 
 fcppt::signal::auto_connection
+awl::backends::x11::window::event::original_processor::hide_callback(
+	awl::window::event::hide_callback const &_callback
+)
+{
+	return
+		hide_signal_.connect(
+			_callback
+		);
+}
+
+fcppt::signal::auto_connection
 awl::backends::x11::window::event::original_processor::resize_callback(
 	awl::window::event::resize_callback const &_callback
 )
 {
 	return
 		resize_signal_.connect(
+			_callback
+		);
+}
+
+fcppt::signal::auto_connection
+awl::backends::x11::window::event::original_processor::show_callback(
+	awl::window::event::show_callback const &_callback
+)
+{
+	return
+		show_signal_.connect(
 			_callback
 		);
 }
@@ -490,5 +544,25 @@ awl::backends::x11::window::event::original_processor::on_focus_out(
 {
 	focus_out_signal_(
 		awl::window::event::focus_out()
+	);
+}
+
+void
+awl::backends::x11::window::event::original_processor::on_map(
+	awl::backends::x11::window::event::object const &
+)
+{
+	show_signal_(
+		awl::window::event::show()
+	);
+}
+
+void
+awl::backends::x11::window::event::original_processor::on_unmap(
+	awl::backends::x11::window::event::object const &
+)
+{
+	hide_signal_(
+		awl::window::event::hide()
 	);
 }

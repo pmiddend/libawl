@@ -162,6 +162,12 @@ SET(
 	include/awl/window/event/focus_out_function.hpp
 	include/awl/window/event/focus_out_fwd.hpp
 	include/awl/window/event/focus_out_signal.hpp
+	include/awl/window/event/hide.hpp
+	include/awl/window/event/hide_callback.hpp
+	include/awl/window/event/hide_callback_fwd.hpp
+	include/awl/window/event/hide_function.hpp
+	include/awl/window/event/hide_fwd.hpp
+	include/awl/window/event/hide_signal.hpp
 	include/awl/window/event/processor.hpp
 	include/awl/window/event/processor_fwd.hpp
 	include/awl/window/event/processor_scoped_ptr.hpp
@@ -173,6 +179,12 @@ SET(
 	include/awl/window/event/resize_function.hpp
 	include/awl/window/event/resize_fwd.hpp
 	include/awl/window/event/resize_signal.hpp
+	include/awl/window/event/show.hpp
+	include/awl/window/event/show_callback.hpp
+	include/awl/window/event/show_callback_fwd.hpp
+	include/awl/window/event/show_function.hpp
+	include/awl/window/event/show_fwd.hpp
+	include/awl/window/event/show_signal.hpp
 	include/awl/window/has_focus.hpp
 	include/awl/window/object.hpp
 	include/awl/window/object_fwd.hpp

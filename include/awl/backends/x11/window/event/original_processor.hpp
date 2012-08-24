@@ -20,8 +20,12 @@
 #include <awl/window/event/focus_in_signal.hpp>
 #include <awl/window/event/focus_out_callback_fwd.hpp>
 #include <awl/window/event/focus_out_signal.hpp>
+#include <awl/window/event/hide_callback_fwd.hpp>
+#include <awl/window/event/hide_signal.hpp>
 #include <awl/window/event/resize_callback_fwd.hpp>
 #include <awl/window/event/resize_signal.hpp>
+#include <awl/window/event/show_callback_fwd.hpp>
+#include <awl/window/event/show_signal.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/signal/auto_connection_fwd.hpp>
@@ -93,8 +97,20 @@ public:
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
+	hide_callback(
+		awl::window::event::hide_callback const &
+	);
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
 	resize_callback(
 		awl::window::event::resize_callback const &
+	);
+
+	AWL_SYMBOL
+	fcppt::signal::auto_connection
+	show_callback(
+		awl::window::event::show_callback const &
 	);
 
 	AWL_SYMBOL
@@ -152,6 +168,16 @@ private:
 		awl::backends::x11::window::event::object const &
 	);
 
+	void
+	on_map(
+		awl::backends::x11::window::event::object const &
+	);
+
+	void
+	on_unmap(
+		awl::backends::x11::window::event::object const &
+	);
+
 	awl::backends::x11::window::object &window_;
 
 	typedef fcppt::signal::object<
@@ -198,7 +224,11 @@ private:
 
 	awl::window::event::focus_out_signal focus_out_signal_;
 
+	awl::window::event::hide_signal hide_signal_;
+
 	awl::window::event::resize_signal resize_signal_;
+
+	awl::window::event::show_signal show_signal_;
 
 	fcppt::signal::connection_manager const connection_manager_;
 };

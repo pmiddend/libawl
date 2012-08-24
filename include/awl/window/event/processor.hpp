@@ -8,10 +8,12 @@
 #include <awl/window/event/focus_in_callback_fwd.hpp>
 #include <awl/window/event/focus_out_callback_fwd.hpp>
 #include <awl/window/event/destroy_callback_fwd.hpp>
+#include <awl/window/event/hide_callback_fwd.hpp>
 #include <awl/window/event/processor_fwd.hpp>
 #include <awl/window/event/resize_callback_fwd.hpp>
+#include <awl/window/event/show_callback_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/auto_connection_fwd.hpp>
 
 
 namespace awl
@@ -60,8 +62,20 @@ public:
 
 	virtual
 	fcppt::signal::auto_connection
+	hide_callback(
+		awl::window::event::hide_callback const &
+	) = 0;
+
+	virtual
+	fcppt::signal::auto_connection
 	resize_callback(
 		awl::window::event::resize_callback const &
+	) = 0;
+
+	virtual
+	fcppt::signal::auto_connection
+	show_callback(
+		awl::window::event::show_callback const &
 	) = 0;
 
 	virtual

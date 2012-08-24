@@ -4,6 +4,7 @@
 #include <awl/window/event/close_function.hpp>
 #include <fcppt/signal/object_fwd.hpp>
 
+
 namespace awl
 {
 namespace window
@@ -12,7 +13,7 @@ namespace event
 {
 
 typedef fcppt::signal::object<
-	event::close_function
+	awl::window::event::close_function
 > close_signal;
 
 }
