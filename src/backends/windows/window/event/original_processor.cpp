@@ -21,8 +21,12 @@
 #include <awl/window/event/focus_in_callback.hpp>
 #include <awl/window/event/focus_out.hpp>
 #include <awl/window/event/focus_out_callback.hpp>
+#include <awl/window/event/hide.hpp>
+#include <awl/window/event/hide_callback.hpp>
 #include <awl/window/event/resize.hpp>
 #include <awl/window/event/resize_callback.hpp>
+#include <awl/window/event/show.hpp>
+#include <awl/window/event/show_callback.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
@@ -62,7 +66,9 @@ awl::backends::windows::window::event::original_processor::original_processor(
 	destroy_signal_(),
 	focus_in_signal_(),
 	focus_out_signal_(),
+	hide_signal_(),
 	resize_signal_(),
+	show_signal_(),
 	connections_(
 		fcppt::assign::make_container<
 			fcppt::signal::connection_manager::container
@@ -136,6 +142,21 @@ awl::backends::windows::window::event::original_processor::original_processor(
 					),
 					std::tr1::bind(
 						&awl::backends::windows::window::event::original_processor::on_resize,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
+		)(
+			fcppt::signal::shared_connection(
+				this->register_callback(
+					fcppt::strong_typedef_construct_cast<
+						awl::backends::windows::event::type
+					>(
+						WM_SHOWWINDOW
+					),
+					std::tr1::bind(
+						&awl::backends::windows::window::event::original_processor::on_show,
 						this,
 						std::tr1::placeholders::_1
 					)
@@ -246,12 +267,34 @@ awl::backends::windows::window::event::original_processor::focus_out_callback(
 }
 
 fcppt::signal::auto_connection
+awl::backends::windows::window::event::original_processor::hide_callback(
+	awl::window::event::hide_callback const &_callback
+)
+{
+	return
+		hide_signal_.connect(
+			_callback
+		);
+}
+
+fcppt::signal::auto_connection
 awl::backends::windows::window::event::original_processor::resize_callback(
 	awl::window::event::resize_callback const &_callback
 )
 {
 	return
 		resize_signal_.connect(
+			_callback
+		);
+}
+
+fcppt::signal::auto_connection
+awl::backends::windows::window::event::original_processor::show_callback(
+	awl::window::event::show_callback const &_callback
+)
+{
+	return
+		show_signal_.connect(
 			_callback
 		);
 }
@@ -453,6 +496,31 @@ awl::backends::windows::window::event::original_processor::on_resize(
 			)
 		)
 	);
+
+	return
+		awl::backends::windows::window::event::return_type();
+}
+
+awl::backends::windows::window::event::return_type const
+awl::backends::windows::window::event::original_processor::on_show(
+	awl::backends::windows::window::event::object const &_event
+)
+{
+	switch(
+		_event.wparam().get()
+	)
+	{
+	case TRUE:
+		show_signal_(
+			awl::window::event::show()
+		);
+		break;
+	case FALSE:
+		hide_signal_(
+			awl::window::event::hide()
+		);
+		break;
+	}
 
 	return
 		awl::backends::windows::window::event::return_type();
