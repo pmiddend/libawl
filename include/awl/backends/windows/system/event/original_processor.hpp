@@ -125,7 +125,7 @@ private:
 	>
 	bool
 	generic_multiple_wait(
-		Function const &,
+		Function,
 		DWORD timeout
 	);
 

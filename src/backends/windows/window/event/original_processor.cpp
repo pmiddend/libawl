@@ -42,8 +42,8 @@
 #include <fcppt/signal/shared_connection.hpp>
 #include <fcppt/tr1/functional.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/spirit/home/phoenix/core/argument.hpp>
-#include <boost/spirit/home/phoenix/operator/logical.hpp>
+#include <boost/phoenix/core/argument.hpp>
+#include <boost/phoenix/operator/logical.hpp>
 #include <fcppt/config/external_end.hpp>
 
 

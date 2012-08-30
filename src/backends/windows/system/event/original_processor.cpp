@@ -293,7 +293,7 @@ template<
 >
 bool
 awl::backends::windows::system::event::original_processor::generic_multiple_wait(
-	Function const &_function,
+	Function _function, // nonconst for VC++2012
 	DWORD const _timeout
 )
 {
