@@ -559,6 +559,8 @@ set(
 	AWL_WINDOWS_INCLUDE_FILES
 	include/awl/backends/windows/counted_wndclass.hpp
 	include/awl/backends/windows/counted_wndclass_fwd.hpp
+	include/awl/backends/windows/cursor/const_optional_object_ref.hpp
+	include/awl/backends/windows/cursor/const_optional_object_ref_fwd.hpp
 	include/awl/backends/windows/cursor/convert_predefined.hpp
 	include/awl/backends/windows/cursor/create_predefined.hpp
 	include/awl/backends/windows/cursor/load.hpp

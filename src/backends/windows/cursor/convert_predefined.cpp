@@ -1,11 +1,11 @@
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/cursor/convert_predefined.hpp>
 #include <awl/cursor/predefined.hpp>
-#include <fcppt/string.hpp>
+#include <fcppt/char_type.hpp>
 #include <fcppt/assert/unreachable.hpp>
 
 
-fcppt::string const
+fcppt::char_type const *
 awl::backends::windows::cursor::convert_predefined(
 	awl::cursor::predefined::type const _type
 )

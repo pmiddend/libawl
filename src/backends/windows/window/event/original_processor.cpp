@@ -1,11 +1,13 @@
 #include <awl/backends/windows/default_wnd_proc.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/cursor/const_optional_object_ref.hpp>
+#include <awl/backends/windows/cursor/object.hpp>
 #include <awl/backends/windows/event/lparam.hpp>
 #include <awl/backends/windows/event/message.hpp>
 #include <awl/backends/windows/event/optional_message.hpp>
 #include <awl/backends/windows/event/peek.hpp>
 #include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/event/wparam.hpp>
-#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/object.hpp>
 #include <awl/backends/windows/window/event/combine_result.hpp>
 #include <awl/backends/windows/window/event/object.hpp>
@@ -157,6 +159,21 @@ awl::backends::windows::window::event::original_processor::original_processor(
 					),
 					std::tr1::bind(
 						&awl::backends::windows::window::event::original_processor::on_show,
+						this,
+						std::tr1::placeholders::_1
+					)
+				)
+			)
+		)(
+			fcppt::signal::shared_connection(
+				this->register_callback(
+					fcppt::strong_typedef_construct_cast<
+						awl::backends::windows::event::type
+					>(
+						WM_SETCURSOR
+					),
+					std::tr1::bind(
+						&awl::backends::windows::window::event::original_processor::on_setcursor,
 						this,
 						std::tr1::placeholders::_1
 					)
@@ -520,6 +537,35 @@ awl::backends::windows::window::event::original_processor::on_show(
 			awl::window::event::hide()
 		);
 		break;
+	}
+
+	return
+		awl::backends::windows::window::event::return_type();
+}
+
+awl::backends::windows::window::event::return_type const
+awl::backends::windows::window::event::original_processor::on_setcursor(
+	awl::backends::windows::window::event::object const &_event
+)
+{
+	if(
+		window_.cursor()
+		&&
+		LOWORD(
+			_event.lparam().get()
+		)
+		==
+		HTCLIENT
+	)
+	{
+		::SetCursor(
+			window_.cursor()->get()
+		);
+		
+		return
+			awl::backends::windows::window::event::return_type(
+				TRUE
+			);
 	}
 
 	return

@@ -3,7 +3,7 @@
 
 #include <awl/symbol.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <fcppt/string.hpp>
+#include <fcppt/char_type.hpp>
 
 
 namespace awl
@@ -18,7 +18,7 @@ namespace cursor
 AWL_SYMBOL
 HCURSOR
 load(
-	fcppt::string
+	fcppt::char_type const *
 );
 
 }

@@ -3,7 +3,7 @@
 
 #include <awl/symbol.hpp>
 #include <awl/cursor/predefined.hpp>
-#include <fcppt/string.hpp>
+#include <fcppt/char_type.hpp>
 
 
 namespace awl
@@ -16,7 +16,7 @@ namespace cursor
 {
 
 AWL_SYMBOL
-fcppt::string const
+fcppt::char_type const *
 convert_predefined(
 	awl::cursor::predefined::type
 );

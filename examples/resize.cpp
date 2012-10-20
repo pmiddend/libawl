@@ -117,8 +117,9 @@ try
 		)
 	);
 
-	bool running =
-		true;
+	bool running(
+		true
+	);
 
 	fcppt::signal::scoped_connection const destroy_connection(
 		window_processor->destroy_callback(
@@ -126,7 +127,8 @@ try
 				window_destroyed,
 				std::tr1::placeholders::_1,
 				fcppt::ref(
-					running)
+					running
+				)
 			)
 		)
 	);

@@ -3,10 +3,11 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <awl/backends/windows/windows.hpp>
-#include <awl/backends/windows/window/common_object.hpp>
 #include <awl/backends/windows/wndclass_fwd.hpp>
 #include <awl/backends/windows/wndclass_remove_callback.hpp>
+#include <awl/backends/windows/cursor/const_optional_object_ref.hpp>
+#include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/window/common_object.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 
@@ -41,10 +42,15 @@ public:
 	AWL_SYMBOL
 	HWND
 	hwnd() const;
+
+	awl::backends::windows::cursor::const_optional_object_ref const
+	cursor() const;
 private:
 	HWND const handle_;
 
 	awl::backends::windows::wndclass_remove_callback const remove_wndclass_;
+
+	awl::backends::windows::cursor::const_optional_object_ref const cursor_;
 };
 
 }

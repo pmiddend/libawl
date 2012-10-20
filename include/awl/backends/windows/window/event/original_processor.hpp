@@ -179,6 +179,11 @@ private:
 		awl::backends::windows::window::event::object const &
 	);
 
+	awl::backends::windows::window::event::return_type const
+	on_setcursor(
+		awl::backends::windows::window::event::object const &
+	);
+
 	windows::window::object &window_;
 
 	typedef fcppt::signal::object<

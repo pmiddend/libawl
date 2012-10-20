@@ -3,11 +3,15 @@
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/wndclass.hpp>
 #include <awl/backends/windows/wndclass_remove_callback.hpp>
+#include <awl/backends/windows/cursor/const_optional_object_ref.hpp>
+#include <awl/backends/windows/cursor/object.hpp>
 #include <awl/backends/windows/visual/object.hpp>
 #include <awl/backends/windows/window/adjusted_size.hpp>
 #include <awl/backends/windows/window/common_object.hpp>
 #include <awl/backends/windows/window/original_object.hpp>
 #include <awl/window/parameters.hpp>
+#include <fcppt/null_ptr.hpp>
+#include <fcppt/static_optional_cast.hpp>
 #include <fcppt/text.hpp>
 
 
@@ -42,14 +46,21 @@ awl::backends::windows::window::original_object::original_object(
 				_param.size(),
 				window_flags
 			).h(),
-			NULL,
-			NULL,
+			fcppt::null_ptr(),
+			fcppt::null_ptr(),
 			awl::backends::windows::module_handle(),
-			NULL
+			fcppt::null_ptr()
 		)
 	),
 	remove_wndclass_(
 		_remove_wndclass
+	),
+	cursor_(
+		fcppt::static_optional_cast<
+			awl::backends::windows::cursor::object const
+		>(
+			_param.cursor()
+		)
 	)
 {
 	if(
@@ -81,4 +92,10 @@ HWND
 awl::backends::windows::window::original_object::hwnd() const
 {
 	return handle_;
+}
+
+awl::backends::windows::cursor::const_optional_object_ref const
+awl::backends::windows::window::original_object::cursor() const
+{
+	return cursor_;
 }

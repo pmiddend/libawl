@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_WINDOWS_CURSOR_SHARED_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_CURSOR_SHARED_HPP_INCLUDED
 
+#include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/cursor/object.hpp>
@@ -17,7 +18,7 @@ namespace windows
 namespace cursor
 {
 
-class shared
+class AWL_CLASS_SYMBOL shared
 :
 	public awl::backends::windows::cursor::object
 {
