@@ -64,7 +64,7 @@ awl::backends::x11::window::original_object::original_object(
 			colormap_,
 			visual_,
 			fcppt::static_optional_cast<
-				awl::backends::x11::cursor::object const &
+				awl::backends::x11::cursor::object const
 			>(
 				_params.cursor()
 			)
