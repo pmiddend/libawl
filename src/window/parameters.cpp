@@ -1,3 +1,4 @@
+#include <awl/cursor/const_optional_object_ref.hpp>
 #include <awl/visual/object_fwd.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/optional_dim.hpp>
@@ -20,7 +21,8 @@ awl::window::parameters::parameters(
 	minimum_size_hint_(),
 	maximum_size_hint_(),
 	title_(),
-	class_name_()
+	class_name_(),
+	cursor_()
 {
 }
 
@@ -94,6 +96,16 @@ awl::window::parameters::class_name(
 	return *this;
 }
 
+awl::window::parameters &
+awl::window::parameters::cursor(
+	awl::cursor::const_optional_object_ref const &_cursor
+)
+{
+	cursor_ = _cursor;
+
+	return *this;
+}
+
 awl::visual::object const &
 awl::window::parameters::visual() const
 {
@@ -140,4 +152,10 @@ fcppt::string const
 awl::window::parameters::class_name() const
 {
 	return class_name_;
+}
+
+awl::cursor::const_optional_object_ref const &
+awl::window::parameters::cursor() const
+{
+	return cursor_;
 }

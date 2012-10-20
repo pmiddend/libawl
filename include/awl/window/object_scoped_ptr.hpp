@@ -4,13 +4,14 @@
 #include <awl/window/object_fwd.hpp>
 #include <fcppt/scoped_ptr_impl.hpp>
 
+
 namespace awl
 {
 namespace window
 {
 
 typedef fcppt::scoped_ptr<
-	window::object
+	awl::window::object
 > object_scoped_ptr;
 
 }

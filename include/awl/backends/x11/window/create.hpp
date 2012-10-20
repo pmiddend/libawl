@@ -5,6 +5,7 @@
 #include <awl/backends/x11/colormap_fwd.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
+#include <awl/backends/x11/cursor/const_optional_object_ref_fwd.hpp>
 #include <awl/backends/x11/visual/object_fwd.hpp>
 #include <awl/window/optional_dim_fwd.hpp>
 #include <awl/window/optional_position_fwd.hpp>
@@ -30,7 +31,8 @@ create(
 	awl::backends::x11::display &,
 	awl::backends::x11::screen,
 	awl::backends::x11::colormap const &,
-	awl::backends::x11::visual::object const &
+	awl::backends::x11::visual::object const &,
+	awl::backends::x11::cursor::const_optional_object_ref const &
 );
 
 }

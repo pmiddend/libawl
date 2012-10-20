@@ -1,6 +1,8 @@
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/screen.hpp>
+#include <awl/backends/x11/cursor/const_optional_object_ref.hpp>
+#include <awl/backends/x11/cursor/object.hpp>
 #include <awl/backends/x11/visual/object.hpp>
 #include <awl/backends/x11/window/create.hpp>
 #include <awl/window/optional_position.hpp>
@@ -17,9 +19,18 @@ awl::backends::x11::window::create(
 	awl::backends::x11::display &_display,
 	awl::backends::x11::screen const _screen,
 	awl::backends::x11::colormap const &_colormap,
-	awl::backends::x11::visual::object const &_visual
+	awl::backends::x11::visual::object const &_visual,
+	awl::backends::x11::cursor::const_optional_object_ref const &_cursor
 )
 {
+	unsigned long value_mask(
+		CWColormap
+		|
+		CWBorderPixel
+		|
+		CWEventMask
+	);
+
 	XSetWindowAttributes swa;
 
 	swa.colormap = _colormap.get();
@@ -27,6 +38,15 @@ awl::backends::x11::window::create(
 	swa.border_pixel = 0;
 
 	swa.event_mask = StructureNotifyMask | FocusChangeMask;
+
+	if(
+		_cursor
+	)
+	{
+		swa.cursor = _cursor->get();
+
+		value_mask |= CWCursor;
+	}
 
 	// always returns a handle
 	return
@@ -69,7 +89,7 @@ awl::backends::x11::window::create(
 			_visual.info().depth,
 			InputOutput,
 			&_visual.get(),
-			CWColormap | CWBorderPixel | CWEventMask,
+			value_mask,
 			&swa
 		);
 }

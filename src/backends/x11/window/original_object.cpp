@@ -2,6 +2,7 @@
 #include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/screen.hpp>
+#include <awl/backends/x11/cursor/object.hpp>
 #include <awl/backends/x11/visual/object.hpp>
 #include <awl/backends/x11/window/create.hpp>
 #include <awl/backends/x11/window/original_object.hpp>
@@ -12,6 +13,7 @@
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
 #include <fcppt/ref.hpp>
+#include <fcppt/static_optional_cast.hpp>
 #include <fcppt/to_std_string.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
@@ -54,13 +56,18 @@ awl::backends::x11::window::original_object::original_object(
 	),
 	window_(
 		display_,
-		x11::window::create(
+		awl::backends::x11::window::create(
 			_params.position(),
 			_params.size(),
 			display_,
 			screen_,
 			colormap_,
-			visual_
+			visual_,
+			fcppt::static_optional_cast<
+				awl::backends::x11::cursor::object const &
+			>(
+				_params.cursor()
+			)
 		)
 	)
 {
@@ -97,7 +104,7 @@ awl::backends::x11::window::original_object::original_object(
 	if(
 		_params.exact_size_hint()
 	)
-		x11::window::transient_for_hint(
+		awl::backends::x11::window::transient_for_hint(
 			*this,
 			*x11::window::root(
 				display_,

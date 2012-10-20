@@ -1,4 +1,6 @@
+#include <awl/window/object_fwd.hpp>
 #include <awl/window/event/create_processor.hpp>
+#include <awl/window/event/processor_unique_ptr.hpp>
 #include <awl/config.hpp>
 #if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/window/event/original_processor.hpp>
@@ -9,9 +11,12 @@
 #elif defined(AWL_COCOA_BACKEND)
 #include <awl/backends/cocoa/window/event/create_processor.hpp>
 #include <awl/window/event/processor.hpp>
+#else
+#error "Implement me!"
 #endif
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
+
 
 awl::window::event::processor_unique_ptr
 awl::window::event::create_processor(
@@ -47,6 +52,8 @@ awl::window::event::create_processor(
 #elif defined(AWL_COCOA_BACKEND)
 			backends::cocoa::window::event::create_processor(
 					_object)
+#else
+#error "Implement me!"
 #endif
 		);
 }

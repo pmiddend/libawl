@@ -66,6 +66,8 @@ add_definitions(
 SET(
 	AWL_BASE_SRC_FILES
 	src/create_log.cpp
+	src/cursor/create_predefined.cpp
+	src/cursor/object.cpp
 	src/event/create_processor.cpp
 	src/event/processor.cpp
 	src/event/scoped_window_processor.cpp
@@ -94,6 +96,14 @@ SET(
 	AWL_BASE_INCLUDE_FILES
 	include/awl/class_symbol.hpp
 	include/awl/create_log.hpp
+	include/awl/cursor/const_optional_object_ref.hpp
+	include/awl/cursor/const_optional_object_ref_fwd.hpp
+	include/awl/cursor/create_predefined.hpp
+	include/awl/cursor/object.hpp
+	include/awl/cursor/object_fwd.hpp
+	include/awl/cursor/object_scoped_ptr.hpp
+	include/awl/cursor/object_unique_ptr.hpp
+	include/awl/cursor/predefined.hpp
 	include/awl/event/create_processor.hpp
 	include/awl/event/processor.hpp
 	include/awl/event/processor_fwd.hpp
@@ -302,6 +312,11 @@ set(
 set(
 	AWL_X11_SRC_FILES
 	src/backends/x11/colormap.cpp
+	src/backends/x11/cursor/convert_predefined.cpp
+	src/backends/x11/cursor/create_predefined.cpp
+	src/backends/x11/cursor/holder.cpp
+	src/backends/x11/cursor/load_font.cpp
+	src/backends/x11/cursor/object.cpp
 	src/backends/x11/default_screen.cpp
 	src/backends/x11/display.cpp
 	src/backends/x11/display_fd.cpp
@@ -359,6 +374,19 @@ set(
 	include/awl/backends/x11/atom.hpp
 	include/awl/backends/x11/colormap.hpp
 	include/awl/backends/x11/colormap_fwd.hpp
+	include/awl/backends/x11/cursor/const_optional_object_ref.hpp
+	include/awl/backends/x11/cursor/const_optional_object_ref_fwd.hpp
+	include/awl/backends/x11/cursor/convert_predefined.hpp
+	include/awl/backends/x11/cursor/create_predefined.hpp
+	include/awl/backends/x11/cursor/holder.hpp
+	include/awl/backends/x11/cursor/holder_fwd.hpp
+	include/awl/backends/x11/cursor/holder_scoped_ptr.hpp
+	include/awl/backends/x11/cursor/holder_unique_ptr.hpp
+	include/awl/backends/x11/cursor/load_font.hpp
+	include/awl/backends/x11/cursor/object.hpp
+	include/awl/backends/x11/cursor/object_fwd.hpp
+	include/awl/backends/x11/cursor/object_unique_ptr.hpp
+	include/awl/backends/x11/cursor/shape.hpp
 	include/awl/backends/x11/default_screen.hpp
 	include/awl/backends/x11/deleter.hpp
 	include/awl/backends/x11/discard.hpp

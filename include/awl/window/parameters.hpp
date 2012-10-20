@@ -1,6 +1,7 @@
 #ifndef AWL_WINDOW_PARAMETERS_HPP_INCLUDED
 #define AWL_WINDOW_PARAMETERS_HPP_INCLUDED
 
+#include <awl/cursor/const_optional_object_ref.hpp>
 #include <awl/visual/object_fwd.hpp>
 #include <awl/window/dim_fwd.hpp>
 #include <awl/window/optional_dim.hpp>
@@ -72,6 +73,12 @@ public:
 	);
 
 	AWL_SYMBOL
+	awl::window::parameters &
+	cursor(
+		awl::cursor::const_optional_object_ref const &
+	);
+
+	AWL_SYMBOL
 	awl::visual::object const &
 	visual() const;
 
@@ -102,6 +109,10 @@ public:
 	AWL_SYMBOL
 	fcppt::string const
 	class_name() const;
+
+	AWL_SYMBOL
+	awl::cursor::const_optional_object_ref const &
+	cursor() const;
 private:
 	awl::visual::object const &visual_;
 
@@ -118,6 +129,8 @@ private:
 	fcppt::string title_;
 
 	fcppt::string class_name_;
+
+	awl::cursor::const_optional_object_ref cursor_;
 };
 
 }
