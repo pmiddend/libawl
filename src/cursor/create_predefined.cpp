@@ -17,7 +17,11 @@
 
 awl::cursor::object_unique_ptr
 awl::cursor::create_predefined(
+#if defined(AWL_X11_BACKEND)
 	awl::system::object &_system,
+#else
+	awl::system::object &,
+#endif
 	awl::cursor::predefined::type const _type
 )
 {
