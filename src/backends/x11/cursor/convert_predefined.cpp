@@ -22,7 +22,7 @@ awl::backends::x11::cursor::convert_predefined(
 			fcppt::strong_typedef_construct_cast<
 				awl::backends::x11::cursor::shape
 			>(
-				XC_top_left_arrow
+				XC_left_ptr
 			);
 	case awl::cursor::predefined::cross:
 		return
