@@ -31,6 +31,9 @@ awl::backends::x11::get_input_focus(
 	return
 		window_return
 		!= None
+		&&
+		window_return
+		!= PointerRoot
 		?
 			awl::backends::x11::window::object_unique_ptr(
 				fcppt::make_unique_ptr<
