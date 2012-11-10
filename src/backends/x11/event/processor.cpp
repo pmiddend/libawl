@@ -85,6 +85,12 @@ awl::backends::x11::event::processor::next()
 	if(
 		system_processor_
 	)
+	{
+		if(
+			!system_processor_->running()
+		)
+			return;
+
 		if(
 			awl::backends::linux::fd::processor *linux_processor =
 				dynamic_cast<
@@ -94,7 +100,6 @@ awl::backends::x11::event::processor::next()
 				)
 		)
 		{
-
 			linux_processor->epoll(
 				awl::backends::linux::fd::optional_duration()
 			);
@@ -106,6 +111,7 @@ awl::backends::x11::event::processor::next()
 			)
 				return;
 		}
+	}
 
 	x11::event::object const event(
 		x11::event::next(
