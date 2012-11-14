@@ -11,7 +11,6 @@
 #include <awl/window/object_unique_ptr.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/ref.hpp>
-#include <fcppt/assert/pre.hpp>
 
 
 awl::backends::x11::system::original_object::original_object()
@@ -34,10 +33,6 @@ awl::backends::x11::system::original_object::create_window(
 	awl::window::parameters const &_param
 )
 {
-	FCPPT_ASSERT_PRE(
-		_param.size()
-	);
-
 	return
 		awl::window::object_unique_ptr(
 			fcppt::make_unique_ptr<

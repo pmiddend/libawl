@@ -64,7 +64,8 @@ awl::backends::x11::window::create(
 					_position->x()
 				)
 			:
-				0,
+				0
+			,
 			_position
 			?
 				static_cast<
@@ -73,17 +74,28 @@ awl::backends::x11::window::create(
 					_position->y()
 				)
 			:
-				0,
-			static_cast<
-				unsigned
-			>(
-				_dim->w()
-			),
-			static_cast<
-				unsigned
-			>(
-				_dim->h()
-			),
+				0
+			,
+			_dim
+			?
+				static_cast<
+					unsigned
+				>(
+					_dim->w()
+				)
+			:
+				1u
+			,
+			_dim
+			?
+				static_cast<
+					unsigned
+				>(
+					_dim->h()
+				)
+			:
+				1u
+			,
 			// border_width
 			0,
 			_visual.info().depth,
