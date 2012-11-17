@@ -3,7 +3,7 @@ cmake_minimum_required(
 )
 
 project(
-	libawl
+	awl
 )
 
 set(
@@ -43,16 +43,16 @@ link_directories(
 
 # Fcppt begin
 find_package(
-	Fcppt
+	fcppt
 	REQUIRED
 )
 
 add_definitions(
-	"${Fcppt_DEFINITIONS}"
+	"${fcppt_DEFINITIONS}"
 )
 
 include_directories(
-	${Fcppt_INCLUDE_DIRS}
+	${fcppt_INCLUDE_DIRS}
 )
 
 # Fcppt end
@@ -805,7 +805,7 @@ function(
 
 	target_link_libraries(
 		${TARGETNAME}
-		${Fcppt_core_LIBRARIES}
+		${fcppt_core_TARGET}
 	)
 
 	# TODO: Link to certain windows libs
@@ -825,11 +825,17 @@ function(
 		target_link_libraries(${TARGETNAME} "-framework Cocoa")
 	endif()
 
+	fcppt_utils_library_output_path(
+		AWL_LIBRARY_DIR
+	)
+
 	install(
 		TARGETS
 		${TARGETNAME}
 		DESTINATION
-		${INSTALL_LIBRARY_DIR}
+		"${AWL_LIBRARY_DIR}"
+		EXPORT
+		awlTargets
 	)
 endfunction()
 
@@ -903,6 +909,14 @@ foreach(
 	)
 endforeach()
 
+fcppt_utils_include_path(
+	awl_INCLUDE_DIR
+)
+
+fcppt_utils_generate_config(
+	awl
+)
+
 install(
 	DIRECTORY
 	${CMAKE_BINARY_DIR}/include/
@@ -916,4 +930,11 @@ install(
 	${CMAKE_SOURCE_DIR}/CMakeModules/FindAwl.cmake
 	DESTINATION
 	${INSTALL_CMAKEMODULES_DIR}
+)
+
+install(
+	EXPORT
+	awlTargets
+	DESTINATION
+	${INSTALL_CMAKECONFIG_DIR}
 )

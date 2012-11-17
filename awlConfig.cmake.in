@@ -1,0 +1,43 @@
+include(
+	FcpptExport
+)
+
+set(
+	AWL_BINARY_DIR
+	@CMAKE_BINARY_DIR@
+)
+
+set(
+	AWL_INSTALL_LIBRARY_DIR
+	@INSTALL_LIBRARY_DIR@
+)
+
+set(
+	FCPPT_EXPORT_IN_SOURCE_BUILD
+	@FCPPT_UTILS_IN_SOURCE_BUILD@
+)
+
+fcppt_export_init(
+	"awl"
+	"${AWL_BINARY_DIR}"
+	"${AWL_INSTALL_LIBRARY_DIR}"
+)
+
+fcppt_export_generate_targets(
+	"awl"
+	"${awl_USE_STATIC_LIBS}"
+)
+
+if(
+	awl_USE_STATIC_LIBS
+)
+	set(
+		awl_DEFINITIONS
+		"-D AWL_STATIC_LINK"
+	)
+endif()
+
+set(
+	awl_INCLUDE_DIRS
+	"@Boost_INCLUDE_DIRS@;@fcppt_INCLUDE_DIRS@;@awl_INCLUDE_DIR@"
+)
