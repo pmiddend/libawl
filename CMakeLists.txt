@@ -15,6 +15,8 @@ include(
 	FcpptCMakeUtils
 )
 
+fcppt_utils_prepare_config()
+
 include(
 	FcpptSymbol
 )
@@ -825,17 +827,8 @@ function(
 		target_link_libraries(${TARGETNAME} "-framework Cocoa")
 	endif()
 
-	fcppt_utils_library_output_path(
-		AWL_LIBRARY_DIR
-	)
-
-	install(
-		TARGETS
+	fcppt_utils_export_install_target(
 		${TARGETNAME}
-		DESTINATION
-		"${AWL_LIBRARY_DIR}"
-		EXPORT
-		awlTargets
 	)
 endfunction()
 
@@ -909,13 +902,7 @@ foreach(
 	)
 endforeach()
 
-fcppt_utils_include_path(
-	awl_INCLUDE_DIR
-)
-
-fcppt_utils_generate_config(
-	awl
-)
+fcppt_utils_generate_config()
 
 install(
 	DIRECTORY
@@ -929,11 +916,4 @@ install(
 	${CMAKE_SOURCE_DIR}/CMakeModules/AwlMainGenerator.cmake
 	DESTINATION
 	${INSTALL_CMAKEMODULES_DIR}
-)
-
-install(
-	EXPORT
-	awlTargets
-	DESTINATION
-	${INSTALL_CMAKECONFIG_DIR}
 )

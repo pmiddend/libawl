@@ -2,25 +2,8 @@ include(
 	FcpptExport
 )
 
-set(
-	AWL_BINARY_DIR
-	@CMAKE_BINARY_DIR@
-)
-
-set(
-	AWL_INSTALL_LIBRARY_DIR
-	@INSTALL_LIBRARY_DIR@
-)
-
-set(
-	FCPPT_EXPORT_IN_SOURCE_BUILD
-	@FCPPT_UTILS_IN_SOURCE_BUILD@
-)
-
 fcppt_export_init(
 	"awl"
-	"${AWL_BINARY_DIR}"
-	"${AWL_INSTALL_LIBRARY_DIR}"
 )
 
 fcppt_export_generate_targets(
