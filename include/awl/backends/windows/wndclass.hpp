@@ -7,6 +7,7 @@
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
 
+
 namespace awl
 {
 namespace backends
@@ -20,18 +21,47 @@ class wndclass
 		wndclass
 	);
 public:
-	AWL_SYMBOL wndclass(
+	wndclass();
+
+	AWL_SYMBOL
+	wndclass(
 		fcppt::string const &class_name,
 		WNDPROC
 	);
 
-	AWL_SYMBOL ~wndclass();
+	AWL_SYMBOL
+	wndclass(
+		wndclass &&
+	);
 
-	AWL_SYMBOL fcppt::string const &
+	AWL_SYMBOL
+	wndclass &
+	operator=(
+		wndclass &&
+	);
+
+	AWL_SYMBOL
+	~wndclass();
+
+	AWL_SYMBOL
+	fcppt::string const &
 	name() const;
+
+	AWL_SYMBOL
+	void
+	swap(
+		wndclass &
+	);
 private:
-	fcppt::string const class_name_;
+	fcppt::string class_name_;
 };
+
+AWL_SYMBOL
+void
+swap(
+	awl::backends::windows::wndclass &,
+	awl::backends::windows::wndclass &
+);
 
 }
 }

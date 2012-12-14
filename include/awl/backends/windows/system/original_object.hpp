@@ -9,7 +9,7 @@
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/ptr_container/ptr_map.hpp>
+#include <unordered_map>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -53,9 +53,9 @@ private:
 		fcppt::string const &
 	);
 
-	typedef boost::ptr_map<
+	typedef std::unordered_map<
 		fcppt::string,
-		windows::counted_wndclass
+		awl::backends::windows::counted_wndclass
 	> wndclass_map;
 
 	wndclass_map wndclasses_;

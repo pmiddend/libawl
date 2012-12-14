@@ -7,6 +7,7 @@
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
 
+
 namespace awl
 {
 namespace backends
@@ -27,6 +28,15 @@ public:
 		WNDPROC
 	);
 
+	counted_wndclass(
+		counted_wndclass &&
+	);
+
+	counted_wndclass &
+	operator=(
+		counted_wndclass &&
+	);
+
 	~counted_wndclass();
 
 	void
@@ -35,10 +45,15 @@ public:
 	counter_type
 	release();
 
-	windows::wndclass &
+	awl::backends::windows::wndclass &
 	wndclass();
+
+	void
+	swap(
+		counted_wndclass &
+	);
 private:
-	windows::wndclass wndclass_;
+	awl::backends::windows::wndclass wndclass_;
 
 	counter_type counter_;
 };

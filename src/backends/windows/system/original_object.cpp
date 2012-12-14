@@ -9,9 +9,9 @@
 #include <awl/window/parameters.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/string.hpp>
-#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <functional>
+#include <utility>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -40,18 +40,17 @@ awl::backends::windows::system::original_object::create_window(
 		wndclass_it == wndclasses_.end()
 	)
 		wndclass_it =
-			fcppt::container::ptr::insert_unique_ptr_map(
-				wndclasses_,
-				_param.class_name(),
-				fcppt::make_unique_ptr<
-					awl::backends::windows::counted_wndclass
-				>(
+			wndclasses_.insert(
+				std::make_pair(
 					_param.class_name(),
-					awl::backends::windows::default_wnd_proc
+					awl::backends::windows::counted_wndclass(
+						_param.class_name(),
+						awl::backends::windows::default_wnd_proc
+					)
 				)
 			).first;
 	else
-		wndclass_it->second->add_ref();
+		wndclass_it->second.add_ref();
 
 	return
 		awl::window::object_unique_ptr(
@@ -59,7 +58,7 @@ awl::backends::windows::system::original_object::create_window(
 				awl::backends::windows::window::original_object
 			>(
 				_param,
-				wndclass_it->second->wndclass(),
+				wndclass_it->second.wndclass(),
 				std::bind(
 					&awl::backends::windows::system::original_object::unregister_wndclass,
 					this,
@@ -101,7 +100,7 @@ awl::backends::windows::system::original_object::unregister_wndclass(
 	);
 
 	if(
-		wndclass_it->second->release() == 0u
+		wndclass_it->second.release() == 0u
 	)
 		wndclasses_.erase(
 			wndclass_it
