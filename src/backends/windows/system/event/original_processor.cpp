@@ -48,10 +48,10 @@ awl::backends::windows::system::event::original_processor::original_processor(
 			>(
 				WM_QUIT
 			),
-			std::tr1::bind(
+			std::bind(
 				&awl::backends::windows::system::event::original_processor::on_quit,
 				this,
-				std::tr1::placeholders::_1
+				std::placeholders::_1
 			)
 		)
 	)
@@ -243,12 +243,12 @@ void
 awl::backends::windows::system::event::original_processor::next()
 {
 	this->generic_multiple_wait(
-		std::tr1::bind(
+		std::bind(
 			::MsgWaitForMultipleObjects,
-			std::tr1::placeholders::_1,
-			std::tr1::placeholders::_2,
-			std::tr1::placeholders::_3,
-			std::tr1::placeholders::_4,
+			std::placeholders::_1,
+			std::placeholders::_2,
+			std::placeholders::_3,
+			std::placeholders::_4,
 			QS_ALLPOSTMESSAGE
 		),
 		INFINITE

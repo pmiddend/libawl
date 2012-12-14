@@ -84,10 +84,10 @@ awl::backends::windows::window::event::original_processor::original_processor(
 				>(
 					WM_CLOSE
 				),
-				std::tr1::bind(
+				std::bind(
 					&awl::backends::windows::window::event::original_processor::on_close,
 					this,
-					std::tr1::placeholders::_1
+					std::placeholders::_1
 				)
 			)
 		)(
