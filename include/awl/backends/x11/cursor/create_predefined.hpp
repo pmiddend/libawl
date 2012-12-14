@@ -4,7 +4,7 @@
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/cursor/object_unique_ptr.hpp>
-#include <awl/cursor/predefined.hpp>
+#include <awl/cursor/predefined_fwd.hpp>
 
 
 namespace awl

@@ -3,7 +3,7 @@
 
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/cursor/shape.hpp>
-#include <awl/cursor/predefined.hpp>
+#include <awl/cursor/predefined_fwd.hpp>
 
 
 namespace awl

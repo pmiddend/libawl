@@ -9,7 +9,7 @@
 
 awl::backends::windows::cursor::object_unique_ptr
 awl::backends::windows::cursor::create_predefined(
-	awl::cursor::predefined::type const _type
+	awl::cursor::predefined const _type
 )
 {
 	return

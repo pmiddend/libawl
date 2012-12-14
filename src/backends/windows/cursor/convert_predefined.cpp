@@ -7,7 +7,7 @@
 
 fcppt::char_type const *
 awl::backends::windows::cursor::convert_predefined(
-	awl::cursor::predefined::type const _type
+	awl::cursor::predefined const _type
 )
 {
 	switch(

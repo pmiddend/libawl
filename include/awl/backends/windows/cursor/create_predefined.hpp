@@ -3,7 +3,7 @@
 
 #include <awl/symbol.hpp>
 #include <awl/backends/windows/cursor/object_unique_ptr.hpp>
-#include <awl/cursor/predefined.hpp>
+#include <awl/cursor/predefined_fwd.hpp>
 
 
 namespace awl
@@ -18,7 +18,7 @@ namespace cursor
 AWL_SYMBOL
 awl::backends::windows::cursor::object_unique_ptr
 create_predefined(
-	awl::cursor::predefined::type
+	awl::cursor::predefined
 );
 
 }

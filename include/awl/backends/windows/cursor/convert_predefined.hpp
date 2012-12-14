@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_WINDOWS_CURSOR_CONVERT_PREDEFINED_HPP_INCLUDED
 
 #include <awl/symbol.hpp>
-#include <awl/cursor/predefined.hpp>
+#include <awl/cursor/predefined_fwd.hpp>
 #include <fcppt/char_type.hpp>
 
 
@@ -18,7 +18,7 @@ namespace cursor
 AWL_SYMBOL
 fcppt::char_type const *
 convert_predefined(
-	awl::cursor::predefined::type
+	awl::cursor::predefined
 );
 
 }

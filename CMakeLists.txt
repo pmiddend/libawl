@@ -106,6 +106,7 @@ SET(
 	include/awl/cursor/object_scoped_ptr.hpp
 	include/awl/cursor/object_unique_ptr.hpp
 	include/awl/cursor/predefined.hpp
+	include/awl/cursor/predefined_fwd.hpp
 	include/awl/event/create_processor.hpp
 	include/awl/event/processor.hpp
 	include/awl/event/processor_fwd.hpp
