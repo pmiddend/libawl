@@ -2,11 +2,11 @@
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/visual/create_info.hpp>
 #include <awl/backends/x11/visual/info_unique_ptr.hpp>
-#include <fcppt/move.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <utility>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -59,7 +59,7 @@ awl::backends::x11::visual::create_info(
 		);
 
 	return
-		fcppt::move(
+		std::move(
 			ret
 		);
 }

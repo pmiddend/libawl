@@ -4,7 +4,6 @@
 #include <awl/backends/linux/fd/optional_duration.hpp>
 #include <awl/backends/linux/fd/epoll/ctl.hpp>
 #include <awl/backends/linux/fd/epoll/set.hpp>
-#include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/truncation_check_cast.hpp>
 #include <fcppt/container/data.hpp>
@@ -50,7 +49,7 @@ awl::backends::linux::fd::epoll::set::remove(
 	awl::backends::linux::fd::epoll::ctl(
 		epoll_fd_,
 		_fd,
-		fcppt::null_ptr()
+		nullptr
 	);
 
 	events_.pop_back();

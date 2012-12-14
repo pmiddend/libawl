@@ -4,7 +4,6 @@
 #include <awl/backends/x11/window/object_unique_ptr.hpp>
 #include <awl/backends/x11/window/wrapped_object.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/ref.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/X.h>
 #include <X11/Xlib.h>
@@ -39,9 +38,7 @@ awl::backends::x11::get_input_focus(
 				fcppt::make_unique_ptr<
 					awl::backends::x11::window::wrapped_object
 				>(
-					fcppt::ref(
-						_display
-					),
+					_display,
 					_screen,
 					window_return
 				)

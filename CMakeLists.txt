@@ -467,7 +467,6 @@ set(
 set(
 	AWL_LINUX_INCLUDE_FILES
 	include/awl/backends/linux/fd/callback.hpp
-	include/awl/backends/linux/fd/callback_fwd.hpp
 	include/awl/backends/linux/fd/duration.hpp
 	include/awl/backends/linux/fd/epoll/ctl.hpp
 	include/awl/backends/linux/fd/epoll/fd.hpp

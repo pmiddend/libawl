@@ -10,7 +10,6 @@
 #include <awl/window/parameters.hpp>
 #include <awl/window/object_unique_ptr.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/ref.hpp>
 
 
 awl::backends::x11::system::original_object::original_object()
@@ -38,9 +37,7 @@ awl::backends::x11::system::original_object::create_window(
 			fcppt::make_unique_ptr<
 				awl::backends::x11::window::original_object
 			>(
-				fcppt::ref(
-					display_
-				),
+				display_,
 				screen_,
 				_param
 			)

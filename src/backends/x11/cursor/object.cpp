@@ -2,9 +2,9 @@
 #include <awl/backends/x11/cursor/holder_unique_ptr.hpp>
 #include <awl/backends/x11/cursor/object.hpp>
 #include <awl/cursor/object.hpp>
-#include <fcppt/move.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/X.h>
+#include <utility>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -14,7 +14,7 @@ awl::backends::x11::cursor::object::object(
 :
 	awl::cursor::object(),
 	holder_(
-		fcppt::move(
+		std::move(
 			_holder
 		)
 	)

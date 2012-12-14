@@ -31,19 +31,15 @@ awl::event::create_processor(
 			fcppt::make_unique_ptr<
 				awl::backends::x11::event::processor
 			>(
-				fcppt::ref(
-					dynamic_cast<
-						awl::backends::x11::system::object &
-					>(
-						_system
-					)
+				dynamic_cast<
+					awl::backends::x11::system::object &
+				>(
+					_system
 				),
-				fcppt::cref(
-					fcppt::dynamic_optional_cast<
-						awl::backends::x11::system::event::processor
-					>(
-						_system_processor
-					)
+				fcppt::dynamic_optional_cast<
+					awl::backends::x11::system::event::processor
+				>(
+					_system_processor
 				)
 			)
 		)

@@ -28,12 +28,10 @@ awl::window::event::create_processor(
 			fcppt::make_unique_ptr<
 				backends::x11::window::event::original_processor
 			>(
-				fcppt::ref(
-					dynamic_cast<
-						backends::x11::window::object &
-					>(
-						_object
-					)
+				dynamic_cast<
+					backends::x11::window::object &
+				>(
+					_object
 				)
 			)
 #elif defined(AWL_WINDOWS_BACKEND)
@@ -48,7 +46,8 @@ awl::window::event::create_processor(
 			)
 #elif defined(AWL_COCOA_BACKEND)
 			backends::cocoa::window::event::create_processor(
-					_object)
+				_object
+			)
 #else
 #error "Implement me!"
 #endif

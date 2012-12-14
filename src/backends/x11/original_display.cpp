@@ -1,7 +1,6 @@
 #include <awl/exception.hpp>
 #include <awl/backends/x11/original_display.hpp>
 #include <awl/backends/x11/to_x11_bool.hpp>
-#include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
@@ -12,7 +11,7 @@ awl::backends::x11::original_display::original_display()
 :
 	ptr_(
 		::XOpenDisplay(
-			fcppt::null_ptr()
+			nullptr
 		)
 	)
 {

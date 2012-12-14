@@ -2,7 +2,6 @@
 #include <awl/backends/x11/window/root.hpp>
 #include <awl/backends/x11/window/wrapped_object.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/ref.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
@@ -19,9 +18,7 @@ awl::backends::x11::window::root(
 			fcppt::make_unique_ptr<
 				awl::backends::x11::window::wrapped_object
 			>(
-				fcppt::ref(
-					_display
-				),
+				_display,
 				_screen,
 				::XRootWindow(
 					_display.get(),

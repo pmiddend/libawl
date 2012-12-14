@@ -1,4 +1,3 @@
-#include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 #include <awl/exception.hpp>
 #include <awl/backends/linux/fd/object.hpp>
@@ -18,7 +17,7 @@ awl::backends::linux::fd::epoll::ctl(
 {
 
 	if(
-		_data != fcppt::null_ptr()
+		_data != nullptr
 	)
 	{
 		_data->events = EPOLLIN;

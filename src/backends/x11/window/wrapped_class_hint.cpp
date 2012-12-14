@@ -1,8 +1,8 @@
 #include <awl/backends/x11/free.hpp>
 #include <awl/backends/x11/window/wrapped_class_hint.hpp>
-#include <fcppt/null_ptr.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
+#include <string>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -22,16 +22,16 @@ awl::backends::x11::window::wrapped_class_hint::wrapped_class_hint(
 		==
 		0
 	)
-		data_.res_name = data_.res_class = fcppt::null_ptr();
+		data_.res_name = data_.res_class = nullptr;
 }
 
 awl::backends::x11::window::wrapped_class_hint::~wrapped_class_hint()
 {
-	x11::free(
+	awl::backends::x11::free(
 		data_.res_name
 	);
 
-	x11::free(
+	awl::backends::x11::free(
 		data_.res_class
 	);
 }

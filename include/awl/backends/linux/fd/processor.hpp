@@ -3,7 +3,7 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <awl/backends/linux/fd/callback_fwd.hpp>
+#include <awl/backends/linux/fd/callback.hpp>
 #include <awl/backends/linux/fd/object.hpp>
 #include <awl/backends/linux/fd/optional_duration_fwd.hpp>
 #include <awl/backends/linux/fd/processor_fwd.hpp>

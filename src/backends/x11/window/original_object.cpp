@@ -12,7 +12,6 @@
 #include <awl/window/parameters.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
-#include <fcppt/ref.hpp>
 #include <fcppt/static_optional_cast.hpp>
 #include <fcppt/to_std_string.hpp>
 #include <fcppt/config/external_begin.hpp>

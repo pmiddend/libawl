@@ -1,10 +1,10 @@
 #include <awl/backends/x11/visual/info_unique_ptr.hpp>
 #include <awl/backends/x11/visual/object.hpp>
 #include <awl/backends/x11/visual/wrapped.hpp>
-#include <fcppt/move.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <utility>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -14,7 +14,7 @@ awl::backends::x11::visual::wrapped::wrapped(
 :
 	awl::backends::x11::visual::object(),
 	info_(
-		fcppt::move(
+		std::move(
 			_info
 		)
 	)

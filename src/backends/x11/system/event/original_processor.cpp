@@ -26,6 +26,7 @@
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/signal/unregister/base_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
+#include <functional>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
 
@@ -195,7 +196,7 @@ awl::backends::x11::system::event::original_processor::register_fd_callback(
 	return
 		it->second->connect(
 			_callback,
-			std::tr1::bind(
+			std::bind(
 				&awl::backends::x11::system::event::original_processor::unregister_fd_signal,
 				this,
 				_fd
