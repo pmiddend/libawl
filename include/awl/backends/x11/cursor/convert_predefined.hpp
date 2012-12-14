@@ -18,7 +18,7 @@ namespace cursor
 AWL_SYMBOL
 awl::backends::x11::cursor::shape const
 convert_predefined(
-	awl::cursor::predefined::type
+	awl::cursor::predefined
 );
 
 }

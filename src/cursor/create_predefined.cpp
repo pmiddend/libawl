@@ -22,7 +22,7 @@ awl::cursor::create_predefined(
 #else
 	awl::system::object &,
 #endif
-	awl::cursor::predefined::type const _type
+	awl::cursor::predefined const _type
 )
 {
 	return

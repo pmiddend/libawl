@@ -16,7 +16,7 @@ AWL_SYMBOL
 awl::cursor::object_unique_ptr
 create_predefined(
 	awl::system::object &,
-	awl::cursor::predefined::type
+	awl::cursor::predefined
 );
 
 }

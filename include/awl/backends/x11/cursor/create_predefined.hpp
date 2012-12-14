@@ -20,7 +20,7 @@ AWL_SYMBOL
 awl::backends::x11::cursor::object_unique_ptr
 create_predefined(
 	awl::backends::x11::display const &,
-	awl::cursor::predefined::type
+	awl::cursor::predefined
 );
 
 }

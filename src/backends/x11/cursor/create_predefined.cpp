@@ -12,7 +12,7 @@
 awl::backends::x11::cursor::object_unique_ptr
 awl::backends::x11::cursor::create_predefined(
 	awl::backends::x11::display const &_display,
-	awl::cursor::predefined::type const _type
+	awl::cursor::predefined const _type
 )
 {
 	return

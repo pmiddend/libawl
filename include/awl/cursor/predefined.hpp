@@ -7,16 +7,13 @@ namespace awl
 namespace cursor
 {
 
-namespace predefined
-{
-enum type
+enum class predefined
 {
 	arrow,
 	cross,
 	hand,
 	icon
 };
-}
 
 }
 }
