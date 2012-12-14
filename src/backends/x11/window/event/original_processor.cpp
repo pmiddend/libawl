@@ -204,17 +204,13 @@ awl::backends::x11::window::event::original_processor::poll()
 	}
 
 	for(
-		type_count_map::const_iterator it(
-			type_counts_.begin()
-		);
-		it != type_counts_.end();
-		++it
+		auto const &item : type_counts_
 	)
 		while(
 			x11::window::event::optional new_event =
 				event::poll_type(
 					window_,
-					it->first
+					item.first
 				)
 		)
 		{

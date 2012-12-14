@@ -216,16 +216,12 @@ awl::backends::x11::system::event::original_processor::epoll(
 	);
 
 	for(
-		awl::backends::linux::fd::object_vector::const_iterator it(
-			ready_fds.begin()
-		);
-		it != ready_fds.end();
-		++it
+		auto const &fd : ready_fds
 	)
 	{
 		fd_signal_map::iterator const map_it(
 			fd_signals_.find(
-				*it
+				fd
 			)
 		);
 

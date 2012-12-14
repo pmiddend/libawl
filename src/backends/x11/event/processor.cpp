@@ -57,14 +57,10 @@ awl::backends::x11::event::processor::poll()
 				system_processor_->poll();
 
 		for(
-			window_processor_map::iterator it(
-				window_processors_.begin()
-			);
-			it != window_processors_.end();
-			++it
+			auto &entry : window_processors_
 		)
 			more_messages =
-				it->second->poll()
+				entry.second->poll()
 				||
 				more_messages;
 
