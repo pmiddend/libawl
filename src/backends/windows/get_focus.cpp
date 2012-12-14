@@ -15,7 +15,7 @@ awl::backends::windows::get_focus()
 	return
 		ret
 		==
-		fcppt::null_ptr()
+		nullptr
 		?
 			awl::backends::windows::window::object_unique_ptr()
 		:

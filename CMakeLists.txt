@@ -110,7 +110,6 @@ SET(
 	include/awl/event/processor.hpp
 	include/awl/event/processor_fwd.hpp
 	include/awl/event/processor_scoped_ptr.hpp
-	include/awl/event/processor_shared_ptr.hpp
 	include/awl/event/processor_unique_ptr.hpp
 	include/awl/event/scoped_window_processor.hpp
 	include/awl/event/scoped_window_processor_fwd.hpp
@@ -129,7 +128,6 @@ SET(
 	include/awl/system/event/processor.hpp
 	include/awl/system/event/processor_fwd.hpp
 	include/awl/system/event/processor_scoped_ptr.hpp
-	include/awl/system/event/processor_shared_ptr.hpp
 	include/awl/system/event/processor_unique_ptr.hpp
 	include/awl/system/event/quit.hpp
 	include/awl/system/event/quit_callback.hpp
@@ -139,7 +137,6 @@ SET(
 	include/awl/system/object.hpp
 	include/awl/system/object_fwd.hpp
 	include/awl/system/object_scoped_ptr.hpp
-	include/awl/system/object_shared_ptr.hpp
 	include/awl/system/object_unique_ptr.hpp
 	include/awl/system/optional_exit_code.hpp
 	include/awl/system/optional_exit_code_fwd.hpp
@@ -151,49 +148,41 @@ SET(
 	include/awl/window/dim_fwd.hpp
 	include/awl/window/event/close.hpp
 	include/awl/window/event/close_callback.hpp
-	include/awl/window/event/close_callback_fwd.hpp
 	include/awl/window/event/close_function.hpp
 	include/awl/window/event/close_fwd.hpp
 	include/awl/window/event/close_signal.hpp
 	include/awl/window/event/create_processor.hpp
 	include/awl/window/event/destroy.hpp
 	include/awl/window/event/destroy_callback.hpp
-	include/awl/window/event/destroy_callback_fwd.hpp
 	include/awl/window/event/destroy_function.hpp
 	include/awl/window/event/destroy_fwd.hpp
 	include/awl/window/event/destroy_signal.hpp
 	include/awl/window/event/focus_in.hpp
 	include/awl/window/event/focus_in_callback.hpp
-	include/awl/window/event/focus_in_callback_fwd.hpp
 	include/awl/window/event/focus_in_function.hpp
 	include/awl/window/event/focus_in_fwd.hpp
 	include/awl/window/event/focus_in_signal.hpp
 	include/awl/window/event/focus_out.hpp
 	include/awl/window/event/focus_out_callback.hpp
-	include/awl/window/event/focus_out_callback_fwd.hpp
 	include/awl/window/event/focus_out_function.hpp
 	include/awl/window/event/focus_out_fwd.hpp
 	include/awl/window/event/focus_out_signal.hpp
 	include/awl/window/event/hide.hpp
 	include/awl/window/event/hide_callback.hpp
-	include/awl/window/event/hide_callback_fwd.hpp
 	include/awl/window/event/hide_function.hpp
 	include/awl/window/event/hide_fwd.hpp
 	include/awl/window/event/hide_signal.hpp
 	include/awl/window/event/processor.hpp
 	include/awl/window/event/processor_fwd.hpp
 	include/awl/window/event/processor_scoped_ptr.hpp
-	include/awl/window/event/processor_shared_ptr.hpp
 	include/awl/window/event/processor_unique_ptr.hpp
 	include/awl/window/event/resize.hpp
 	include/awl/window/event/resize_callback.hpp
-	include/awl/window/event/resize_callback_fwd.hpp
 	include/awl/window/event/resize_function.hpp
 	include/awl/window/event/resize_fwd.hpp
 	include/awl/window/event/resize_signal.hpp
 	include/awl/window/event/show.hpp
 	include/awl/window/event/show_callback.hpp
-	include/awl/window/event/show_callback_fwd.hpp
 	include/awl/window/event/show_function.hpp
 	include/awl/window/event/show_fwd.hpp
 	include/awl/window/event/show_signal.hpp
@@ -201,7 +190,6 @@ SET(
 	include/awl/window/object.hpp
 	include/awl/window/object_fwd.hpp
 	include/awl/window/object_scoped_ptr.hpp
-	include/awl/window/object_shared_ptr.hpp
 	include/awl/window/object_unique_ptr.hpp
 	include/awl/window/optional_dim.hpp
 	include/awl/window/optional_dim_fwd.hpp
@@ -464,7 +452,6 @@ set(
 	include/awl/backends/x11/window/object.hpp
 	include/awl/backends/x11/window/object_fwd.hpp
 	include/awl/backends/x11/window/object_scoped_ptr.hpp
-	include/awl/backends/x11/window/object_shared_ptr.hpp
 	include/awl/backends/x11/window/object_unique_ptr.hpp
 	include/awl/backends/x11/window/original_class_hint.hpp
 	include/awl/backends/x11/window/original_object.hpp
@@ -640,7 +627,6 @@ set(
 	include/awl/backends/windows/window/object.hpp
 	include/awl/backends/windows/window/object_fwd.hpp
 	include/awl/backends/windows/window/object_scoped_ptr.hpp
-	include/awl/backends/windows/window/object_shared_ptr.hpp
 	include/awl/backends/windows/window/object_unique_ptr.hpp
 	include/awl/backends/windows/window/original_object.hpp
 	include/awl/backends/windows/window/screen_to_client.hpp

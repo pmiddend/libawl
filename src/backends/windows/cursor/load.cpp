@@ -2,7 +2,6 @@
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/cursor/load.hpp>
 #include <fcppt/char_type.hpp>
-#include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 
 
@@ -13,7 +12,7 @@ awl::backends::windows::cursor::load(
 {
 	HCURSOR const result(
 		LoadCursor(
-			fcppt::null_ptr(),
+			nullptr,
 			_name
 		)
 	);
@@ -21,7 +20,7 @@ awl::backends::windows::cursor::load(
 	if(
 		result
 		==
-		fcppt::null_ptr()
+		nullptr
 	)
 		throw awl::exception(
 			FCPPT_TEXT("LoadCursor failed")

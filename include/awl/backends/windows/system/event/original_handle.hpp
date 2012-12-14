@@ -5,8 +5,8 @@
 #include <awl/backends/windows/system/event/handle_destroy_callback.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/function/object.hpp>
 #include <fcppt/noncopyable.hpp>
+
 
 namespace awl
 {

@@ -18,17 +18,17 @@
 #include <awl/window/event/resize_callback.hpp>
 #include <fcppt/exception.hpp>
 #include <fcppt/optional_impl.hpp>
-#include <fcppt/ref.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/io/cerr.hpp>
 #include <fcppt/io/cout.hpp>
 #include <fcppt/math/dim/output.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/scoped_connection.hpp>
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <cstdlib>
+#include <functional>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace
 {
@@ -47,9 +47,10 @@ print_resize(
 void
 window_destroyed(
 	awl::window::event::destroy const &,
-	bool &running)
+	bool &_running
+)
 {
-	running = false;
+	_running = false;
 }
 
 }
@@ -109,9 +110,9 @@ try
 	fcppt::signal::scoped_connection const resize_connection(
 		window_processor->resize_callback(
 			awl::window::event::resize_callback(
-				std::tr1::bind(
+				std::bind(
 					print_resize,
-					std::tr1::placeholders::_1
+					std::placeholders::_1
 				)
 			)
 		)
@@ -123,17 +124,17 @@ try
 
 	fcppt::signal::scoped_connection const destroy_connection(
 		window_processor->destroy_callback(
-			std::tr1::bind(
+			std::bind(
 				window_destroyed,
-				std::tr1::placeholders::_1,
-				fcppt::ref(
-					running
-				)
+				std::placeholders::_1,
+				running
 			)
 		)
 	);
 
-	while(running)
+	while(
+		running
+	)
 		processor->next();
 }
 catch(

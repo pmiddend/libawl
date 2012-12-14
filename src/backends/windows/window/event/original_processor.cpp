@@ -41,18 +41,15 @@
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/connection_manager.hpp>
 #include <fcppt/signal/object_impl.hpp>
-#include <fcppt/signal/shared_connection.hpp>
-#include <fcppt/tr1/functional.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/phoenix/core/argument.hpp>
-#include <boost/phoenix/operator/logical.hpp>
+#include <functional>
 #include <fcppt/config/external_end.hpp>
 
 
 FCPPT_PP_PUSH_WARNING
 FCPPT_PP_DISABLE_VC_WARNING(4355)
 awl::backends::windows::window::event::original_processor::original_processor(
-	windows::window::object &_window
+	awl::backends::windows::window::object &_window
 )
 :
 	window_(
@@ -60,9 +57,15 @@ awl::backends::windows::window::event::original_processor::original_processor(
 	),
 	signals_(),
 	close_signal_(
-		boost::phoenix::arg_names::arg1
-		&&
-		boost::phoenix::arg_names::arg2,
+		[](
+			bool const _arg1,
+			bool const _arg2
+		)
+		{
+			return
+				_arg1 && _arg2;
+		}
+		,
 		true
 	),
 	destroy_signal_(),
@@ -75,111 +78,98 @@ awl::backends::windows::window::event::original_processor::original_processor(
 		fcppt::assign::make_container<
 			fcppt::signal::connection_manager::container
 		>(
-			fcppt::signal::shared_connection(
-				this->register_callback(
-					fcppt::strong_typedef_construct_cast<
-						awl::backends::windows::event::type
-					>(
-						WM_CLOSE
-					),
-					std::tr1::bind(
-						&awl::backends::windows::window::event::original_processor::on_close,
-						this,
-						std::tr1::placeholders::_1
-					)
+			this->register_callback(
+				fcppt::strong_typedef_construct_cast<
+					awl::backends::windows::event::type
+				>(
+					WM_CLOSE
+				),
+				std::tr1::bind(
+					&awl::backends::windows::window::event::original_processor::on_close,
+					this,
+					std::tr1::placeholders::_1
 				)
 			)
 		)(
-			fcppt::signal::shared_connection(
-				this->register_callback(
-					fcppt::strong_typedef_construct_cast<
-						awl::backends::windows::event::type
-					>(
-						WM_DESTROY
-					),
-					std::tr1::bind(
-						&awl::backends::windows::window::event::original_processor::on_destroy,
-						this,
-						std::tr1::placeholders::_1
-					)
+			this->register_callback(
+				fcppt::strong_typedef_construct_cast<
+					awl::backends::windows::event::type
+				>(
+					WM_DESTROY
+				),
+				std::bind(
+					&awl::backends::windows::window::event::original_processor::on_destroy,
+					this,
+					std::placeholders::_1
 				)
 			)
 		)(
-			fcppt::signal::shared_connection(
-				this->register_callback(
-					fcppt::strong_typedef_construct_cast<
-						awl::backends::windows::event::type
-					>(
-						WM_SETFOCUS
-					),
-					std::tr1::bind(
-						&awl::backends::windows::window::event::original_processor::on_focus_in,
-						this,
-						std::tr1::placeholders::_1
-					)
+			this->register_callback(
+				fcppt::strong_typedef_construct_cast<
+					awl::backends::windows::event::type
+				>(
+					WM_SETFOCUS
+				),
+				std::bind(
+					&awl::backends::windows::window::event::original_processor::on_focus_in,
+					this,
+					std::placeholders::_1
 				)
 			)
 		)(
-			fcppt::signal::shared_connection(
-				this->register_callback(
-					fcppt::strong_typedef_construct_cast<
-						awl::backends::windows::event::type
-					>(
-						WM_KILLFOCUS
-					),
-					std::tr1::bind(
-						&awl::backends::windows::window::event::original_processor::on_focus_out,
-						this,
-						std::tr1::placeholders::_1
-					)
+			this->register_callback(
+				fcppt::strong_typedef_construct_cast<
+					awl::backends::windows::event::type
+				>(
+					WM_KILLFOCUS
+				),
+				std::bind(
+					&awl::backends::windows::window::event::original_processor::on_focus_out,
+					this,
+					std::placeholders::_1
 				)
 			)
 		)(
-			fcppt::signal::shared_connection(
-				this->register_callback(
-					fcppt::strong_typedef_construct_cast<
-						awl::backends::windows::event::type
-					>(
-						WM_SIZE
-					),
-					std::tr1::bind(
-						&awl::backends::windows::window::event::original_processor::on_resize,
-						this,
-						std::tr1::placeholders::_1
-					)
+			this->register_callback(
+				fcppt::strong_typedef_construct_cast<
+					awl::backends::windows::event::type
+				>(
+					WM_SIZE
+				),
+				std::bind(
+					&awl::backends::windows::window::event::original_processor::on_resize,
+					this,
+					std::placeholders::_1
 				)
 			)
 		)(
-			fcppt::signal::shared_connection(
-				this->register_callback(
-					fcppt::strong_typedef_construct_cast<
-						awl::backends::windows::event::type
-					>(
-						WM_SHOWWINDOW
-					),
-					std::tr1::bind(
-						&awl::backends::windows::window::event::original_processor::on_show,
-						this,
-						std::tr1::placeholders::_1
-					)
+			this->register_callback(
+				fcppt::strong_typedef_construct_cast<
+					awl::backends::windows::event::type
+				>(
+					WM_SHOWWINDOW
+				),
+				std::bind(
+					&awl::backends::windows::window::event::original_processor::on_show,
+					this,
+					std::placeholders::_1
 				)
 			)
 		)(
-			fcppt::signal::shared_connection(
-				this->register_callback(
-					fcppt::strong_typedef_construct_cast<
-						awl::backends::windows::event::type
-					>(
-						WM_SETCURSOR
-					),
-					std::tr1::bind(
-						&awl::backends::windows::window::event::original_processor::on_setcursor,
-						this,
-						std::tr1::placeholders::_1
-					)
+			this->register_callback(
+				fcppt::strong_typedef_construct_cast<
+					awl::backends::windows::event::type
+				>(
+					WM_SETCURSOR
+				),
+				std::bind(
+					&awl::backends::windows::window::event::original_processor::on_setcursor,
+					this,
+					std::placeholders::_1
 				)
 			)
 		)
+		.move_container()
 	)
 {
 	::SetWindowLongPtr(
@@ -198,7 +188,7 @@ awl::backends::windows::window::event::original_processor::original_processor(
 		reinterpret_cast<
 			LONG_PTR
 		>(
-			windows::window::event::wnd_proc
+			awl::backends::windows::window::event::wnd_proc
 		)
 	);
 }
@@ -212,7 +202,7 @@ awl::backends::windows::window::event::original_processor::~original_processor()
 		reinterpret_cast<
 			LONG_PTR
 		>(
-			windows::default_wnd_proc
+			awl::backends::windows::default_wnd_proc
 		)
 	);
 }
@@ -334,7 +324,7 @@ awl::backends::windows::window::event::original_processor::register_callback(
 	awl::backends::windows::window::event::callback const &_func
 )
 {
-	signal_map::iterator it(
+	awl::backends::windows::window::event::original_processor::signal_map::iterator it(
 		signals_.find(
 			_type
 		)
@@ -350,8 +340,8 @@ awl::backends::windows::window::event::original_processor::register_callback(
 				fcppt::make_unique_ptr<
 					signal_type
 				>(
-					windows::window::event::combine_result,
-					windows::window::event::return_type()
+					awl::backends::windows::window::event::combine_result,
+					awl::backends::windows::window::event::return_type()
 				)
 			).first;
 
@@ -408,13 +398,13 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 		it != signals_.end()
 		?
 			(*(it->second))(
-				windows::window::event::object(
+				awl::backends::windows::window::event::object(
 					_wparam,
 					_lparam
 				)
 		)
 		:
-			windows::window::event::return_type();
+			awl::backends::windows::window::event::return_type();
 }
 
 void

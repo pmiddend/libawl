@@ -2,7 +2,6 @@
 #include <awl/backends/windows/module_handle.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/wndclass.hpp>
-#include <fcppt/null_ptr.hpp>
 #include <fcppt/string.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -30,13 +29,13 @@ awl::backends::windows::wndclass::wndclass(
 	wndclassex.cbClsExtra = 0;
 	wndclassex.cbWndExtra = 0;
 	wndclassex.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_WINDOW+1);
-	wndclassex.hCursor = fcppt::null_ptr();
-	wndclassex.hIcon = fcppt::null_ptr();
-	wndclassex.hIconSm = fcppt::null_ptr();
+	wndclassex.hCursor = nullptr;
+	wndclassex.hIcon = nullptr;
+	wndclassex.hIconSm = nullptr;
 	wndclassex.hInstance = awl::backends::windows::module_handle();
 	wndclassex.lpfnWndProc = _proc;
 	wndclassex.lpszClassName = class_name_.c_str();
-	wndclassex.lpszMenuName = fcppt::null_ptr();
+	wndclassex.lpszMenuName = nullptr;
 	wndclassex.cbSize = sizeof(WNDCLASSEX);
 	wndclassex.style = 0;
 

@@ -13,7 +13,7 @@
 #include <awl/system/event/processor.hpp>
 #endif
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/ref.hpp>
+
 
 awl::system::event::processor_unique_ptr
 awl::system::event::create_processor(
@@ -38,18 +38,18 @@ awl::system::event::create_processor(
 			fcppt::make_unique_ptr<
 				backends::windows::system::event::original_processor
 			>(
-				fcppt::ref(
-					dynamic_cast<
-						backends::windows::system::object &
-					>(
-						_system
-					)
+				dynamic_cast<
+					backends::windows::system::object &
+				>(
+					_system
 				)
 			)
 #elif defined(AWL_COCOA_BACKEND)
 			backends::cocoa::system::event::create_processor(
 					fcppt::ref(
-						_system))
+						_system
+					)
+				)
 #endif
 		);
 }

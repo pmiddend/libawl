@@ -15,7 +15,6 @@
 #include <awl/main/exit_code.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
-#include <fcppt/static_assert_expression.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/algorithm/remove.hpp>
@@ -26,13 +25,15 @@
 #include <fcppt/preprocessor/pop_warning.hpp>
 #include <fcppt/preprocessor/push_warning.hpp>
 #include <fcppt/signal/object_impl.hpp>
-#include <fcppt/tr1/functional.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <functional>
+#include <fcppt/config/external_end.hpp>
 
 
 FCPPT_PP_PUSH_WARNING
 FCPPT_PP_DISABLE_VC_WARNING(4355)
 awl::backends::windows::system::event::original_processor::original_processor(
-	windows::system::object &
+	awl::backends::windows::system::object &
 )
 :
 	signals_(),
@@ -68,8 +69,8 @@ awl::backends::windows::system::event::original_processor::poll()
 	bool events_processed = false;
 
 	while(
-		windows::event::optional_message const message =
-			windows::event::peek(
+		awl::backends::windows::event::optional_message const message =
+			awl::backends::windows::event::peek(
 				reinterpret_cast<
 					HWND
 				>(
@@ -143,8 +144,8 @@ awl::backends::windows::system::event::original_processor::quit_callback(
 
 fcppt::signal::auto_connection
 awl::backends::windows::system::event::original_processor::register_callback(
-	windows::event::type const _msg,
-	windows::system::event::callback const &_func
+	awl::backends::windows::event::type const _msg,
+	awl::backends::windows::system::event::callback const &_func
 )
 {
 	signal_map::iterator it(
@@ -173,7 +174,7 @@ awl::backends::windows::system::event::original_processor::register_callback(
 
 fcppt::signal::auto_connection
 awl::backends::windows::system::event::original_processor::register_handle_callback(
-	windows::system::event::handle_callback const &_func
+	awl::backends::windows::system::event::handle_callback const &_func
 )
 {
 	return
@@ -189,10 +190,10 @@ awl::backends::windows::system::event::original_processor::create_event_handle()
 		fcppt::make_unique_ptr<
 			awl::backends::windows::system::event::original_handle
 		>(
-			std::tr1::bind(
-				&system::event::original_processor::unregister_event_handle,
+			std::bind(
+				&awl::backends::windows::system::event::original_processor::unregister_event_handle,
 				this,
-				std::tr1::placeholders::_1
+				std::placeholders::_1
 			)
 		)
 	);
@@ -310,8 +311,9 @@ awl::backends::windows::system::event::original_processor::generic_multiple_wait
 		)
 	);
 
-	FCPPT_STATIC_ASSERT_EXPRESSION(
-		WAIT_OBJECT_0 == 0
+	static_assert(
+		WAIT_OBJECT_0 == 0,
+		"This code assumes that WAIT_OBJECT_0 is 0"
 	);
 
 	if(

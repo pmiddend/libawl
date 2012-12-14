@@ -15,12 +15,9 @@
 #include <awl/backends/cocoa/event/create_processor.hpp>
 #include <awl/event/processor.hpp>
 #endif
-#include <fcppt/cref.hpp>
-#include <fcppt/move.hpp>
 #include <fcppt/dynamic_optional_cast.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/optional_impl.hpp>
-#include <fcppt/ref.hpp>
 
 awl::event::processor_unique_ptr
 awl::event::create_processor(
@@ -55,19 +52,15 @@ awl::event::create_processor(
 			fcppt::make_unique_ptr<
 				awl::backends::windows::event::processor
 			>(
-				fcppt::ref(
-					dynamic_cast<
-						awl::backends::windows::system::object &
-					>(
-						_system
-					)
+				dynamic_cast<
+					awl::backends::windows::system::object &
+				>(
+					_system
 				),
-				fcppt::cref(
-					fcppt::dynamic_optional_cast<
-						awl::backends::windows::system::event::processor
-					>(
-						_system_processor
-					)
+				fcppt::dynamic_optional_cast<
+					awl::backends::windows::system::event::processor
+				>(
+					_system_processor
 				)
 			)
 		)

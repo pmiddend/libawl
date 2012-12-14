@@ -1,7 +1,6 @@
 #include <awl/exception.hpp>
 #include <awl/backends/windows/module_handle.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <fcppt/null_ptr.hpp>
 #include <fcppt/text.hpp>
 
 
@@ -15,7 +14,7 @@ awl::backends::windows::module_handle()
 	if(
 		object
 		==
-		fcppt::null_ptr()
+		nullptr
 	)
 		throw awl::exception(
 			FCPPT_TEXT("GetModuleHandle() failed!")

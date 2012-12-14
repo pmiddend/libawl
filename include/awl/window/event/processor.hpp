@@ -4,14 +4,14 @@
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <awl/window/object_fwd.hpp>
-#include <awl/window/event/close_callback_fwd.hpp>
-#include <awl/window/event/focus_in_callback_fwd.hpp>
-#include <awl/window/event/focus_out_callback_fwd.hpp>
-#include <awl/window/event/destroy_callback_fwd.hpp>
-#include <awl/window/event/hide_callback_fwd.hpp>
+#include <awl/window/event/close_callback.hpp>
+#include <awl/window/event/focus_in_callback.hpp>
+#include <awl/window/event/focus_out_callback.hpp>
+#include <awl/window/event/destroy_callback.hpp>
+#include <awl/window/event/hide_callback.hpp>
 #include <awl/window/event/processor_fwd.hpp>
-#include <awl/window/event/resize_callback_fwd.hpp>
-#include <awl/window/event/show_callback_fwd.hpp>
+#include <awl/window/event/resize_callback.hpp>
+#include <awl/window/event/show_callback.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/signal/auto_connection_fwd.hpp>
 

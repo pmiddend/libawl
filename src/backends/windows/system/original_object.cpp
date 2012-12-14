@@ -8,10 +8,11 @@
 #include <awl/window/object_unique_ptr.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/ref.hpp>
 #include <fcppt/string.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
-#include <fcppt/tr1/functional.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <functional>
+#include <fcppt/config/external_end.hpp>
 
 
 awl::backends::windows::system::original_object::original_object()
@@ -29,7 +30,7 @@ awl::backends::windows::system::original_object::create_window(
 	awl::window::parameters const &_param
 )
 {
-	wndclass_map::iterator wndclass_it(
+	awl::backends::windows::system::original_object::wndclass_map::iterator wndclass_it(
 		wndclasses_.find(
 			_param.class_name()
 		)
@@ -43,10 +44,10 @@ awl::backends::windows::system::original_object::create_window(
 				wndclasses_,
 				_param.class_name(),
 				fcppt::make_unique_ptr<
-					windows::counted_wndclass
+					awl::backends::windows::counted_wndclass
 				>(
 					_param.class_name(),
-					windows::default_wnd_proc
+					awl::backends::windows::default_wnd_proc
 				)
 			).first;
 	else
@@ -58,11 +59,9 @@ awl::backends::windows::system::original_object::create_window(
 				awl::backends::windows::window::original_object
 			>(
 				_param,
-				fcppt::ref(
-					wndclass_it->second->wndclass()
-				),
-				std::tr1::bind(
-					&system::original_object::unregister_wndclass,
+				wndclass_it->second->wndclass(),
+				std::bind(
+					&awl::backends::windows::system::original_object::unregister_wndclass,
 					this,
 					_param.class_name()
 				)
@@ -95,7 +94,7 @@ awl::backends::windows::system::original_object::unregister_wndclass(
 	fcppt::string const &_class_name
 )
 {
-	wndclass_map::iterator const wndclass_it(
+	awl::backends::windows::system::original_object::wndclass_map::iterator const wndclass_it(
 		wndclasses_.find(
 			_class_name
 		)

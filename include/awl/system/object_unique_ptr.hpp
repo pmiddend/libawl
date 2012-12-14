@@ -2,7 +2,10 @@
 #define AWL_SYSTEM_OBJECT_UNIQUE_PTR_HPP_INCLUDED
 
 #include <awl/system/object_fwd.hpp>
-#include <fcppt/unique_ptr_impl.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <memory>
+#include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {
@@ -10,9 +13,9 @@ namespace system
 {
 
 typedef
-fcppt::unique_ptr
+std::unique_ptr
 <
-	system::object
+	awl::system::object
 >
 object_unique_ptr;
 

@@ -10,7 +10,6 @@
 #include <awl/backends/windows/window/common_object.hpp>
 #include <awl/backends/windows/window/original_object.hpp>
 #include <awl/window/parameters.hpp>
-#include <fcppt/null_ptr.hpp>
 #include <fcppt/static_optional_cast.hpp>
 #include <fcppt/text.hpp>
 
@@ -46,10 +45,10 @@ awl::backends::windows::window::original_object::original_object(
 				_param.size(),
 				window_flags
 			).h(),
-			fcppt::null_ptr(),
-			fcppt::null_ptr(),
+			nullptr,
+			nullptr,
 			awl::backends::windows::module_handle(),
-			fcppt::null_ptr()
+			nullptr
 		)
 	),
 	remove_wndclass_(
