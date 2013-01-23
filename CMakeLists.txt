@@ -230,12 +230,6 @@ elseif(
 		AWL_WINDOWS_BACKEND
 		TRUE
 	)
-
-	# TODO: actually check what we need here
-	add_definitions(
-		-D UNICODE -D _UNICODE
-	)
-	# TODO: Find windows.h, etc.
 else()
 	message(
 		FATAL_ERROR
