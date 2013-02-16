@@ -21,6 +21,14 @@ include(
 	FcpptSymbol
 )
 
+set(
+	AWL_SO_VERSION
+	"0.1"
+	CACHE
+	STRING
+	"The .so version to use"
+)
+
 include_directories(
 	${CMAKE_SOURCE_DIR}/include
 )
@@ -773,6 +781,13 @@ function(
 			${Boost_CHRONO_LIBRARY}
 		)
 	endif()
+
+	set_target_properties(
+		${TARGETNAME}
+		PROPERTIES
+		VERSION
+		${AWL_SO_VERSION}
+	)
 
 	if(
 		${VARIANT} STREQUAL "STATIC"
