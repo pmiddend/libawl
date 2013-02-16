@@ -21,12 +21,10 @@ include(
 	FcpptSymbol
 )
 
-set(
+fcppt_utils_handle_so_version(
 	AWL_SO_VERSION
+	AWL_USED_SO_VERSION
 	"0.1"
-	CACHE
-	STRING
-	"The .so version to use"
 )
 
 include_directories(
@@ -786,7 +784,7 @@ function(
 		${TARGETNAME}
 		PROPERTIES
 		VERSION
-		${AWL_SO_VERSION}
+		${AWL_USED_SO_VERSION}
 	)
 
 	if(
