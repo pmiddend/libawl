@@ -1,22 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
-function die()
+set -e -u
+
+update_main()
 {
-	echo "failure"
-
-	exit -1
-}
-
-function update_main()
-{
-	local cmakefile="CMakeLists.txt"
-
 	update_cmake \
-		"${cmakefile}" \
-		"${@:1}" \
-		|| die
-
-	mv "${cmakefile}".new "${cmakefile}" || die
+		"CMakeLists.txt" \
+		"${@}"
 }
 
 update_main \
