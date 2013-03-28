@@ -1,6 +1,6 @@
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/cursor/object.hpp>
-#include <awl/backends/windows/cursor/shared.hpp>	
+#include <awl/backends/windows/cursor/shared.hpp>
 
 
 awl::backends::windows::cursor::shared::shared(

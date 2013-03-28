@@ -551,7 +551,7 @@ awl::backends::windows::window::event::original_processor::on_setcursor(
 		::SetCursor(
 			window_.cursor()->get()
 		);
-		
+
 		return
 			awl::backends::windows::window::event::return_type(
 				TRUE
