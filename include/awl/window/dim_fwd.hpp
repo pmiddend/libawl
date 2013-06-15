@@ -15,7 +15,7 @@ fcppt::math::dim::static_
 <
 	awl::window::scalar,
 	2
->::type
+>
 dim;
 
 }

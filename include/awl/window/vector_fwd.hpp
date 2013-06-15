@@ -15,7 +15,7 @@ fcppt::math::vector::static_
 <
 	awl::window::scalar,
 	2
->::type
+>
 vector;
 
 }
