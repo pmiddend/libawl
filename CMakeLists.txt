@@ -8,7 +8,7 @@ project(
 
 set(
 	CMAKE_MODULE_PATH
-	"${CMAKE_SOURCE_DIR}/CMakeModules;${CMAKE_MODULE_PATH}"
+	"${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules;${CMAKE_MODULE_PATH}"
 )
 
 include(
@@ -28,7 +28,7 @@ fcppt_utils_handle_so_version(
 )
 
 include_directories(
-	${CMAKE_SOURCE_DIR}/include
+	${FCPPT_UTILS_PROJECT_SOURCE_DIR}/include
 )
 
 # Boost begin
@@ -253,8 +253,8 @@ if(
 endif()
 
 configure_file(
-	${CMAKE_SOURCE_DIR}/config.hpp.in
-	${CMAKE_BINARY_DIR}/include/awl/config.hpp
+	${FCPPT_UTILS_PROJECT_SOURCE_DIR}/config.hpp.in
+	${FCPPT_UTILS_PROJECT_BINARY_DIR}/include/awl/config.hpp
 )
 
 fcppt_generate_symbol_header(
@@ -265,7 +265,7 @@ fcppt_generate_symbol_header(
 )
 
 include_directories(
-	${CMAKE_BINARY_DIR}/include
+	${FCPPT_UTILS_PROJECT_BINARY_DIR}/include
 )
 
 set(
@@ -889,7 +889,7 @@ foreach(
 
 	install(
 		FILES
-		${CMAKE_SOURCE_DIR}/${CUR_FILE}
+		${FCPPT_UTILS_PROJECT_SOURCE_DIR}/${CUR_FILE}
 		DESTINATION
 		${INSTALL_INCLUDE_DIR}/${TRIMMED_PATH}
 	)
@@ -899,14 +899,14 @@ fcppt_utils_generate_config()
 
 install(
 	DIRECTORY
-	${CMAKE_BINARY_DIR}/include/
+	${FCPPT_UTILS_PROJECT_BINARY_DIR}/include/
 	DESTINATION
 	${INSTALL_INCLUDE_DIR}
 )
 
 install(
 	FILES
-	${CMAKE_SOURCE_DIR}/CMakeModules/AwlMainGenerator.cmake
+	${FCPPT_UTILS_PROJECT_SOURCE_DIR}/CMakeModules/AwlMainGenerator.cmake
 	DESTINATION
 	${INSTALL_CMAKEMODULES_DIR}
 )
