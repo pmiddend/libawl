@@ -69,11 +69,9 @@ awl::backends::x11::window::event::original_processor::original_processor(
 	),
 	wm_protocols_(
 		_window,
-		fcppt::assign::make_container<
-			awl::backends::x11::window::event::atom_vector
-		>(
+		awl::backends::x11::window::event::atom_vector{
 			wm_delete_window_atom_.get()
-		)
+		}
 	),
 	close_signal_(
 		[](
