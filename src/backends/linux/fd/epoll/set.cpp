@@ -8,8 +8,8 @@
 #include <fcppt/truncation_check_cast.hpp>
 #include <fcppt/container/data.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/chrono/duration.hpp>
 #include <sys/epoll.h>
+#include <chrono>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -76,8 +76,8 @@ awl::backends::linux::fd::epoll::set::epoll(
 				fcppt::truncation_check_cast<
 					int
 				>(
-					boost::chrono::duration_cast<
-						boost::chrono::milliseconds
+					std::chrono::duration_cast<
+						std::chrono::milliseconds
 					>(
 						*_duration
 					).count()

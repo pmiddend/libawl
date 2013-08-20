@@ -34,7 +34,6 @@ include_directories(
 # Boost begin
 find_package(
 	Boost 1.47.0 REQUIRED
-	chrono
 	system
 )
 
@@ -770,15 +769,6 @@ function(
 		${VARIANT}
 		${AWL_FILES}
 	)
-
-	if(
-		NOT MSVC
-	)
-		target_link_libraries(
-			${TARGETNAME}
-			${Boost_CHRONO_LIBRARY}
-		)
-	endif()
 
 	set_target_properties(
 		${TARGETNAME}

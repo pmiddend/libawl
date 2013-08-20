@@ -11,7 +11,7 @@
 #include <fcppt/exception.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/chrono/duration.hpp>
+#include <chrono>
 #include <cstdlib>
 #include <fcppt/config/external_end.hpp>
 
@@ -47,7 +47,7 @@ try
 	window->show();
 
 	fcppt::time::sleep_any(
-		boost::chrono::seconds(
+		std::chrono::seconds(
 			1
 		)
 	);

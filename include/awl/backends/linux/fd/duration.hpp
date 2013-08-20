@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_LINUX_FD_DURATION_HPP_INCLUDED
 
 #include <fcppt/config/external_begin.hpp>
-#include <boost/chrono/duration.hpp>
+#include <chrono>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -15,7 +15,7 @@ namespace linux
 namespace fd
 {
 
-typedef boost::chrono::milliseconds duration;
+typedef std::chrono::milliseconds duration;
 
 }
 }
