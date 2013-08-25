@@ -27,11 +27,9 @@
 #include <awl/window/event/resize_callback.hpp>
 #include <awl/window/event/show.hpp>
 #include <awl/window/event/show_callback.hpp>
-#include <fcppt/optional_impl.hpp>
 #include <fcppt/assert/error.hpp>
 #include <fcppt/assign/make_container.hpp>
-#include <fcppt/container/raw_vector_impl.hpp>
-#include <fcppt/math/dim/object_impl.hpp>
+#include <fcppt/cast/to_unsigned.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/signal/unregister/base_impl.hpp>
@@ -495,8 +493,12 @@ awl::backends::x11::window::event::original_processor::on_configure(
 	resize_signal_(
 		awl::window::event::resize(
 			awl::window::dim(
-				request.width,
-				request.height
+				fcppt::cast::to_unsigned(
+					request.width
+				),
+				fcppt::cast::to_unsigned(
+					request.height
+				)
 			)
 		)
 	);

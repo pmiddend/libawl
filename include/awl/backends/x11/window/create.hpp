@@ -8,7 +8,7 @@
 #include <awl/backends/x11/cursor/const_optional_object_ref_fwd.hpp>
 #include <awl/backends/x11/visual/object_fwd.hpp>
 #include <awl/window/optional_dim_fwd.hpp>
-#include <awl/window/optional_position_fwd.hpp>
+#include <awl/window/optional_pos_fwd.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
@@ -26,7 +26,7 @@ namespace window
 AWL_SYMBOL
 Window
 create(
-	awl::window::optional_position const &,
+	awl::window::optional_pos const &,
 	awl::window::optional_dim const &,
 	awl::backends::x11::display &,
 	awl::backends::x11::screen,

@@ -10,8 +10,9 @@
 #include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/event/processor.hpp>
 #include <awl/window/event/processor_fwd.hpp>
-#include <fcppt/optional_impl.hpp>
 #include <fcppt/assert/error.hpp>
+#include <fcppt/cast/static_downcast.hpp>
+#include <fcppt/cast/static_downcast_ptr.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <utility>
 #include <X11/X.h>
@@ -151,7 +152,7 @@ awl::backends::x11::event::processor::attach(
 )
 {
 	awl::backends::x11::window::event::processor &x11_processor(
-		dynamic_cast<
+		fcppt::cast::static_downcast<
 			awl::backends::x11::window::event::processor &
 		>(
 			_processor
@@ -175,7 +176,7 @@ awl::backends::x11::event::processor::detach(
 {
 	FCPPT_ASSERT_ERROR(
 		window_processors_.erase(
-			dynamic_cast<
+			fcppt::cast::static_downcast<
 				awl::backends::x11::window::event::processor &
 			>(
 				_processor

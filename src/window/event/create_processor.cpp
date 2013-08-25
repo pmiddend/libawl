@@ -5,9 +5,11 @@
 #if defined(AWL_X11_BACKEND)
 #include <awl/backends/x11/window/event/original_processor.hpp>
 #include <awl/backends/x11/window/object.hpp>
+#include <fcppt/cast/static_downcast.hpp>
 #elif defined(AWL_WINDOWS_BACKEND)
 #include <awl/backends/windows/window/event/original_processor.hpp>
 #include <awl/backends/windows/window/object.hpp>
+#include <fcppt/cast/static_downcast.hpp>
 #elif defined(AWL_COCOA_BACKEND)
 #include <awl/backends/cocoa/window/event/create_processor.hpp>
 #include <awl/window/event/processor.hpp>
@@ -28,7 +30,7 @@ awl::window::event::create_processor(
 			fcppt::make_unique_ptr<
 				backends::x11::window::event::original_processor
 			>(
-				dynamic_cast<
+				fcppt::cast::static_downcast<
 					backends::x11::window::object &
 				>(
 					_object
@@ -38,7 +40,7 @@ awl::window::event::create_processor(
 			fcppt::make_unique_ptr<
 				backends::windows::window::event::original_processor
 			>(
-				dynamic_cast<
+				fcppt::cast::static_downcast<
 					backends::windows::window::object &
 				>(
 					_object

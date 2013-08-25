@@ -199,13 +199,14 @@ SET(
 	include/awl/window/object_unique_ptr.hpp
 	include/awl/window/optional_dim.hpp
 	include/awl/window/optional_dim_fwd.hpp
-	include/awl/window/optional_position.hpp
-	include/awl/window/optional_position_fwd.hpp
+	include/awl/window/optional_pos.hpp
+	include/awl/window/optional_pos_fwd.hpp
 	include/awl/window/parameters.hpp
 	include/awl/window/parameters_fwd.hpp
-	include/awl/window/scalar.hpp
-	include/awl/window/vector.hpp
-	include/awl/window/vector_fwd.hpp
+	include/awl/window/pos.hpp
+	include/awl/window/pos_fwd.hpp
+	include/awl/window/size.hpp
+	include/awl/window/unit.hpp
 )
 
 # We can use either X11 or plain windows or Apple

@@ -6,6 +6,9 @@
 #include <awl/backends/linux/fd/epoll/set.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/truncation_check_cast.hpp>
+#include <fcppt/cast/size.hpp>
+#include <fcppt/cast/to_signed.hpp>
+#include <fcppt/cast/to_unsigned.hpp>
 #include <fcppt/container/data.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <sys/epoll.h>
@@ -66,10 +69,12 @@ awl::backends::linux::fd::epoll::set::epoll(
 			fcppt::container::data(
 				events_
 			),
-			static_cast<
+			fcppt::cast::size<
 				int
 			>(
-				events_.size()
+				fcppt::cast::to_signed(
+					events_.size()
+				)
 			),
 			_duration
 			?
@@ -97,9 +102,7 @@ awl::backends::linux::fd::epoll::set::epoll(
 	ready_fds_.clear();
 
 	unsigned const ready(
-		static_cast<
-			unsigned
-		>(
+		fcppt::cast::to_unsigned(
 			ret
 		)
 	);

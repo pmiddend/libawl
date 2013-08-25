@@ -2,7 +2,7 @@
 #define AWL_BACKENDS_X11_WINDOW_EVENT_WM_PROTOCOLS_HPP_INCLUDED
 
 #include <awl/backends/x11/window/object_fwd.hpp>
-#include <awl/backends/x11/window/event/atom_vector.hpp>
+#include <awl/backends/x11/window/event/atom_vector_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 
 

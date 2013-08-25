@@ -14,12 +14,12 @@
 #include <awl/system/event/quit_callback.hpp>
 #include <awl/main/exit_code.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/optional_impl.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/algorithm/remove.hpp>
 #include <fcppt/assert/error.hpp>
-#include <fcppt/container/raw_vector_impl.hpp>
+#include <fcppt/cast/size.hpp>
+#include <fcppt/cast/to_signed.hpp>
 #include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/preprocessor/disable_vc_warning.hpp>
 #include <fcppt/preprocessor/pop_warning.hpp>
@@ -275,10 +275,12 @@ awl::backends::windows::system::event::original_processor::on_quit(
 {
 	exit_code_ =
 		awl::main::exit_code(
-			static_cast<
+			fcppt::cast::size<
 				int
 			>(
-				_event.wparam().get()
+				fcppt::cast::to_signed(
+					_event.wparam().get()
+				)
 			)
 		);
 
@@ -300,7 +302,7 @@ awl::backends::windows::system::event::original_processor::generic_multiple_wait
 {
 	DWORD const result(
 		_function(
-			static_cast<
+			fcppt::cast::size<
 				DWORD
 			>(
 				handles_.size()

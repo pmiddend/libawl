@@ -12,6 +12,7 @@
 #include <awl/window/parameters.hpp>
 #include <fcppt/static_optional_cast.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/cast/static_downcast.hpp>
 
 
 namespace
@@ -69,7 +70,7 @@ awl::backends::windows::window::original_object::original_object(
 			FCPPT_TEXT("CreateWindow() failed!")
 		);
 
-	dynamic_cast<
+	fcppt::cast::static_downcast<
 		awl::backends::windows::visual::object const &
 	>(
 		_param.visual()

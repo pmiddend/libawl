@@ -12,8 +12,8 @@
 #include <awl/backends/windows/system/event/processor.hpp>
 #include <awl/backends/windows/window/object.hpp>
 #include <awl/backends/windows/window/event/processor.hpp>
-#include <fcppt/optional_impl.hpp>
 #include <fcppt/assert/error.hpp>
+#include <fcppt/cast/static_downcast.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <cstdlib>
 #include <utility>
@@ -76,7 +76,7 @@ awl::backends::windows::event::processor::attach(
 )
 {
 	awl::backends::windows::window::event::processor &windows_processor(
-		dynamic_cast<
+		fcppt::cast::static_downcast<
 			awl::backends::windows::window::event::processor &
 		>(
 			_processor
@@ -100,7 +100,7 @@ awl::backends::windows::event::processor::detach(
 {
 	FCPPT_ASSERT_ERROR(
 		window_processors_.erase(
-			dynamic_cast<
+			fcppt::cast::static_downcast<
 				awl::backends::windows::window::event::processor &
 			>(
 				_processor

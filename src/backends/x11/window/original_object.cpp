@@ -11,9 +11,9 @@
 #include <awl/backends/x11/window/event/object.hpp>
 #include <awl/window/parameters.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/optional_impl.hpp>
 #include <fcppt/static_optional_cast.hpp>
 #include <fcppt/to_std_string.hpp>
+#include <fcppt/cast/static_downcast.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
@@ -32,7 +32,7 @@ awl::backends::x11::window::original_object::original_object(
 		_screen
 	),
 	visual_(
-		dynamic_cast<
+		fcppt::cast::static_downcast<
 			awl::backends::x11::visual::object const &
 		>(
 			_params.visual()

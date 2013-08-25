@@ -1,8 +1,11 @@
 #include <awl/exception.hpp>
 #include <awl/backends/x11/window/size_hints.hpp>
-#include <fcppt/optional_impl.hpp>
+#include <awl/window/optional_dim.hpp>
 #include <fcppt/text.hpp>
-#include <fcppt/math/dim/object_impl.hpp>
+#include <fcppt/cast/to_signed.hpp>
+#include <fcppt/config/external_begin.hpp>
+#include <X11/Xutil.h>
+#include <fcppt/config/external_end.hpp>
 
 
 awl::backends::x11::window::size_hints::size_hints(
@@ -28,8 +31,15 @@ awl::backends::x11::window::size_hints::size_hints(
 		_exact_hint
 	)
 	{
-		hints_->base_width = _exact_hint->w();
-		hints_->base_height = _exact_hint->h();
+		hints_->base_width =
+			fcppt::cast::to_signed(
+				_exact_hint->w()
+			);
+
+		hints_->base_height =
+			fcppt::cast::to_signed(
+				_exact_hint->h()
+			);
 
 		hints_->flags |= PSize;
 	}
@@ -39,8 +49,15 @@ awl::backends::x11::window::size_hints::size_hints(
 	)
 	{
 
-		hints_->min_width = _minimum_hint->w();
-		hints_->min_height = _minimum_hint->h();
+		hints_->min_width =
+			fcppt::cast::to_signed(
+				_minimum_hint->w()
+			);
+
+		hints_->min_height =
+			fcppt::cast::to_signed(
+				_minimum_hint->h()
+			);
 
 		hints_->flags |= PMinSize;
 	}
@@ -49,8 +66,15 @@ awl::backends::x11::window::size_hints::size_hints(
 		_maximum_hint
 	)
 	{
-		hints_->max_width = _maximum_hint->w();
-		hints_->max_height = _maximum_hint->h();
+		hints_->max_width =
+			fcppt::cast::to_signed(
+				_maximum_hint->w()
+			);
+
+		hints_->max_height =
+			fcppt::cast::to_signed(
+				_maximum_hint->h()
+			);
 
 		hints_->flags |= PMaxSize;
 	}
@@ -59,7 +83,8 @@ awl::backends::x11::window::size_hints::size_hints(
 XSizeHints *
 awl::backends::x11::window::size_hints::get() const
 {
-	return hints_.get();
+	return
+		hints_.get();
 }
 
 awl::backends::x11::window::size_hints::~size_hints()

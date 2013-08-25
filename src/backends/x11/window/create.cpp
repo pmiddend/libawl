@@ -5,8 +5,8 @@
 #include <awl/backends/x11/cursor/object.hpp>
 #include <awl/backends/x11/visual/object.hpp>
 #include <awl/backends/x11/window/create.hpp>
-#include <awl/window/optional_position.hpp>
 #include <awl/window/optional_dim.hpp>
+#include <awl/window/optional_pos.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
@@ -14,7 +14,7 @@
 
 Window
 awl::backends::x11::window::create(
-	awl::window::optional_position const &_position,
+	awl::window::optional_pos const &_position,
 	awl::window::optional_dim const &_dim,
 	awl::backends::x11::display &_display,
 	awl::backends::x11::screen const _screen,
@@ -58,41 +58,25 @@ awl::backends::x11::window::create(
 			),
 			_position
 			?
-				static_cast<
-					int
-				>(
-					_position->x()
-				)
+				_position->x()
 			:
 				0
 			,
 			_position
 			?
-				static_cast<
-					int
-				>(
-					_position->y()
-				)
+				_position->y()
 			:
 				0
 			,
 			_dim
 			?
-				static_cast<
-					unsigned
-				>(
-					_dim->w()
-				)
+				_dim->w()
 			:
 				1u
 			,
 			_dim
 			?
-				static_cast<
-					unsigned
-				>(
-					_dim->h()
-				)
+				_dim->h()
 			:
 				1u
 			,

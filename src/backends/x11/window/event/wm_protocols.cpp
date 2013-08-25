@@ -4,7 +4,8 @@
 #include <awl/backends/x11/window/set_wm_protocols.hpp>
 #include <awl/backends/x11/window/event/atom_vector.hpp>
 #include <awl/backends/x11/window/event/wm_protocols.hpp>
-#include <fcppt/container/raw_vector_impl.hpp>
+#include <fcppt/cast/size.hpp>
+#include <fcppt/cast/to_signed.hpp>
 
 
 awl::backends::x11::window::event::wm_protocols::wm_protocols(
@@ -17,10 +18,12 @@ awl::backends::x11::window::event::wm_protocols::wm_protocols(
 		awl::backends::x11::window::atoms(
 			_atoms.data(),
 			awl::backends::x11::window::atom_count(
-				static_cast<
+				fcppt::cast::size<
 					int
 				>(
-					_atoms.size()
+					fcppt::cast::to_signed(
+						_atoms.size()
+					)
 				)
 			)
 		)

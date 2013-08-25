@@ -2,9 +2,9 @@
 #include <awl/visual/object_fwd.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/optional_dim.hpp>
-#include <awl/window/optional_position.hpp>
+#include <awl/window/optional_pos.hpp>
 #include <awl/window/parameters.hpp>
-#include <awl/window/vector.hpp>
+#include <awl/window/pos.hpp>
 #include <fcppt/string.hpp>
 
 
@@ -28,7 +28,7 @@ awl::window::parameters::parameters(
 
 awl::window::parameters &
 awl::window::parameters::position(
-	awl::window::vector const &_position
+	awl::window::pos const &_position
 )
 {
 	position_ = _position;
@@ -112,7 +112,7 @@ awl::window::parameters::visual() const
 	return visual_;
 }
 
-awl::window::optional_position const
+awl::window::optional_pos const
 awl::window::parameters::position() const
 {
 	return position_;

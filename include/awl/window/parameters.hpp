@@ -5,9 +5,9 @@
 #include <awl/visual/object_fwd.hpp>
 #include <awl/window/dim_fwd.hpp>
 #include <awl/window/optional_dim.hpp>
-#include <awl/window/optional_position.hpp>
+#include <awl/window/optional_pos.hpp>
 #include <awl/window/parameters_fwd.hpp>
-#include <awl/window/vector_fwd.hpp>
+#include <awl/window/pos_fwd.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/nonassignable.hpp>
 #include <fcppt/string.hpp>
@@ -33,7 +33,7 @@ public:
 	AWL_SYMBOL
 	awl::window::parameters &
 	position(
-		awl::window::vector const &
+		awl::window::pos const &
 	);
 
 	AWL_SYMBOL
@@ -83,7 +83,7 @@ public:
 	visual() const;
 
 	AWL_SYMBOL
-	awl::window::optional_position const
+	awl::window::optional_pos const
 	position() const;
 
 	AWL_SYMBOL
@@ -116,7 +116,7 @@ public:
 private:
 	awl::visual::object const &visual_;
 
-	awl::window::optional_position position_;
+	awl::window::optional_pos position_;
 
 	awl::window::optional_dim size_;
 

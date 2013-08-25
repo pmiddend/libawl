@@ -41,21 +41,21 @@ awl::backends::cocoa::window::instance::instance(
 			:
 				awl::window::dim::null();
 
-	NSRect frame = 
+	NSRect frame =
 			NSMakeRect(
-				static_cast<float>(
+				fcppt::cast::int_to_float<float>(
 					position.x()),
-				static_cast<float>(
+				fcppt::cast::int_to_float<float>(
 					position.y()),
-				static_cast<float>(
+				fcppt::cast::int_to_float<float>(
 					size.w()),
-				static_cast<float>(
+				fcppt::cast::int_to_float<float>(
 					size.h()));
 
-	window_ = 
-		[[NSWindow alloc] initWithContentRect:frame 
+	window_ =
+		[[NSWindow alloc] initWithContentRect:frame
 			styleMask: base_style_mask
-			backing:NSBackingStoreBuffered 
+			backing:NSBackingStoreBuffered
 			defer:NO];
 
 	[window_ setTitle: cocoa::from_fcppt_string(_params.title())];
@@ -67,18 +67,18 @@ awl::backends::cocoa::window::instance::instance(
 		[window_
 			setContentMinSize:
 				NSMakeSize(
-					static_cast<float>(
+					fcppt::cast::int_to_float<float>(
 						_params.minimum_size_hint()->w()),
-					static_cast<float>(
+					fcppt::cast::int_to_float<float>(
 						_params.minimum_size_hint()->h()))];
 
 	if(_params.maximum_size_hint())
 		[window_
 			setContentMaxSize:
 				NSMakeSize(
-					static_cast<float>(
+					fcppt::cast::int_to_float<float>(
 						_params.maximum_size_hint()->w()),
-					static_cast<float>(
+					fcppt::cast::int_to_float<float>(
 						_params.maximum_size_hint()->h()))];
 }
 

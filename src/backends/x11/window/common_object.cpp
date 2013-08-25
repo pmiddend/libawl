@@ -73,16 +73,8 @@ awl::backends::x11::window::common_object::size() const
 
 	return
 		awl::window::dim(
-			static_cast<
-				awl::window::dim::value_type
-			>(
-				width_return
-			),
-			static_cast<
-				awl::window::dim::value_type
-			>(
-				height_return
-			)
+			width_return,
+			height_return
 		);
 }
 

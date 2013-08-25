@@ -7,6 +7,7 @@
 #include <awl/backends/x11/cursor/create_predefined.hpp>
 #include <awl/backends/x11/cursor/object.hpp>
 #include <awl/backends/x11/system/object.hpp>
+#include <fcppt/cast/static_downcast.hpp>
 #elif defined(AWL_WINDOWS_BACKEND)
 #include <awl/backends/windows/cursor/create_predefined.hpp>
 #include <awl/backends/windows/cursor/object.hpp>
@@ -29,7 +30,7 @@ awl::cursor::create_predefined(
 		awl::cursor::object_unique_ptr(
 #if defined(AWL_X11_BACKEND)
 			awl::backends::x11::cursor::create_predefined(
-				static_cast<
+				fcppt::cast::static_downcast<
 					awl::backends::x11::system::object &
 				>(
 					_system
