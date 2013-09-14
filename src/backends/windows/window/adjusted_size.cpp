@@ -1,12 +1,14 @@
 #include <awl/exception.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/adjusted_size.hpp>
-#include <fcppt/optional_impl.hpp>
+#include <awl/backends/windows/window/signed_dim.hpp>
+#include <awl/window/optional_dim.hpp>
 #include <fcppt/text.hpp>
-#include <fcppt/math/dim/object_impl.hpp>
+#include <fcppt/cast/size.hpp>
+#include <fcppt/cast/to_signed.hpp>
 
 
-awl::window::dim const
+awl::backends::windows::window::signed_dim const
 awl::backends::windows::window::adjusted_size(
 	awl::window::optional_dim const &_dim,
 	DWORD const _flags
@@ -16,7 +18,7 @@ awl::backends::windows::window::adjusted_size(
 		!_dim
 	)
 		return
-			awl::window::dim(
+			awl::backends::windows::window::signed_dim(
 				CW_USEDEFAULT,
 				CW_USEDEFAULT
 			);
@@ -25,8 +27,12 @@ awl::backends::windows::window::adjusted_size(
 	{
 		0,
 		0,
-		_dim->w(),
-		_dim->h()
+		fcppt::cast::to_signed(
+			_dim->w()
+		),
+		fcppt::cast::to_signed(
+			_dim->h()
+		)
 	};
 
 	if(
@@ -41,8 +47,16 @@ awl::backends::windows::window::adjusted_size(
 		);
 
 	return
-		awl::window::dim(
-			rect.right - rect.left,
-			rect.bottom - rect.top
+		awl::backends::windows::window::signed_dim(
+			fcppt::cast::size<
+				awl::backends::windows::window::signed_dim::value_type
+			>(
+				rect.right - rect.left
+			),
+			fcppt::cast::size<
+				awl::backends::windows::window::signed_dim::value_type
+			>(
+				rect.bottom - rect.top
+			)
 		);
 }

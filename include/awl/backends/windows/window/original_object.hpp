@@ -8,6 +8,7 @@
 #include <awl/backends/windows/cursor/const_optional_object_ref.hpp>
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/common_object.hpp>
+#include <awl/backends/windows/window/holder.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 
@@ -46,9 +47,7 @@ public:
 	awl::backends::windows::cursor::const_optional_object_ref const
 	cursor() const;
 private:
-	HWND const handle_;
-
-	awl::backends::windows::wndclass_remove_callback const remove_wndclass_;
+	awl::backends::windows::window::holder const holder_;
 
 	awl::backends::windows::cursor::const_optional_object_ref const cursor_;
 };

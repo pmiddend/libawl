@@ -430,6 +430,7 @@ set(
 	include/awl/backends/x11/window/common_object.hpp
 	include/awl/backends/x11/window/create.hpp
 	include/awl/backends/x11/window/event/atom_vector.hpp
+	include/awl/backends/x11/window/event/atom_vector_fwd.hpp
 	include/awl/backends/x11/window/event/callback.hpp
 	include/awl/backends/x11/window/event/change_mask.hpp
 	include/awl/backends/x11/window/event/filter.hpp
@@ -529,6 +530,7 @@ set(
 	src/backends/windows/window/adjusted_size.cpp
 	src/backends/windows/window/client_to_screen.cpp
 	src/backends/windows/window/common_object.cpp
+	src/backends/windows/window/create.cpp
 	src/backends/windows/window/event/combine_result.cpp
 	src/backends/windows/window/event/object.cpp
 	src/backends/windows/window/event/original_processor.cpp
@@ -537,6 +539,7 @@ set(
 	src/backends/windows/window/event/wnd_proc.cpp
 	src/backends/windows/window/get_client_rect.cpp
 	src/backends/windows/window/get_rect.cpp
+	src/backends/windows/window/holder.cpp
 	src/backends/windows/window/object.cpp
 	src/backends/windows/window/original_object.cpp
 	src/backends/windows/window/screen_to_client.cpp
@@ -592,6 +595,7 @@ set(
 	include/awl/backends/windows/system/event/object.hpp
 	include/awl/backends/windows/system/event/object_fwd.hpp
 	include/awl/backends/windows/system/event/optional_processor_ref.hpp
+	include/awl/backends/windows/system/event/optional_processor_ref_fwd.hpp
 	include/awl/backends/windows/system/event/original_handle.hpp
 	include/awl/backends/windows/system/event/original_processor.hpp
 	include/awl/backends/windows/system/event/original_processor_fwd.hpp
@@ -609,6 +613,7 @@ set(
 	include/awl/backends/windows/window/adjusted_size.hpp
 	include/awl/backends/windows/window/client_to_screen.hpp
 	include/awl/backends/windows/window/common_object.hpp
+	include/awl/backends/windows/window/create.hpp
 	include/awl/backends/windows/window/event/callback.hpp
 	include/awl/backends/windows/window/event/combine_result.hpp
 	include/awl/backends/windows/window/event/function.hpp
@@ -624,12 +629,15 @@ set(
 	include/awl/backends/windows/window/event/wnd_proc.hpp
 	include/awl/backends/windows/window/get_client_rect.hpp
 	include/awl/backends/windows/window/get_rect.hpp
+	include/awl/backends/windows/window/holder.hpp
 	include/awl/backends/windows/window/object.hpp
 	include/awl/backends/windows/window/object_fwd.hpp
 	include/awl/backends/windows/window/object_scoped_ptr.hpp
 	include/awl/backends/windows/window/object_unique_ptr.hpp
 	include/awl/backends/windows/window/original_object.hpp
 	include/awl/backends/windows/window/screen_to_client.hpp
+	include/awl/backends/windows/window/signed_dim.hpp
+	include/awl/backends/windows/window/signed_dim_fwd.hpp
 	include/awl/backends/windows/window/wrapped_object.hpp
 	include/awl/backends/windows/windows.hpp
 	include/awl/backends/windows/wndclass.hpp

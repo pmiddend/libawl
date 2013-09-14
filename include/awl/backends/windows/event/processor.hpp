@@ -6,7 +6,7 @@
 #include <awl/backends/windows/event/message_fwd.hpp>
 #include <awl/backends/windows/event/processor_fwd.hpp>
 #include <awl/backends/windows/system/object_fwd.hpp>
-#include <awl/backends/windows/system/event/optional_processor_ref.hpp>
+#include <awl/backends/windows/system/event/optional_processor_ref_fwd.hpp>
 #include <awl/backends/windows/window/event/processor_fwd.hpp>
 #include <awl/event/processor.hpp>
 #include <awl/window/event/processor_fwd.hpp>

@@ -5,6 +5,7 @@
 #include <fcppt/string.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/assert/pre.hpp>
+#include <fcppt/cast/size.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <cstring>
 #include <fcppt/config/external_end.hpp>
@@ -38,16 +39,37 @@ awl::backends::windows::wndclass::wndclass(
 	);
 
 	wndclassex.cbClsExtra = 0;
+
 	wndclassex.cbWndExtra = 0;
-	wndclassex.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_WINDOW+1);
+
+	wndclassex.hbrBackground =
+		reinterpret_cast<
+			HBRUSH
+		>(
+			COLOR_WINDOW + 1
+		);
+
 	wndclassex.hCursor = nullptr;
+
 	wndclassex.hIcon = nullptr;
+
 	wndclassex.hIconSm = nullptr;
+
 	wndclassex.hInstance = awl::backends::windows::module_handle();
+
 	wndclassex.lpfnWndProc = _proc;
+
 	wndclassex.lpszClassName = class_name_.c_str();
+
 	wndclassex.lpszMenuName = nullptr;
-	wndclassex.cbSize = sizeof(WNDCLASSEX);
+
+	wndclassex.cbSize =
+		fcppt::cast::size<
+			UINT
+		>(
+			sizeof(WNDCLASSEX)
+		);
+
 	wndclassex.style = 0;
 
 	if(

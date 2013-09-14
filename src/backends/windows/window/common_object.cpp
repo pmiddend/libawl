@@ -10,9 +10,12 @@
 #include <awl/backends/windows/window/object.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/object.hpp>
+#include <awl/window/size.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/try_dynamic_cast.hpp>
+#include <fcppt/cast/size.hpp>
+#include <fcppt/cast/to_unsigned.hpp>
 
 
 awl::backends::windows::window::common_object::common_object()
@@ -43,8 +46,20 @@ awl::backends::windows::window::common_object::size() const
 
 	return
 		awl::window::dim(
-			rect->right - rect->left,
-			rect->bottom - rect->top
+			fcppt::cast::size<
+				awl::window::size
+			>(
+				fcppt::cast::to_unsigned(
+					rect->right - rect->left
+				)
+			),
+			fcppt::cast::size<
+				awl::window::size
+			>(
+				fcppt::cast::to_unsigned(
+					rect->bottom - rect->top
+				)
+			)
 		);
 }
 
