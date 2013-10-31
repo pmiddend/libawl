@@ -8,7 +8,9 @@ HMODULE
 awl::backends::windows::module_handle()
 {
 	HMODULE const object(
-		::GetModuleHandle(0)
+		::GetModuleHandle(
+			nullptr
+		)
 	);
 
 	if(
