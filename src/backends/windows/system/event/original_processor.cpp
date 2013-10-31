@@ -244,14 +244,22 @@ void
 awl::backends::windows::system::event::original_processor::next()
 {
 	this->generic_multiple_wait(
-		std::bind(
-			::MsgWaitForMultipleObjects,
-			std::placeholders::_1,
-			std::placeholders::_2,
-			std::placeholders::_3,
-			std::placeholders::_4,
-			QS_ALLPOSTMESSAGE
-		),
+		[](
+			DWORD const _count,
+			HANDLE const *const _handle,
+			BOOL const _wait_all,
+			DWORD const _milli_seconds
+		)
+		{
+			return
+				::MsgWaitForMultipleObjects(
+					_count,
+					_handle,
+					_wait_all,
+					_milli_seconds,
+					QS_ALLPOSTMESSAGE
+				);
+		},
 		INFINITE
 	);
 }
