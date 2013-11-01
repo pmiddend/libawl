@@ -85,6 +85,7 @@ SET(
 	src/main/exit_failure.cpp
 	src/main/exit_success.cpp
 	src/main/function_context.cpp
+	src/show_error.cpp
 	src/system/create.cpp
 	src/system/event/create_processor.cpp
 	src/system/event/processor.cpp
@@ -128,6 +129,7 @@ SET(
 	include/awl/main/exit_success.hpp
 	include/awl/main/function_context.hpp
 	include/awl/main/function_context_fwd.hpp
+	include/awl/show_error.hpp
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
 	include/awl/system/event/optional_processor_ref.hpp
