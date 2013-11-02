@@ -82,10 +82,15 @@ SET(
 	src/log.cpp
 	src/log_context.cpp
 	src/log_location.cpp
+	src/main/create_output.cpp
+	src/main/dummy_output.cpp
 	src/main/exit_failure.cpp
 	src/main/exit_success.cpp
 	src/main/function_context.cpp
+	src/main/output.cpp
+	src/main/scoped_output.cpp
 	src/show_error.cpp
+	src/show_error_narrow.cpp
 	src/system/create.cpp
 	src/system/event/create_processor.cpp
 	src/system/event/processor.cpp
@@ -124,12 +129,20 @@ SET(
 	include/awl/log.hpp
 	include/awl/log_context.hpp
 	include/awl/log_location.hpp
+	include/awl/main/create_output.hpp
+	include/awl/main/dummy_output.hpp
 	include/awl/main/exit_code.hpp
 	include/awl/main/exit_failure.hpp
 	include/awl/main/exit_success.hpp
 	include/awl/main/function_context.hpp
 	include/awl/main/function_context_fwd.hpp
+	include/awl/main/output.hpp
+	include/awl/main/output_fwd.hpp
+	include/awl/main/output_unique_ptr.hpp
+	include/awl/main/scoped_output.hpp
+	include/awl/main/scoped_output_fwd.hpp
 	include/awl/show_error.hpp
+	include/awl/show_error_narrow.hpp
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
 	include/awl/system/event/optional_processor_ref.hpp
@@ -517,6 +530,7 @@ set(
 	src/backends/windows/format_message.cpp
 	src/backends/windows/get_focus.cpp
 	src/backends/windows/local_free.cpp
+	src/backends/windows/main/output.cpp
 	src/backends/windows/module_handle.cpp
 	src/backends/windows/scoped_local_memory.cpp
 	src/backends/windows/system/event/handle.cpp
@@ -580,6 +594,7 @@ set(
 	include/awl/backends/windows/format_message.hpp
 	include/awl/backends/windows/get_focus.hpp
 	include/awl/backends/windows/local_free.hpp
+	include/awl/backends/windows/main/output.hpp
 	include/awl/backends/windows/module_handle.hpp
 	include/awl/backends/windows/optional_point.hpp
 	include/awl/backends/windows/optional_point_fwd.hpp
