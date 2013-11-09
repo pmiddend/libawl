@@ -1,6 +1,7 @@
 #ifndef AWL_MAIN_SCOPED_OUTPUT_HPP_INCLUDED
 #define AWL_MAIN_SCOPED_OUTPUT_HPP_INCLUDED
 
+#include <awl/symbol.hpp>
 #include <awl/main/output_fwd.hpp>
 #include <awl/main/scoped_output_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
