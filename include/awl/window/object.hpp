@@ -2,6 +2,7 @@
 #define AWL_WINDOW_OBJECT_HPP_INCLUDED
 
 #include <awl/window/dim_fwd.hpp>
+#include <awl/window/rect_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -28,6 +29,10 @@ public:
 	virtual
 	awl::window::dim const
 	size() const = 0;
+
+	virtual
+	awl::window::rect const
+	rect() const = 0;
 
 	virtual
 	bool

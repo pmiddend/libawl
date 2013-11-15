@@ -10,12 +10,13 @@
 #include <awl/backends/windows/window/object.hpp>
 #include <awl/window/dim.hpp>
 #include <awl/window/object.hpp>
-#include <awl/window/size.hpp>
+#include <awl/window/rect.hpp>
+#include <awl/window/unit.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/try_dynamic_cast.hpp>
 #include <fcppt/cast/size.hpp>
-#include <fcppt/cast/to_unsigned.hpp>
+#include <fcppt/math/dim/structure_cast.hpp>
 
 
 awl::backends::windows::window::common_object::common_object()
@@ -31,32 +32,53 @@ awl::backends::windows::window::common_object::~common_object()
 awl::window::dim const
 awl::backends::windows::window::common_object::size() const
 {
-	awl::backends::windows::optional_rect const rect(
+	return
+		fcppt::math::dim::structure_cast<
+			awl::window::dim
+		>(
+			this->rect.size()
+		);
+}
+
+awl::window::rect const
+awl::backends::windows::window::common_object::rect() const
+{
+	awl::backends::windows::optional_rect const ret(
 		awl::backends::windows::window::get_client_rect(
 			*this
 		)
 	);
 
 	if(
-		!rect
+		!ret
 	)
 		throw awl::exception(
 			FCPPT_TEXT("Can't get the window size because GetWindowRect failed!")
 		);
 
 	return
-		awl::window::dim(
-			fcppt::cast::size<
-				awl::window::size
-			>(
-				fcppt::cast::to_unsigned(
-					rect->right - rect->left
+		awl::window::rect(
+			awl::window::rect::vector(
+				fcppt::cast::size<
+					awl::window::unit
+				>(
+					rect->left
+				),
+				fcppt::cast::size<
+					awl::window::unit
+				>(
+					rect->top
 				)
 			),
-			fcppt::cast::size<
-				awl::window::size
-			>(
-				fcppt::cast::to_unsigned(
+			awl::window::rect::dim(
+				fcppt::cast::size<
+					awl::window::unit
+				>(
+					rect->right - rect->left
+				),
+				fcppt::cast::size<
+					awl::window::unit
+				>(
 					rect->bottom - rect->top
 				)
 			)
