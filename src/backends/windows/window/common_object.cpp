@@ -36,7 +36,7 @@ awl::backends::windows::window::common_object::size() const
 		fcppt::math::dim::structure_cast<
 			awl::window::dim
 		>(
-			this->rect.size()
+			this->rect().size()
 		);
 }
 
@@ -62,24 +62,24 @@ awl::backends::windows::window::common_object::rect() const
 				fcppt::cast::size<
 					awl::window::unit
 				>(
-					rect->left
+					ret->left
 				),
 				fcppt::cast::size<
 					awl::window::unit
 				>(
-					rect->top
+					ret->top
 				)
 			),
 			awl::window::rect::dim(
 				fcppt::cast::size<
 					awl::window::unit
 				>(
-					rect->right - rect->left
+					ret->right - ret->left
 				),
 				fcppt::cast::size<
 					awl::window::unit
 				>(
-					rect->bottom - rect->top
+					ret->bottom - ret->top
 				)
 			)
 		);
