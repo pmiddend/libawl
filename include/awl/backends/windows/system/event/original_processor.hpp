@@ -3,17 +3,17 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/event/object_fwd.hpp>
 #include <awl/backends/windows/event/type.hpp>
+#include <awl/backends/windows/system/object_fwd.hpp>
 #include <awl/backends/windows/system/event/callback.hpp>
 #include <awl/backends/windows/system/event/handle_callback.hpp>
 #include <awl/backends/windows/system/event/handle_function.hpp>
 #include <awl/backends/windows/system/event/handle_unique_ptr.hpp>
-#include <awl/backends/windows/system/event/original_processor_fwd.hpp>
 #include <awl/backends/windows/system/event/object_fwd.hpp>
+#include <awl/backends/windows/system/event/original_processor_fwd.hpp>
 #include <awl/backends/windows/system/event/processor.hpp>
-#include <awl/backends/windows/system/object_fwd.hpp>
-#include <awl/backends/windows/windows.hpp>
 #include <awl/main/exit_code.hpp>
 #include <awl/system/optional_exit_code.hpp>
 #include <awl/system/event/quit_callback.hpp>
@@ -26,6 +26,7 @@
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {

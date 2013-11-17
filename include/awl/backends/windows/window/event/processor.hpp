@@ -3,12 +3,12 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <awl/window/event/processor.hpp>
 #include <awl/backends/windows/event/message_fwd.hpp>
 #include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/window/object_fwd.hpp>
-#include <awl/backends/windows/window/event/processor_fwd.hpp>
 #include <awl/backends/windows/window/event/callback.hpp>
+#include <awl/backends/windows/window/event/processor_fwd.hpp>
+#include <awl/window/event/processor.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/signal/auto_connection_fwd.hpp>
 

@@ -6,14 +6,15 @@
 #include <awl/window/object.hpp>
 #include <awl/window/object_scoped_ptr.hpp>
 #include <awl/window/parameters.hpp>
-#include <fcppt/io/cerr.hpp>
-#include <fcppt/time/sleep_any.hpp>
 #include <fcppt/exception.hpp>
 #include <fcppt/text.hpp>
+#include <fcppt/io/cerr.hpp>
+#include <fcppt/time/sleep_any.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <chrono>
 #include <cstdlib>
 #include <fcppt/config/external_end.hpp>
+
 
 int
 main()

@@ -1,12 +1,12 @@
 #ifndef AWL_SYSTEM_OBJECT_HPP_INCLUDED
 #define AWL_SYSTEM_OBJECT_HPP_INCLUDED
 
+#include <awl/class_symbol.hpp>
+#include <awl/symbol.hpp>
 #include <awl/system/object_fwd.hpp>
 #include <awl/visual/object_unique_ptr.hpp>
 #include <awl/window/object_unique_ptr.hpp>
 #include <awl/window/parameters_fwd.hpp>
-#include <awl/class_symbol.hpp>
-#include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 
 

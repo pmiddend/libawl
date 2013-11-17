@@ -3,8 +3,8 @@
 
 #include <awl/symbol.hpp>
 #include <awl/backends/linux/fd/object.hpp>
-#include <awl/backends/linux/fd/epoll/set_fwd.hpp>
 #include <awl/backends/linux/fd/epoll/scoped_fwd.hpp>
+#include <awl/backends/linux/fd/epoll/set_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 
 

@@ -1,9 +1,10 @@
 #ifndef AWL_WINDOW_EVENT_CREATE_PROCESSOR_HPP_INCLUDED
 #define AWL_WINDOW_EVENT_CREATE_PROCESSOR_HPP_INCLUDED
 
-#include <awl/window/event/processor_unique_ptr.hpp>
-#include <awl/window/object_fwd.hpp>
 #include <awl/symbol.hpp>
+#include <awl/window/object_fwd.hpp>
+#include <awl/window/event/processor_unique_ptr.hpp>
+
 
 namespace awl
 {

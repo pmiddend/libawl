@@ -1,9 +1,10 @@
 #ifndef AWL_EXCEPTION_HPP_INCLUDED
 #define AWL_EXCEPTION_HPP_INCLUDED
 
-#include <fcppt/assert/information_fwd.hpp>
 #include <fcppt/exception.hpp>
 #include <fcppt/string.hpp>
+#include <fcppt/assert/information_fwd.hpp>
+
 
 namespace awl
 {

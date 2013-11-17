@@ -1,15 +1,17 @@
 #ifndef AWL_BACKENDS_WINDOWS_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_WINDOWS_WINDOW_EVENT_ORIGINAL_PROCESSOR_HPP_INCLUDED
 
+#include <awl/class_symbol.hpp>
+#include <awl/symbol.hpp>
 #include <awl/backends/windows/event/lparam.hpp>
 #include <awl/backends/windows/event/message_fwd.hpp>
 #include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/event/wparam.hpp>
+#include <awl/backends/windows/window/object_fwd.hpp>
 #include <awl/backends/windows/window/event/callback.hpp>
 #include <awl/backends/windows/window/event/object_fwd.hpp>
 #include <awl/backends/windows/window/event/processor.hpp>
 #include <awl/backends/windows/window/event/return_type.hpp>
-#include <awl/backends/windows/window/object_fwd.hpp>
 #include <awl/window/event/close_callback.hpp>
 #include <awl/window/event/close_signal.hpp>
 #include <awl/window/event/destroy_callback.hpp>
@@ -24,8 +26,6 @@
 #include <awl/window/event/resize_signal.hpp>
 #include <awl/window/event/show_callback.hpp>
 #include <awl/window/event/show_signal.hpp>
-#include <awl/class_symbol.hpp>
-#include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/signal/auto_connection_fwd.hpp>
 #include <fcppt/signal/connection_manager.hpp>

@@ -3,6 +3,7 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/x11/colormap.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/visual/object_fwd.hpp>
@@ -12,7 +13,6 @@
 #include <awl/backends/x11/window/holder.hpp>
 #include <awl/backends/x11/window/original_class_hint.hpp>
 #include <awl/backends/x11/window/size_hints.hpp>
-#include <awl/backends/x11/colormap.hpp>
 #include <awl/window/object.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <fcppt/noncopyable.hpp>

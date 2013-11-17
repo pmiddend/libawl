@@ -1,8 +1,8 @@
 #include <awl/exception.hpp>
 #include <awl/backends/windows/optional_rect.hpp>
 #include <awl/backends/windows/windows.hpp>
-#include <awl/backends/windows/event/post_message.hpp>
 #include <awl/backends/windows/event/lparam.hpp>
+#include <awl/backends/windows/event/post_message.hpp>
 #include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/event/wparam.hpp>
 #include <awl/backends/windows/window/common_object.hpp>

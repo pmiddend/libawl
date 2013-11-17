@@ -5,9 +5,9 @@
 #include <awl/symbol.hpp>
 #include <awl/backends/linux/fd/callback.hpp>
 #include <awl/backends/linux/fd/function.hpp>
-#include <awl/backends/linux/fd/processor.hpp>
 #include <awl/backends/linux/fd/object.hpp>
 #include <awl/backends/linux/fd/optional_duration_fwd.hpp>
+#include <awl/backends/linux/fd/processor.hpp>
 #include <awl/backends/linux/fd/epoll/scoped.hpp>
 #include <awl/backends/linux/fd/epoll/set.hpp>
 #include <awl/backends/x11/event/object_fwd.hpp>

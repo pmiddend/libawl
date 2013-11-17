@@ -5,8 +5,8 @@
 #include <awl/backends/x11/event/pending.hpp>
 #include <awl/backends/x11/event/processor.hpp>
 #include <awl/backends/x11/system/object.hpp>
-#include <awl/backends/x11/system/event/processor.hpp>
 #include <awl/backends/x11/system/event/optional_processor_ref.hpp>
+#include <awl/backends/x11/system/event/processor.hpp>
 #include <awl/backends/x11/window/object.hpp>
 #include <awl/backends/x11/window/event/processor.hpp>
 #include <awl/window/event/processor_fwd.hpp>
@@ -14,8 +14,8 @@
 #include <fcppt/cast/static_downcast.hpp>
 #include <fcppt/cast/static_downcast_ptr.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <utility>
 #include <X11/X.h>
+#include <utility>
 #include <fcppt/config/external_end.hpp>
 
 

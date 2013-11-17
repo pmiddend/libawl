@@ -1,12 +1,13 @@
 #ifndef AWL_BACKENDS_X11_ORIGINAL_DISPLAY_HPP_INCLUDED
 #define AWL_BACKENDS_X11_ORIGINAL_DISPLAY_HPP_INCLUDED
 
-#include <awl/backends/x11/display.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/x11/display.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {

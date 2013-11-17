@@ -3,10 +3,10 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/wndclass_fwd.hpp>
 #include <awl/backends/windows/wndclass_remove_callback.hpp>
 #include <awl/backends/windows/cursor/const_optional_object_ref.hpp>
-#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/common_object.hpp>
 #include <awl/backends/windows/window/holder.hpp>
 #include <awl/window/parameters_fwd.hpp>

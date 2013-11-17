@@ -1,13 +1,14 @@
 #ifndef AWL_BACKENDS_COCOA_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 #define AWL_BACKENDS_COCOA_WINDOW_EVENT_PROCESSOR_HPP_INCLUDED
 
+#include <awl/backends/cocoa/window/object_fwd.hpp>
+#include <awl/backends/cocoa/window/event/AWLWindowDelegate.hpp>
+#include <awl/window/event/destroy_signal.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/resize_signal.hpp>
-#include <awl/window/event/destroy_signal.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/signal/object.hpp>
-#include <awl/backends/cocoa/window/event/AWLWindowDelegate.hpp>
-#include <awl/backends/cocoa/window/object_fwd.hpp>
+
 
 namespace awl
 {

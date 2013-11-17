@@ -1,6 +1,7 @@
 #ifndef AWL_WINDOW_PARAMETERS_HPP_INCLUDED
 #define AWL_WINDOW_PARAMETERS_HPP_INCLUDED
 
+#include <awl/symbol.hpp>
 #include <awl/cursor/const_optional_object_ref.hpp>
 #include <awl/visual/object_fwd.hpp>
 #include <awl/window/dim_fwd.hpp>
@@ -8,7 +9,6 @@
 #include <awl/window/optional_pos.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <awl/window/pos_fwd.hpp>
-#include <awl/symbol.hpp>
 #include <fcppt/nonassignable.hpp>
 #include <fcppt/string.hpp>
 

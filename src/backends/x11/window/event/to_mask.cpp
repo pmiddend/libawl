@@ -1,7 +1,7 @@
 #include <awl/backends/x11/window/event/mask.hpp>
 #include <awl/backends/x11/window/event/optional_mask.hpp>
-#include <awl/backends/x11/window/event/type.hpp>
 #include <awl/backends/x11/window/event/to_mask.hpp>
+#include <awl/backends/x11/window/event/type.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/assert/unreachable_message.hpp>
 #include <fcppt/config/external_begin.hpp>

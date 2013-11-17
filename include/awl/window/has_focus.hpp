@@ -1,9 +1,9 @@
 #ifndef AWL_WINDOW_HAS_FOCUS_HPP_INCLUDED
 #define AWL_WINDOW_HAS_FOCUS_HPP_INCLUDED
 
+#include <awl/symbol.hpp>
 #include <awl/system/object_fwd.hpp>
 #include <awl/window/object_fwd.hpp>
-#include <awl/symbol.hpp>
 
 
 namespace awl

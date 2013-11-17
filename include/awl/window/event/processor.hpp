@@ -5,9 +5,9 @@
 #include <awl/symbol.hpp>
 #include <awl/window/object_fwd.hpp>
 #include <awl/window/event/close_callback.hpp>
+#include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/focus_in_callback.hpp>
 #include <awl/window/event/focus_out_callback.hpp>
-#include <awl/window/event/destroy_callback.hpp>
 #include <awl/window/event/hide_callback.hpp>
 #include <awl/window/event/processor_fwd.hpp>
 #include <awl/window/event/resize_callback.hpp>

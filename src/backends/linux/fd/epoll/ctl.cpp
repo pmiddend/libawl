@@ -1,8 +1,8 @@
-#include <fcppt/text.hpp>
 #include <awl/exception.hpp>
 #include <awl/backends/linux/fd/object.hpp>
 #include <awl/backends/linux/fd/epoll/ctl.hpp>
 #include <awl/backends/linux/fd/epoll/fd.hpp>
+#include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <sys/epoll.h>
 #include <fcppt/config/external_end.hpp>

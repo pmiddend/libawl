@@ -7,8 +7,8 @@
 #include <awl/backends/x11/visual/object.hpp>
 #include <awl/backends/x11/window/original_object.hpp>
 #include <awl/visual/object_unique_ptr.hpp>
-#include <awl/window/parameters.hpp>
 #include <awl/window/object_unique_ptr.hpp>
+#include <awl/window/parameters.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 
 

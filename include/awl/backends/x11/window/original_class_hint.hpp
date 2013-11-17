@@ -1,15 +1,16 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_ORIGINAL_CLASS_HINT_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_ORIGINAL_CLASS_HINT_HPP_INCLUDED
 
-#include <awl/backends/x11/window/class_hint.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/string.hpp>
+#include <awl/backends/x11/window/class_hint.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/scoped_ptr_impl.hpp>
+#include <fcppt/string.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <string>
 #include <X11/Xutil.h>
+#include <string>
 #include <fcppt/config/external_end.hpp>
+
 
 namespace awl
 {

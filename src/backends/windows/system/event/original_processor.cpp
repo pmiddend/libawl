@@ -1,4 +1,5 @@
 #include <awl/exception.hpp>
+#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/event/lparam.hpp>
 #include <awl/backends/windows/event/message.hpp>
 #include <awl/backends/windows/event/object.hpp>
@@ -6,13 +7,12 @@
 #include <awl/backends/windows/event/peek.hpp>
 #include <awl/backends/windows/event/type.hpp>
 #include <awl/backends/windows/event/wparam.hpp>
-#include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/system/event/object.hpp>
 #include <awl/backends/windows/system/event/original_handle.hpp>
 #include <awl/backends/windows/system/event/original_processor.hpp>
+#include <awl/main/exit_code.hpp>
 #include <awl/system/event/quit.hpp>
 #include <awl/system/event/quit_callback.hpp>
-#include <awl/main/exit_code.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>

@@ -1,9 +1,9 @@
 #ifndef AWL_BACKENDS_X11_WINDOW_ATOMS_HPP_INCLUDED
 #define AWL_BACKENDS_X11_WINDOW_ATOMS_HPP_INCLUDED
 
+#include <awl/symbol.hpp>
 #include <awl/backends/x11/window/atom_count.hpp>
 #include <awl/backends/x11/window/atoms_fwd.hpp>
-#include <awl/symbol.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>

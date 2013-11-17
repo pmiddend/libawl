@@ -3,8 +3,8 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <awl/backends/x11/cursor/holder_unique_ptr.hpp>
 #include <awl/backends/x11/cursor/holder_scoped_ptr.hpp>
+#include <awl/backends/x11/cursor/holder_unique_ptr.hpp>
 #include <awl/backends/x11/cursor/object_fwd.hpp>
 #include <awl/cursor/object.hpp>
 #include <fcppt/noncopyable.hpp>

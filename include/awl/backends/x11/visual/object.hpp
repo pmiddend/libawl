@@ -1,9 +1,9 @@
 #ifndef AWL_BACKENDS_X11_VISUAL_OBJECT_HPP_INCLUDED
 #define AWL_BACKENDS_X11_VISUAL_OBJECT_HPP_INCLUDED
 
+#include <awl/symbol.hpp>
 #include <awl/backends/x11/visual/object_fwd.hpp>
 #include <awl/visual/object.hpp>
-#include <awl/symbol.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>

@@ -2,8 +2,8 @@
 #define AWL_BACKENDS_WINDOWS_COUNTED_WNDCLASS_HPP_INCLUDED
 
 #include <awl/backends/windows/counted_wndclass_fwd.hpp>
-#include <awl/backends/windows/wndclass.hpp>
 #include <awl/backends/windows/windows.hpp>
+#include <awl/backends/windows/wndclass.hpp>
 #include <fcppt/noncopyable.hpp>
 #include <fcppt/string.hpp>
 

@@ -1,12 +1,12 @@
 #ifndef AWL_BACKENDS_X11_VISUAL_WRAPPED_HPP_INCLUDED
 #define AWL_BACKENDS_X11_VISUAL_WRAPPED_HPP_INCLUDED
 
-#include <awl/backends/x11/visual/info_unique_ptr.hpp>
-#include <awl/backends/x11/visual/info_scoped_ptr.hpp>
-#include <awl/backends/x11/visual/object.hpp>
 #include <awl/symbol.hpp>
-#include <fcppt/scoped_ptr_impl.hpp>
+#include <awl/backends/x11/visual/info_scoped_ptr.hpp>
+#include <awl/backends/x11/visual/info_unique_ptr.hpp>
+#include <awl/backends/x11/visual/object.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>

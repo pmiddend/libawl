@@ -1,10 +1,10 @@
 #ifndef AWL_WINDOW_OBJECT_HPP_INCLUDED
 #define AWL_WINDOW_OBJECT_HPP_INCLUDED
 
-#include <awl/window/dim_fwd.hpp>
-#include <awl/window/rect_fwd.hpp>
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <awl/window/dim_fwd.hpp>
+#include <awl/window/rect_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 
 

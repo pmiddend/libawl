@@ -1,10 +1,10 @@
 #ifndef AWL_BACKENDS_X11_VISUAL_DEFAULT_HPP_INCLUDED
 #define AWL_BACKENDS_X11_VISUAL_DEFAULT_HPP_INCLUDED
 
+#include <awl/symbol.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/visual/object_unique_ptr.hpp>
-#include <awl/symbol.hpp>
 
 
 namespace awl

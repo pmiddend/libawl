@@ -1,6 +1,3 @@
-#include <awl/backends/x11/display.hpp>
-#include <awl/backends/x11/display_fd.hpp>
-#include <awl/backends/x11/event/object.hpp>
 #include <awl/backends/linux/fd/callback.hpp>
 #include <awl/backends/linux/fd/duration.hpp>
 #include <awl/backends/linux/fd/event.hpp>
@@ -8,6 +5,9 @@
 #include <awl/backends/linux/fd/object_vector.hpp>
 #include <awl/backends/linux/fd/optional_duration.hpp>
 #include <awl/backends/linux/fd/processor.hpp>
+#include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/display_fd.hpp>
+#include <awl/backends/x11/event/object.hpp>
 #include <awl/backends/x11/system/object.hpp>
 #include <awl/backends/x11/system/event/callback.hpp>
 #include <awl/backends/x11/system/event/map_key.hpp>
@@ -26,8 +26,8 @@
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/signal/unregister/base_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <functional>
 #include <X11/Xlib.h>
+#include <functional>
 #include <fcppt/config/external_end.hpp>
 
 

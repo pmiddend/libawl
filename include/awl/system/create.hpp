@@ -1,9 +1,10 @@
 #ifndef AWL_SYSTEM_CREATE_HPP_INCLUDED
 #define AWL_SYSTEM_CREATE_HPP_INCLUDED
 
-#include <awl/system/object_unique_ptr.hpp>
-#include <awl/system/object.hpp>
 #include <awl/symbol.hpp>
+#include <awl/system/object.hpp>
+#include <awl/system/object_unique_ptr.hpp>
+
 
 namespace awl
 {
