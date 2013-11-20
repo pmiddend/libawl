@@ -220,6 +220,8 @@ SET(
 	include/awl/window/parameters_fwd.hpp
 	include/awl/window/pos.hpp
 	include/awl/window/pos_fwd.hpp
+	include/awl/window/rect.hpp
+	include/awl/window/rect_fwd.hpp
 	include/awl/window/size.hpp
 	include/awl/window/unit.hpp
 )
