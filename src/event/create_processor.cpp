@@ -19,7 +19,7 @@
 #endif
 #include <fcppt/dynamic_optional_cast.hpp>
 #include <fcppt/make_unique_ptr.hpp>
-#include <fcppt/optional_impl.hpp>
+
 
 awl::event::processor_unique_ptr
 awl::event::create_processor(

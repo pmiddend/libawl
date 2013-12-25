@@ -14,7 +14,7 @@ namespace windows
 {
 
 AWL_SYMBOL
-fcppt::string const
+fcppt::string
 format_message(
 	DWORD
 );

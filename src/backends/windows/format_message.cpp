@@ -6,7 +6,7 @@
 #include <fcppt/text.hpp>
 
 
-fcppt::string const
+fcppt::string
 awl::backends::windows::format_message(
 	DWORD const _error
 )
@@ -14,7 +14,7 @@ awl::backends::windows::format_message(
 	LPTSTR out;
 
 	if(
-		::FormatMessage(
+		FormatMessage(
 			FORMAT_MESSAGE_ALLOCATE_BUFFER
 			| FORMAT_MESSAGE_FROM_SYSTEM
 			| FORMAT_MESSAGE_IGNORE_INSERTS,
@@ -35,7 +35,7 @@ awl::backends::windows::format_message(
 			FCPPT_TEXT("FormatMessage() failed!")
 		);
 
-	windows::scoped_local_memory const guard(
+	awl::backends::windows::scoped_local_memory const guard(
 		out
 	);
 

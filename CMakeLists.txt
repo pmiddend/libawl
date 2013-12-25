@@ -235,6 +235,13 @@ if(
 		TRUE
 	)
 elseif(
+	WIN32
+)
+	set(
+		AWL_WINDOWS_BACKEND
+		TRUE
+	)
+elseif(
 	UNIX
 )
 	find_package(
@@ -244,13 +251,6 @@ elseif(
 
 	set(
 		AWL_X11_BACKEND
-		TRUE
-	)
-elseif(
-	WIN32
-)
-	set(
-		AWL_WINDOWS_BACKEND
 		TRUE
 	)
 else()
@@ -798,10 +798,8 @@ function(
 		${AWL_FILES}
 	)
 
-	set_target_properties(
+	fcppt_utils_set_so_version(
 		${TARGETNAME}
-		PROPERTIES
-		VERSION
 		${AWL_USED_SO_VERSION}
 	)
 
@@ -833,9 +831,20 @@ function(
 	endif()
 
 	if(
+		AWL_WINDOWS_BACKEND
+	)
+		target_link_libraries(
+			${TARGETNAME}
+			${fcppt_filesystem_TARGET}
+		)
+	endif()
+
+	if(
 		AWL_COCOA_BACKEND
 	)
-		target_link_libraries(${TARGETNAME} "-framework Cocoa")
+		target_link_libraries(
+			${TARGETNAME} "-framework Cocoa"
+		)
 	endif()
 
 	fcppt_utils_export_install_target(

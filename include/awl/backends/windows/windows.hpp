@@ -6,7 +6,7 @@
 #endif
 
 #include <fcppt/config/external_begin.hpp>
-#include <Windows.h>
+#include <windows.h>
 #include <fcppt/config/external_end.hpp>
 
 #endif
