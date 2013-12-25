@@ -146,6 +146,7 @@ SET(
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
 	include/awl/system/event/optional_processor_ref.hpp
+	include/awl/system/event/optional_processor_ref_fwd.hpp
 	include/awl/system/event/processor.hpp
 	include/awl/system/event/processor_fwd.hpp
 	include/awl/system/event/processor_scoped_ptr.hpp

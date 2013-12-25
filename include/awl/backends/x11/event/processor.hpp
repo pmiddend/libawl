@@ -9,7 +9,6 @@
 #include <awl/backends/x11/window/event/processor_fwd.hpp>
 #include <awl/event/processor.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/optional_decl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <map>

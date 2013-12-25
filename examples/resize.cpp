@@ -17,7 +17,6 @@
 #include <awl/window/event/resize.hpp>
 #include <awl/window/event/resize_callback.hpp>
 #include <fcppt/exception.hpp>
-#include <fcppt/optional_impl.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/io/cerr.hpp>
 #include <fcppt/io/cout.hpp>
