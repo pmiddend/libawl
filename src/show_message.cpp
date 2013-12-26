@@ -1,4 +1,4 @@
-#include <awl/show_error.hpp>
+#include <awl/show_message.hpp>
 #include <fcppt/string.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/config/platform.hpp>
@@ -7,12 +7,12 @@
 #include <awl/backends/windows/windows.hpp>
 #include <awl/backends/windows/window/const_optional_object_ref.hpp>
 #else
-#include <fcppt/io/cerr.hpp>
+#include <fcppt/io/clog.hpp>
 #endif
 
 
 void
-awl::show_error(
+awl::show_message(
 	fcppt::string const &_text
 )
 {
@@ -20,11 +20,11 @@ awl::show_error(
 	awl::backends::windows::message_box(
 		awl::backends::windows::window::const_optional_object_ref(),
 		_text,
-		FCPPT_TEXT("Error"),
-		MB_OK | MB_ICONERROR
+		FCPPT_TEXT("Info"),
+		MB_OK | MB_ICONINFORMATION
 	);
 #else
-	fcppt::io::cerr()
+	fcppt::io::clog()
 		<< _text
 		<< FCPPT_TEXT('\n');
 #endif

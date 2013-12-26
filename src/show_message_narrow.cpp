@@ -1,4 +1,4 @@
-#include <awl/show_error_narrow.hpp>
+#include <awl/show_message_narrow.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <string>
 #include <fcppt/config/external_end.hpp>
@@ -14,7 +14,7 @@
 
 
 void
-awl::show_error_narrow(
+awl::show_message_narrow(
 	std::string const &_text
 )
 {
@@ -22,11 +22,11 @@ awl::show_error_narrow(
 	awl::backends::windows::message_box_narrow(
 		awl::backends::windows::window::const_optional_object_ref(),
 		_text,
-		"Error",
-		MB_OK | MB_ICONERROR
+		"Info",
+		MB_OK | MB_ICONINFORMATION
 	);
 #else
-	std::cerr
+	std::clog
 		<< _text
 		<< '\n';
 #endif

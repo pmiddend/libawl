@@ -9,6 +9,7 @@
 #include <awl/window/object.hpp>
 #include <fcppt/noncopyable.hpp>
 
+
 namespace awl
 {
 namespace backends

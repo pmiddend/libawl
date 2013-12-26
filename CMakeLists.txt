@@ -91,6 +91,8 @@ SET(
 	src/main/scoped_output.cpp
 	src/show_error.cpp
 	src/show_error_narrow.cpp
+	src/show_message.cpp
+	src/show_message_narrow.cpp
 	src/system/create.cpp
 	src/system/event/create_processor.cpp
 	src/system/event/processor.cpp
@@ -141,8 +143,12 @@ SET(
 	include/awl/main/output_unique_ptr.hpp
 	include/awl/main/scoped_output.hpp
 	include/awl/main/scoped_output_fwd.hpp
+	include/awl/main/scoped_output_scoped_ptr.hpp
+	include/awl/main/scoped_output_unique_ptr.hpp
 	include/awl/show_error.hpp
 	include/awl/show_error_narrow.hpp
+	include/awl/show_message.hpp
+	include/awl/show_message_narrow.hpp
 	include/awl/system/create.hpp
 	include/awl/system/event/create_processor.hpp
 	include/awl/system/event/optional_processor_ref.hpp
@@ -534,6 +540,8 @@ set(
 	src/backends/windows/get_focus.cpp
 	src/backends/windows/local_free.cpp
 	src/backends/windows/main/output.cpp
+	src/backends/windows/message_box.cpp
+	src/backends/windows/message_box_narrow.cpp
 	src/backends/windows/module_handle.cpp
 	src/backends/windows/scoped_local_memory.cpp
 	src/backends/windows/system/event/handle.cpp
@@ -598,6 +606,8 @@ set(
 	include/awl/backends/windows/get_focus.hpp
 	include/awl/backends/windows/local_free.hpp
 	include/awl/backends/windows/main/output.hpp
+	include/awl/backends/windows/message_box.hpp
+	include/awl/backends/windows/message_box_narrow.hpp
 	include/awl/backends/windows/module_handle.hpp
 	include/awl/backends/windows/optional_point.hpp
 	include/awl/backends/windows/optional_point_fwd.hpp
@@ -633,6 +643,8 @@ set(
 	include/awl/backends/windows/window/adjusted_size.hpp
 	include/awl/backends/windows/window/client_to_screen.hpp
 	include/awl/backends/windows/window/common_object.hpp
+	include/awl/backends/windows/window/const_optional_object_ref.hpp
+	include/awl/backends/windows/window/const_optional_object_ref_fwd.hpp
 	include/awl/backends/windows/window/create.hpp
 	include/awl/backends/windows/window/event/callback.hpp
 	include/awl/backends/windows/window/event/combine_result.hpp
