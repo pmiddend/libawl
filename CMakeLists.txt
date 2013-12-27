@@ -427,6 +427,7 @@ set(
 	include/awl/backends/x11/system/event/object_fwd.hpp
 	include/awl/backends/x11/system/event/opcode.hpp
 	include/awl/backends/x11/system/event/optional_processor_ref.hpp
+	include/awl/backends/x11/system/event/optional_processor_ref_fwd.hpp
 	include/awl/backends/x11/system/event/original_processor.hpp
 	include/awl/backends/x11/system/event/processor.hpp
 	include/awl/backends/x11/system/event/processor_fwd.hpp
