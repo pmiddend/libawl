@@ -3,6 +3,7 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
+#include <awl/visual/object_fwd.hpp>
 #include <awl/window/dim_fwd.hpp>
 #include <awl/window/rect_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
@@ -39,6 +40,10 @@ public:
 	equal_to(
 		awl::window::object const &
 	) const = 0;
+
+	virtual
+	awl::visual::object const &
+	visual() const = 0;
 
 	AWL_SYMBOL
 	virtual

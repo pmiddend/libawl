@@ -25,14 +25,23 @@ awl::backends::x11::visual::wrapped::~wrapped()
 {
 }
 
-Visual &
+Visual *
 awl::backends::x11::visual::wrapped::get() const
 {
-	return *info_->visual;
+	return
+		info_->visual;
 }
 
-XVisualInfo &
+XVisualInfo *
 awl::backends::x11::visual::wrapped::info() const
 {
-	return *info_;
+	return
+		info_.get();
+}
+
+int
+awl::backends::x11::visual::wrapped::depth() const
+{
+	return
+		this->info()->depth;
 }

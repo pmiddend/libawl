@@ -26,7 +26,7 @@ awl::backends::x11::colormap::colormap(
 				display_.get(),
 				_screen.get()
 			),
-			&_visual.get(),
+			_visual.get(),
 			AllocNone
 		)
 	)

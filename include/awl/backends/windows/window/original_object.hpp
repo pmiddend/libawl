@@ -9,6 +9,7 @@
 #include <awl/backends/windows/cursor/const_optional_object_ref.hpp>
 #include <awl/backends/windows/window/common_object.hpp>
 #include <awl/backends/windows/window/holder.hpp>
+#include <awl/visual/object_fwd.hpp>
 #include <awl/window/parameters_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
 
@@ -38,15 +39,26 @@ public:
 	);
 
 	AWL_SYMBOL
-	~original_object();
+	~original_object()
+	override;
 
 	AWL_SYMBOL
 	HWND
-	hwnd() const;
+	hwnd() const
+	override;
 
+	AWL_SYMBOL
 	awl::backends::windows::cursor::const_optional_object_ref const
-	cursor() const;
+	cursor() const
+	override;
+
+	AWL_SYMBOL
+	awl::visual::object const &
+	visual() const
+	override;
 private:
+	awl::visual::object const &visual_;
+
 	awl::backends::windows::window::holder const holder_;
 
 	awl::backends::windows::cursor::const_optional_object_ref const cursor_;

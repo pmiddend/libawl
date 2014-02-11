@@ -27,7 +27,7 @@ awl::backends::x11::window::wrapped_object::wrapped_object(
 		_window
 	),
 	visual_(
-		window::visual(
+		awl::backends::x11::window::visual(
 			*this
 		)
 	),

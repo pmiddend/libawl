@@ -1,13 +1,10 @@
-#ifndef AWL_BACKENDS_X11_VISUAL_WRAPPED_HPP_INCLUDED
-#define AWL_BACKENDS_X11_VISUAL_WRAPPED_HPP_INCLUDED
+#ifndef AWL_BACKENDS_X11_VISUAL_COPY_FROM_PARENT_HPP_INCLUDED
+#define AWL_BACKENDS_X11_VISUAL_COPY_FROM_PARENT_HPP_INCLUDED
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <awl/backends/x11/visual/info_scoped_ptr.hpp>
-#include <awl/backends/x11/visual/info_unique_ptr.hpp>
 #include <awl/backends/x11/visual/object.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -23,22 +20,19 @@ namespace x11
 namespace visual
 {
 
-class AWL_CLASS_SYMBOL wrapped
+class AWL_CLASS_SYMBOL copy_from_parent
 :
 	public awl::backends::x11::visual::object
 {
 	FCPPT_NONCOPYABLE(
-		wrapped
+		copy_from_parent
 	);
 public:
 	AWL_SYMBOL
-	explicit
-	wrapped(
-		awl::backends::x11::visual::info_unique_ptr
-	);
+	copy_from_parent();
 
 	AWL_SYMBOL
-	~wrapped()
+	~copy_from_parent()
 	override;
 
 	AWL_SYMBOL
@@ -55,8 +49,6 @@ public:
 	int
 	depth() const
 	override;
-private:
-	awl::backends::x11::visual::info_scoped_ptr const info_;
 };
 
 }

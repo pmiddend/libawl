@@ -5,7 +5,7 @@
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
-#include <awl/backends/x11/visual/object_fwd.hpp>
+#include <awl/backends/x11/visual/object.hpp>
 #include <awl/backends/x11/window/class_hint_fwd.hpp>
 #include <awl/backends/x11/window/event/optional.hpp>
 #include <awl/window/object.hpp>

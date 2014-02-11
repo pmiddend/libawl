@@ -351,6 +351,7 @@ set(
 	src/backends/x11/system/object.cpp
 	src/backends/x11/system/original_object.cpp
 	src/backends/x11/to_x11_bool.cpp
+	src/backends/x11/visual/copy_from_parent.cpp
 	src/backends/x11/visual/create_info.cpp
 	src/backends/x11/visual/default.cpp
 	src/backends/x11/visual/object.cpp
@@ -436,6 +437,7 @@ set(
 	include/awl/backends/x11/system/object_fwd.hpp
 	include/awl/backends/x11/system/original_object.hpp
 	include/awl/backends/x11/to_x11_bool.hpp
+	include/awl/backends/x11/visual/copy_from_parent.hpp
 	include/awl/backends/x11/visual/create_info.hpp
 	include/awl/backends/x11/visual/default.hpp
 	include/awl/backends/x11/visual/info_scoped_ptr.hpp

@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_X11_VISUAL_OBJECT_HPP_INCLUDED
 #define AWL_BACKENDS_X11_VISUAL_OBJECT_HPP_INCLUDED
 
+#include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/visual/object_fwd.hpp>
 #include <awl/visual/object.hpp>
@@ -20,7 +21,7 @@ namespace x11
 namespace visual
 {
 
-class object
+class AWL_CLASS_SYMBOL object
 :
 	public awl::visual::object
 {
@@ -36,12 +37,16 @@ public:
 	~object() = 0;
 
 	virtual
-	Visual &
+	Visual *
 	get() const = 0;
 
 	virtual
-	XVisualInfo &
+	XVisualInfo *
 	info() const = 0;
+
+	virtual
+	int
+	depth() const = 0;
 };
 
 }
