@@ -16,6 +16,10 @@ function(
 		${EXAMPLE_NAME}.cpp
 	)
 
+	fcppt_utils_set_target_compiler_flags(
+		${EXAMPLE_NAME}
+	)
+
 	target_link_libraries(
 		${EXAMPLE_NAME}
 		${AWL_DEFAULT_LINK_TARGET}
@@ -23,5 +27,5 @@ function(
 	)
 endfunction()
 
-add_awl_example(main "${Fcppt_core_LIBRARY}")
-add_awl_example(resize "${Fcppt_core_LIBRARY}")
+add_awl_example(main "${fcppt_core_TARGET}")
+add_awl_example(resize "${fcppt_core_TARGET}")

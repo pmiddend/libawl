@@ -1,5 +1,6 @@
 cmake_minimum_required(
-	VERSION 2.6
+	VERSION
+	2.8.12
 )
 
 project(
@@ -53,24 +54,11 @@ find_package(
 	fcppt
 	REQUIRED
 )
-
-add_definitions(
-	"${fcppt_DEFINITIONS}"
-)
-
-include_directories(
-	${fcppt_INCLUDE_DIRS}
-)
-
 # Fcppt end
 
 # Source groups end
 
-add_definitions(
-	-D BOOST_ASIO_SEPARATE_COMPILATION
-)
-
-SET(
+set(
 	AWL_BASE_SRC_FILES
 	src/create_log.cpp
 	src/cursor/create_predefined.cpp
@@ -107,7 +95,7 @@ SET(
 	src/window/parameters.cpp
 )
 
-SET(
+set(
 	AWL_BASE_INCLUDE_FILES
 	include/awl/class_symbol.hpp
 	include/awl/create_log.hpp
@@ -753,7 +741,7 @@ set(
 	"${AWL_SRC_FILES};${AWL_INCLUDE_FILES}"
 )
 
-FCPPT_UTILS_ADD_SOURCE_GROUPS(
+fcppt_utils_add_source_groups(
 	"${AWL_FILES}"
 )
 
@@ -819,23 +807,32 @@ function(
 		${AWL_USED_SO_VERSION}
 	)
 
-	if(
-		${VARIANT} STREQUAL "STATIC"
+	fcppt_utils_set_target_compiler_flags(
+		${TARGETNAME}
 	)
-		set_target_properties(
-			${TARGETNAME}
-			PROPERTIES
-			COMPILE_DEFINITIONS
-			"AWL_STATIC_LINK"
-		)
-	endif()
+
+	fcppt_utils_interface_static_link(
+		${TARGETNAME}
+		${VARIANT}
+		"AWL_STATIC_LINK"
+	)
+
+	target_include_directories(
+		${TARGETNAME}
+		INTERFACE
+		${Boost_INCLUDE_DIRS}
+		${fcppt_INCLUDE_DIRS}
+	)
+
+	fcppt_utils_add_target_include_dir(
+		${TARGETNAME}
+		TRUE
+	)
 
 	target_link_libraries(
 		${TARGETNAME}
 		${fcppt_core_TARGET}
 	)
-
-	# TODO: Link to certain windows libs
 
 	if(
 		AWL_X11_BACKEND
@@ -846,9 +843,17 @@ function(
 		)
 	endif()
 
+	# TODO: Link to certain windows libs
+
 	if(
 		AWL_WINDOWS_BACKEND
 	)
+		target_compile_definitions(
+			${TARGETNAME}
+			PUBLIC
+			"UNICODE;_UNICODE"
+		)
+
 		target_link_libraries(
 			${TARGETNAME}
 			${fcppt_filesystem_TARGET}
@@ -938,7 +943,9 @@ foreach(
 	)
 endforeach()
 
-fcppt_utils_generate_config()
+fcppt_utils_generate_config(
+	TRUE
+)
 
 install(
 	DIRECTORY
