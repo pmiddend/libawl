@@ -9,7 +9,6 @@
 #include <fcppt/cast/size.hpp>
 #include <fcppt/cast/to_signed.hpp>
 #include <fcppt/cast/to_unsigned.hpp>
-#include <fcppt/container/data.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <sys/epoll.h>
 #include <chrono>
@@ -66,9 +65,7 @@ awl::backends::linux::fd::epoll::set::epoll(
 	int const ret(
 		::epoll_wait(
 			epoll_fd_.get().get(),
-			fcppt::container::data(
-				events_
-			),
+			events_.data(),
 			fcppt::cast::size<
 				int
 			>(
