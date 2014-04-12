@@ -5,10 +5,10 @@
 #include <awl/main/output_fwd.hpp>
 #include <awl/main/scoped_output_fwd.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/io/ostream.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/filesystem/path.hpp>
+#include <memory>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -32,7 +32,7 @@ public:
 	AWL_SYMBOL
 	~scoped_output();
 private:
-	fcppt::scoped_ptr<
+	std::unique_ptr<
 		awl::main::output
 	> const impl_;
 };

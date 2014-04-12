@@ -9,7 +9,7 @@
 
 
 awl::backends::x11::visual::wrapped::wrapped(
-	awl::backends::x11::visual::info_unique_ptr _info
+	awl::backends::x11::visual::info_unique_ptr &&_info
 )
 :
 	awl::backends::x11::visual::object(),

@@ -4,7 +4,6 @@
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/window/class_hint.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -23,7 +22,7 @@ namespace window
 
 class wrapped_class_hint
 :
-	public x11::window::class_hint
+	public awl::backends::x11::window::class_hint
 {
 	FCPPT_NONCOPYABLE(
 		wrapped_class_hint
@@ -36,19 +35,22 @@ public:
 	);
 
 	AWL_SYMBOL
-	~wrapped_class_hint();
+	~wrapped_class_hint()
+	override;
 
 	AWL_SYMBOL
 	bool
 	has_data() const;
 
 	AWL_SYMBOL
-	std::string const
-	res_name() const;
+	std::string
+	res_name() const
+	override;
 
 	AWL_SYMBOL
-	std::string const
-	res_class() const;
+	std::string
+	res_class() const
+	override;
 private:
 	XClassHint data_;
 };

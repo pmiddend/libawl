@@ -7,7 +7,7 @@
 #include <awl/backends/windows/cursor/const_optional_object_ref_fwd.hpp>
 #include <awl/backends/windows/window/common_object.hpp>
 #include <awl/visual/object_fwd.hpp>
-#include <awl/visual/object_scoped_ptr.hpp>
+#include <awl/visual/object_unique_ptr.hpp>
 #include <fcppt/noncopyable.hpp>
 
 
@@ -51,7 +51,7 @@ public:
 	visual() const
 	override;
 private:
-	awl::visual::object_scoped_ptr const visual_;
+	awl::visual::object_unique_ptr const visual_;
 
 	HWND const hwnd_;
 };

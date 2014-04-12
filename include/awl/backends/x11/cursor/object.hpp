@@ -3,7 +3,6 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <awl/backends/x11/cursor/holder_scoped_ptr.hpp>
 #include <awl/backends/x11/cursor/holder_unique_ptr.hpp>
 #include <awl/backends/x11/cursor/object_fwd.hpp>
 #include <awl/cursor/object.hpp>
@@ -33,7 +32,7 @@ public:
 	AWL_SYMBOL
 	explicit
 	object(
-		awl::backends::x11::cursor::holder_unique_ptr
+		awl::backends::x11::cursor::holder_unique_ptr &&
 	);
 
 	AWL_SYMBOL
@@ -43,7 +42,7 @@ public:
 	Cursor
 	get() const;
 private:
-	awl::backends::x11::cursor::holder_scoped_ptr const holder_;
+	awl::backends::x11::cursor::holder_unique_ptr const holder_;
 };
 
 }

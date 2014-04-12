@@ -6,7 +6,7 @@
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
 #include <awl/backends/x11/visual/object_fwd.hpp>
-#include <awl/backends/x11/visual/object_scoped_ptr.hpp>
+#include <awl/backends/x11/visual/object_unique_ptr.hpp>
 #include <awl/backends/x11/window/class_hint_fwd.hpp>
 #include <awl/backends/x11/window/common_object.hpp>
 #include <awl/backends/x11/window/wrapped_class_hint.hpp>
@@ -80,7 +80,7 @@ private:
 
 	Window const window_;
 
-	awl::backends::x11::visual::object_scoped_ptr const visual_;
+	awl::backends::x11::visual::object_unique_ptr const visual_;
 
 	awl::backends::x11::window::wrapped_class_hint const class_hint_;
 };

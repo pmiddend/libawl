@@ -44,13 +44,13 @@ awl::backends::x11::window::wrapped_class_hint::has_data() const
 		&& data_.res_class;
 }
 
-std::string const
+std::string
 awl::backends::x11::window::wrapped_class_hint::res_name() const
 {
 	return data_.res_name;
 }
 
-std::string const
+std::string
 awl::backends::x11::window::wrapped_class_hint::res_class() const
 {
 	return data_.res_class;

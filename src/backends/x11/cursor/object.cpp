@@ -9,7 +9,7 @@
 
 
 awl::backends::x11::cursor::object::object(
-	awl::backends::x11::cursor::holder_unique_ptr _holder
+	awl::backends::x11::cursor::holder_unique_ptr &&_holder
 )
 :
 	awl::cursor::object(),

@@ -28,14 +28,15 @@ protected:
 	class_hint();
 public:
 	AWL_SYMBOL
-	virtual ~class_hint() = 0;
+	virtual
+	~class_hint() = 0;
 
 	virtual
-	std::string const
+	std::string
 	res_name() const = 0;
 
 	virtual
-	std::string const
+	std::string
 	res_class() const = 0;
 };
 

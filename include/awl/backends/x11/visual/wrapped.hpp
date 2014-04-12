@@ -3,11 +3,9 @@
 
 #include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
-#include <awl/backends/x11/visual/info_scoped_ptr.hpp>
 #include <awl/backends/x11/visual/info_unique_ptr.hpp>
 #include <awl/backends/x11/visual/object.hpp>
 #include <fcppt/noncopyable.hpp>
-#include <fcppt/scoped_ptr_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -34,7 +32,7 @@ public:
 	AWL_SYMBOL
 	explicit
 	wrapped(
-		awl::backends::x11::visual::info_unique_ptr
+		awl::backends::x11::visual::info_unique_ptr &&
 	);
 
 	AWL_SYMBOL
@@ -56,7 +54,7 @@ public:
 	depth() const
 	override;
 private:
-	awl::backends::x11::visual::info_scoped_ptr const info_;
+	awl::backends::x11::visual::info_unique_ptr const info_;
 };
 
 }

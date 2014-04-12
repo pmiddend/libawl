@@ -104,14 +104,12 @@ set(
 	include/awl/cursor/create_predefined.hpp
 	include/awl/cursor/object.hpp
 	include/awl/cursor/object_fwd.hpp
-	include/awl/cursor/object_scoped_ptr.hpp
 	include/awl/cursor/object_unique_ptr.hpp
 	include/awl/cursor/predefined.hpp
 	include/awl/cursor/predefined_fwd.hpp
 	include/awl/event/create_processor.hpp
 	include/awl/event/processor.hpp
 	include/awl/event/processor_fwd.hpp
-	include/awl/event/processor_scoped_ptr.hpp
 	include/awl/event/processor_unique_ptr.hpp
 	include/awl/event/scoped_window_processor.hpp
 	include/awl/event/scoped_window_processor_fwd.hpp
@@ -131,7 +129,6 @@ set(
 	include/awl/main/output_unique_ptr.hpp
 	include/awl/main/scoped_output.hpp
 	include/awl/main/scoped_output_fwd.hpp
-	include/awl/main/scoped_output_scoped_ptr.hpp
 	include/awl/main/scoped_output_unique_ptr.hpp
 	include/awl/show_error.hpp
 	include/awl/show_error_narrow.hpp
@@ -143,7 +140,6 @@ set(
 	include/awl/system/event/optional_processor_ref_fwd.hpp
 	include/awl/system/event/processor.hpp
 	include/awl/system/event/processor_fwd.hpp
-	include/awl/system/event/processor_scoped_ptr.hpp
 	include/awl/system/event/processor_unique_ptr.hpp
 	include/awl/system/event/quit.hpp
 	include/awl/system/event/quit_callback.hpp
@@ -152,13 +148,11 @@ set(
 	include/awl/system/event/quit_signal.hpp
 	include/awl/system/object.hpp
 	include/awl/system/object_fwd.hpp
-	include/awl/system/object_scoped_ptr.hpp
 	include/awl/system/object_unique_ptr.hpp
 	include/awl/system/optional_exit_code.hpp
 	include/awl/system/optional_exit_code_fwd.hpp
 	include/awl/visual/object.hpp
 	include/awl/visual/object_fwd.hpp
-	include/awl/visual/object_scoped_ptr.hpp
 	include/awl/visual/object_unique_ptr.hpp
 	include/awl/window/dim.hpp
 	include/awl/window/dim_fwd.hpp
@@ -190,7 +184,6 @@ set(
 	include/awl/window/event/hide_signal.hpp
 	include/awl/window/event/processor.hpp
 	include/awl/window/event/processor_fwd.hpp
-	include/awl/window/event/processor_scoped_ptr.hpp
 	include/awl/window/event/processor_unique_ptr.hpp
 	include/awl/window/event/resize.hpp
 	include/awl/window/event/resize_callback.hpp
@@ -205,7 +198,6 @@ set(
 	include/awl/window/has_focus.hpp
 	include/awl/window/object.hpp
 	include/awl/window/object_fwd.hpp
-	include/awl/window/object_scoped_ptr.hpp
 	include/awl/window/object_unique_ptr.hpp
 	include/awl/window/optional_dim.hpp
 	include/awl/window/optional_dim_fwd.hpp
@@ -384,7 +376,6 @@ set(
 	include/awl/backends/x11/cursor/create_predefined.hpp
 	include/awl/backends/x11/cursor/holder.hpp
 	include/awl/backends/x11/cursor/holder_fwd.hpp
-	include/awl/backends/x11/cursor/holder_scoped_ptr.hpp
 	include/awl/backends/x11/cursor/holder_unique_ptr.hpp
 	include/awl/backends/x11/cursor/load_font.hpp
 	include/awl/backends/x11/cursor/object.hpp
@@ -428,11 +419,9 @@ set(
 	include/awl/backends/x11/visual/copy_from_parent.hpp
 	include/awl/backends/x11/visual/create_info.hpp
 	include/awl/backends/x11/visual/default.hpp
-	include/awl/backends/x11/visual/info_scoped_ptr.hpp
 	include/awl/backends/x11/visual/info_unique_ptr.hpp
 	include/awl/backends/x11/visual/object.hpp
 	include/awl/backends/x11/visual/object_fwd.hpp
-	include/awl/backends/x11/visual/object_scoped_ptr.hpp
 	include/awl/backends/x11/visual/object_unique_ptr.hpp
 	include/awl/backends/x11/visual/wrapped.hpp
 	include/awl/backends/x11/window/atom_count.hpp
@@ -468,7 +457,6 @@ set(
 	include/awl/backends/x11/window/holder.hpp
 	include/awl/backends/x11/window/object.hpp
 	include/awl/backends/x11/window/object_fwd.hpp
-	include/awl/backends/x11/window/object_scoped_ptr.hpp
 	include/awl/backends/x11/window/object_unique_ptr.hpp
 	include/awl/backends/x11/window/original_class_hint.hpp
 	include/awl/backends/x11/window/original_object.hpp
@@ -629,7 +617,6 @@ set(
 	include/awl/backends/windows/visual/null_object.hpp
 	include/awl/backends/windows/visual/object.hpp
 	include/awl/backends/windows/visual/object_fwd.hpp
-	include/awl/backends/windows/visual/object_scoped_ptr.hpp
 	include/awl/backends/windows/visual/object_unique_ptr.hpp
 	include/awl/backends/windows/window/adjusted_size.hpp
 	include/awl/backends/windows/window/client_to_screen.hpp
@@ -655,7 +642,6 @@ set(
 	include/awl/backends/windows/window/holder.hpp
 	include/awl/backends/windows/window/object.hpp
 	include/awl/backends/windows/window/object_fwd.hpp
-	include/awl/backends/windows/window/object_scoped_ptr.hpp
 	include/awl/backends/windows/window/object_unique_ptr.hpp
 	include/awl/backends/windows/window/original_object.hpp
 	include/awl/backends/windows/window/screen_to_client.hpp

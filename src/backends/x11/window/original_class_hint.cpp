@@ -75,13 +75,13 @@ awl::backends::x11::window::original_class_hint::get() const
 	return impl_->get();
 }
 
-std::string const
+std::string
 awl::backends::x11::window::original_class_hint::res_name() const
 {
 	return res_name_;
 }
 
-std::string const
+std::string
 awl::backends::x11::window::original_class_hint::res_class() const
 {
 	return res_class_;
