@@ -29,3 +29,4 @@ endfunction()
 
 add_awl_example(main "${fcppt_core_TARGET}")
 add_awl_example(resize "${fcppt_core_TARGET}")
+add_awl_example(show "${fcppt_core_TARGET}")

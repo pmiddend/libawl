@@ -43,7 +43,8 @@ public:
 	) = 0;
 
 	AWL_SYMBOL
-	virtual ~processor() = 0;
+	virtual
+	~processor() = 0;
 };
 
 }

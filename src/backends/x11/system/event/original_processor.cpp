@@ -77,7 +77,7 @@ awl::backends::x11::system::event::original_processor::poll()
 	)
 	{
 		this->process(
-			x11::event::object(
+			awl::backends::x11::event::object(
 				xev
 			)
 		);
@@ -154,7 +154,7 @@ awl::backends::x11::system::event::original_processor::register_callback(
 {
 	return
 		signals_[
-			event::map_key(
+			awl::backends::x11::system::event::map_key(
 				_opcode,
 				_type
 			)
@@ -216,7 +216,9 @@ awl::backends::x11::system::event::original_processor::epoll(
 	);
 
 	for(
-		auto const &fd : ready_fds
+		awl::backends::linux::fd::object const &fd
+		:
+		ready_fds
 	)
 	{
 		fd_signal_map::iterator const map_it(
@@ -248,15 +250,15 @@ awl::backends::x11::system::event::original_processor::process(
 
 	signals_[
 		event::map_key(
-			event::opcode(
+			awl::backends::x11::system::event::opcode(
 				generic_event.extension
 			),
-			event::type(
+			awl::backends::x11::system::event::type(
 				generic_event.evtype
 			)
 		)
 	](
-		system::event::object(
+		awl::backends::x11::system::event::object(
 			generic_event
 		)
 	);

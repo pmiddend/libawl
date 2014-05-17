@@ -2,9 +2,13 @@
 #include <awl/event/processor.hpp>
 #include <awl/event/processor_unique_ptr.hpp>
 #include <awl/event/scoped_window_processor.hpp>
+#include <awl/main/exit_success.hpp>
 #include <awl/system/create.hpp>
 #include <awl/system/object.hpp>
 #include <awl/system/object_unique_ptr.hpp>
+#include <awl/system/event/create_processor.hpp>
+#include <awl/system/event/processor.hpp>
+#include <awl/system/event/processor_unique_ptr.hpp>
 #include <awl/system/event/optional_processor_ref.hpp>
 #include <awl/visual/object.hpp>
 #include <awl/visual/object_unique_ptr.hpp>
@@ -14,13 +18,11 @@
 #include <awl/window/event/create_processor.hpp>
 #include <awl/window/event/processor.hpp>
 #include <awl/window/event/processor_unique_ptr.hpp>
-#include <awl/window/event/resize.hpp>
-#include <awl/window/event/resize_callback.hpp>
+#include <awl/window/event/show_callback.hpp>
+#include <awl/window/event/show_fwd.hpp>
 #include <fcppt/exception.hpp>
 #include <fcppt/text.hpp>
 #include <fcppt/io/cerr.hpp>
-#include <fcppt/io/cout.hpp>
-#include <fcppt/math/dim/output.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/scoped_connection.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -28,33 +30,25 @@
 #include <fcppt/config/external_end.hpp>
 
 
-namespace
-{
-
-}
-
 int
 main()
 try
 {
-	awl::system::object_unique_ptr const window_system(
+	awl::system::object_unique_ptr const system(
 		awl::system::create()
 	);
 
 	awl::visual::object_unique_ptr const visual(
-		window_system->default_visual()
+		system->default_visual()
 	);
 
 	awl::window::object_unique_ptr const window(
-		window_system->create_window(
+		system->create_window(
 			awl::window::parameters(
 				*visual
 			)
-			.title(
-				FCPPT_TEXT("awltest")
-			)
 			.class_name(
-				FCPPT_TEXT("awltest")
+				FCPPT_TEXT("awlshow")
 			)
 			.size(
 				awl::window::dim(
@@ -65,12 +59,18 @@ try
 		)
 	);
 
-	window->show();
+	awl::system::event::processor_unique_ptr const system_processor(
+		awl::system::event::create_processor(
+			*system
+		)
+	);
 
 	awl::event::processor_unique_ptr const processor(
 		awl::event::create_processor(
-			*window_system,
-			awl::system::event::optional_processor_ref()
+			*system,
+			awl::system::event::optional_processor_ref(
+				*system_processor
+			)
 		)
 	);
 
@@ -85,41 +85,27 @@ try
 		*window_processor
 	);
 
-	fcppt::signal::scoped_connection const resize_connection(
-		window_processor->resize_callback(
-			awl::window::event::resize_callback(
-				[](
-					awl::window::event::resize const &_size
+	window->show();
+
+	fcppt::signal::scoped_connection const show_connection(
+		window_processor->show_callback(
+			awl::window::event::show_callback(
+				[
+					&system_processor
+				](
+					awl::window::event::show const &
 				)
 				{
-					fcppt::io::cout()
-						<< FCPPT_TEXT("Resize: ")
-						<< _size.dim()
-						<< FCPPT_TEXT('\n');
+					system_processor->quit(
+						awl::main::exit_success()
+					);
 				}
 			)
 		)
 	);
 
-	bool running(
-		true
-	);
-
-	fcppt::signal::scoped_connection const destroy_connection(
-		window_processor->destroy_callback(
-			[
-				&running
-			](
-				awl::window::event::destroy const &
-			){
-				running =
-					false;
-			}
-		)
-	);
-
 	while(
-		running
+		system_processor->running()
 	)
 		processor->next();
 }
@@ -131,5 +117,6 @@ catch(
 		<< _exception.string()
 		<< FCPPT_TEXT('\n');
 
-	return EXIT_FAILURE;
+	return
+		EXIT_FAILURE;
 }
