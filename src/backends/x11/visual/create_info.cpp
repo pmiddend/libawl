@@ -1,8 +1,7 @@
-#include <awl/exception.hpp>
-#include <awl/backends/x11/display.hpp>
+#include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/visual/create_info.hpp>
+#include <awl/backends/x11/visual/get_info.hpp>
 #include <awl/backends/x11/visual/info_unique_ptr.hpp>
-#include <fcppt/text.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -12,15 +11,12 @@
 
 awl::backends::x11::visual::info_unique_ptr
 awl::backends::x11::visual::create_info(
-	awl::backends::x11::display &_display,
+	awl::backends::x11::display const &_display,
 	Visual &_visual
 )
 {
 	XVisualInfo tpl;
-	// We could do this, but it's ignored by the XGetVisualInfo
-	// function...
-	//tpl.visual  = ptr_;
-	// ...so we take the id
+
 	tpl.visualid =
 		::XVisualIDFromVisual(
 			&_visual
@@ -32,34 +28,15 @@ awl::backends::x11::visual::create_info(
 	tpl.bits_per_rgb =  _visual.bits_per_rgb;
 	tpl.c_class =  _visual.c_class;
 
-	// Try this if selection doesn't work yet
-	// tpl.colormap_size = ptr_->map_entries;
-
-	int number_of_items;
-
-	awl::backends::x11::visual::info_unique_ptr ret(
-		::XGetVisualInfo(
-			_display.get(),
+	return
+		awl::backends::x11::visual::get_info(
+			_display,
 			VisualIDMask |
 			VisualRedMaskMask |
 			VisualGreenMaskMask |
 			VisualBlueMaskMask |
 			VisualBitsPerRGBMask |
-			VisualClassMask /* | VisualColormapSizeMask */,
-			&tpl,
-			&number_of_items
-		)
-	);
-
-	if(
-		!ret
-	)
-		throw awl::exception(
-			FCPPT_TEXT("Couldn't get XVisualInfo structure for Visual")
-		);
-
-	return
-		std::move(
-			ret
+			VisualClassMask,
+			tpl
 		);
 }

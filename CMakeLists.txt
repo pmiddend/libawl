@@ -334,6 +334,7 @@ set(
 	src/backends/x11/visual/copy_from_parent.cpp
 	src/backends/x11/visual/create_info.cpp
 	src/backends/x11/visual/default.cpp
+	src/backends/x11/visual/get_info.cpp
 	src/backends/x11/visual/object.cpp
 	src/backends/x11/visual/wrapped.cpp
 	src/backends/x11/window/atoms.cpp
@@ -419,6 +420,7 @@ set(
 	include/awl/backends/x11/visual/copy_from_parent.hpp
 	include/awl/backends/x11/visual/create_info.hpp
 	include/awl/backends/x11/visual/default.hpp
+	include/awl/backends/x11/visual/get_info.hpp
 	include/awl/backends/x11/visual/info_unique_ptr.hpp
 	include/awl/backends/x11/visual/object.hpp
 	include/awl/backends/x11/visual/object_fwd.hpp
