@@ -7,9 +7,9 @@
 #include <awl/system/object.hpp>
 #include <awl/system/object_unique_ptr.hpp>
 #include <awl/system/event/create_processor.hpp>
+#include <awl/system/event/optional_processor_ref.hpp>
 #include <awl/system/event/processor.hpp>
 #include <awl/system/event/processor_unique_ptr.hpp>
-#include <awl/system/event/optional_processor_ref.hpp>
 #include <awl/visual/object.hpp>
 #include <awl/visual/object_unique_ptr.hpp>
 #include <awl/window/object.hpp>
