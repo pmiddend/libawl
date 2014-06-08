@@ -36,7 +36,8 @@ protected:
 	processor();
 public:
 	AWL_SYMBOL
-	~processor();
+	~processor()
+	override;
 
 	virtual
 	fcppt::signal::auto_connection

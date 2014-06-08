@@ -36,8 +36,8 @@ protected:
 	object();
 public:
 	AWL_SYMBOL
-	virtual
-	~object() = 0;
+	~object()
+	override;
 
 	virtual
 	void
@@ -57,7 +57,8 @@ public:
 
 	virtual
 	awl::backends::x11::visual::object const &
-	visual() const = 0;
+	visual() const
+	override = 0;
 
 	virtual
 	Window

@@ -65,73 +65,86 @@ public:
 	);
 
 	AWL_SYMBOL
-	~original_processor();
+	~original_processor()
+	override;
 
 	AWL_SYMBOL
 	bool
-	poll();
+	poll()
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	close_callback(
 		awl::window::event::close_callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	destroy_callback(
 		awl::window::event::destroy_callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	focus_in_callback(
 		awl::window::event::focus_in_callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	focus_out_callback(
 		awl::window::event::focus_out_callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	hide_callback(
 		awl::window::event::hide_callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	resize_callback(
 		awl::window::event::resize_callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	show_callback(
 		awl::window::event::show_callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	awl::window::object &
-	window() const;
+	window() const
+	override;
 
 	AWL_SYMBOL
 	awl::backends::x11::window::object &
-	x11_window() const;
+	x11_window() const
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_callback(
 		awl::backends::x11::window::event::type,
 		awl::backends::x11::window::event::callback const &
-	);
+	)
+	override;
 
 	void
 	process(
 		awl::backends::x11::event::object const &
-	);
+	)
+	override;
 private:
 	void
 	do_process(

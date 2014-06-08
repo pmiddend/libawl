@@ -58,31 +58,37 @@ public:
 	);
 
 	AWL_SYMBOL
-	~original_processor();
+	~original_processor()
+	override;
 
 	AWL_SYMBOL
 	bool
-	poll();
+	poll()
+	override;
 
 	AWL_SYMBOL
 	void
 	quit(
 		awl::main::exit_code
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	bool
-	running() const;
+	running() const
+	override;
 
 	AWL_SYMBOL
 	awl::main::exit_code const
-	exit_code() const;
+	exit_code() const
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	quit_callback(
 		awl::system::event::quit_callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
@@ -90,26 +96,30 @@ public:
 		x11::system::event::opcode const &,
 		x11::system::event::type const &,
 		x11::system::event::callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	fcppt::signal::auto_connection
 	register_fd_callback(
 		awl::backends::linux::fd::object const &,
 		awl::backends::linux::fd::callback const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	bool
 	epoll(
 		awl::backends::linux::fd::optional_duration const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	void
 	process(
 		x11::event::object const &
-	);
+	)
+	override;
 private:
 	void
 	unregister_fd_signal(

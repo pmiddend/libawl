@@ -37,7 +37,8 @@ protected:
 public:
 	AWL_SYMBOL
 	virtual
-	~processor() = 0;
+	~processor()
+	override;
 
 	virtual
 	awl::backends::x11::window::object &

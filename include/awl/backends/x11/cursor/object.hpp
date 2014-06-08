@@ -36,7 +36,8 @@ public:
 	);
 
 	AWL_SYMBOL
-	~object();
+	~object()
+	override;
 
 	AWL_SYMBOL
 	Cursor

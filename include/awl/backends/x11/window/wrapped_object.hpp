@@ -44,35 +44,43 @@ public:
 	);
 
 	AWL_SYMBOL
-	~wrapped_object();
+	~wrapped_object()
+	override;
 
 	AWL_SYMBOL
 	void
-	destroy();
+	destroy()
+	override;
 
 	AWL_SYMBOL
 	bool
-	destroyed() const;
+	destroyed() const
+	override;
 
 	AWL_SYMBOL
 	awl::backends::x11::display &
-	display() const;
+	display() const
+	override;
 
 	AWL_SYMBOL
 	awl::backends::x11::screen const
-	screen() const;
+	screen() const
+	override;
 
 	AWL_SYMBOL
 	awl::backends::x11::visual::object const &
-	visual() const;
+	visual() const
+	override;
 
 	AWL_SYMBOL
 	Window
-	get() const;
+	get() const
+	override;
 
 	AWL_SYMBOL
 	awl::backends::x11::window::class_hint const *
-	class_hint() const;
+	class_hint() const
+	override;
 private:
 	awl::backends::x11::display &display_;
 

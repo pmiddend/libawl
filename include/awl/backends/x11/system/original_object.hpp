@@ -34,29 +34,35 @@ public:
 	original_object();
 
 	AWL_SYMBOL
-	~original_object();
+	~original_object()
+	override;
 
 	AWL_SYMBOL
 	awl::window::object_unique_ptr
 	create_window(
 		awl::window::parameters const &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	awl::visual::object_unique_ptr
-	default_visual();
+	default_visual()
+	override;
 
 	AWL_SYMBOL
 	awl::window::object_unique_ptr
-	focus_window();
+	focus_window()
+	override;
 
 	AWL_SYMBOL
 	awl::backends::x11::display &
-	display();
+	display()
+	override;
 
 	AWL_SYMBOL
 	awl::backends::x11::screen const
-	screen() const;
+	screen() const
+	override;
 private:
 	awl::backends::x11::original_display display_;
 

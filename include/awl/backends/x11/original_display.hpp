@@ -29,10 +29,12 @@ public:
 
 	AWL_SYMBOL
 	Display *
-	get() const;
+	get() const
+	override;
 
 	AWL_SYMBOL
-	~original_display();
+	~original_display()
+	override;
 private:
 	Display *const ptr_;
 };

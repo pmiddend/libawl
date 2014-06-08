@@ -32,26 +32,30 @@ protected:
 	common_object();
 public:
 	AWL_SYMBOL
-	virtual
-	~common_object();
+	~common_object()
+	override;
 
 	AWL_SYMBOL
 	void
-	show();
+	show()
+	override;
 
 	AWL_SYMBOL
 	awl::window::dim const
-	size() const;
+	size() const
+	override;
 
 	AWL_SYMBOL
 	awl::window::rect const
-	rect() const;
+	rect() const
+	override;
 
 	AWL_SYMBOL
 	bool
 	equal_to(
 		awl::window::object const &
-	) const;
+	) const
+	override;
 };
 
 }

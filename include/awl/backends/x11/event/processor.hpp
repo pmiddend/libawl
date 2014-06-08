@@ -39,27 +39,32 @@ public:
 	);
 
 	AWL_SYMBOL
-	~processor();
+	~processor()
+	override;
 
 	AWL_SYMBOL
 	bool
-	poll();
+	poll()
+	override;
 
 	AWL_SYMBOL
 	void
-	next();
+	next()
+	override;
 
 	AWL_SYMBOL
 	void
 	attach(
 		awl::window::event::processor &
-	);
+	)
+	override;
 
 	AWL_SYMBOL
 	void
 	detach(
 		awl::window::event::processor &
-	);
+	)
+	override;
 private:
 	typedef std::map<
 		Window,

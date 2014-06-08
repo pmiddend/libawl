@@ -24,7 +24,8 @@ public:
 		fcppt::assert_::information const &
 	);
 
-	virtual ~exception() throw();
+	~exception() throw()
+	override;
 };
 
 }

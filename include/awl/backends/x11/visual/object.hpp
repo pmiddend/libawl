@@ -33,8 +33,8 @@ protected:
 	object();
 public:
 	AWL_SYMBOL
-	virtual
-	~object() = 0;
+	~object()
+	override;
 
 	virtual
 	Visual *
