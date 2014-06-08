@@ -37,7 +37,7 @@
 #include <fcppt/preprocessor/pop_warning.hpp>
 #include <fcppt/preprocessor/push_warning.hpp>
 #include <fcppt/signal/auto_connection.hpp>
-#include <fcppt/signal/connection_manager.hpp>
+#include <fcppt/signal/auto_connection_container.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <functional>
@@ -74,7 +74,7 @@ awl::backends::windows::window::event::original_processor::original_processor(
 	show_signal_(),
 	connections_(
 		fcppt::assign::make_container<
-			fcppt::signal::connection_manager::container
+			fcppt::signal::auto_connection_container
 		>(
 			this->register_callback(
 				fcppt::strong_typedef_construct_cast<

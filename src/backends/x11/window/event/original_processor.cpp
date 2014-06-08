@@ -31,6 +31,7 @@
 #include <fcppt/assign/make_container.hpp>
 #include <fcppt/cast/to_unsigned.hpp>
 #include <fcppt/signal/auto_connection.hpp>
+#include <fcppt/signal/auto_connection_container.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/signal/unregister/base_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -89,9 +90,9 @@ awl::backends::x11::window::event::original_processor::original_processor(
 	hide_signal_(),
 	resize_signal_(),
 	show_signal_(),
-	connection_manager_(
+	connections_(
 		fcppt::assign::make_container<
-			fcppt::signal::connection_manager::container
+			fcppt::signal::auto_connection_container
 		>(
 			this->register_callback(
 				awl::backends::x11::window::event::type(

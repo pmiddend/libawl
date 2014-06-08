@@ -27,8 +27,8 @@
 #include <awl/window/event/show_callback.hpp>
 #include <awl/window/event/show_signal.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/signal/auto_connection_container.hpp>
 #include <fcppt/signal/auto_connection_fwd.hpp>
-#include <fcppt/signal/connection_manager.hpp>
 #include <fcppt/signal/object_decl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <boost/ptr_container/ptr_map.hpp>
@@ -211,7 +211,7 @@ private:
 
 	awl::window::event::show_signal show_signal_;
 
-	fcppt::signal::connection_manager const connections_;
+	fcppt::signal::auto_connection_container const connections_;
 };
 
 }
