@@ -1,6 +1,7 @@
 #ifndef AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
 #define AWL_BACKENDS_X11_SYSTEM_OBJECT_HPP_INCLUDED
 
+#include <awl/class_symbol.hpp>
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/screen.hpp>
@@ -18,7 +19,7 @@ namespace x11
 namespace system
 {
 
-class object
+class AWL_CLASS_SYMBOL object
 :
 	public awl::system::object
 {
