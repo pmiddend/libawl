@@ -61,6 +61,7 @@ find_package(
 set(
 	AWL_BASE_SRC_FILES
 	src/create_log.cpp
+	src/cursor/create_invisible.cpp
 	src/cursor/create_predefined.cpp
 	src/cursor/object.cpp
 	src/event/create_processor.cpp
@@ -101,12 +102,16 @@ set(
 	include/awl/create_log.hpp
 	include/awl/cursor/const_optional_object_ref.hpp
 	include/awl/cursor/const_optional_object_ref_fwd.hpp
+	include/awl/cursor/create_invisible.hpp
 	include/awl/cursor/create_predefined.hpp
+	include/awl/cursor/hotspot.hpp
+	include/awl/cursor/hotspot_fwd.hpp
 	include/awl/cursor/object.hpp
 	include/awl/cursor/object_fwd.hpp
 	include/awl/cursor/object_unique_ptr.hpp
 	include/awl/cursor/predefined.hpp
 	include/awl/cursor/predefined_fwd.hpp
+	include/awl/cursor/size.hpp
 	include/awl/event/create_processor.hpp
 	include/awl/event/processor.hpp
 	include/awl/event/processor_fwd.hpp
@@ -308,6 +313,8 @@ set(
 	AWL_X11_SRC_FILES
 	src/backends/x11/colormap.cpp
 	src/backends/x11/cursor/convert_predefined.cpp
+	src/backends/x11/cursor/create_invisible.cpp
+	src/backends/x11/cursor/create_pixmap.cpp
 	src/backends/x11/cursor/create_predefined.cpp
 	src/backends/x11/cursor/holder.cpp
 	src/backends/x11/cursor/load_font.cpp
@@ -324,6 +331,8 @@ set(
 	src/backends/x11/intern_atom.cpp
 	src/backends/x11/log.cpp
 	src/backends/x11/original_display.cpp
+	src/backends/x11/pixmap/create_from_data.cpp
+	src/backends/x11/pixmap/holder.cpp
 	src/backends/x11/system/event/map_key.cpp
 	src/backends/x11/system/event/object.cpp
 	src/backends/x11/system/event/original_processor.cpp
@@ -371,10 +380,15 @@ set(
 	include/awl/backends/x11/atom.hpp
 	include/awl/backends/x11/colormap.hpp
 	include/awl/backends/x11/colormap_fwd.hpp
+	include/awl/backends/x11/cursor/background_color.hpp
 	include/awl/backends/x11/cursor/const_optional_object_ref.hpp
 	include/awl/backends/x11/cursor/const_optional_object_ref_fwd.hpp
 	include/awl/backends/x11/cursor/convert_predefined.hpp
+	include/awl/backends/x11/cursor/create_invisible.hpp
+	include/awl/backends/x11/cursor/create_pixmap.hpp
 	include/awl/backends/x11/cursor/create_predefined.hpp
+	include/awl/backends/x11/cursor/dest_pixmap.hpp
+	include/awl/backends/x11/cursor/foreground_color.hpp
 	include/awl/backends/x11/cursor/holder.hpp
 	include/awl/backends/x11/cursor/holder_fwd.hpp
 	include/awl/backends/x11/cursor/holder_unique_ptr.hpp
@@ -383,6 +397,7 @@ set(
 	include/awl/backends/x11/cursor/object_fwd.hpp
 	include/awl/backends/x11/cursor/object_unique_ptr.hpp
 	include/awl/backends/x11/cursor/shape.hpp
+	include/awl/backends/x11/cursor/source_pixmap.hpp
 	include/awl/backends/x11/default_screen.hpp
 	include/awl/backends/x11/deleter.hpp
 	include/awl/backends/x11/discard.hpp
@@ -400,6 +415,14 @@ set(
 	include/awl/backends/x11/intern_atom.hpp
 	include/awl/backends/x11/log.hpp
 	include/awl/backends/x11/original_display.hpp
+	include/awl/backends/x11/pixmap/create_from_data.hpp
+	include/awl/backends/x11/pixmap/dim.hpp
+	include/awl/backends/x11/pixmap/dim_fwd.hpp
+	include/awl/backends/x11/pixmap/holder.hpp
+	include/awl/backends/x11/pixmap/holder_fwd.hpp
+	include/awl/backends/x11/pixmap/holder_unique_ptr.hpp
+	include/awl/backends/x11/pixmap/original_object.hpp
+	include/awl/backends/x11/pixmap/size.hpp
 	include/awl/backends/x11/screen.hpp
 	include/awl/backends/x11/system/event/callback.hpp
 	include/awl/backends/x11/system/event/function.hpp

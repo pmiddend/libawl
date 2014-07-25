@@ -9,8 +9,8 @@
 
 awl::backends::x11::window::object_unique_ptr
 awl::backends::x11::window::root(
-	x11::display &_display,
-	x11::screen const _screen
+	awl::backends::x11::display &_display,
+	awl::backends::x11::screen const _screen
 )
 {
 	return

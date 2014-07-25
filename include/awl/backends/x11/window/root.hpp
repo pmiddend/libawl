@@ -17,10 +17,10 @@ namespace window
 {
 
 AWL_SYMBOL
-window::object_unique_ptr
+awl::backends::x11::window::object_unique_ptr
 root(
-	x11::display &,
-	x11::screen
+	awl::backends::x11::display &,
+	awl::backends::x11::screen
 );
 
 }

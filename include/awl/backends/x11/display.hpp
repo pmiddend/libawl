@@ -9,6 +9,7 @@
 #include <X11/Xlib.h>
 #include <fcppt/config/external_end.hpp>
 
+
 namespace awl
 {
 namespace backends
@@ -25,11 +26,13 @@ protected:
 	AWL_SYMBOL
 	display();
 public:
-	virtual Display *
+	virtual
+	Display *
 	get() const = 0;
 
 	AWL_SYMBOL
-	virtual ~display();
+	virtual
+	~display() = 0;
 
 	AWL_SYMBOL
 	void

@@ -16,9 +16,11 @@ namespace x11
 namespace cursor
 {
 
-typedef std::unique_ptr<
+typedef
+std::unique_ptr<
 	awl::backends::x11::cursor::holder
-> holder_unique_ptr;
+>
+holder_unique_ptr;
 
 }
 }

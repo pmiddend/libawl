@@ -45,39 +45,45 @@ awl::backends::x11::window::wrapped_object::~wrapped_object()
 void
 awl::backends::x11::window::wrapped_object::destroy()
 {
-	throw awl::exception(
-		FCPPT_TEXT("x11::window::wrapped_object::destroy called!")
-	);
+	throw
+		awl::exception{
+			FCPPT_TEXT("x11::window::wrapped_object::destroy called!")
+		};
 }
 
 bool
 awl::backends::x11::window::wrapped_object::destroyed() const
 {
-	return false;
+	return
+		false;
 }
 
 awl::backends::x11::display &
 awl::backends::x11::window::wrapped_object::display() const
 {
-	return display_;
+	return
+		display_;
 }
 
 awl::backends::x11::screen const
 awl::backends::x11::window::wrapped_object::screen() const
 {
-	return screen_;
+	return
+		screen_;
 }
 
 awl::backends::x11::visual::object const &
 awl::backends::x11::window::wrapped_object::visual() const
 {
-	return *visual_;
+	return
+		*visual_;
 }
 
 Window
 awl::backends::x11::window::wrapped_object::get() const
 {
-	return window_;
+	return
+		window_;
 }
 
 awl::backends::x11::window::class_hint const *
