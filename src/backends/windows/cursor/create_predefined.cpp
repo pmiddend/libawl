@@ -13,14 +13,12 @@ awl::backends::windows::cursor::create_predefined(
 )
 {
 	return
-		awl::backends::windows::cursor::object_unique_ptr(
-			fcppt::make_unique_ptr<
-				awl::backends::windows::cursor::shared
-			>(
-				awl::backends::windows::cursor::load(
-					awl::backends::windows::cursor::convert_predefined(
-						_type
-					)
+		fcppt::make_unique_ptr<
+			awl::backends::windows::cursor::shared
+		>(
+			awl::backends::windows::cursor::load(
+				awl::backends::windows::cursor::convert_predefined(
+					_type
 				)
 			)
 		);

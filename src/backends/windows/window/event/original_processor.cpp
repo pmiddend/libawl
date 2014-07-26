@@ -203,6 +203,14 @@ awl::backends::windows::window::event::original_processor::~original_processor()
 			awl::backends::windows::default_wnd_proc
 		)
 	);
+
+	// FIXME: Where do we have to do this before we can destroy the cursor?
+	if(
+		window_.cursor()
+	)
+		::SetCursor(
+			nullptr
+		);
 }
 
 bool

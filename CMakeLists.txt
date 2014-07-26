@@ -529,7 +529,9 @@ set(
 	AWL_WINDOWS_SRC_FILES
 	src/backends/windows/counted_wndclass.cpp
 	src/backends/windows/cursor/convert_predefined.cpp
+	src/backends/windows/cursor/create_invisible.cpp
 	src/backends/windows/cursor/create_predefined.cpp
+	src/backends/windows/cursor/created.cpp
 	src/backends/windows/cursor/load.cpp
 	src/backends/windows/cursor/object.cpp
 	src/backends/windows/cursor/shared.cpp
@@ -582,16 +584,24 @@ set(
 	AWL_WINDOWS_INCLUDE_FILES
 	include/awl/backends/windows/counted_wndclass.hpp
 	include/awl/backends/windows/counted_wndclass_fwd.hpp
+	include/awl/backends/windows/cursor/and_plane.hpp
 	include/awl/backends/windows/cursor/const_optional_object_ref.hpp
 	include/awl/backends/windows/cursor/const_optional_object_ref_fwd.hpp
 	include/awl/backends/windows/cursor/convert_predefined.hpp
+	include/awl/backends/windows/cursor/create_invisible.hpp
 	include/awl/backends/windows/cursor/create_predefined.hpp
+	include/awl/backends/windows/cursor/created.hpp
+	include/awl/backends/windows/cursor/created_fwd.hpp
+	include/awl/backends/windows/cursor/dim.hpp
+	include/awl/backends/windows/cursor/dim_fwd.hpp
 	include/awl/backends/windows/cursor/load.hpp
 	include/awl/backends/windows/cursor/object.hpp
 	include/awl/backends/windows/cursor/object_fwd.hpp
 	include/awl/backends/windows/cursor/object_unique_ptr.hpp
 	include/awl/backends/windows/cursor/shared.hpp
 	include/awl/backends/windows/cursor/shared_fwd.hpp
+	include/awl/backends/windows/cursor/size.hpp
+	include/awl/backends/windows/cursor/xor_plane.hpp
 	include/awl/backends/windows/default_wnd_proc.hpp
 	include/awl/backends/windows/event/get.hpp
 	include/awl/backends/windows/event/lparam.hpp
