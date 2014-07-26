@@ -40,7 +40,7 @@ public:
 
 	AWL_SYMBOL
 	virtual
-	~object();
+	~object() = 0;
 };
 
 }

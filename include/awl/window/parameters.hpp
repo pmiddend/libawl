@@ -103,11 +103,11 @@ public:
 	maximum_size_hint() const;
 
 	AWL_SYMBOL
-	fcppt::string const
+	fcppt::string const &
 	title() const;
 
 	AWL_SYMBOL
-	fcppt::string const
+	fcppt::string const &
 	class_name() const;
 
 	AWL_SYMBOL
