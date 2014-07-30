@@ -27,7 +27,7 @@
 #include <fcppt/signal/object_decl.hpp>
 #include <fcppt/signal/unregister/base_decl.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/ptr_container/ptr_map.hpp>
+#include <map>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -128,28 +128,36 @@ private:
 
 	awl::backends::x11::system::object &system_;
 
-	typedef fcppt::signal::object<
+	typedef
+	fcppt::signal::object<
 		awl::backends::x11::system::event::function
-	> signal;
+	>
+	signal;
 
-	typedef boost::ptr_map<
+	typedef
+	std::map<
 		awl::backends::x11::system::event::map_key,
 		signal
-	> event_signal_map;
+	>
+	event_signal_map;
 
 	event_signal_map signals_;
 
 	awl::backends::linux::fd::epoll::set fd_set_;
 
-	typedef fcppt::signal::object<
+	typedef
+	fcppt::signal::object<
 		awl::backends::linux::fd::function,
 		fcppt::signal::unregister::base
-	> fd_signal;
+	>
+	fd_signal;
 
-	typedef boost::ptr_map<
+	typedef
+	std::map<
 		awl::backends::linux::fd::object,
 		fd_signal
-	> fd_signal_map;
+	>
+	fd_signal_map;
 
 	fd_signal_map fd_signals_;
 

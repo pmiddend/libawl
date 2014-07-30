@@ -19,15 +19,14 @@
 #include <awl/main/exit_code.hpp>
 #include <awl/system/event/quit.hpp>
 #include <awl/system/event/quit_callback.hpp>
-#include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/assert/error.hpp>
-#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/signal/auto_connection.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/signal/unregister/base_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
 #include <functional>
+#include <utility>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -180,12 +179,11 @@ awl::backends::x11::system::event::original_processor::register_fd_callback(
 	)
 	{
 		it =
-			fcppt::container::ptr::insert_unique_ptr_map(
-				fd_signals_,
-				_fd,
-				fcppt::make_unique_ptr<
-					fd_signal
-				>()
+			fd_signals_.insert(
+				std::make_pair(
+					_fd,
+					fd_signal()
+				)
 			).first;
 
 		fd_set_.add(
@@ -194,7 +192,7 @@ awl::backends::x11::system::event::original_processor::register_fd_callback(
 	}
 
 	return
-		it->second->connect(
+		it->second.connect(
 			_callback,
 			std::bind(
 				&awl::backends::x11::system::event::original_processor::unregister_fd_signal,
@@ -230,7 +228,7 @@ awl::backends::x11::system::event::original_processor::epoll(
 		if(
 			map_it != fd_signals_.end()
 		)
-			(*map_it->second)(
+			map_it->second(
 				awl::backends::linux::fd::event()
 			);
 	}
@@ -249,7 +247,7 @@ awl::backends::x11::system::event::original_processor::process(
 	);
 
 	signals_[
-		event::map_key(
+		awl::backends::x11::system::event::map_key(
 			awl::backends::x11::system::event::opcode(
 				generic_event.extension
 			),
@@ -284,7 +282,7 @@ awl::backends::x11::system::event::original_processor::unregister_fd_signal(
 	);
 
 	if(
-		it->second->empty()
+		it->second.empty()
 	)
 		fd_signals_.erase(
 			it

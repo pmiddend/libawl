@@ -186,7 +186,7 @@ awl::backends::x11::window::event::original_processor::poll()
 	bool events_processed = false;
 
 	while(
-		x11::window::event::optional new_event =
+		awl::backends::x11::window::event::optional new_event =
 			event::poll_mask(
 				window_,
 				event_mask_
@@ -201,11 +201,13 @@ awl::backends::x11::window::event::original_processor::poll()
 	}
 
 	for(
-		auto const &item : type_counts_
+		auto const &item
+		:
+		type_counts_
 	)
 		while(
-			x11::window::event::optional new_event =
-				event::poll_type(
+			awl::backends::x11::window::event::optional new_event =
+				awl::backends::x11::window::event::poll_type(
 					window_,
 					item.first
 				)
@@ -372,7 +374,7 @@ awl::backends::x11::window::event::original_processor::process(
 
 void
 awl::backends::x11::window::event::original_processor::do_process(
-	x11::window::event::object const &_event
+	awl::backends::x11::window::event::object const &_event
 )
 {
 	if(
@@ -384,7 +386,7 @@ awl::backends::x11::window::event::original_processor::do_process(
 		return;
 
 	signals_[
-		x11::window::event::type(
+		awl::backends::x11::window::event::type(
 			_event.get().type
 		)
 	](
@@ -394,11 +396,11 @@ awl::backends::x11::window::event::original_processor::do_process(
 
 void
 awl::backends::x11::window::event::original_processor::unregister(
-	x11::window::event::type const _event_type
+	awl::backends::x11::window::event::type const _event_type
 )
 {
-	x11::window::event::optional_mask const old_mask(
-		x11::window::event::to_mask(
+	awl::backends::x11::window::event::optional_mask const old_mask(
+		awl::backends::x11::window::event::to_mask(
 			_event_type
 		)
 	);
@@ -416,7 +418,7 @@ awl::backends::x11::window::event::original_processor::unregister(
 		if(
 			count == 0u
 		)
-			x11::window::event::change_mask(
+			awl::backends::x11::window::event::change_mask(
 				window_,
 				event_mask_ &= ~(*old_mask)
 			);
@@ -507,7 +509,7 @@ awl::backends::x11::window::event::original_processor::on_configure(
 
 void
 awl::backends::x11::window::event::original_processor::on_destroy(
-	x11::window::event::object const &
+	awl::backends::x11::window::event::object const &
 )
 {
 	destroy_signal_(

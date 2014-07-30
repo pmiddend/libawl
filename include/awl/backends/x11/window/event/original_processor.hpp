@@ -34,7 +34,6 @@
 #include <fcppt/signal/object_decl.hpp>
 #include <fcppt/signal/unregister/base_decl.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/ptr_container/ptr_map.hpp>
 #include <map>
 #include <fcppt/config/external_end.hpp>
 
@@ -198,7 +197,7 @@ private:
 		fcppt::signal::unregister::base
 	> signal;
 
-	typedef boost::ptr_map<
+	typedef std::map<
 		awl::backends::x11::window::event::type,
 		signal
 	> event_signal_map;

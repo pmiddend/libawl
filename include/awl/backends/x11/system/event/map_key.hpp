@@ -22,27 +22,27 @@ class map_key
 public:
 	AWL_SYMBOL
 	map_key(
-		event::opcode const &,
-		event::type const &
+		awl::backends::x11::system::event::opcode const &,
+		awl::backends::x11::system::event::type const &
 	);
 
 	AWL_SYMBOL
-	event::opcode const &
+	awl::backends::x11::system::event::opcode const &
 	opcode() const;
 
 	AWL_SYMBOL
-	event::type const &
+	awl::backends::x11::system::event::type const &
 	type() const;
 private:
-	event::opcode opcode_;
+	awl::backends::x11::system::event::opcode opcode_;
 
-	event::type type_;
+	awl::backends::x11::system::event::type type_;
 };
 
 bool
 operator<(
-	event::map_key const &,
-	event::map_key const &
+	awl::backends::x11::system::event::map_key const &,
+	awl::backends::x11::system::event::map_key const &
 );
 
 }
