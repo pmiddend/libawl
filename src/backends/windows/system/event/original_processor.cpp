@@ -21,13 +21,13 @@
 #include <fcppt/cast/size.hpp>
 #include <fcppt/cast/to_signed.hpp>
 #include <fcppt/container/raw_vector_impl.hpp>
-#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
 #include <fcppt/preprocessor/disable_vc_warning.hpp>
 #include <fcppt/preprocessor/pop_warning.hpp>
 #include <fcppt/preprocessor/push_warning.hpp>
 #include <fcppt/signal/object_impl.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <functional>
+#include <utility>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -149,26 +149,10 @@ awl::backends::windows::system::event::original_processor::register_callback(
 	awl::backends::windows::system::event::callback const &_func
 )
 {
-	signal_map::iterator it(
-		signals_.find(
-			_msg
-		)
-	);
-
-	if(
-		it == signals_.end()
-	)
-		it =
-			fcppt::container::ptr::insert_unique_ptr_map(
-				signals_,
-				_msg,
-				fcppt::make_unique_ptr<
-					signal_type
-				>()
-			).first;
-
 	return
-		it->second->connect(
+		signals_[
+			_msg
+		].connect(
 			_func
 		);
 }

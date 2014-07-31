@@ -27,11 +27,12 @@
 #include <awl/window/event/show_callback.hpp>
 #include <awl/window/event/show_signal.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/strong_typedef_std_hash.hpp>
 #include <fcppt/signal/auto_connection_container.hpp>
 #include <fcppt/signal/auto_connection_fwd.hpp>
 #include <fcppt/signal/object_decl.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/ptr_container/ptr_map.hpp>
+#include <unordered_map>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -55,8 +56,9 @@ class AWL_CLASS_SYMBOL original_processor
 	);
 public:
 	AWL_SYMBOL
-	explicit original_processor(
-		windows::window::object &
+	explicit
+	original_processor(
+		awl::backends::windows::window::object &
 	);
 
 	AWL_SYMBOL
@@ -190,7 +192,7 @@ private:
 		windows::window::event::function
 	> signal_type;
 
-	typedef boost::ptr_map<
+	typedef std::unordered_map<
 		awl::backends::windows::event::type,
 		signal_type
 	> signal_map;

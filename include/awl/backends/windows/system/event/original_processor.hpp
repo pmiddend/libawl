@@ -19,12 +19,13 @@
 #include <awl/system/event/quit_callback.hpp>
 #include <awl/system/event/quit_signal.hpp>
 #include <fcppt/noncopyable.hpp>
+#include <fcppt/strong_typedef_std_hash.hpp>
 #include <fcppt/container/raw_vector_decl.hpp>
 #include <fcppt/signal/auto_connection_fwd.hpp>
 #include <fcppt/signal/object_decl.hpp>
 #include <fcppt/signal/scoped_connection.hpp>
 #include <fcppt/config/external_begin.hpp>
-#include <boost/ptr_container/ptr_map.hpp>
+#include <unordered_map>
 #include <fcppt/config/external_end.hpp>
 
 
@@ -41,15 +42,16 @@ namespace event
 
 class AWL_CLASS_SYMBOL original_processor
 :
-	public windows::system::event::processor
+	public awl::backends::windows::system::event::processor
 {
 	FCPPT_NONCOPYABLE(
 		original_processor
 	);
 public:
 	AWL_SYMBOL
-	explicit original_processor(
-		windows::system::object &
+	explicit
+	original_processor(
+		awl::backends::windows::system::object &
 	);
 
 	AWL_SYMBOL
@@ -136,18 +138,18 @@ private:
 	);
 
 	typedef fcppt::signal::object<
-		windows::system::event::function
+		awl::backends::windows::system::event::function
 	> signal_type;
 
-	typedef boost::ptr_map<
-		windows::event::type,
+	typedef std::unordered_map<
+		awl::backends::windows::event::type,
 		signal_type
 	> signal_map;
 
 	signal_map signals_;
 
 	typedef fcppt::signal::object<
-		windows::system::event::handle_function
+		awl::backends::windows::system::event::handle_function
 	> handle_signal;
 
 	handle_signal handle_signal_;

@@ -29,10 +29,11 @@
 #include <awl/window/event/resize_callback.hpp>
 #include <awl/window/event/show.hpp>
 #include <awl/window/event/show_callback.hpp>
+#include <fcppt/from_optional.hpp>
 #include <fcppt/make_unique_ptr.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/assign/make_container.hpp>
-#include <fcppt/container/ptr/insert_unique_ptr_map.hpp>
+#include <fcppt/container/find_opt.hpp>
 #include <fcppt/preprocessor/disable_vc_warning.hpp>
 #include <fcppt/preprocessor/pop_warning.hpp>
 #include <fcppt/preprocessor/push_warning.hpp>
@@ -330,29 +331,30 @@ awl::backends::windows::window::event::original_processor::register_callback(
 	awl::backends::windows::window::event::callback const &_func
 )
 {
-	awl::backends::windows::window::event::original_processor::signal_map::iterator it(
-		signals_.find(
-			_type
-		)
-	);
-
-	if(
-		it == signals_.end()
-	)
-		it =
-			fcppt::container::ptr::insert_unique_ptr_map(
-				signals_,
-				_type,
-				fcppt::make_unique_ptr<
-					signal_type
-				>(
-					awl::backends::windows::window::event::combine_result,
-					awl::backends::windows::window::event::return_type()
-				)
-			).first;
-
 	return
-		it->second->connect(
+		fcppt::from_optional(
+			fcppt::container::find_opt(
+				signals_,
+				_type
+			),
+			[
+				this,
+				_type
+			]()
+			-> signal_type &
+			{
+				return
+					signals_.insert(
+						std::make_pair(
+							_type,
+							signal_type(
+								awl::backends::windows::window::event::combine_result,
+								awl::backends::windows::window::event::return_type()
+							)
+						)
+					).first->second;
+			}
+		).connect(
 			_func
 		);
 }
@@ -403,7 +405,7 @@ awl::backends::windows::window::event::original_processor::execute_callback(
 	return
 		it != signals_.end()
 		?
-			(*(it->second))(
+			(it->second)(
 				awl::backends::windows::window::event::object(
 					_wparam,
 					_lparam
