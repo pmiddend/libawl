@@ -5,10 +5,10 @@
 #include <awl/backends/linux/fd/epoll/ctl.hpp>
 #include <awl/backends/linux/fd/epoll/set.hpp>
 #include <fcppt/text.hpp>
-#include <fcppt/truncation_check_cast.hpp>
 #include <fcppt/cast/size.hpp>
 #include <fcppt/cast/to_signed.hpp>
 #include <fcppt/cast/to_unsigned.hpp>
+#include <fcppt/cast/truncation_check.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <sys/epoll.h>
 #include <chrono>
@@ -75,7 +75,7 @@ awl::backends::linux::fd::epoll::set::epoll(
 			),
 			_duration
 			?
-				fcppt::truncation_check_cast<
+				fcppt::cast::truncation_check<
 					int
 				>(
 					std::chrono::duration_cast<
