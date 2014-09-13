@@ -15,8 +15,8 @@
 #include <fcppt/maybe.hpp>
 #include <fcppt/strong_typedef_construct_cast.hpp>
 #include <fcppt/text.hpp>
-#include <fcppt/cast/try_dynamic.hpp>
 #include <fcppt/cast/size.hpp>
+#include <fcppt/cast/try_dynamic.hpp>
 #include <fcppt/math/dim/structure_cast.hpp>
 
 

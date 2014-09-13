@@ -4,8 +4,8 @@
 #include <awl/symbol.hpp>
 #include <awl/backends/x11/display_fwd.hpp>
 #include <awl/backends/x11/cursor/background_color.hpp>
-#include <awl/backends/x11/cursor/foreground_color.hpp>
 #include <awl/backends/x11/cursor/dest_pixmap.hpp>
+#include <awl/backends/x11/cursor/foreground_color.hpp>
 #include <awl/backends/x11/cursor/holder_unique_ptr.hpp>
 #include <awl/backends/x11/cursor/source_pixmap.hpp>
 #include <awl/cursor/hotspot_fwd.hpp>

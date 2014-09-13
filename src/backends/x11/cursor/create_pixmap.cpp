@@ -2,8 +2,8 @@
 #include <awl/backends/x11/display.hpp>
 #include <awl/backends/x11/cursor/background_color.hpp>
 #include <awl/backends/x11/cursor/create_pixmap.hpp>
-#include <awl/backends/x11/cursor/foreground_color.hpp>
 #include <awl/backends/x11/cursor/dest_pixmap.hpp>
+#include <awl/backends/x11/cursor/foreground_color.hpp>
 #include <awl/backends/x11/cursor/holder.hpp>
 #include <awl/backends/x11/cursor/holder_unique_ptr.hpp>
 #include <awl/backends/x11/cursor/source_pixmap.hpp>

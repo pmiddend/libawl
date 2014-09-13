@@ -9,8 +9,8 @@
 #include <awl/window/rect.hpp>
 #include <fcppt/maybe.hpp>
 #include <fcppt/text.hpp>
-#include <fcppt/cast/try_dynamic.hpp>
 #include <fcppt/cast/to_signed.hpp>
+#include <fcppt/cast/try_dynamic.hpp>
 #include <fcppt/math/dim/structure_cast.hpp>
 #include <fcppt/config/external_begin.hpp>
 #include <X11/Xlib.h>
