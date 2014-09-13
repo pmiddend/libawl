@@ -7,8 +7,9 @@
 #include <awl/window/dim.hpp>
 #include <awl/window/object.hpp>
 #include <awl/window/rect.hpp>
+#include <fcppt/maybe.hpp>
 #include <fcppt/text.hpp>
-#include <fcppt/try_dynamic_cast.hpp>
+#include <fcppt/cast/try_dynamic.hpp>
 #include <fcppt/cast/to_signed.hpp>
 #include <fcppt/math/dim/structure_cast.hpp>
 #include <fcppt/config/external_begin.hpp>
@@ -107,17 +108,28 @@ awl::backends::x11::window::common_object::equal_to(
 	awl::window::object const &_other
 ) const
 {
-	FCPPT_TRY_DYNAMIC_CAST(
-		awl::backends::x11::window::object const *,
-		casted_other,
-		&_other
-	)
-	{
-		return
-			casted_other->get()
-			==
-			this->get();
-	}
-
-	return false;
+	return
+		fcppt::maybe(
+			fcppt::cast::try_dynamic<
+				awl::backends::x11::window::object const &
+			>(
+				_other
+			),
+			[]
+			{
+				return
+					false;
+			},
+			[
+				this
+			](
+				awl::backends::x11::window::object const &_casted_other
+			)
+			{
+				return
+					_casted_other.get()
+					==
+					this->get();
+			}
+		);
 }
